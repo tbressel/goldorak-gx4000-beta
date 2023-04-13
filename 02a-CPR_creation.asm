@@ -29,15 +29,15 @@ ligneinf_c000
 	add		hl,bc
 	ex		hl,de
 	ret
-ligneinf_4000
-	ld 		a,h
-	add 	a,#08
-	ld 		h,a
-	bit		7,a
-	ret 	Z		; debordement
-	ld 		bc,#C050
-	add 	hl,bc
-	ret
+		ligneinf_4000
+			ld 		a,h
+			add 	a,#08
+			ld 		h,a
+			bit		7,a
+			ret 	Z		; debordement
+			ld 		bc,#C050
+			add 	hl,bc
+			ret
 
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
