@@ -41,11 +41,7 @@ score_BOOM
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
 afficher_le_score
-	ld		a,(no_id_joueur)
-	cp		a,1
-	jp		z,afficher_score_goldorak
-	cp		a,2
-	jr		z,afficher_score_venusiak
+
 afficher_score_goldorak
 	; on déplace les adresse du compteur de point à l'écran dans le hud 2
 	ld		hl,(val_HUD_SCORE_UNITE_ADR_hudJ1)
@@ -71,30 +67,30 @@ afficher_score_goldorak
 	ld		(Counter_score),a			; on écrit en RAM les dizaine de milliers
 	exx
 	jr		afficher_suite_score
-afficher_score_venusiak
-	; on déplace les adresse du compteur de point à l'écran dans le hud 2
-	ld		hl,(val_HUD_SCORE_UNITE_ADR_hudJ2)
-	ld		(HUD_SCORE_UNITE_ADR_hud),hl
-	ld		hl,(val_HUD_SCORE_DIZAINNE_ADR_hudJ2)
-	ld		(HUD_SCORE_DIZAINNE_ADR_hud),hl
-	ld		hl,(val_HUD_SCORE_CENTAINE_ADR_hudJ2)
-	ld		(HUD_SCORE_CENTAINE_ADR_hud),hl
-	ld		hl,(val_HUD_SCORE_MILLIER_ADR_hudJ2)
-	ld		(HUD_SCORE_MILLIER_ADR_hud),hl
-	ld		hl,(val_HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hudJ2)
-	ld		(HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hud),hl
-	exx
-	ld		a,c
-	ld		(Counter_score2+4),a			; on écrit en RAM les unitées
-	ld		a,D
-	ld		(Counter_score2+3),a			; on écrit en RAM les dizaines
-	ld		a,E
-	ld		(Counter_score2+2),a			; on écrit en RAM les centaines
-	ld		a,h
-	ld		(Counter_score2+1),a			; on écrit en RAM les milliers
-	ld		a,l
-	ld		(Counter_score2),a			; on écrit en RAM les dizaine de milliers
-	exx
+;afficher_score_venusiak
+;	; on déplace les adresse du compteur de point à l'écran dans le hud 2
+;	ld		hl,(val_HUD_SCORE_UNITE_ADR_hudJ2)
+;	ld		(HUD_SCORE_UNITE_ADR_hud),hl
+;	ld		hl,(val_HUD_SCORE_DIZAINNE_ADR_hudJ2)
+;	ld		(HUD_SCORE_DIZAINNE_ADR_hud),hl
+;	ld		hl,(val_HUD_SCORE_CENTAINE_ADR_hudJ2)
+;	ld		(HUD_SCORE_CENTAINE_ADR_hud),hl
+;	ld		hl,(val_HUD_SCORE_MILLIER_ADR_hudJ2)
+;	ld		(HUD_SCORE_MILLIER_ADR_hud),hl
+;	ld		hl,(val_HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hudJ2)
+;	ld		(HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hud),hl
+;	exx
+;	ld		a,c
+;	ld		(Counter_score2+4),a			; on écrit en RAM les unitées
+;	ld		a,D
+;	ld		(Counter_score2+3),a			; on écrit en RAM les dizaines
+;	ld		a,E
+;	ld		(Counter_score2+2),a			; on écrit en RAM les centaines
+;	ld		a,h
+;	ld		(Counter_score2+1),a			; on écrit en RAM les milliers
+;	ld		a,l
+;	ld		(Counter_score2),a			; on écrit en RAM les dizaine de milliers
+;	exx
 afficher_suite_score
 	RST		ASIC_DECONNEXION
 	ld		c,BANK8_HUD
@@ -273,36 +269,36 @@ diminue_NRJ_bar
 	RST		ASIC_CONNEXION
 	ret
 	
-diminue_NRJ_bar_J2
-	RST		ASIC_DECONNEXION
-	ld		hl,(pointeur_tbl_NRJ_bar2)		; lecture de la table
-	ld		d,(hl)							; on recupère le poid faible
-	dec		hl
-	ld		e,(hl)							; on recupère le poid fort
-	ld		a,HUD_NRJ_PIXEL_NOIR					; valeur dde 2 pixel noir
-	ld		(de),a							; on envoie à l'ecran
-; ligne du dessous	
-	ld		a,d
-	add		a,#8
-	ld		d,a
-	ld		a,HUD_NRJ_PIXEL_NOIR
-	ld		(de),a
-; ligne du dessous	
-	ld		a,d
-	add		a,#8
-	ld		d,a
-	ld		a,HUD_NRJ_PIXEL_NOIR
-	ld		(de),a
-; ligne du dessous	
-	ld		a,d
-	add		a,#8
-	ld		d,a
-	ld		a,HUD_NRJ_PIXEL_NOIR
-	ld		(de),a
-	dec		hl
-	ld		(pointeur_tbl_NRJ_bar2),hl
-	RST		ASIC_CONNEXION
-	ret
+;diminue_NRJ_bar_J2
+;	RST		ASIC_DECONNEXION
+;	ld		hl,(pointeur_tbl_NRJ_bar2)		; lecture de la table
+;	ld		d,(hl)							; on recupère le poid faible
+;	dec		hl
+;	ld		e,(hl)							; on recupère le poid fort
+;	ld		a,HUD_NRJ_PIXEL_NOIR					; valeur dde 2 pixel noir
+;	ld		(de),a							; on envoie à l'ecran
+;; ligne du dessous	
+;	ld		a,d
+;	add		a,#8
+;	ld		d,a
+;	ld		a,HUD_NRJ_PIXEL_NOIR
+;	ld		(de),a
+;; ligne du dessous	
+;	ld		a,d
+;	add		a,#8
+;	ld		d,a
+;	ld		a,HUD_NRJ_PIXEL_NOIR
+;	ld		(de),a
+;; ligne du dessous	
+;	ld		a,d
+;	add		a,#8
+;	ld		d,a
+;	ld		a,HUD_NRJ_PIXEL_NOIR
+;	ld		(de),a
+;	dec		hl
+;	ld		(pointeur_tbl_NRJ_bar2),hl
+;	RST		ASIC_CONNEXION
+;	ret
 
 on_perd_une_vie
 	ld		a,(id_joueur)
@@ -310,19 +306,19 @@ on_perd_une_vie
 	jr		z,goldorak_perds_un_vie
 
 
-venusiak_perds_un_vie
-	ld		a,(nbr_de_vie_j2)
-	dec		a
-	cp		a,-1
-	jp		z,venusiak_explose
-	ld		(nbr_de_vie_j2),a
-	ld		hl,HUD_VIEJ2_ECRAN_ADR
-	ld		(HUD_VIEJ1_ECRAN_ADR_SCR),hl
-	call 	asic_off
-	ld		c,BANK8_HUD
-	RST 	UPPER_ROM_CONNEXION
-	ld		a,(nbr_de_vie_j2)
-	jr		on_saute_vie_goldorak
+;venusiak_perds_un_vie
+;	ld		a,(nbr_de_vie_j2)
+;	dec		a
+;	cp		a,-1
+;	jp		z,venusiak_explose
+;	ld		(nbr_de_vie_j2),a
+;	ld		hl,HUD_VIEJ2_ECRAN_ADR
+;	ld		(HUD_VIEJ1_ECRAN_ADR_SCR),hl
+;	call 	asic_off
+;	ld		c,BANK8_HUD
+;	RST 	UPPER_ROM_CONNEXION
+;	ld		a,(nbr_de_vie_j2)
+;	jr		on_saute_vie_goldorak
 goldorak_perds_un_vie
 
 	ld		a,(nbr_de_vie)

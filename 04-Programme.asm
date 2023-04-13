@@ -174,7 +174,7 @@ event_golgoth			ds		3,0
 event_autre				ds		28,0
 	
 event_arme_fireA			ds		3,0	
-event_arme_fireA_venisiak	ds		3,0
+;event_arme_fireA_venisiak	ds		3,0
 
 
 event_normal_goldorak_boom
@@ -186,15 +186,14 @@ jp	test_du_CPC_plus
 retour_test_de_CPC_plus
 
 
-
 event_test_de_goldorak		
 jp		test_de_goldorak
 retour_test_de_goldorak
 
-event_venusiak_boom
-event_test_de_venusiak		ds		3,0
+;event_venusiak_boom
+;event_test_de_venusiak		ds		3,0
 							;jp		test_de_venusiak
-retour_test_de_venusiak
+;retour_test_de_venusiak
 
 
 
@@ -230,9 +229,9 @@ test_du_CPC_plus
 	jp		z,music_on_off
 	bit		2,a
 	jp		z,change_musique
-	bit		3,a
-automodif_retour_1joueur
-	jp		z,init_2joueurs
+;	bit		3,a
+;automodif_retour_1joueur
+;	jp		z,init_2joueurs
 	jp		retour_test_de_CPC_plus
 	
 			; //////////////////  goldorak  /////////////////
@@ -266,28 +265,28 @@ automodif_retour_1joueur
 									jp		retour_test_de_goldorak
 
 											; //////////////////  venusiak  /////////////////
-											test_de_venusiak
-												call 	test_du_clavier_venusiak
-												bit		5,a
-												jp		z,fireB_venusiak
-											retour_test_des_tirs_venusiak
-
-													test_des_directions_venusiak
-														call 	test_du_clavier_venusiak
-														bit		0,a
-														jp		z,haut_venus
-														bit		1,a
-														jp		z,bas_venus
-													retour_test_des_directions_venusiak
-																test_des_directions2_venusiak
-																	call 	test_du_clavier_venusiak
-																	bit		3,a
-																	jp		z,venus_droite
-																	bit		2,a
-																	jp		z,venus_gauche
-																retour_test_des_directions2_venusiak
-																	jr		retour_test_de_venusiak
-																; ///////////////////////////////////////////////
+											;test_de_venusiak
+											;	call 	test_du_clavier_venusiak
+											;	bit		5,a
+											;	jp		z,fireB_venusiak
+											;retour_test_des_tirs_venusiak
+;
+											;		test_des_directions_venusiak
+											;			call 	test_du_clavier_venusiak
+											;			bit		0,a
+											;			jp		z,haut_venus
+											;			bit		1,a
+											;			jp		z,bas_venus
+											;		retour_test_des_directions_venusiak
+											;					test_des_directions2_venusiak
+											;						call 	test_du_clavier_venusiak
+											;						bit		3,a
+											;						jp		z,venus_droite
+											;						bit		2,a
+											;						jp		z,venus_gauche
+											;					retour_test_des_directions2_venusiak
+											;						jr		retour_test_de_venusiak
+											;					; ///////////////////////////////////////////////
 
 
 ; //////////////////////////////////////////////////////////////////
@@ -308,19 +307,19 @@ test_du_clavier
 	ei	
 	ld		(resultat_test_de_touche),a
 	ret
-			test_du_clavier_venusiak
-				di
-				ld		bc,#F40E:OUT (C),c
-				ld		bc,#F6C0:OUT (C),C
-				ld		bc,#F600:OUT (C),C
-				ld		bc,#F792:OUT (C),C				; on place le port A en sortie (#92)
-				ld		bc,#F646:OUT (C),C				; test la ligne 6 avec #F6 + %0100 0110 (#46)
-				ld		b,#F4:IN A,(C)
-				ld		bc,#F782:OUT (C),C				; on place le port A en entrée (#82)
-				ld		bc,#F600:OUT (C),C
-				ei	
-				ld		(resultat_test_de_touche_venusiak),a
-				ret
+			;test_du_clavier_venusiak
+			;	di
+			;	ld		bc,#F40E:OUT (C),c
+			;	ld		bc,#F6C0:OUT (C),C
+			;	ld		bc,#F600:OUT (C),C
+			;	ld		bc,#F792:OUT (C),C				; on place le port A en sortie (#92)
+			;	ld		bc,#F646:OUT (C),C				; test la ligne 6 avec #F6 + %0100 0110 (#46)
+			;	ld		b,#F4:IN A,(C)
+			;	ld		bc,#F782:OUT (C),C				; on place le port A en entrée (#82)
+			;	ld		bc,#F600:OUT (C),C
+			;	ei	
+			;	ld		(resultat_test_de_touche_venusiak),a
+			;	ret
 						test_du_clavier_toutes_les_lignes
 							di
 							LD   BC,#F40E : OUT  (C),C   ; Valeur 14 sur le port A         
@@ -395,42 +394,35 @@ game_over
 	LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
 	LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
 	JP		perdu
-jeu_termine
-	ld		a,#30
-	ld		bc,#bc00+12: out (c),c
-	ld		bc,#bd00 : ld c,a : out (c),c
-	ld		a,#00
-	ld		bc,#bc00+13: out (c),c
-	ld		bc,#bd00 : ld c,a : out (c),c
-	LD 		BC,#DF00+16+#80:OUT (C),C			; on choisit DE LIRE la ROM 11
-	LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
-	LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
-	jp		Fin
-fin_du_level
-	call	rom_off
-	RST		ASIC_CONNEXION
-	ld		hl,PALETTE_ASIC						; emplacement RAM de la pallette ecran
-	ld		de,PALETTE_DECORS_RAM				; emplacement ASIC de la pallette ecran NOIRE !
-	ld 		bc,#20
-	LDIR
-	RST		ASIC_DECONNEXION
-	ld		a,_CALL						; call
-	ld		(event_fade_out),a
-	ld		hl,fondu_de_sortie
-	ld		(event_fade_out+1),hl
-	ld		a,_JP						; JP
-	ld		(event_fade_out+3),a
-	ld		hl,boucle_principale
-	ld		(event_fade_out+4),hl
-	call	music_off
-	jp		boucle_principale
-sample_on
-	call	RAM_SAMPLES
-	ld		a,_CALL
-	ld		(event_playsample),a
-	ld		hl,Sample
-	ld		(event_playsample+1),hl
-	ret
+		jeu_termine
+			ld		a,#30
+			ld		bc,#bc00+12: out (c),c
+			ld		bc,#bd00 : ld c,a : out (c),c
+			ld		a,#00
+			ld		bc,#bc00+13: out (c),c
+			ld		bc,#bd00 : ld c,a : out (c),c
+			LD 		BC,#DF00+16+#80:OUT (C),C			; on choisit DE LIRE la ROM 11
+			LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
+			LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
+			jp		Fin
+				fin_du_level
+					call	rom_off
+					RST		ASIC_CONNEXION
+					ld		hl,PALETTE_ASIC						; emplacement RAM de la pallette ecran
+					ld		de,PALETTE_DECORS_RAM				; emplacement ASIC de la pallette ecran NOIRE !
+					ld 		bc,#20
+					LDIR
+					RST		ASIC_DECONNEXION
+					ld		a,_CALL						; call
+					ld		(event_fade_out),a
+					ld		hl,fondu_de_sortie
+					ld		(event_fade_out+1),hl
+					ld		a,_JP						; JP
+					ld		(event_fade_out+3),a
+					ld		hl,boucle_principale
+					ld		(event_fade_out+4),hl
+					call	music_off
+					jp		boucle_principale
 Sample
       	call 	PlaySampleSet
 		xor		a
@@ -477,105 +469,75 @@ powerup
 
 affiche_ecrans_de_fin	
 	call	rom_off
-di	
-		Asic ON		
-	ld		a,0
-	ld	(#6004),a
-	ld	(#600C),a
-	ld	(#6014),a
-	ld	(#601C),a
-	ld	(#6024),a
-	ld	(#602C),a
-	ld	(#6034),a
-	ld	(#603C),a
-	ld	(#6044),a
-	ld	(#604C),a
-	ld	(#6054),a
-	ld	(#605C),a
-
+	di	
+	Asic ON		
+	xor		a
+	ld		(#6004),a
+	ld		(#600C),a
+	ld		(#6014),a
+	ld		(#601C),a
+	ld		(#6024),a
+	ld		(#602C),a
+	ld		(#6034),a
+	ld		(#603C),a
+	ld		(#6044),a
+	ld		(#604C),a
+	ld		(#6054),a
+	ld		(#605C),a
 	Asic OFF
-	
-		
-
-	; mise à zéros de la bank #C000-#FFFF
-	xor		a
-	ld		hl,#C000
-	ld		e,l
-	ld		d,h
-	inc		de
-	ld		(hl),a
-	ld		bc,#3fff
-	LDIR
-	
+		; mise à zéros de la bank #C000-#FFFF
+			xor		a
+			ld		hl,#C000
+			ld		e,l
+			ld		d,h
+			inc		de
+			ld		(hl),a
+			ld		bc,#3fff
+			LDIR
 		; mise à zéros de la bank #4000-#BFFF
-	xor		a
-	ld		hl,#4000
-	ld		e,l
-	ld		d,h
-	inc		de
-	ld		(hl),a
-	ld		bc,#3fff
-	LDIR	
-
-Asic ON
-LD 		BC,BANK_GOLDORAK_SPRH:OUT (C),C				; on choisit DE LIRE la ROM 14
-LD		BC,#7F00+%10000000:OUT (C),C 		; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
-
-LD		hl,#EC00
-ld		de,SPRH15_ADR
-ld		bc,#100
-LDIR
-Asic OFF
-
-
-LD 		BC,#DF00+0+#80:OUT (C),C			; on choisit DE LIRE la ROM 11
-LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
-LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
-		
-		ld		a,(GoldorakMort)
-		cp		a,1		
-		jp		z,game_over
-
-
-
-		;jp		crocofest
-		jp		shop
-		;jp		fin
+			xor		a
+			ld		hl,#4000
+			ld		e,l
+			ld		d,h
+			inc		de
+			ld		(hl),a
+			ld		bc,#3fff
+			LDIR	
+			Asic ON
+			LD 		BC,BANK_GOLDORAK_SPRH:OUT (C),C				; on choisit DE LIRE la ROM 14
+			LD		BC,#7F00+%10000000:OUT (C),C 		; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
+			LD		hl,#EC00
+			ld		de,SPRH15_ADR
+			ld		bc,#100
+			LDIR
+			Asic OFF
+			LD 		BC,#DF00+0+#80:OUT (C),C			; on choisit DE LIRE la ROM 11
+			LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
+			LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
+			ld		a,(GoldorakMort)
+			cp		a,1		
+			jp		z,game_over
+			jp		shop
+			
 
 change_musique
-di
-call	PLY_AKG_Stop
-call	music_off
-ld 		hl,Music
-
-
-ld		a,(no_de_la_musique)
-inc		a
-ld		(no_de_la_musique),a
-cp		a,7
-call	z,reinit_no_musique
-
-		call 	PLY_AKG_Init
-		call	music_on
-ei
-	jp	retour_test_de_CPC_plus
-reinit_no_musique
-xor 	a
-ld	(no_de_la_musique),a
-ret
-	
-	
-	
-music_on_off
+	di
+	call	PLY_AKG_Stop
+	call	music_off
 	ld 		hl,Music
-	ld  	a,6
+	ld		a,(no_de_la_musique)
+	inc		a
+	ld		(no_de_la_musique),a
+	cp		a,7
+	call	z,reinit_no_musique
 	call 	PLY_AKG_Init
-	jp		retour_test_de_CPC_plus
-
-
-
-
-no_de_la_musique		ds			1,0
+	call	music_on
+	ei
+	jp	retour_test_de_CPC_plus
+			reinit_no_musique
+			xor 	a
+			ld	(no_de_la_musique),a
+			ret
 
 
 
@@ -598,8 +560,8 @@ include"12-soucoupes.asm"
 include"13-collisions_ennemis.asm"
 include"14-tirs_soucoupes.asm"
 include"15-gestion_du_hud.asm"
-include"16-Init_switch_1_2_joueurs.asm"
-include"17-gestion_venusiak.asm"
+;include"16-Init_switch_1_2_joueurs.asm"
+;include"17-gestion_venusiak.asm"
 include"18-mouvements_soucoupes.asm"
 include"A-interruptions.asm"
 include"B-interrupteurs.asm"

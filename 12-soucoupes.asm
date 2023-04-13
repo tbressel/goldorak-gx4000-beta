@@ -460,8 +460,8 @@ soucoupe_attends_item
 	ld		a,(flag_mode_2_joueur)
 	cp		a,1
 	ret		nz
-	call	test_collisions_venusiak_item
-	call	test_collisions_venusiak_item2
+	;call	test_collisions_venusiak_item
+	;call	test_collisions_venusiak_item2
 	ret
 		soucoupe_disparait
 			ld		c,BANK_ROM_2

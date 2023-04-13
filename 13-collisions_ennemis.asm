@@ -184,47 +184,47 @@ test_collisions_tir_droite_golgoth
 		
 	RET
 
-test_collisions_tir_droite_venusiak
-	ld			a,(VenusiakMort)
-	cp			a,0
-	RET			nz
-	ld			a,2
-	ld			(id_joueur),a
-	LD			hl,(SPRH5_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
-	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
-
-	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH5_X)					; à partir du coin haut-gauche de link
-	SBC			hl,de
-	RET			C
-
-	LD			hl,(SPRH5_Y)					; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET 		C								; si hl>=de le flag C est à zero
-
-	LD			hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-												; on est sur le coin haut-droite
-	LD			de,(SPRH5_Y)					; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	Jr 			NC,venusiak_touche					; si hl>=de le flag C est à zero
-		
-	RET
+;test_collisions_tir_droite_venusiak
+;	ld			a,(VenusiakMort)
+;	cp			a,0
+;	RET			nz
+;	ld			a,2
+;	ld			(id_joueur),a
+;	LD			hl,(SPRH5_X)					; à partir du coin haut-gauche de link
+;	LD			de,30							
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+;	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET			C								; si hl>=de le flag C est à zero
+;
+;	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	LD			de,30						
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+;	LD			de,(SPRH5_X)					; à partir du coin haut-gauche de link
+;	SBC			hl,de
+;	RET			C
+;
+;	LD			hl,(SPRH5_Y)					; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET 		C								; si hl>=de le flag C est à zero
+;
+;	LD			hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;												; on est sur le coin haut-droite
+;	LD			de,(SPRH5_Y)					; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	Jr 			NC,venusiak_touche					; si hl>=de le flag C est à zero
+;		
+;	RET
 
 goldorak_touche_golgoth
 	pop		ix	
-venusiak_touche
+;venusiak_touche
 goldorak_touche
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_BOOM_ENNEMI
@@ -565,14 +565,14 @@ test_collisions_goldorak_item2
 		
 	RET	
 
-venusiak_prends_item
-	ld		a,2
-	ld		(id_joueur),a
-	jr		prends_item_J1ouJ2
+;venusiak_prends_item
+;	ld		a,2
+;	ld		(id_joueur),a
+;	jr		prends_item_J1ouJ2
 goldorak_prends_item
 	ld		a,1
 	ld		(id_joueur),a
-prends_item_J1ouJ2
+;prends_item_J1ouJ2
 	ld		a,SFX_GET_ITEM
 	ld 		c,0 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
@@ -937,175 +937,175 @@ goldorak_percute_tirs
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
-test_collisions_venusiak_item
-	ld			a,(VenusiakMort)
-	cp			a,0
-	RET			nz
-
-	LD			hl,(SPRH2_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
-	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
-
-	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH2_X)					; à partir du coin haut-gauche de link
-	SBC			hl,de
-	RET			C
-
-	LD			hl,(SPRH2_Y)					; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET 		C								; si hl>=de le flag C est à zero
-
-	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
-	LD		de,15
-	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD		de,(SPRH2_Y)					; à partir du coin haut-gauche du monstre
-	SBC		hl,de
-	jp 		NC,venusiak_prends_item					; si hl>=de le flag C est à zero
-		
-	RET	
-test_collisions_venusiak_item2
-	ld			a,(VenusiakMort)
-	cp			a,0
-	RET			nz
-
-	LD			hl,(SPRH3_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
-	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
-
-	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH3_X)					; à partir du coin haut-gauche de link
-	SBC			hl,de
-	RET			C
-
-	LD			hl,(SPRH3_Y)					; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET 		C								; si hl>=de le flag C est à zero
-
-	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
-	LD		de,15
-	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD		de,(SPRH3_Y)					; à partir du coin haut-gauche du monstre
-	SBC		hl,de
-	Jp 		NC,venusiak_prends_item					; si hl>=de le flag C est à zero
-		
-	RET	
+;test_collisions_venusiak_item
+;	ld			a,(VenusiakMort)
+;	cp			a,0
+;	RET			nz
+;
+;	LD			hl,(SPRH2_X)					; à partir du coin haut-gauche de link
+;	LD			de,30							
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+;	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET			C								; si hl>=de le flag C est à zero
+;
+;	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	LD			de,30						
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+;	LD			de,(SPRH2_X)					; à partir du coin haut-gauche de link
+;	SBC			hl,de
+;	RET			C
+;
+;	LD			hl,(SPRH2_Y)					; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET 		C								; si hl>=de le flag C est à zero
+;
+;	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
+;	LD		de,15
+;	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD		de,(SPRH2_Y)					; à partir du coin haut-gauche du monstre
+;	SBC		hl,de
+;	jp 		NC,venusiak_prends_item					; si hl>=de le flag C est à zero
+;		
+;	RET	
+;test_collisions_venusiak_item2
+;	ld			a,(VenusiakMort)
+;	cp			a,0
+;	RET			nz
+;
+;	LD			hl,(SPRH3_X)					; à partir du coin haut-gauche de link
+;	LD			de,30							
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+;	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET			C								; si hl>=de le flag C est à zero
+;
+;	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	LD			de,30						
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+;	LD			de,(SPRH3_X)					; à partir du coin haut-gauche de link
+;	SBC			hl,de
+;	RET			C
+;
+;	LD			hl,(SPRH3_Y)					; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET 		C								; si hl>=de le flag C est à zero
+;
+;	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
+;	LD		de,15
+;	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD		de,(SPRH3_Y)					; à partir du coin haut-gauche du monstre
+;	SBC		hl,de
+;	Jp 		NC,venusiak_prends_item					; si hl>=de le flag C est à zero
+;		
+;	RET	
 
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////    VENUSIAK SE PRENDS DES DEGATS  ///////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
-test_collisions_avec_les_ennemisG_venusiak
-	ld			a,(VenusiakMort)
-	cp			a,0
-	RET			nz
-	LD			hl,(SPRH2_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
-	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
-	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH2_X)					; à partir du coin haut-gauche de link
-	SBC			hl,de
-	RET			C
-	LD			hl,(SPRH2_Y)					; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET 		C								; si hl>=de le flag C est à zero
-	LD			hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(SPRH2_Y)					; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	JP 			NC,venusiak_percute					; si hl>=de le flag C est à zero
-	ret
-test_collisions_avec_les_ennemisD_venusiak
-	ld			a,(VenusiakMort)
-	cp			a,0
-	RET			nz	
-	LD			hl,(SPRH3_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
-	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
-	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
-	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH3_X)					; à partir du coin haut-gauche de link
-	SBC			hl,de
-	RET			C
-	LD			hl,(SPRH3_Y)					; à partir du coin haut-gauche de link
-	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
-	RET 		C								; si hl>=de le flag C est à zero
-	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
-	LD		de,15
-	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-											; on est sur le coin haut-droite
-	LD		de,(SPRH3_Y)					; à partir du coin haut-gauche du monstre
-	SBC		hl,de
-	JP 		NC,venusiak_percute					; si hl>=de le flag C est à zero
-	RET
-venusiak_percute
-	rst		ASIC_CONNEXION
-	ld		hl,COULEUR_DEGAT_BORDER_J2
-	ld		(#6420),hl
-	rst		ASIC_DECONNEXION
-ld		a,SFX_HIT
-	ld 		c,0 					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
-    call 	PLY_AKG_PlaySoundEffect
-	
-	ld		a,2
-	ld		(id_joueur),a
-	ld		a,(flag_percute_j2)
-	inc		a
-	ld		(flag_percute_j2),a
-	cp		a,nrj_damage_venusiak
-	ret		NZ
-	xor		a
-	ld		(flag_percute_j2),a
-	call	fin_armes
-	
-	ld		a,(points_sante_j2)
-	dec		a
-	ld		(points_sante_j2),a
-	jp		z,on_perd_une_vie
-	
-	call	diminue_NRJ_bar_J2
-	
-	ret
+;test_collisions_avec_les_ennemisG_venusiak
+;	ld			a,(VenusiakMort)
+;	cp			a,0
+;	RET			nz
+;	LD			hl,(SPRH2_X)					; à partir du coin haut-gauche de link
+;	LD			de,30							
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+;	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET			C								; si hl>=de le flag C est à zero
+;	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	LD			de,30						
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+;	LD			de,(SPRH2_X)					; à partir du coin haut-gauche de link
+;	SBC			hl,de
+;	RET			C
+;	LD			hl,(SPRH2_Y)					; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET 		C								; si hl>=de le flag C est à zero
+;	LD			hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(SPRH2_Y)					; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	JP 			NC,venusiak_percute					; si hl>=de le flag C est à zero
+;	ret
+;test_collisions_avec_les_ennemisD_venusiak
+;	ld			a,(VenusiakMort)
+;	cp			a,0
+;	RET			nz	
+;	LD			hl,(SPRH3_X)					; à partir du coin haut-gauche de link
+;	LD			de,30							
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+;	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET			C								; si hl>=de le flag C est à zero
+;	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
+;	LD			de,30						
+;	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+;	LD			de,(SPRH3_X)					; à partir du coin haut-gauche de link
+;	SBC			hl,de
+;	RET			C
+;	LD			hl,(SPRH3_Y)					; à partir du coin haut-gauche de link
+;	LD			de,15
+;	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
+;	SBC			hl,de
+;	RET 		C								; si hl>=de le flag C est à zero
+;	LD		hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
+;	LD		de,15
+;	add		hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+;											; on est sur le coin haut-droite
+;	LD		de,(SPRH3_Y)					; à partir du coin haut-gauche du monstre
+;	SBC		hl,de
+;	JP 		NC,venusiak_percute					; si hl>=de le flag C est à zero
+;	RET
+;venusiak_percute
+;	rst		ASIC_CONNEXION
+;	ld		hl,COULEUR_DEGAT_BORDER_J2
+;	ld		(#6420),hl
+;	rst		ASIC_DECONNEXION
+;ld		a,SFX_HIT
+;	ld 		c,0 					;channel (0-2)
+;    ld 		b,0 					;Inverted volume (0-16)
+;    call 	PLY_AKG_PlaySoundEffect
+;	
+;	ld		a,2
+;	ld		(id_joueur),a
+;	ld		a,(flag_percute_j2)
+;	inc		a
+;	ld		(flag_percute_j2),a
+;	cp		a,nrj_damage_venusiak
+;	ret		NZ
+;	xor		a
+;	ld		(flag_percute_j2),a
+;	call	fin_armes
+;	
+;	ld		a,(points_sante_j2)
+;	dec		a
+;	ld		(points_sante_j2),a
+;	jp		z,on_perd_une_vie
+;	
+;	call	diminue_NRJ_bar_J2
+;	
+;	ret
 	
 	
 	

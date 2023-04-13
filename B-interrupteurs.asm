@@ -43,6 +43,14 @@ rom_off
 	ei
 	ret
 
+sample_on
+	call	RAM_SAMPLES
+	ld		a,_CALL
+	ld		(event_playsample),a
+	ld		hl,Sample
+	ld		(event_playsample+1),hl
+	ret
+
 music_on
 	ld		a,_CALL
 	ld		(event_play_music),a
@@ -57,6 +65,16 @@ music_off
 	ld		(event_play_music+1),a
 	ld		(event_play_music+2),a
 	ret	
+
+	
+music_on_off
+	ld 		hl,Music
+	ld  	a,6
+	call 	PLY_AKG_Init
+	jp		retour_test_de_CPC_plus
+
+
+
 
 scrolling_off
 	ld		a,_JP							; JP pas_de_scroll_hard

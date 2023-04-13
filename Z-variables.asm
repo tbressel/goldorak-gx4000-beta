@@ -11,6 +11,9 @@ etat_roms_mode				ds		2,0
 resultat_test_de_touche		ds		1,0
 resultat_test_de_touche_cpcplus		ds		1,0
 
+no_de_la_musique		ds			1,0
+
+
 bank_level					ds		2,0
 bank_tileset				ds		2,0
 adr_screen_level			ds		2,0
@@ -151,10 +154,10 @@ pointeur_tbl_point		ds		2,0
 ; //////////////////////////////////////////////////////////////////
 
 GoldorakMort				ds		1,0
-VenusiakMort				ds		1,0
-BoomVenusiakEtp				ds		1,0
-BoomVenusiakSprhRomAdr		ds		2,0
-BoomVenusiakTimerAdr		ds		1,0
+;VenusiakMort				ds		1,0
+;BoomVenusiakEtp				ds		1,0
+;BoomVenusiakSprhRomAdr		ds		2,0
+;BoomVenusiakTimerAdr		ds		1,0
 
 valeur_retard				ds		1,0
 valeur_crtc					ds		2,0
@@ -165,8 +168,8 @@ etape_vitesse				ds		1,0
 flag_crtc					ds		1,0
 posy_goldorak				ds		2,0
 posx_goldorak				ds		2,0
-posy_venusiak				ds		2,0
-posx_venusiak				ds		2,0
+;posy_venusiak				ds		2,0
+;posx_venusiak				ds		2,0
 posy2						ds		2,0
 posx2						ds		2,0
 timer						ds		1,0
@@ -181,7 +184,7 @@ pts_BOOM					ds		2,0
 points_a_ajouter			ds		2,0
 flag_mode_2_joueur			ds		1,0
 pointeur_tbl_regHUD			ds		2,0
-resultat_test_de_touche_venusiak		ds		1,0
+;resultat_test_de_touche_venusiak		ds		1,0
 pointeur_chiffre_SCR		ds		2,0
 largeur_texte				ds		2,0
 pointeur_tbl_vignettes		ds		2,0

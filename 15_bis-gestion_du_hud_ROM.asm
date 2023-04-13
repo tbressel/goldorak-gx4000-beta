@@ -1,9 +1,6 @@
 score_items_ROM
-	ld		a,(no_id_joueur)
-	cp		a,1
-	jp		z,counter_goldorak_items
-	cp		a,2
-	jp		z,counter_venusiak_items
+
+	
 		counter_goldorak_items
 			exx		
 			ld		a,(Counter_score+4)			; on recupère les unitées
@@ -18,19 +15,19 @@ score_items_ROM
 			ld		l,a
 			exx
 			jr		counter_suite_items
-				counter_venusiak_items
-					exx		
-					ld		a,(Counter_score2+4)			; on recupère les unitées
-					ld		c,a						; on tranfer dans c
-					ld		a,(Counter_score2+3)
-					ld		d,a
-					ld		a,(Counter_score2+2)
-					ld		E,a
-					ld		a,(Counter_score2+1)
-					ld		h,a
-					ld		a,(Counter_score2)
-					ld		l,a
-					exx
+				;counter_venusiak_items
+				;	exx		
+				;	ld		a,(Counter_score2+4)			; on recupère les unitées
+				;	ld		c,a						; on tranfer dans c
+				;	ld		a,(Counter_score2+3)
+				;	ld		d,a
+				;	ld		a,(Counter_score2+2)
+				;	ld		E,a
+				;	ld		a,(Counter_score2+1)
+				;	ld		h,a
+				;	ld		a,(Counter_score2)
+				;	ld		l,a
+				;	exx
 						counter_suite_items
 							ld	hl,(adr_tbl_points_soucoupe)
 							ld	a,(hl)
@@ -276,11 +273,7 @@ inc_dizaine_de_millier_items
 
 
 score_BOOM_ROM
-	ld		a,(no_id_joueur)
-	cp		a,1
-	jp		z,counter_goldorak
-	cp		a,2
-	jp		z,counter_venusiak
+
 counter_goldorak
 	exx		
 	ld		a,(Counter_score+4)			; on recupère les unitées
@@ -295,19 +288,19 @@ counter_goldorak
 	ld		l,a
 	exx
 	jr		counter_suite
-counter_venusiak
-	exx		
-	ld		a,(Counter_score2+4)			; on recupère les unitées
-	ld		c,a						; on tranfer dans c
-	ld		a,(Counter_score2+3)
-	ld		d,a
-	ld		a,(Counter_score2+2)
-	ld		E,a
-	ld		a,(Counter_score2+1)
-	ld		h,a
-	ld		a,(Counter_score2)
-	ld		l,a
-	exx
+;counter_venusiak
+;	exx		
+;	ld		a,(Counter_score2+4)			; on recupère les unitées
+;	ld		c,a						; on tranfer dans c
+;	ld		a,(Counter_score2+3)
+;	ld		d,a
+;	ld		a,(Counter_score2+2)
+;	ld		E,a
+;	ld		a,(Counter_score2+1)
+;	ld		h,a
+;	ld		a,(Counter_score2)
+;	ld		l,a
+;	exx
 counter_suite
 	ld		hl,(points_a_ajouter)
 	exx

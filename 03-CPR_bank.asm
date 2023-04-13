@@ -198,9 +198,7 @@ bank 29
 	incbin"contenu_cartouche\sound\idargos.spl"
 bank 30
 	incbin"contenu_cartouche\sound\ovetaire.spl"
-	;INCBIN "Goldorak16k.wav",DMA
-	;incbin "Gold15.wav",DMA
 bank 31
 	incbin"contenu_cartouche\sound\go.spl"
-	;include"X-sample.asm"
+
 

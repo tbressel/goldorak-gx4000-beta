@@ -91,7 +91,7 @@ VBL_menu
 	call	lecture_clavier
 	bit		4,a
 	jp		z,ValidationChoix
-	bit		5,a
+	bit		1,a
 	jp		z,MenuOnChoisi
 	;jp		z,scenario_du_jeu
 
@@ -109,47 +109,45 @@ ValidationChoix
 	jp	z,credits
 	jp boucle_menu
 
-MenuOnChoisi
-	ld	a,(choix_menu)
-	inc	a
-	cp	a,3
-	jr	nz,SauteChoixMenu
-	xor	a
-SauteChoixMenu	
-	ld	(choix_menu),a
+	MenuOnChoisi
+		ld	a,(choix_menu)
+		inc	a
+		cp	a,3
+		jr	nz,SauteChoixMenu
+		xor	a
+		SauteChoixMenu	
+			ld	(choix_menu),a
 
-	ld		de,(PointeurTblCurseurMenu)
-	ld		a,(de)
-	ld		l,a
-	inc		de
-	ld		a,(de)
-	ld		h,a
-	ex		hl,de
-					; on sauvegarde l'adresse du point de départ
-	ld		b,8*3
-	call	BoucleEffaceCurseur
-	ld		de,(PointeurTblCurseurMenu)
-	inc		de
-	inc		de
-	ld		a,(de)
-	cp		a,#FF
-	jp		nz,OnSauteReinitPointeur
-	ld		de,TBL_ADR_CURSEUR_MENU
-OnSauteReinitPointeur
-	ld	(PointeurTblCurseurMenu),de
-	ld		a,(de)
-	ld		l,a
-	inc		de
-	ld		a,(de)
-	ld		h,a
-	ex		hl,de
-	ld		hl,BufCurseurMenu
-	ld		b,8*3
-	call	BoucleBougeCurseur
-	jp	boucle_menu
+			ld		de,(PointeurTblCurseurMenu)
+			ld		a,(de)
+			ld		l,a
+			inc		de
+			ld		a,(de)
+			ld		h,a
+			ex		hl,de
+		; on sauvegarde l'adresse du point de départ
+			ld		b,8*3
+			call	BoucleEffaceCurseur
+			ld		de,(PointeurTblCurseurMenu)
+			inc		de
+			inc		de
+			ld		a,(de)
+			cp		a,#FF
+			jp		nz,OnSauteReinitPointeur
+			ld		de,TBL_ADR_CURSEUR_MENU
+			OnSauteReinitPointeur
+				ld	(PointeurTblCurseurMenu),de
+				ld		a,(de)
+				ld		l,a
+				inc		de
+				ld		a,(de)
+				ld		h,a
+				ex		hl,de
+				ld		hl,BufCurseurMenu
+				ld		b,8*3
+				call	BoucleBougeCurseur
+				jp	boucle_menu
 	
-TBL_ADR_CURSEUR_MENU
-	dw	#C16C,#C20C,#C2AC,#FFFF
 
 BoucleSauveCurseur
 	push	bc					; on sauve le compteur
@@ -165,33 +163,34 @@ BoucleSauveCurseur
 	pop		bc
 	djnz	BoucleSauveCurseur
 	ret
+	BoucleBougeCurseur
+		push	bc					; on sauve le compteur
+		push	de					; on sauve dans la pile le pointeur ecran
+		ld		bc,4*4
+		LDIR
+		pop		de					; on restitue l'adresse ecrna pour le calcule
+		push	hl					; on sauvegarde l'adresse destination en cours
 
-BoucleBougeCurseur
-	push	bc					; on sauve le compteur
-	push	de					; on sauve dans la pile le pointeur ecran
-	ld		bc,4*4
-	LDIR
-	pop		de					; on restitue l'adresse ecrna pour le calcule
-	push	hl					; on sauvegarde l'adresse destination en cours
-	
-	call	ligneinf_c000
-	
-	pop		hl					; on recupère l'adresse tampon
-	pop		bc
-	djnz	BoucleBougeCurseur
-	ret	
-BoucleEffaceCurseur
-	push	bc					; on sauve le compteur
-	push	de					; on sauve dans la pile le pointeur ecran
-	ld		hl,#c040			; y'a que des zero à cette adresse 
-	ld		bc,4*4
-	LDIR
-	pop		de					; on restitue l'adresse ecrna pour le calcule
-	call	ligneinf_c000
-	pop		bc
-	djnz	BoucleEffaceCurseur
-	ret	
+		call	ligneinf_c000
 
+		pop		hl					; on recupère l'adresse tampon
+		pop		bc
+		djnz	BoucleBougeCurseur
+		ret	
+		BoucleEffaceCurseur
+			push	bc					; on sauve le compteur
+			push	de					; on sauve dans la pile le pointeur ecran
+			ld		hl,#c040			; y'a que des zero à cette adresse 
+			ld		bc,4*4
+			LDIR
+			pop		de					; on restitue l'adresse ecrna pour le calcule
+			call	ligneinf_c000
+			pop		bc
+			djnz	BoucleEffaceCurseur
+			ret	
+
+TBL_ADR_CURSEUR_MENU
+	dw	#C16C,#C20C,#C2AC,#FFFF
 
 
 

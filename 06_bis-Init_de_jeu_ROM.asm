@@ -1,8 +1,7 @@
 init_nouveau_level_ROM	
 	ld		a,(level_en_cours)
 	cp		a,1
-	;jp		z,init_la_fin
-	jp		z,init_level_2
+	jp		z,init_level_8
 	cp		a,2
 	jp		z,init_level_3
 	cp		a,3
@@ -44,7 +43,7 @@ init_nouveau_level_ROM
 		jp		suite_init_level
 		init_level_3
 			ex		af,af'
-			ld		a,2
+			ld		a,3
 			ld		(automodif_music+1),a
 			ex		af,af'
 
@@ -68,7 +67,7 @@ init_nouveau_level_ROM
 			jp		suite_init_level
 			init_level_4
 				ex		af,af'
-				ld		a,3
+				ld		a,4
 				ld		(automodif_music+1),a
 				ex		af,af'		
 
@@ -87,12 +86,12 @@ init_nouveau_level_ROM
 				ld		hl,SCREEN_DEPART_LEVEL_4+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 				ld		(pointeur_de_tile),hl
 
-					ld		hl,PALETTE_DECORS_LEVEL4
-		ld		(pallette_level),hl
+				ld		hl,PALETTE_DECORS_LEVEL4
+				ld		(pallette_level),hl
 				jp		suite_init_level
 				init_level_5
 					ex		af,af'
-					ld		a,4
+					ld		a,5
 					ld		(automodif_music+1),a
 					ex		af,af'	
 					ld		hl,largeur_chiffre5
@@ -101,19 +100,19 @@ init_nouveau_level_ROM
 					ld		(adr_chiffre),hl	
 					ld		hl,BANK_LEVEL_5
 					ld		(bank_level),hl
-						ld		hl,BANK_TILESET_5
+					ld		hl,BANK_TILESET_5
 					ld		(bank_tileset),hl
 					ld		(automodif_Bank_tileset_scroll+1),hl
 					ld		hl,SCREEN_LEVEL_5
 					ld		(adr_screen_level),hl
 					ld		hl,SCREEN_DEPART_LEVEL_5+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 					ld		(pointeur_de_tile),hl
-									ld		hl,PALETTE_DECORS_LEVEL5
-											ld		(pallette_level),hl
+					ld		hl,PALETTE_DECORS_LEVEL5
+					ld		(pallette_level),hl
 					jp		suite_init_level
 					init_level_6	
 						ex		af,af'
-						ld		a,5
+						ld		a,6
 						ld		(automodif_music+1),a
 						ex		af,af'
 						ld		hl,largeur_chiffre6
@@ -122,19 +121,19 @@ init_nouveau_level_ROM
 						ld		(adr_chiffre),hl
 						ld		hl,BANK_LEVEL_6
 						ld		(bank_level),hl
-								ld		hl,BANK_TILESET_6
+						ld		hl,BANK_TILESET_6
 						ld		(bank_tileset),hl
 						ld		(automodif_Bank_tileset_scroll+1),hl
 						ld		hl,SCREEN_LEVEL_6
 						ld		(adr_screen_level),hl
 						ld		hl,SCREEN_DEPART_LEVEL_6+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 						ld		(pointeur_de_tile),hl
-							ld		hl,PALETTE_DECORS_LEVEL6
-											ld		(pallette_level),hl
+						ld		hl,PALETTE_DECORS_LEVEL6
+						ld		(pallette_level),hl
 						jp		suite_init_level
 						init_level_7
 							ex		af,af'
-							ld		a,4
+							ld		a,0
 							ld		(automodif_music+1),a
 							ex		af,af'	
 							ld		hl,largeur_chiffre7
@@ -143,21 +142,24 @@ init_nouveau_level_ROM
 							ld		(adr_chiffre),hl
 							ld		hl,BANK_LEVEL_7
 							ld		(bank_level),hl
-									ld		hl,BANK_TILESET_7
+							ld		hl,BANK_TILESET_7
 							ld		(bank_tileset),hl
 							ld		(automodif_Bank_tileset_scroll+1),hl
 							ld		hl,SCREEN_LEVEL_7
 							ld		(adr_screen_level),hl
 							ld		hl,SCREEN_DEPART_LEVEL_7+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 							ld		(pointeur_de_tile),hl
-														ld		hl,PALETTE_DECORS_LEVEL7
-											ld		(pallette_level),hl
+							ld		hl,PALETTE_DECORS_LEVEL7
+							ld		(pallette_level),hl
 							jp		suite_init_level
 							init_level_8
 								ex		af,af'
-								ld		a,3
+								ld		a,1
 								ld		(automodif_music+1),a
 								ex		af,af'	
+; -----------------------------------------------------------------------------------------------
+; ------------------------------------ A RAJOUTER UN CHIFFRE 8 ----------------------------------
+; -----------------------------------------------------------------------------------------------
 								ld		hl,largeur_chiffre7
 								ld		(largeur_chiffre),hl
 								ld		hl,adr_chiffre7_ROM
@@ -171,8 +173,8 @@ init_nouveau_level_ROM
 								ld		(adr_screen_level),hl
 								ld		hl,SCREEN_DEPART_LEVEL_8+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 								ld		(pointeur_de_tile),hl
-															ld		hl,PALETTE_DECORS_LEVEL8
-											ld		(pallette_level),hl
+								ld		hl,PALETTE_DECORS_LEVEL8
+								ld		(pallette_level),hl
 								jp		suite_init_level
 								init_la_fin
 									ld		a,1
@@ -189,22 +191,16 @@ suite_init_level
 	ld		bc,40
 	LDIR	
 ; on éteinds les sprites hard
-	ld		(SPRH0_ZOOM),a
-	ld		(SPRH1_ZOOM),a
-	ld		(SPRH2_ZOOM),a
-	ld		(SPRH3_ZOOM),a
-	ld		(SPRH4_ZOOM),a
-	ld		(SPRH5_ZOOM),a
-	ld		(SPRH6_ZOOM),a
-	ld		(SPRH7_ZOOM),a
-	ld		(SPRH8_ZOOM),a
-	ld		(SPRH9_ZOOM),a
-	ld		(SPRH10_ZOOM),a
-	ld		(SPRH11_ZOOM),a
-	ld		(SPRH12_ZOOM),a
-	ld		(SPRH13_ZOOM),a
-	ld		(SPRH14_ZOOM),a
-	ld		(SPRH15_ZOOM),a
+	ld		(SPRH6_ZOOM),a : ld	 (valeur_zoom_sprh6),a
+	ld		(SPRH7_ZOOM),a : ld	 (valeur_zoom_sprh7),a
+	ld		(SPRH8_ZOOM),a : ld	 (valeur_zoom_sprh8),a
+	ld		(SPRH9_ZOOM),a : ld	 (valeur_zoom_sprh9),a
+	ld		(SPRH10_ZOOM),a : ld	 (valeur_zoom_sprh10),a
+	ld		(SPRH11_ZOOM),a : ld	 (valeur_zoom_sprh11),a
+	ld		(SPRH12_ZOOM),a : ld	 (valeur_zoom_sprh12),a
+	ld		(SPRH13_ZOOM),a : ld	 (valeur_zoom_sprh13),a
+	ld		(SPRH14_ZOOM),a : ld	 (valeur_zoom_sprh14),a
+	ld		(SPRH15_ZOOM),a : ld	 (valeur_zoom_sprh15),a
 ; on place les sprites de goldorak
 	ld		hl,190		
 	ld		(SPRH4_X),hl			; sprite 0 X
@@ -247,29 +243,3 @@ suite_init_level
 	ret
 	
 	
-PALETTE_DECORS_LEVEL1
-dw #000,#0F0,#00F,#07F,#121,#251,#3A2,#700,#8F0,#B00,#D70,#EA3,#ED3,#FF3,#F0F,#FEF
-
-PALETTE_DECORS_LEVEL2
-DW #060,#0F0,#001,#00F,#108,#380,#60E,#800,#888,#80F,#AAA,#B00,#C0F,#D00,#F0F,#FFF
-
-PALETTE_DECORS_LEVEL3
-DW #000,#0F0,#006,#007,#00F,#400,#66F,#800,#80F,#B00,#EC0,#F00,#FF0,#F05,#F66,#F5F
-
-PALETTE_DECORS_LEVEL4
-dw #000,#122,#1FF,#232,#242,#461,#581,#681,#692,#9C3,#9D3,#AE3,#B02,#BF3,#CF4,#E46
-
-PALETTE_DECORS_LEVEL5
-DW #080,#0F0,#333,#4F0,#444,#666,#6A7,#7F0,#800,#888,#9F0,#999,#BBB,#CCC,#FF0,#FFF
-
-PALETTE_DECORS_LEVEL6
-DW #000,#090,#0F0,#008,#00E,#08F,#0FF,#222,#333,#455,#788,#8F0,#83F,#9AA,#FF0,#F8F
-
-PALETTE_DECORS_LEVEL7
-DW  #000,#004,#008,#03A,#04C,#05D,#06E,#07F,#08F,#0FF,#50E,#70E,#80F,#B0F,#C0F,#F8F
-
-PALETTE_DECORS_LEVEL8
-dw #000,#050,#080,#0A0,#0FF,#0FF,#3F0,#50E,#6F0,#70E,#8F0,#80F,#B0F,#C0F,#FF0,#F8F
-
-PALETTE_DECORS_ESPACE
-dw #000,#001,#002,#013,#023,#034,#035,#006,#046,#057,#068,#079,#66F,#6CF,#F00,#F66

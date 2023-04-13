@@ -1,11 +1,4 @@
-	
-collision_2_joueurs
-	call	test_collisions_tir_gauche_goldorak
-	call	test_collisions_avec_les_ennemisG
-	call	test_collisions_avec_les_ennemisD
-	call	test_collisions_tir_droite_venusiak
-	call	test_collisions_avec_les_ennemisG_venusiak
-	jp		test_collisions_avec_les_ennemisD_venusiak
+
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
@@ -18,9 +11,7 @@ deplace_soucoupe_BasGauche
 	RST 	UPPER_ROM_CONNEXION
 	call	deplace_soucoupe_BasGauche_ROM
 	call	rom_off
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
+
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -43,9 +34,7 @@ deplace_soucoupe_BasDroite
 	RST 	UPPER_ROM_CONNEXION
 	call	deplace_soucoupe_BasDroite_ROM
 	call	rom_off
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jr		z,collision_2_joueurs
+	
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -70,9 +59,7 @@ deplace_soucoupe_HorizVertiBasDroite
 
 	
 	
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
+
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -96,10 +83,6 @@ deplace_soucoupe_HorizVertiBasGauche
 	call	rom_off	
 	
 
-	
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -126,9 +109,6 @@ deplace_soucoupe_DiagoVertiBasDroite
 	call	rom_off
 	
 
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -152,10 +132,6 @@ ld		c,BANK_ROM_2
 	call	rom_off	
 	
 
-	
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
@@ -180,10 +156,6 @@ ld		c,BANK_ROM_2
 	call	rom_off	
 
 
-	
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	jp		z,collision_2_joueurs
 	call	test_collisions_tir_gauche
 	call	test_collisions_tir_droite
 	call	test_collisions_avec_les_ennemisG
