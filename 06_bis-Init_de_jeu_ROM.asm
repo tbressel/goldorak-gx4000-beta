@@ -1,7 +1,7 @@
 init_nouveau_level_ROM	
 	ld		a,(level_en_cours)
 	cp		a,1
-	jp		z,init_level_8
+	jp		z,init_level_2
 	cp		a,2
 	jp		z,init_level_3
 	cp		a,3
@@ -235,7 +235,14 @@ suite_init_level
 	ld		(flag_MortGolgoth),a
 	
 	ld		(etp_powerup),a
+	ld		(etp_arme1),a
 	ld		(etp_arme2),a
+	ld		(etp_arme3),a
+	ld		(etp_arme4),a
+	ld		(etp_arme5),a
+	ld		(etp_arme6),a
+	ld		(etp_arme7),a
+
 	ld		(Compteur_DistanceGolgoth_1),a
 	ld		(event_arme_fireA),a
 	ld		(event_arme_fireA+1),a

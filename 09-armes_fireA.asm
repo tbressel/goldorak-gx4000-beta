@@ -9,9 +9,6 @@ fireA
 	cp		a,1
 	jp		z,retour_test_des_tirs
 
-	ld		a,(flag_mode_2_joueur)
-	cp		a,0
-	jp		nz,arme_tiny_goldo
 	
 	call	test_du_clavier
 	bit		5,a
@@ -42,6 +39,12 @@ fireA
 	cp		a,8
 	jp		z,aucune_arme
 
+	
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////
+; //////////////       MISSILES GAMMA      ////////////////////
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////	
 arme_missiles_gamma_test
 	ld	a,(flag_PowerUP)
 	cp	a,0
@@ -50,61 +53,54 @@ arme_missiles_gamma_test
 	jp	z,arme_missiles_gamma_pow2
 	cp	a,2
 	jp	z,arme_missiles_gamma_pow3
-	
-; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////
-; //////////////       MISSILES GAMMA      ////////////////////
-; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
-arme_missiles_gamma
-	RST		ASIC_CONNEXION
-	ld		a,(etp_arme2)
-	cp		a,0
-	jp		z,init_missiles_gamma
-	cp		a,1
-	jp		z,missiles_gamma1
-	cp		a,2
-	jp		z,missiles_gamma2
-init_missiles_gamma
-	inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
-	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
-	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
-	ld		c,BANK9_GOLDORAK_SPRH
-	RST 	UPPER_ROM_CONNEXION									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,SPRH_MISSILES_GAMMA
-	ld		de,SPRH4_ADR
-	ld		bc,#100
-	LDIR		
-	ld		hl,SPRH_MISSILES_GAMMA
-	ld		de,SPRH5_ADR
-	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
-	call	rom_off
-	ld		a,_CALL
-	ld		(event_arme_fireA),a
-	ld		hl,arme_missiles_gamma
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
-	RST		ASIC_DECONNEXION
-	xor  	a
-	ld		(anim_arme_a_charger),a
-	jp 		retour_test_des_tirs
-missiles_gamma1
-	ld		c,BANK_ROM_2
-	rst		UPPER_ROM_CONNEXION
-	rst		ASIC_CONNEXION
-	call	missiles_gamma1_ROM
-	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
-missiles_gamma2
-	ld		c,BANK_ROM_2
-	rst		UPPER_ROM_CONNEXION
-	RST		ASIC_CONNEXION
-	call	missiles_gamma2_ROM
-	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
-	
+		arme_missiles_gamma
+			RST		ASIC_CONNEXION
+			ld		a,(etp_arme2)
+			cp		a,0
+			jp		z,init_missiles_gamma
+			cp		a,1
+			jp		z,missiles_gamma1
+			cp		a,2
+			jp		z,missiles_gamma2
+				init_missiles_gamma
+					inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
+					ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
+					ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
+					ld		c,BANK9_GOLDORAK_SPRH
+					RST 	UPPER_ROM_CONNEXION									; on se connection à la rom où se situes les sprites hard de cette arme
+					ld		hl,SPRH_MISSILES_GAMMA
+					ld		de,SPRH4_ADR
+					ld		bc,#100
+					LDIR		
+					ld		hl,SPRH_MISSILES_GAMMA
+					ld		de,SPRH5_ADR
+					ld		bc,#100
+					LDIR																; on copie de puis la ROM vers l'ASIC	
+					call	rom_off
+					ld		a,_CALL
+					ld		(event_arme_fireA),a
+					ld		hl,arme_missiles_gamma
+					ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+					RST		ASIC_DECONNEXION
+					xor  	a
+					ld		(anim_arme_a_charger),a
+					jp 		retour_test_des_tirs
+						missiles_gamma1
+							ld		c,BANK_ROM_2
+							rst		UPPER_ROM_CONNEXION
+							rst		ASIC_CONNEXION
+							call	missiles_gamma1_ROM
+							call	rom_off
+							RST		ASIC_DECONNEXION
+							ret
+							missiles_gamma2
+								ld		c,BANK_ROM_2
+								rst		UPPER_ROM_CONNEXION
+								RST		ASIC_CONNEXION
+								call	missiles_gamma2_ROM
+								call	rom_off
+								RST		ASIC_DECONNEXION
+								ret
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       MISSILES GAMMA POWER UP 2     ////////////////////
@@ -119,47 +115,44 @@ arme_missiles_gamma_pow2
 	jp		z,missiles_gamma_pow21
 	cp		a,2
 	jp		z,missiles_gamma_pow22
-init_missiles_gamma_pow2
-	inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
-	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
-	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
-	ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,SPRH_MISSILES_GAMMA2
-	ld		de,SPRH4_ADR
-	ld		bc,#100
-	LDIR		
-	ld		hl,SPRH_MISSILES_GAMMA2
-	ld		de,SPRH5_ADR
-	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
-	call	rom_off
-	ld		a,_CALL
-	ld		(event_arme_fireA),a
-	ld		hl,arme_missiles_gamma_pow2
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
-	RST		ASIC_DECONNEXION
-	xor  a
-	ld		(anim_arme_a_charger),a
-	jp 		retour_test_des_tirs
-missiles_gamma_pow21
-	ld		c,BANK_ROM_2
-	rst		UPPER_ROM_CONNEXION
-		RST		ASIC_CONNEXION
-	call	missiles_gamma_pow21_ROM
-	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
-missiles_gamma_pow22
-	ld		c,BANK_ROM_2
-	rst		UPPER_ROM_CONNEXION
-		RST		ASIC_CONNEXION
-	call	missiles_gamma_pow22_ROM
-	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
-
-
-
+		init_missiles_gamma_pow2
+			inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
+			ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
+			ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
+			ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
+			ld		hl,SPRH_MISSILES_GAMMA2
+			ld		de,SPRH4_ADR
+			ld		bc,#100
+			LDIR		
+			ld		hl,SPRH_MISSILES_GAMMA2
+			ld		de,SPRH5_ADR
+			ld		bc,#100
+			LDIR																; on copie de puis la ROM vers l'ASIC	
+			call	rom_off
+			ld		a,_CALL
+			ld		(event_arme_fireA),a
+			ld		hl,arme_missiles_gamma_pow2
+			ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+			RST		ASIC_DECONNEXION
+			xor  a
+			ld		(anim_arme_a_charger),a
+			jp 		retour_test_des_tirs
+				missiles_gamma_pow21
+					ld		c,BANK_ROM_2
+					rst		UPPER_ROM_CONNEXION
+						RST		ASIC_CONNEXION
+					call	missiles_gamma_pow21_ROM
+					call	rom_off
+					RST		ASIC_DECONNEXION
+					ret
+						missiles_gamma_pow22
+							ld		c,BANK_ROM_2
+							rst		UPPER_ROM_CONNEXION
+								RST		ASIC_CONNEXION
+							call	missiles_gamma_pow22_ROM
+							call	rom_off
+							RST		ASIC_DECONNEXION
+							ret
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       MISSILES GAMMA POWER UP 3     ////////////////////
@@ -214,98 +207,6 @@ missiles_gamma_pow32
 
 
 
-; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////
-; //////////////      TINY GOLDORAK TIR    ////////////////////
-; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
-arme_tiny_goldo
-	RST		ASIC_CONNEXION
-	ld		a,(etp_arme2)
-	cp		a,0
-	jp		z,init_tiny_gamma
-	cp		a,1
-	jp		z,tiny_gamma1
-	cp		a,2
-	jp		z,tiny_gamma2
-
-init_tiny_gamma
-	ld 		a,SFX_ATTACK	 ;Sound effect number (>=1)
-    ld 		c,1 ;channel (0-2)
-    ld 		b,0 ;Inverted volume (0-16)
-    call 	PLY_AKG_PlaySoundEffect
-	inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
-	ld		a,1
-	ld 		(flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
-	ld		a,1
-	ld 		(flag_armes),a									; une arme est en cours de déclanchement
-
-	ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,Tir_tiny_goldo
-	ld		de,SPRH4_ADR
-	ld		bc,#100
-	LDIR		
-											; on copie de puis la ROM vers l'ASIC	
-	call	rom_off
-	ld		a,_CALL
-	ld		(event_arme_fireA),a
-	ld		hl,arme_tiny_goldo
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
-	RST		ASIC_DECONNEXION
-	xor  a
-	ld		(anim_arme_a_charger),a
-	
-	jp 		retour_test_des_tirs
-tiny_gamma1
-	inc		a:ld (etp_arme2),a
-	ld		hl,(SPRH0_X)
-	ld		de,16;+32
-	add		hl,de
-	ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
-	ld		hl,(SPRH0_Y):ld	de,-16:add hl,de
-	ld		(SPRH4_Y),hl
-	;ld		a,zoom_mode1_2
-	ld		a,zoom_mode1_1
-	ld (SPRH4_ZOOM),a
-	ld		(valeur_zoom_sprh4),a
-	RST		ASIC_DECONNEXION
-	ret
-tiny_gamma2
-	;ld		a,1
-	;ld		(id_joueur),a
-	ld		hl,(SPRH4_Y)
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	or 		a
-	ld		a,l
-	ld		b,-8
-	add		a,b
-	jr		nc,fin_tiny_gamma
-	ld		(SPRH4_Y),hl
-	;call	test_collisions_tir_gauche_goldorak
-	ret
-fin_tiny_gamma
-	xor		a
-	ld		(SPRH4_ZOOM),a
-	ld		(valeur_zoom_sprh4),a
-	ld		(flag_fireA),a
-	ld		(etp_arme2),a
-	ld		(event_arme_fireA),a
-	ld		(event_arme_fireA+1),a
-	ld		(event_arme_fireA+2),a
-	ld		hl,-32
-	ld		(SPRH4_X),hl
-	ld		(SPRH4_Y),hl
-	RST		ASIC_DECONNEXION
-	ld 		c,1   ;Channel (0-2)
-	call 	PLY_AKG_StopSoundEffectFromChannel
-	ret
-
 
 	
 ; /////////////////////////////////////////////////////////////
@@ -315,7 +216,6 @@ fin_tiny_gamma
 ; /////////////////////////////////////////////////////////////	
 arme_planitron
 	RST		ASIC_CONNEXION
-
 	ld		a,(etp_arme3)
 	cp		a,0
 	jp		z,init_planitron
@@ -323,145 +223,145 @@ arme_planitron
 	jp		z,planitron1
 	cp		a,2
 	jp		z,planitron2
-init_planitron
-	inc 	a:ld (etp_arme3),a										; on incrémente les étapes de l'arme
-	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
-	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
-	ld		c,BANK9_GOLDORAK_SPRH: RST 0										; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,sprh_planitron
-	ld		(adr_anim_planitron),hl
-	ld		de,SPRH4_ADR
-	ld		bc,#100
-	LDIR		
-	ld		hl,sprh_planitron
-	ld		de,SPRH5_ADR
-	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
-	call	rom_off
-	ld		a,_CALL
-	ld		(event_arme_fireA),a
-	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
-	RST		ASIC_DECONNEXION
-	ld		a,4
-	ld		(etp_anim_planitron),a
-	ld		a,1
-	ld		(anim_arme_a_charger),a
-	
-	jp 	retour_test_des_tirs
-planitron1
-	inc		a:ld (etp_arme3),a
-	ld		hl,(SPRH0_X)
-	ld		de,-19
-	add		hl,de
-	ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
-	ld		de,64+32+3:add hl,de:ld (SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
-	ld		hl,(SPRH0_Y):ld	de,6:add hl,de
-	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
-	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
-planitron2
-	ld		a,(resultat_test_de_touche)
-	cp		a,#ef
-	jr		z,retour_planitron_gauche
-	cp		a,#ff
-	jr		z,retour_planitron_gauche
-	ld		a,(direction_goldorak)
-	cp		a,4						; gauche
-	jr		z,planitron_droite
-	cp		a,3						; gauche
-	jr		z,planitron_gauche
-retour_planitron_droite
-retour_planitron_gauche
-	ld		hl,(SPRH4_Y)
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	or 		a
-	ld		a,l
-	ld		b,-8
-	add		a,b
-	jr		nc,fin_planitron
-	ld		(SPRH4_Y),hl
-	ld		hl,(SPRH5_Y)
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	ld		(SPRH5_Y),hl
-	ld		a,(etp_anim_planitron)
-	dec		a
-	cp		a,0
-	jr		z,switch_anim_planitron
-	ld		(etp_anim_planitron),a
-	ret
-switch_anim_planitron
-	ld		a,4
-	ld		(etp_anim_planitron),a
-	ld		hl,(adr_anim_planitron)	
-	inc		h
-	bit		2,h
-	jr		nz,reinit_adr_anim_planitron
-retour_reinit_adr_anim_planitron
-	ld		(adr_anim_planitron),hl
-	ret
-reinit_adr_anim_planitron
-	ld	h,#F0	
-	jr	retour_reinit_adr_anim_planitron
-planitron_droite
-	ld		hl,(SPRH4_X)
-	inc		hl
-	inc		hl
-	inc		hl
-	inc		hl
-	inc		hl
-	ld		(SPRH4_X),hl
-	ld		hl,(SPRH5_X)
-	inc		hl
-	inc		hl
-	inc		hl
-	ld		(SPRH5_X),hl
-	jr		retour_planitron_droite
-planitron_gauche
-	ld		hl,(SPRH4_X)
-	dec		hl
-	dec		hl
-	dec		hl
-	ld		(SPRH4_X),hl
-	ld		hl,(SPRH5_X)
-	dec		hl
-	dec		hl
-	dec		hl
-	dec		hl
-	dec		hl
-	ld		(SPRH5_X),hl
-	jr		retour_planitron_gauche
-fin_planitron
-	xor		a
-	ld		(SPRH4_ZOOM),a
-	ld		(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a 
-	ld		(flag_fireA),a
-	ld		(etp_arme3),a
-	ld		(event_arme_fireA),a
-	ld		(event_arme_fireA+1),a
-	ld		(event_arme_fireA+2),a
-	ld		(anim_arme_a_charger),a
-	ld		hl,SPRH_ARMES_GOLDORAK_CACHER
-	ld		(SPRH4_X),hl
-	ld		(SPRH4_Y),hl
-	ld		(SPRH5_X),hl
-	ld		(SPRH5_Y),hl
-	RST		ASIC_DECONNEXION
-	ld 		c,1   ;Channel (0-2)
-	call 	PLY_AKG_StopSoundEffectFromChannel
-	ret
+		init_planitron
+			inc 	a:ld (etp_arme3),a										; on incrémente les étapes de l'arme
+			ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
+			ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
+			ld		c,BANK9_GOLDORAK_SPRH: RST 0										; on se connection à la rom où se situes les sprites hard de cette arme
+			ld		hl,sprh_planitron
+			ld		(adr_anim_planitron),hl
+			ld		de,SPRH4_ADR
+			ld		bc,#100
+			LDIR		
+			ld		hl,sprh_planitron
+			ld		de,SPRH5_ADR
+			ld		bc,#100
+			LDIR																; on copie de puis la ROM vers l'ASIC	
+			call	rom_off
+			ld		a,_CALL
+			ld		(event_arme_fireA),a
+			ld		hl,(adr_type_arme)
+			ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+			RST		ASIC_DECONNEXION
+			ld		a,4
+			ld		(etp_anim_planitron),a
+			ld		a,1
+			ld		(anim_arme_a_charger),a
+			jp 		retour_test_des_tirs
+				planitron1
+					inc		a:ld (etp_arme3),a
+					ld		hl,(SPRH0_X)
+					ld		de,-19
+					add		hl,de
+					ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
+					ld		de,64+32+3:add hl,de:ld (SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
+					ld		hl,(SPRH0_Y):ld	de,6:add hl,de
+					ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
+					ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
+					ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+					RST		ASIC_DECONNEXION
+					jp		retour_test_des_tirs
+					;ret      <---------   ****  SOURCE DE GROS PLANTAGE ****** --------->
+						planitron2
+							ld		a,(resultat_test_de_touche)
+							cp		a,#ef
+							jr		z,retour_planitron_gauche
+							cp		a,#ff
+							jr		z,retour_planitron_gauche
+							ld		a,(direction_goldorak)
+							cp		a,4						; gauche
+							jr		z,planitron_droite
+							cp		a,3						; gauche
+							jr		z,planitron_gauche
+								retour_planitron_droite
+								retour_planitron_gauche
+									ld		hl,(SPRH4_Y)
+									dec		l
+									dec		l
+									dec		l
+									dec		l
+									dec		l
+									or 		a
+									ld		a,l
+									ld		b,-8
+									add		a,b
+									jr		nc,fin_planitron
+									ld		(SPRH4_Y),hl
+									ld		hl,(SPRH5_Y)
+									dec		l
+									dec		l
+									dec		l
+									dec		l
+									dec		l
+									ld		(SPRH5_Y),hl
+									ld		a,(etp_anim_planitron)
+									dec		a
+									cp		a,0
+									jr		z,switch_anim_planitron
+									ld		(etp_anim_planitron),a
+									ret
+										switch_anim_planitron
+											ld		a,4
+											ld		(etp_anim_planitron),a
+											ld		hl,(adr_anim_planitron)	
+											inc		h
+											bit		2,h
+											jr		nz,reinit_adr_anim_planitron
+												retour_reinit_adr_anim_planitron
+													ld		(adr_anim_planitron),hl
+													ret
+														reinit_adr_anim_planitron
+															ld	h,#F0	
+															jr	retour_reinit_adr_anim_planitron
+																	planitron_droite
+																		ld		hl,(SPRH4_X)
+																		inc		hl
+																		inc		hl
+																		inc		hl
+																		inc		hl
+																		inc		hl
+																		ld		(SPRH4_X),hl
+																		ld		hl,(SPRH5_X)
+																		inc		hl
+																		inc		hl
+																		inc		hl
+																		ld		(SPRH5_X),hl
+																		jr		retour_planitron_droite
+																			planitron_gauche
+																				ld		hl,(SPRH4_X)
+																				dec		hl
+																				dec		hl
+																				dec		hl
+																				ld		(SPRH4_X),hl
+																				ld		hl,(SPRH5_X)
+																				dec		hl
+																				dec		hl
+																				dec		hl
+																				dec		hl
+																				dec		hl
+																				ld		(SPRH5_X),hl
+																				jr		retour_planitron_gauche
+																					fin_planitron
+																						xor		a
+																						ld		(SPRH4_ZOOM),a
+																						ld		(SPRH5_ZOOM),a
+																						ld		(valeur_zoom_sprh4),a
+																						ld 		(valeur_zoom_sprh5),a 
+																						ld		(flag_fireA),a
+																						ld		(etp_arme3),a
+																						ld		(event_arme_fireA),a
+																						ld		(event_arme_fireA+1),a
+																						ld		(event_arme_fireA+2),a
+																						ld		(anim_arme_a_charger),a
+																						ld		hl,SPRH_ARMES_GOLDORAK_CACHER
+																						ld		(SPRH4_X),hl
+																						ld		(SPRH4_Y),hl
+																						ld		(SPRH5_X),hl
+																						ld		(SPRH5_Y),hl
+																						RST		ASIC_DECONNEXION
+																						ld 		c,1   ;Channel (0-2)
+																						call 	PLY_AKG_StopSoundEffectFromChannel
+																						ret
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; ///////////////////       PLANITRON  2 ///////////////////////
@@ -477,139 +377,140 @@ arme_planitron2
 	jp		z,planitron12
 	cp		a,2
 	jp		z,planitron22
-init_planitron2
-	inc 	a:ld (etp_arme4),a										; on incrémente les étapes de l'arme
-	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
-	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
-	ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,sprh_planitron2
-	ld		(adr_anim_planitron2),hl
-	ld		de,SPRH4_ADR
-	ld		bc,#100
-	LDIR		
-	ld		hl,sprh_planitron2
-	ld		de,SPRH5_ADR
-	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
-	call	rom_off
-	ld		a,_CALL
-	ld		(event_arme_fireA),a
-	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
-	RST		ASIC_DECONNEXION
-	ld		a,4
-	ld		(etp_anim_planitron2),a
-	ld		a,2
-	ld		(anim_arme_a_charger),a
-	ld		hl,-8
-	ld		(courbe_sprh4),hl
-	ld		hl,8
-	ld		(courbe_sprh5),hl
-	
-	jp 	retour_test_des_tirs
-planitron12
-	inc		a:ld (etp_arme4),a
-	ld		hl,(SPRH0_X)
-	ld		de,-19
-	add		hl,de
-	ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
-	ld		de,64+32+3:add hl,de:ld (SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
-	ld		hl,(SPRH0_Y):ld	de,6:add hl,de
-	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
-	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
-planitron22
-	ld		hl,(SPRH4_Y)
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	or 		a
-	ld		a,l
-	ld		b,-8
-	add		a,b
-	jr		nc,fin_planitron2
-	ld		(SPRH4_Y),hl
-	ld		hl,(SPRH5_Y)
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	dec		l
-	ld		(SPRH5_Y),hl
-	ld		a,(timer_planitron2)
-	inc		a
-	cp		a,4
-	ld		(timer_planitron2),a
-	call	z,planitron_devier
-	ld		a,(etp_anim_planitron2)
-	dec		a
-	cp		a,0
-	jr		z,switch_anim_planitron2
-	ld		(etp_anim_planitron2),a
-	ret
-switch_anim_planitron2
-	ld		a,4
-	ld		(etp_anim_planitron2),a
-	ld		hl,(adr_anim_planitron2)	
-	inc		h
-	bit		0,h
-	jr		nz,reinit_adr_anim_planitron2
-retour_reinit_adr_anim_planitron2
-	ld		(adr_anim_planitron2),hl
-	ret
-reinit_adr_anim_planitron2
-	ld		h,#F6
-	jr	retour_reinit_adr_anim_planitron2
-planitron_devier
-	ld		hl,(SPRH4_X)
-	ld		de,(courbe_sprh4)
-	add		hl,de
-	ld		(SPRH4_X),hl
-	inc		de
-	inc		de
-	inc		de
-	inc		de
-	ld		(courbe_sprh4),de
-	ld		hl,(SPRH5_X)
-	ld		de,(courbe_sprh5)
-	add		hl,de
-	ld		(SPRH5_X),hl
-	dec		de
-	dec		de
-	dec		de
-	dec		de
-	ld		(courbe_sprh5),de
-	ld		a,2
-	ld			(timer_planitron2),a
-	ret
-fin_planitron2
-	xor		a
-	ld		(SPRH4_ZOOM),a
-	ld		(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a 
-	ld		(flag_fireA),a
-	ld		(etp_arme4),a
-	ld		(event_arme_fireA),a
-	ld		(event_arme_fireA+1),a
-	ld		(event_arme_fireA+2),a
-	ld		(anim_arme_a_charger),a
-	ld		(timer_planitron2),a
-	ld		hl,-32
-	ld		(SPRH4_X),hl
-	ld		(SPRH4_Y),hl
-	ld		(SPRH5_X),hl
-	ld		(SPRH5_Y),hl
-	RST		ASIC_DECONNEXION
-	ld 		c,1   ;Channel (0-2)
-	call 	PLY_AKG_StopSoundEffectFromChannel
-	ret
+		init_planitron2
+			inc 	a:ld (etp_arme4),a										; on incrémente les étapes de l'arme
+			ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
+			ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
+			ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
+			ld		hl,sprh_planitron2
+			ld		(adr_anim_planitron2),hl
+			ld		de,SPRH4_ADR
+			ld		bc,#100
+			LDIR		
+			ld		hl,sprh_planitron2
+			ld		de,SPRH5_ADR
+			ld		bc,#100
+			LDIR																; on copie de puis la ROM vers l'ASIC	
+			call	rom_off
+			ld		a,_CALL
+			ld		(event_arme_fireA),a
+			ld		hl,(adr_type_arme)
+			ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+			RST		ASIC_DECONNEXION
+			ld		a,4
+			ld		(etp_anim_planitron2),a
+			ld		a,2
+			ld		(anim_arme_a_charger),a
+			ld		hl,-8
+			ld		(courbe_sprh4),hl
+			ld		hl,8
+			ld		(courbe_sprh5),hl
+			
+			jp 	retour_test_des_tirs
+				planitron12
+					inc		a:ld (etp_arme4),a
+					ld		hl,(SPRH0_X)
+					ld		de,-19
+					add		hl,de
+					ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
+					ld		de,64+32+3:add hl,de:ld (SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
+					ld		hl,(SPRH0_Y):ld	de,6:add hl,de
+					ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
+					ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
+					ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+					RST		ASIC_DECONNEXION
+					ret
+						planitron22
+							ld		hl,(SPRH4_Y)
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							or 		a
+							ld		a,l
+							ld		b,-8
+							add		a,b
+							jr		nc,fin_planitron2
+							ld		(SPRH4_Y),hl
+							ld		hl,(SPRH5_Y)
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							dec		l
+							ld		(SPRH5_Y),hl
+							ld		a,(timer_planitron2)
+							inc		a
+							cp		a,4
+							ld		(timer_planitron2),a
+							call	z,planitron_devier
+							ld		a,(etp_anim_planitron2)
+							dec		a
+							cp		a,0
+							jr		z,switch_anim_planitron2
+							ld		(etp_anim_planitron2),a
+							;ret      <---------   ****  SOURCE DE GROS PLANTAGE ****** --------->
+							jp		retour_test_des_tirs
+								switch_anim_planitron2
+									ld		a,4
+									ld		(etp_anim_planitron2),a
+									ld		hl,(adr_anim_planitron2)	
+									inc		h
+									bit		0,h
+									jr		nz,reinit_adr_anim_planitron2
+										retour_reinit_adr_anim_planitron2
+											ld		(adr_anim_planitron2),hl
+											ret
+												reinit_adr_anim_planitron2
+													ld		h,#F6
+													jr	retour_reinit_adr_anim_planitron2
+														planitron_devier
+															ld		hl,(SPRH4_X)
+															ld		de,(courbe_sprh4)
+															add		hl,de
+															ld		(SPRH4_X),hl
+															inc		de
+															inc		de
+															inc		de
+															inc		de
+															ld		(courbe_sprh4),de
+															ld		hl,(SPRH5_X)
+															ld		de,(courbe_sprh5)
+															add		hl,de
+															ld		(SPRH5_X),hl
+															dec		de
+															dec		de
+															dec		de
+															dec		de
+															ld		(courbe_sprh5),de
+															ld		a,2
+															ld			(timer_planitron2),a
+															ret
+																fin_planitron2
+																	xor		a
+																	ld		(SPRH4_ZOOM),a
+																	ld		(SPRH5_ZOOM),a
+																	ld		(valeur_zoom_sprh4),a
+																	ld 		(valeur_zoom_sprh5),a 
+																	ld		(flag_fireA),a
+																	ld		(etp_arme4),a
+																	ld		(event_arme_fireA),a
+																	ld		(event_arme_fireA+1),a
+																	ld		(event_arme_fireA+2),a
+																	ld		(anim_arme_a_charger),a
+																	ld		(timer_planitron2),a
+																	ld		hl,-32
+																	ld		(SPRH4_X),hl
+																	ld		(SPRH4_Y),hl
+																	ld		(SPRH5_X),hl
+																	ld		(SPRH5_Y),hl
+																	RST		ASIC_DECONNEXION
+																	ld 		c,1   ;Channel (0-2)
+																	call 	PLY_AKG_StopSoundEffectFromChannel
+																	ret
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       CORNOFULGURE        ////////////////////
