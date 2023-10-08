@@ -11,7 +11,7 @@ rasm_w32 contenu_cartouche\maptiles\goldo8.asm -ob contenu_cartouche\maptiles\go
 
 
 
-rasm_w32 01-CPR_initialisation.asm -sw -sq -o ./goldoGX
+rasm_w32 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX
 C:\Users\Zisquier\Documents\Projets\Amstrad\2023_goldorak-gx4000\WinAPE20B2\WinApe.exe  /sym:goldogx.sym goldogx.cpr
 cmd
 

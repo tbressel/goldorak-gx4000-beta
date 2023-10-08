@@ -154,10 +154,6 @@ pointeur_tbl_point		ds		2,0
 ; //////////////////////////////////////////////////////////////////
 
 GoldorakMort				ds		1,0
-;VenusiakMort				ds		1,0
-;BoomVenusiakEtp				ds		1,0
-;BoomVenusiakSprhRomAdr		ds		2,0
-;BoomVenusiakTimerAdr		ds		1,0
 
 valeur_retard				ds		1,0
 valeur_crtc					ds		2,0
@@ -168,8 +164,7 @@ etape_vitesse				ds		1,0
 flag_crtc					ds		1,0
 posy_goldorak				ds		2,0
 posx_goldorak				ds		2,0
-;posy_venusiak				ds		2,0
-;posx_venusiak				ds		2,0
+
 posy2						ds		2,0
 posx2						ds		2,0
 timer						ds		1,0
@@ -184,7 +179,7 @@ pts_BOOM					ds		2,0
 points_a_ajouter			ds		2,0
 flag_mode_2_joueur			ds		1,0
 pointeur_tbl_regHUD			ds		2,0
-;resultat_test_de_touche_venusiak		ds		1,0
+
 pointeur_chiffre_SCR		ds		2,0
 largeur_texte				ds		2,0
 pointeur_tbl_vignettes		ds		2,0
@@ -778,16 +773,21 @@ TypeSoucoupeViolette
 ; /////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////
 
+; pour le moment ce tableau indiqué 'level 1' est utilisé pour tous les autres level
+; chaque TBL_NBR_SOUCOUPES propose 12 vagues successive d'ennemis avant l'apparition du BOSS
+; on peut mettre autant de TBL_NBR_SOUCOUPES que l'on souhaite selon la longueur de la map
 TBL_VAGUES_LEVEL_1
 
 	DW		TBL_NBR_SOUCOUPES
-	DW		TBL_NBR_SOUCOUPES2
-	DW		TBL_NBR_SOUCOUPES3
-	;DW		TBL_NBR_SOUCOUPES4
+	;DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
 	;DW		TBL_NBR_SOUCOUPES5
 	;DW		TBL_NBR_SOUCOUPES6
-	DW		#FFFE				; ----> signale un boss de fin
-	DW		#FFFF				; ----> signale la fin du level
+; ----> signale un boss de fin
+	DW		#FFFE				
+	DW		TBL_NBR_SOUCOUPES4
+; ----> signale la fin du level	
+	DW		#FFFF				
 	
 	
 ; /////////////////////////////////////////////////////////////////////////////
@@ -845,6 +845,46 @@ TBL_NBR_SOUCOUPES3
 
 	dw		#FFFF
 	
+
+
+TBL_NBR_SOUCOUPES4
+	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		#FFFF
+	
+TBL_NBR_SOUCOUPES5	
+	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; -----------------------------------------------------------------------------------------------
+	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		#FFFF
+	
+	
+TBL_NBR_SOUCOUPES6	
+	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague2s,vague2e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague5s,vague5e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+
+	dw		#FFFF
 ; /////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////  TYPE DE SOUCOUPE //////////////////////////////	

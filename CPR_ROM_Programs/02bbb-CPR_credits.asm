@@ -94,32 +94,18 @@ Texte_Credits
 	DEFM "                                        "
 	DEFM "----------------------------------------"		; ligne 13
 	DEFM "                                        "
-	DEFM "       MESSAGE A DAVID DIDIER :)        "
+	DEFM "   NOUS REMERCIONS CHALEUREUSEMENT :    "
 	DEFM "                                        "
-	DEFM "JE M'EXCUSE DE NE PAS POUVOIR ETRE LA CE"		; ligne 17
-	DEFM "MATIN  POUR  L'INTERVIEW, J'AI DES COURS"		; ligne 18
-	DEFM "JUSQU'A 12H00.                          "
+	DEFM " - DR. TERROR (MULTIPAINT), LZAMU,      "		; ligne 17
+	DEFM " - AST (IMP DRAW), ROUD (RASM),         "		; ligne 18
+	DEFM " - TARGHAN (ARKOS TRACKER), DEAD SYSTEM,"
+	DEFM " - RICHARD WILSON (WINAPE)              "
+	DEFM " - BDCIRON (ZILOG.FR)                   "
+	DEFM " - TOTO (XMASS / XMEM)                  "
 	DEFM "                                        "
-	DEFM " DONC JE TE LAISSE AVEC LES DEUX AUTRES "
-	DEFM "ZIGOTTO !                               "
+	DEFM " ... ET TOUTE LA COMMUNAUTEE AMSTRAD !  "
 	DEFM "                                        "
-	DEFM "                         ZISQUIER       "
-	DEFM "(SI TU DISTRIBUES CETTE ALPHA JE TE TUE)"
 
-
-
-
-
-
-	;DEFM "  AST (IMP DRAW), ROUD (RASM), LZAMU,   "		
-	;DEFM "TOTO, BDCIRON (ZILOG.FR), DEAD SYSTEM,  "		
-	;DEFM "12345678, 12345678, 12345678, 12345678, "
-	;DEFM "123456789AB, 123456789AB, 123456789AB,  "
-	;DEFM "12345678, 12345678, 12345678, 12345678, "
-	;DEFM "123456789AB, 123456789AB, 123456789AB,  "
-	;DEFM "12345678, 12345678, 12345678, 12345678, "
-	;DEFM "123456789AB, 123456789AB, 123456789AB,  "
-	;DEFM "123456789AB, 123456789AB, 123456789AB   "
 
 AfficheTexte
 	ld		HL,Texte_Credits		; adresse du texte à afficher

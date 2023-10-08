@@ -93,7 +93,7 @@ NOUVEAU_LEVEL
 	
 	ei
 
-; remet de re injecter dans les registre secondaire les bonnes valeur du score actuel
+; permet de re injecter dans les registre secondaire les bonnes valeur du score actuel
 	exx
 			ld		a,(Counter_score+4)			; on recupère les unitées
 			ld		c,a						; on tranfer dans c
@@ -263,31 +263,7 @@ test_du_CPC_plus
 									jp		z,goldo_gauche
 								retour_test_des_directions2
 									jp		retour_test_de_goldorak
-
-											; //////////////////  venusiak  /////////////////
-											;test_de_venusiak
-											;	call 	test_du_clavier_venusiak
-											;	bit		5,a
-											;	jp		z,fireB_venusiak
-											;retour_test_des_tirs_venusiak
-;
-											;		test_des_directions_venusiak
-											;			call 	test_du_clavier_venusiak
-											;			bit		0,a
-											;			jp		z,haut_venus
-											;			bit		1,a
-											;			jp		z,bas_venus
-											;		retour_test_des_directions_venusiak
-											;					test_des_directions2_venusiak
-											;						call 	test_du_clavier_venusiak
-											;						bit		3,a
-											;						jp		z,venus_droite
-											;						bit		2,a
-											;						jp		z,venus_gauche
-											;					retour_test_des_directions2_venusiak
-											;						jr		retour_test_de_venusiak
-											;					; ///////////////////////////////////////////////
-
+										
 
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
@@ -307,19 +283,7 @@ test_du_clavier
 	ei	
 	ld		(resultat_test_de_touche),a
 	ret
-			;test_du_clavier_venusiak
-			;	di
-			;	ld		bc,#F40E:OUT (C),c
-			;	ld		bc,#F6C0:OUT (C),C
-			;	ld		bc,#F600:OUT (C),C
-			;	ld		bc,#F792:OUT (C),C				; on place le port A en sortie (#92)
-			;	ld		bc,#F646:OUT (C),C				; test la ligne 6 avec #F6 + %0100 0110 (#46)
-			;	ld		b,#F4:IN A,(C)
-			;	ld		bc,#F782:OUT (C),C				; on place le port A en entrée (#82)
-			;	ld		bc,#F600:OUT (C),C
-			;	ei	
-			;	ld		(resultat_test_de_touche_venusiak),a
-			;	ret
+		
 						test_du_clavier_toutes_les_lignes
 							di
 							LD   BC,#F40E : OUT  (C),C   ; Valeur 14 sur le port A         
@@ -560,8 +524,6 @@ include"12-soucoupes.asm"
 include"13-collisions_ennemis.asm"
 include"14-tirs_soucoupes.asm"
 include"15-gestion_du_hud.asm"
-;include"16-Init_switch_1_2_joueurs.asm"
-;include"17-gestion_venusiak.asm"
 include"18-mouvements_soucoupes.asm"
 include"A-interruptions.asm"
 include"B-interrupteurs.asm"

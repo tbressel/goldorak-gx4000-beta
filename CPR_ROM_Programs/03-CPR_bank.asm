@@ -12,9 +12,9 @@
 ; ////////////////////////////// LE PROGRAMME  //////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 1
-	include"04-Programme.asm"
+	include"../AMS_RAM_ProgramsAndSubPrograms/04-Programme.asm"
 bank 2
-	include"04_bis-Programme_ROM.asm"
+	include"../CPR_ROM_SubPrograms/04_bis-Programme_ROM.asm"
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////// LA MUSIQUE //////////////////////////////////
@@ -27,21 +27,21 @@ bank 2
 ; ///////////////////////////////// LES TILESETS ////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 5
-		incbin"contenu_cartouche/gfx/tileset1.imp"   ; contient le niveau 1 et 2
+		incbin"../CPR_ASSETS/gfx/tileset1.imp"   ; contient le niveau 1 et 2
 bank 6
-		incbin"contenu_cartouche/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
+		incbin"../CPR_ASSETS/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
 bank 7
-		incbin"contenu_cartouche/gfx/tileset3.imp"; tileset des niveaux 6, 7 et 8
+		incbin"../CPR_ASSETS/gfx/tileset3.imp"; tileset des niveaux 6, 7 et 8
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////// LES HUDS & PALETTES /////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 8
 org	#C000
-	incbin"contenu_cartouche/gfx/hudtoto.imp"
-	;incbin"contenu_cartouche/gfx/hud2ply.imp"
-	incbin"contenu_cartouche/gfx/crocohud.imp"
-	incbin"contenu_cartouche/gfx/button.imp"
+	incbin"../CPR_ASSETS/gfx/hudtoto.imp"
+	;incbin"CPR_ASSETS/gfx/hud2ply.imp"
+	incbin"../CPR_ASSETS/gfx/crocohud.imp"
+	incbin"../CPR_ASSETS/gfx/button.imp"
 org	DEPART_PALETTES	
 ; title screen
 	org PALETTE_TITLE_SCREEN
@@ -99,30 +99,30 @@ DW #000,#060,#080,#0E0,#0F0,#008,#00E,#00F,#60F,#8F0,#808,#80F,#FF0,#FF8,#F8F,#F
 
 ; FONTE
 	org HUD_DEPART_FONTES
-	incbin"contenu_cartouche/gfx/fontesok.bin"
+	incbin"../CPR_ASSETS/gfx/fontesok.bin"
 
-	incbin"contenu_cartouche/gfx/fonthud.bin"
+	incbin"../CPR_ASSETS/gfx/fonthud.bin"
 
-	incbin"contenu_cartouche/gfx/ferme.imp"
+	incbin"../CPR_ASSETS/gfx/ferme.imp"
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ////////////////////// TOUTES LES SPRITES HARD ////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 9
-	incbin"contenu_cartouche/sprites_hard/GOLDORA1.spr"			; sprites Goldorak
+	incbin"../CPR_ASSETS/sprites_hard/GOLDORA1.spr"			; sprites Goldorak
 bank 10
-	incbin"contenu_cartouche/sprites_hard/GOLGOTH1.spr"			; golgoth 1,2,3,4,6 + soucoupes
+	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH1.spr"			; golgoth 1,2,3,4,6 + soucoupes
 bank 11
-	incbin"contenu_cartouche/sprites_hard/GOLGOTH2.spr"		; golgoth 7 et 8 (à rajouter) + items et explosion simple à virer
+	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH2.spr"		; golgoth 7 et 8 (à rajouter) + items et explosion simple à virer
 bank 12
-	incbin"contenu_cartouche/sprites_hard/GOLGOTH3.spr"
+	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH3.spr"
 bank 13
-	incbin"contenu_cartouche/sprites_hard/MERE1.spr"
+	incbin"../CPR_ASSETS/sprites_hard/MERE1.spr"
 
 bank 15
-	incbin"contenu_cartouche/sprites_hard/GOLDORA2.spr"			; sprite retournement 
+	incbin"../CPR_ASSETS/sprites_hard/GOLDORA2.spr"			; sprite retournement 
 bank 16
- 	incbin"contenu_cartouche/sprites_hard/EXPLOSE.spr"		; explosions
+ 	incbin"../CPR_ASSETS/sprites_hard/EXPLOSE.spr"		; explosions
 	
 
 	
@@ -131,18 +131,18 @@ bank 16
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 17
 	org #c000
-		incbin"contenu_cartouche/gfx/titlego1.ZX0"
+		incbin"../CPR_ASSETS/gfx/titlego1.ZX0"
 	org #d700
-		incbin"contenu_cartouche/gfx/titlego2.ZX0"
+		incbin"../CPR_ASSETS/gfx/titlego2.ZX0"
 	org #e5c0
-		incbin"contenu_cartouche/gfx/scenario_fond.ZX0"
+		incbin"../CPR_ASSETS/gfx/scenario_fond.ZX0"
 	org #ee40
-		incbin"contenu_cartouche/gfx/scenario_vignettes1.ZX0"
+		incbin"../CPR_ASSETS/gfx/scenario_vignettes1.ZX0"
 Bank 18
 	org #c000
-		incbin"contenu_cartouche/gfx/gameovergo1.ZX0"
+		incbin"../CPR_ASSETS/gfx/gameovergo1.ZX0"
 	org #d480
-		incbin"contenu_cartouche/gfx/gameovergo2.ZX0"
+		incbin"../CPR_ASSETS/gfx/gameovergo2.ZX0"
 
 		
 		
@@ -150,55 +150,55 @@ Bank 18
 		
 Bank 19
 	org #c000
-		incbin"contenu_cartouche/gfx/endgo1.ZX0"
+		incbin"../CPR_ASSETS/gfx/endgo1.ZX0"
 	org #E000
-		incbin"contenu_cartouche/gfx/endgo2.ZX0"
+		incbin"../CPR_ASSETS/gfx/endgo2.ZX0"
 bank 20
 	org #c000
-		incbin"contenu_cartouche/gfx/routes.scr"
+		incbin"../CPR_ASSETS/gfx/routes.scr"
 
 		
 Bank 4
 	org #C000
-	incbin"contenu_cartouche/gfx/menu.scr.ZX0"
+	incbin"../CPR_ASSETS/gfx/menu.scr.ZX0"
 	org #CF58
-	incbin"contenu_cartouche/gfx/metamorp.ZX0"
+	incbin"../CPR_ASSETS/gfx/metamorp.ZX0"
 	org	#e250
-	incbin"contenu_cartouche/gfx/shop.ZX0"
+	incbin"../CPR_ASSETS/gfx/shop.ZX0"
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////  MAPTILES DES 7 ROUTES  ///////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////		
 
 ; !!!!!  8000 / 16000 octets d'utilisé seulement !!!!!!
 bank 21
-	incbin"contenu_cartouche/maptiles/goldo1.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo1.prg"
 	
 ; !!!!!  9600 / 16000 octets d'utilisé seulement !!!!!!
 bank 22
-	incbin"contenu_cartouche/maptiles/goldo2.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo2.prg"
 bank 23
-	incbin"contenu_cartouche/maptiles/goldo3.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo3.prg"
 bank 24
-	incbin"contenu_cartouche/maptiles/goldo4.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo4.prg"
 bank 25
-	incbin"contenu_cartouche/maptiles/goldo5.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo5.prg"
 bank 26
-	incbin"contenu_cartouche/maptiles/goldo6.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo6.prg"
 bank 27
-	incbin"contenu_cartouche/maptiles/goldo7.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo7.prg"
 bank 14
-	incbin"contenu_cartouche/maptiles/goldo8.prg"
+	incbin"../CPR_ASSETS/maptiles/goldo8.prg"
 	
 ; ///////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////  SAMPLES  ///////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 28
-	incbin"contenu_cartouche\sound\metamorphose.spl"
+	incbin"../CPR_ASSETS\sound\metamorphose.spl"
 bank 29
-	incbin"contenu_cartouche\sound\idargos.spl"
+	incbin"../CPR_ASSETS\sound\idargos.spl"
 bank 30
-	incbin"contenu_cartouche\sound\ovetaire.spl"
+	incbin"../CPR_ASSETS\sound\ovetaire.spl"
 bank 31
-	incbin"contenu_cartouche\sound\go.spl"
+	incbin"../CPR_ASSETS\sound\go.spl"
 
 
