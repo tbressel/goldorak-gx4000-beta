@@ -225,7 +225,7 @@ nouvelle_vague_ROM
 													or		a
 													ld		hl,#FFFF
 													sbc		hl,de
-													jp		z,fin_du_level
+													jp		z,fin_du_level ; fin du level à partir du moment où goldorak est détruit
 													ld		(Pointeur_TblNombreDeSoucoupes),de
 													ld		a,#00
 													ld		(counter_poid_faible),a

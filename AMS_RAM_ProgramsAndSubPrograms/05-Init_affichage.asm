@@ -483,99 +483,6 @@ fondu_de_sortie
 	call	rom_off
 	ret
 				
-; ///////////////////////////////////////////////////////////////////////
-; ///////////////////////////////////////////////////////////////////////
-; ///////////////////////  MORT DE VENUSIAK  ////////////////////////////
-; ///////////////////////////////////////////////////////////////////////
-; ///////////////////////////////////////////////////////////////////////				
-				
-;venusiak_explose
-;; test de l'initialisation de la destruction de goildorak
-;	ld		a,(BoomVenusiakEtp)
-;	cp		a,0
-;	jp		nz,animation_venusiak_boom
-;	inc		a
-;	ld		(BoomVenusiakEtp),a
-;	ld		a,1
-;	ld		(VenusiakMort),a
-;; configuration des variables pour l'envoie vers la routine principale
-;	ld		hl,SPRH2_Y
-;	ld		(SPRH_Y),hl
-;	ld		hl,BOOM_SPRH_ROM_ADR
-;	ld		(BoomVenusiakSprhRomAdr),hl
-;	xor		a
-;	ld		(BoomVenusiakTimerAdr),a
-;; suppression du test de touche de goldorak
-;	ld		(event_test_de_venusiak),a
-;	ld		(event_test_de_venusiak+1),a
-;	ld		(event_test_de_venusiak+2),a
-;; creation de l'évenement goldorak boom	
-;	ld		a,_CALL			; call
-;	ld		(event_venusiak_boom),a
-;	ld		hl,venusiak_boom
-;	ld		(event_venusiak_boom+1),hl
-;	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-;    ld 		c,2 					;channel (0-2)
-;    ld 		b,0 					;Inverted volume (0-16)
-;    call 	PLY_AKG_PlaySoundEffect
-;	ret
-;	venusiak_boom
-;		ld		a,(BoomVenusiakEtp)
-;		cp		a,0
-;		jp		nz,animation_venusiak_boom
-;		inc		a
-;		ld		(BoomVenusiakEtp),a
-;		ret
-;		animation_venusiak_boom
-;		; il se déplace quand même
-;			ld		hl,SPRH3_Y	; on recupère l'adresse du sprite hard
-;			inc		(hl)			; on décrementente l'interieur pour donner un effert de recul
-;			ld		hl,SPRH2_Y	; on recupère l'adresse du sprite hard
-;			inc		(hl)			; on décrementente l'interieur pour donner un effert de recul
-;			ld		e,(hl)
-;			inc		hl
-;			ld		d,(hl)
-;			ld		(posy_venusiak),de
-;		; on utilise un compteur pour gérer la vitesse d'enchainement des sprite booom
-;			ld		a,(BoomVenusiakTimerAdr)
-;			inc		a
-;			ld		(BoomVenusiakTimerAdr),a
-;			cp		a,6
-;			ret		nz
-;			xor		a
-;			ld		(BoomVenusiakTimerAdr),a
-;			ld		c,BANK16_BOOM_SPRH
-;			RST 	UPPER_ROM_CONNEXION
-;			RST		ASIC_CONNEXION
-;			ld		hl,(BoomVenusiakSprhRomAdr)
-;			push	hl
-;			ld		de,SPRH2_ADR
-;			ld		bc,#100
-;			LDIR
-;			pop		hl
-;			inc		h
-;			ld		a,h
-;			cp		a,#c5
-;			jr		z,venusiak_detruit
-;			ld		(BoomVenusiakSprhRomAdr),hl
-;			xor		a
-;		; on eteind le sprite hard de goldorak
-;			ld		(valeur_zoom_sprh3),a
-;			ld		(SPRH3_ZOOM),a
-;			ld		a,zoom_mode0_1
-;			ld		(SPRH2_ZOOM),a
-;			ld		(valeur_zoom_sprh2),a
-;			call	rom_off
-;			ret
-;				venusiak_detruit
-;					xor		a
-;				; on eteind le sprite hard de goldorak
-;					ld		(valeur_zoom_sprh2),a
-;					ld		(SPRH2_ZOOM),a
-;					ld		(event_venusiak_boom),a
-;					ld		(event_venusiak_boom+1),a
-;					ld		(event_venusiak_boom+2),a
-;					ret
 
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
@@ -810,7 +717,7 @@ normal_goldorak_detruit
 	ld		(event_normal_goldorak_boom+1),a
 	ld		(event_normal_goldorak_boom+2),a
 	
-	jp		fin_du_level
+	jp		fin_du_level ; fin du level à partir du moment où goldorak est détruit
 	
 	ret
 

@@ -838,7 +838,7 @@ test_collisions_avec_les_Golgoths_D
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
 goldorak_percute
-	ret		; !!! invincibilité !!!
+	; ret		; !!! invincibilité !!!
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_DEGAT_BORDER_J1
 	ld		(#6420),hl

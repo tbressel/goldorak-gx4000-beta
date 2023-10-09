@@ -235,6 +235,7 @@ Golgoth_Corp_Sprh		ds		2,0
 Golgoth_Tete_AdrRom		ds		2,0
 Golgoth_Corp_AdrRom		ds		2,0
 
+flag_bigboss			ds		1,0
 
 
 GolgothAdrRom2			ds		2,0
@@ -781,11 +782,11 @@ TBL_VAGUES_LEVEL_1
 	DW		TBL_NBR_SOUCOUPES
 	;DW		TBL_NBR_SOUCOUPES2
 	;DW		TBL_NBR_SOUCOUPES3
+	; DW		TBL_NBR_SOUCOUPES4
 	;DW		TBL_NBR_SOUCOUPES5
 	;DW		TBL_NBR_SOUCOUPES6
 ; ----> signale un boss de fin
 	DW		#FFFE				
-	DW		TBL_NBR_SOUCOUPES4
 ; ----> signale la fin du level	
 	DW		#FFFF				
 	

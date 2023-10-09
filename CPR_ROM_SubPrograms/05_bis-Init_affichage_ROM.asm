@@ -85,6 +85,16 @@ ld		hl,PALETTE_ASIC
 		inc		l
 		dec		b
 		jr		nz,test_fin_du_fondu
+
+; tester si on est sur un level qui propose un BIG BOSS
+		ld		a,(flag_bigboss)
+		cp		a,1
+; OUI -> on JUMP vers la gestion d'un level BIG BOSS
+		jp		z,big_boss_fin_level_4
+		cp		a,2
+		jp		z,big_boss_fin_level_8
+
+; NON  -> on continue
 jp		affiche_ecrans_de_fin
 		
 

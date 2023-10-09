@@ -313,9 +313,15 @@ reinit_poid_faible
 	ld		(counter_poid_fort),a
 	ret
 	
-	
+
+
+; //////////////////////////////////////////////////////////////////
+; //////////////////////////////////////////////////////////////////
+; ////////////////////  COMPTEUR D'EVENEMENT ///////////////////////
+; //////////////////////////////////////////////////////////////////
+; //////////////////////////////////////////////////////////////////
 compteur_evenements
-; onincremente le compteur des unitées
+; on incremente le compteur des unitées
 	ld		a,(counter_poid_faible)
 	inc		a
 	ld		(counter_poid_faible),a
@@ -369,6 +375,8 @@ game_over
 			LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
 			LD 		BC,#7FC0:OUT (c),c					; Mode C0 : on choisit D'ECRIRE  dans la RAM centrale
 			jp		Fin
+
+				; fin du level à partir du moment où goldorak est détruit
 				fin_du_level
 					call	rom_off
 					RST		ASIC_CONNEXION
@@ -524,6 +532,7 @@ include"12-soucoupes.asm"
 include"13-collisions_ennemis.asm"
 include"14-tirs_soucoupes.asm"
 include"15-gestion_du_hud.asm"
+include"17-big_boss_fin.asm"
 include"18-mouvements_soucoupes.asm"
 include"A-interruptions.asm"
 include"B-interrupteurs.asm"

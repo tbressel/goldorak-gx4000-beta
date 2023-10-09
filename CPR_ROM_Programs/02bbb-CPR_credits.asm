@@ -107,6 +107,7 @@ Texte_Credits
 	DEFM "                                        "
 
 
+
 AfficheTexte
 	ld		HL,Texte_Credits		; adresse du texte à afficher
 		NouvelleLigneDeTexte

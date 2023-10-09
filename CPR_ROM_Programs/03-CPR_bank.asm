@@ -200,5 +200,6 @@ bank 30
 	incbin"../CPR_ASSETS\sound\ovetaire.spl"
 bank 31
 	incbin"../CPR_ASSETS\sound\go.spl"
+	incbin"../CPR_ASSETS/maptiles/goldospace.prg"
 
 
