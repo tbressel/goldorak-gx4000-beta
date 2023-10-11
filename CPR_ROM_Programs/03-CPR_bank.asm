@@ -31,7 +31,8 @@ bank 5
 bank 6
 		incbin"../CPR_ASSETS/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
 bank 7
-		incbin"../CPR_ASSETS/gfx/tileset3.imp"; tileset des niveaux 6, 7 et 8
+		; incbin"../CPR_ASSETS/gfx/tileset3.imp"; tileset des niveaux 6, 7 et 8
+		incbin"../CPR_ASSETS/gfx/tileset4.imp"; tileset des niveaux 6, 7 et 8
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////// LES HUDS & PALETTES /////////////////////////////////

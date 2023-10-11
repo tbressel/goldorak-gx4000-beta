@@ -62,7 +62,7 @@ Asic ON
 	ld		(#6420),hl
 Asic OFF
 	call	affiche_hud
-	call	affiche_hud_2_joueurs
+	 call	affiche_hud_2_joueurs
 
 	
 

@@ -31,28 +31,28 @@ affiche_hud
 ; //////////////    AFFICHAGE DU HUD 2 JOUEURS   /////////////////
 ; ////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////
-affiche_hud_2_joueurs
-	LD 		BC,BANK_HUD
-	OUT 	(C),C
-	LD		BC,#7F00+%10000100
-	OUT 	(C),C
-	ld		hl,HUD_J2_ADR_ROM
-	ld		de,HUD_J2_ADR_ECRAN
-	ld		bc,16*4
-	ld		a,HUD_J1_HAUTEUR
-	ld		b,a
-.boucle
-	push	bc
-	push	de
-	ld		bc,HUD_LONGEUR
-	ldir
-	pop		de
-	call	ligne_inf_4000
-	pop		bc
-	djnz	.boucle
-	LD		BC,#7F00
-	OUT 	(C),C
-	ret
+ affiche_hud_2_joueurs
+ 	LD 		BC,BANK_HUD
+ 	OUT 	(C),C
+ 	LD		BC,#7F00+%10000100
+ 	OUT 	(C),C
+ 	ld		hl,HUD_J2_ADR_ROM
+ 	ld		de,HUD_J2_ADR_ECRAN
+ 	ld		bc,16*4
+ 	ld		a,HUD_J1_HAUTEUR
+ 	ld		b,a
+ .boucle
+ 	push	bc
+ 	push	de
+ 	ld		bc,HUD_LONGEUR
+ 	ldir
+ 	pop		de
+ 	call	ligne_inf_4000
+ 	pop		bc
+ 	djnz	.boucle
+ 	LD		BC,#7F00
+ 	OUT 	(C),C
+ 	ret
 	
 	
 ; ////////////////////////////////////////////////////////////////
