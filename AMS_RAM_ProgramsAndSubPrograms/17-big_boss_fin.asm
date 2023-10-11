@@ -91,6 +91,7 @@ ld		a,_JP						; JP
 				
 	call scrolling_on 
 Asic ON
+	ei
 					jp		boucle_principale
 
 	ret
@@ -99,11 +100,29 @@ Asic ON
 big_boss_fin_level_8
 jp big_boss_fin_level_8
 
-
-fade_in
+FADE_IN
+Asic ON
+ld		b,#10
+boucle_fade_in
+	push	bc
+	ld      b,#F5
+VBL_fadein
+	in      a,(c)
+	rra
+	jr 		nc,VBL_fadein
+	call	fondu_entree
 			ld	hl,PALETTE_DECORS_ESPACE		; emplacement RAM de la pallette ecran
 			ld	de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
-			ld b,16								; longueur de la pallette
+			ld 	b,16								; longueur de la pallette
+	LDIR
+	pop		bc
+	dec		b
+	jp		nz,boucle_fade_out
+	ret
+fondu_entree
+			; ld	hl,PALETTE_DECORS_ESPACE		; emplacement RAM de la pallette ecran
+			; ld	de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
+			; ld b,16								; longueur de la pallette
 		boucle_fadein2
 				push bc
 			fade_in_du_rouge2
