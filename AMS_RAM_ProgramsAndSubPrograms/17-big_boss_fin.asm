@@ -22,9 +22,6 @@ call scrolling_off
        ; on indique l'adresse du premier numéro de tile à afficher
 	ld		hl,SCREEN_DEPART_LEVEL_SPACE+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 	ld		(pointeur_de_tile),hl
-       ; on indique l'adresse où se situde la palette du level
-	ld		hl,PALETTE_DECORS_ESPACE
-	ld		(pallette_level),hl
 
 
 	ld		a,#30
@@ -38,13 +35,22 @@ call scrolling_off
 	ld		(valeur_offset),hl
 	ld		a,SCROLL_SLOW_RETARD_VIDEO
 	ld		(vitesse_scroll),a
-
-    di
+	ld 		bc,#bc00+12:out (c),c      			; R12 selectionne
+	ld 		bc,#BD00+#30:out (c),c 				; Ecran en #c000
+    
+	di
 	call	affiche_fond
+	; ei
     ld		c,BANK_ROM_2
 	call	rom_on_EI
 
-
+       ; on indique l'adresse où se situde la palette du level
+	;  ld		hl,PALETTE_DECORS_ESPACE
+	;  ld		(pallette_level),hl
+	;  ld		hl,(pallette_level)
+	;  ld		de,PALETTE_DECORS_RAM
+	;  ld		bc,#20
+	;  LDIR
 	ld		hl,tbl_reg1213_fin
 	ld		(valeur_crtc),hl
 	ld		hl,#c7c0 
@@ -59,10 +65,6 @@ call scrolling_off
 	ld		c,BANK_ROM_2
 	call	rom_on_EI
 	Asic ON
-	ld		hl,(pallette_level)
-	ld		de,PALETTE_DECORS_RAM
-	ld		bc,#20
-	LDIR
 
 ; Copie pallette fond
 	LD 		BC,BANK8_PALETTES:OUT (C),C			; on choisit DE LIRE la ROM 11
@@ -82,47 +84,43 @@ call scrolling_off
 
 	ld		a,_CALL						; call
 	ld		(event_fade_out),a
-	ld		hl,fade_in
+	ld		hl,fondu_des_couleurs2
 	ld		(event_fade_out+1),hl
-ld		a,_JP						; JP
-					ld		(event_fade_out+3),a
-					ld		hl,boucle_principale
-					ld		(event_fade_out+4),hl
-				
-	call scrolling_on 
-Asic ON
-	ei
-					jp		boucle_principale
+	
+	ld		a,_JP						; JP
+	ld		(event_fade_out+3),a
+	ld		hl,boucle_principale
+	ld		(event_fade_out+4),hl
+			
+	call 	scrolling_on 
+	Asic ON
 
-	ret
+	jp		boucle_principale
+	
 
 
 big_boss_fin_level_8
 jp big_boss_fin_level_8
 
-FADE_IN
-Asic ON
-ld		b,#10
-boucle_fade_in
-	push	bc
-	ld      b,#F5
-VBL_fadein
-	in      a,(c)
-	rra
-	jr 		nc,VBL_fadein
-	call	fondu_entree
-			ld	hl,PALETTE_DECORS_ESPACE		; emplacement RAM de la pallette ecran
-			ld	de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
-			ld 	b,16								; longueur de la pallette
-	LDIR
-	pop		bc
-	dec		b
-	jp		nz,boucle_fade_out
+
+
+fadein_counter		ds		1,0
+
+fondu_des_couleurs2
+	ei
+	ld		a,(fadein_counter)
+	inc 	a
+	ld		(fadein_counter),a
+	cp		a,#FF
+	call	z,fondu_entree
 	ret
-fondu_entree
-			; ld	hl,PALETTE_DECORS_ESPACE		; emplacement RAM de la pallette ecran
-			; ld	de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
-			; ld b,16								; longueur de la pallette
+fondu_entree	
+			xor		a
+			ld		(fadein_counter),a
+			RST		ASIC_CONNEXION
+			ld		hl,(pallette_level)		; emplacement RAM de la pallette ecran
+			ld		de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
+			ld 		b,32								; longueur de la pallette
 		boucle_fadein2
 				push bc
 			fade_in_du_rouge2
@@ -161,9 +159,12 @@ fondu_entree
 				ld	a,(de)								; on recupère l'octet vert de l'ASIC
 				inc	a								; on augmente le rouge seulement
 				ld	(de),a								; et on stock le vert
-				fade_in_encre_suivante2
+			fade_in_encre_suivante2
 				inc	hl
 				inc	de
 				pop bc
 				djnz boucle_fadein2
 				ret
+
+
+

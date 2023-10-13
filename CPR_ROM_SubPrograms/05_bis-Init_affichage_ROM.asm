@@ -41,7 +41,7 @@ fondu_de_sortie_ROM
 	
 fondu_de_sortie_des_couleurs
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			; JP JUMP_TEST_DEV
+			;JP JUMP_TEST_DEV
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			ld	hl,PALETTE_DECORS_RAM						; emplacement RAM de la pallette ecran
 			ld	de,PALETTE_ASIC						; emplacement ASIC de la pallette ecran NOIRE !
@@ -89,7 +89,7 @@ ld		hl,PALETTE_ASIC
 		dec		b
 		jr		nz,test_fin_du_fondu
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-; JUMP_TEST_DEV
+ ;JUMP_TEST_DEV
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; tester si on est sur un level qui propose un BIG BOSS
 		ld		a,(flag_bigboss)
