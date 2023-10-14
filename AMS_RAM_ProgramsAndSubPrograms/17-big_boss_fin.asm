@@ -1,4 +1,5 @@
 big_boss_fin_level_4
+RST		ASIC_CONNEXION
 call scrolling_off 
 
 ; on désactive les évenements de la boucle	
@@ -38,19 +39,12 @@ call scrolling_off
 	ld 		bc,#bc00+12:out (c),c      			; R12 selectionne
 	ld 		bc,#BD00+#30:out (c),c 				; Ecran en #c000
     
-	di
+	
 	call	affiche_fond
-	; ei
+
     ld		c,BANK_ROM_2
 	call	rom_on_EI
 
-       ; on indique l'adresse où se situde la palette du level
-	;  ld		hl,PALETTE_DECORS_ESPACE
-	;  ld		(pallette_level),hl
-	;  ld		hl,(pallette_level)
-	;  ld		de,PALETTE_DECORS_RAM
-	;  ld		bc,#20
-	;  LDIR
 	ld		hl,tbl_reg1213_fin
 	ld		(valeur_crtc),hl
 	ld		hl,#c7c0 
@@ -61,21 +55,7 @@ call scrolling_off
 
 	ld		a,TEST_RETARD_VIDEO
 	ld		(#6804),a
-	
-	ld		c,BANK_ROM_2
-	call	rom_on_EI
-	Asic ON
 
-; Copie pallette fond
-	LD 		BC,BANK8_PALETTES:OUT (C),C			; on choisit DE LIRE la ROM 11
-	LD		BC,#7F00+%10000100:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
-
-; Copie pallette sprites hard
-	ld		hl,PALETTE_SPRITE_HARD
-	ld		de,PALETTE_SPRH
-	ld		bc,#1d
-	LDIR
-	Asic OFF
 	ld		hl,event_test_de_goldorak
 	ld		a,_JP
 	ld		(event_test_de_goldorak),a
@@ -93,8 +73,13 @@ call scrolling_off
 	ld		(event_fade_out+4),hl
 			
 	call 	scrolling_on 
-	Asic ON
+	
+	  ld		hl,PALETTE_DECORS_ESPACE
+	  ld		(pallette_level),hl
 
+	  ld	a,16
+	  ld (compteur_de_fin_fadein),a
+	  
 	jp		boucle_principale
 	
 
@@ -103,7 +88,7 @@ big_boss_fin_level_8
 jp big_boss_fin_level_8
 
 
-
+compteur_de_fin_fadein ds 1,0
 fadein_counter		ds		1,0
 
 fondu_des_couleurs2
@@ -111,16 +96,16 @@ fondu_des_couleurs2
 	ld		a,(fadein_counter)
 	inc 	a
 	ld		(fadein_counter),a
-	cp		a,#FF
-	call	z,fondu_entree
+	cp		a,#55
+	call	z,fondu_entree	
 	ret
 fondu_entree	
 			xor		a
 			ld		(fadein_counter),a
 			RST		ASIC_CONNEXION
 			ld		hl,(pallette_level)		; emplacement RAM de la pallette ecran
-			ld		de,#6400						; emplacement ASIC de la pallette ecran NOIRE !
-			ld 		b,32								; longueur de la pallette
+			ld		de,PALETTE_DECORS_RAM						; emplacement ASIC de la pallette ecran NOIRE !
+			ld 		b,16								; longueur de la pallette
 		boucle_fadein2
 				push bc
 			fade_in_du_rouge2
@@ -164,7 +149,174 @@ fondu_entree
 				inc	de
 				pop bc
 				djnz boucle_fadein2
+
+
+				ld a,(compteur_de_fin_fadein)
+				dec a
+				ld	(compteur_de_fin_fadein),a
+				
+				call z,fin_arrive_espace
 				ret
 
 
+fin_arrive_espace
+	xor		a						; on va remplir de zero
+	ld		hl,event_fade_out		; les evenements qui sont
+	ld		(hl),a					; encore actif dans la boucle
+	ld		de,event_fade_out+1
+	ld		bc,20
+	LDIR
 
+
+	ld		a,_CALL						; call
+	ld		(event_golgoth),a
+	ld		hl,display_bigboss1
+	ld		(event_golgoth+1),hl
+
+	ret
+
+etape_config_bigboss		ds			1,0
+
+
+display_bigboss1
+			ld a,(etape_config_bigboss)
+			cp 	0
+			jr	z,send_sprites_into_asic
+			cp	1
+			jr	z,place_sprites
+			cp	2
+			jr	z,display_sprites
+			cp	3
+			jp	z,animation_bigboss
+		
+		send_sprites_into_asic	
+			inc	a
+			ld	(etape_config_bigboss),a		
+			call	updateBigboss_SPRH
+			ret
+		
+		place_sprites
+			inc	a
+			ld	(etape_config_bigboss),a
+			RST	ASIC_CONNEXION
+			ld	hl,0
+			ld	de,0
+			call updateBigboss_XY
+			
+			ret
+		
+		display_sprites
+			inc	a
+			ld	(etape_config_bigboss),a
+			ld	a,zoom_mode0_1
+			ld	(SPRH6_ZOOM),a
+			ld	(valeur_zoom_sprh6),a
+			ld	(SPRH7_ZOOM),a
+			ld	(valeur_zoom_sprh7),a
+			ld	(SPRH8_ZOOM),a
+			ld	(valeur_zoom_sprh8),a
+			ld	(SPRH9_ZOOM),a
+			ld	(valeur_zoom_sprh9),a
+			ld	(SPRH10_ZOOM),a
+			ld	(valeur_zoom_sprh10),a
+			ld	(SPRH11_ZOOM),a
+			ld	(valeur_zoom_sprh11),a
+			ld	(SPRH12_ZOOM),a
+			ld	(valeur_zoom_sprh12),a
+			ld	(SPRH13_ZOOM),a
+			ld	(valeur_zoom_sprh13),a
+			ld	(SPRH14_ZOOM),a
+			ld	(valeur_zoom_sprh14),a
+
+			ret
+
+
+	bigboss_X				ds  2,0
+	bigboss_Y				ds  2,0
+	framecounter_bigboss 	ds 	1,0
+animation_bigboss
+	RST	ASIC_CONNEXION
+	ld	hl,(bigboss_X)
+	inc	hl
+	ld	(bigboss_Y),hl
+	ld	de,(bigboss_X)
+	inc de
+	ld	(bigboss_X),de
+	call updateBigboss_XY
+	ld	a,(framecounter_bigboss)
+	inc	a
+	ld	(framecounter_bigboss),a
+	cp	a,4
+	call z,updateBigboss_SPRH
+	ret
+		fin_config
+			inc	a
+			ld	(etape_config_bigboss),a
+			ret
+			xor a
+			ld	(event_golgoth),a
+			ld	(event_golgoth+1),a
+			ld	(event_golgoth+2),a
+			ret
+; utilise hl pour Y
+; utilise de pour X
+updateBigboss_XY
+			ld (SPRH6_Y),hl
+			ld (SPRH7_Y),hl
+			ld (SPRH8_Y),hl
+
+			ld	bc,16
+			add	hl,bc
+			ld (SPRH9_Y),hl
+			ld (SPRH10_Y),hl
+			ld (SPRH11_Y),hl
+
+			ld	bc,16
+			add	hl,bc
+			ld (SPRH12_Y),hl
+			ld (SPRH13_Y),hl
+			ld (SPRH14_Y),hl
+			
+			ex hl,de
+			ld (SPRH6_X),hl
+			ld (SPRH9_X),hl
+			ld (SPRH12_X),hl
+
+			ld	bc,64
+			add	hl,bc
+			ld (SPRH7_X),hl
+			ld (SPRH10_X),hl
+			ld (SPRH13_X),hl
+			ld	bc,64
+			add	hl,bc
+			ld (SPRH8_X),hl
+			ld (SPRH11_X),hl
+			ld (SPRH14_X),hl
+			ex hl,de
+			ret
+switch_anim_bigboss ds 1,0
+updateBigboss_SPRH
+			xor	a
+			ld	(framecounter_bigboss),a
+			ld		a,(switch_anim_bigboss)
+			cp	a,0
+			jr	z,bigboss_anim1
+			cp	a,1
+			jr	z,bigboss_anim2
+bigboss_anim1
+			inc	a	
+			ld	(switch_anim_bigboss),a
+			ld	hl,BIGBOSS1_SPRH_ADR_ROM
+			jr	bigboss_anim1_copy
+bigboss_anim2
+			dec	a	
+			ld	(switch_anim_bigboss),a
+			ld	hl,BIGBOSS1_SPRH_ADR_ROM+#900
+bigboss_anim1_copy
+			ld		c,BANK13_GOLGOTH_SPRH
+			rst		UPPER_ROM_CONNEXION
+			ld		de,SPRH6_ADR
+			ld		bc,#900
+			LDIR
+			call	rom_off
+			ret
