@@ -226,6 +226,12 @@ goldorak_touche
 	jp		z,init_mort_golgoth1
 	cp		a,13
 	jp		z,init_mort_golgoth1
+	cp		a,14
+	jp		z,init_mort_golgoth1
+	cp		a,15
+	jp		z,init_mort_bigboss1
+	cp		a,16
+	jp		z,init_mort_bigboss1
 	ret
 		
 init_mort_soucoupe1
@@ -401,8 +407,72 @@ init_mort_golgoth1
 		ret
 
 	
+point_vie_bigboss1 db	8
+init_mort_bigboss1
+		ld		a,(points_attaque)
+		ld		b,a
+		ld		a,(point_vie_bigboss1)
+		sub		a,b
+		bit		7,a
+		jr		nz,rip_bigboss
+		ld		(point_vie_bigboss1),a
+		ret
 
+rip_bigboss
+		ld		a,(etape_config_bigboss)
+		inc		a
+		ld		(etape_config_bigboss),a
 	
+		; on efface les evenement relatif au tirs en cours dans la boucle
+		rst		ASIC_CONNEXION
+		xor		a
+		
+		ld		(event_golgoth+6),a
+		ld		(event_golgoth+7),a
+		ld		(event_golgoth+8),a
+		ld		(event_golgoth+9),a
+		ld		(event_golgoth+10),a
+		ld		(event_golgoth+11),a
+		ld		(event_golgoth+12),a
+		ld		(event_golgoth+13),a
+		ld		(event_golgoth+14),a
+		ld		(event_golgoth+15),a
+		ld		(event_golgoth+16),a
+		ld		(event_golgoth+17),a
+		ld		(event_golgoth+18),a
+		ld		(event_golgoth+19),a
+		ld		(event_golgoth+20),a
+		ld		(event_golgoth+21),a
+		ld		(event_golgoth+22),a
+		ld		(event_golgoth+23),a
+		ld		(event_golgoth+24),a
+		ld		(event_golgoth+25),a
+		ld		(event_golgoth+26),a
+		ld		(event_golgoth+27),a
+		ld		(event_golgoth+28),a
+		ld		(event_golgoth+29),a
+; on desactive les sprites hard des tirs
+		ret
+		ld		(SPRH6_ZOOM),a
+		ld		(SPRH7_ZOOM),a
+		ld		(SPRH8_ZOOM),a
+		ld		(SPRH9_ZOOM),a
+		ld		(SPRH10_ZOOM),a
+		ld		(SPRH11_ZOOM),a
+		ld		(SPRH12_ZOOM),a
+		ld		(SPRH13_ZOOM),a
+		ld		(SPRH14_ZOOM),a
+		ld		(valeur_zoom_sprh6),a
+		ld		(valeur_zoom_sprh7),a
+		ld		(valeur_zoom_sprh8),a
+		ld		(valeur_zoom_sprh9),a
+		ld		(valeur_zoom_sprh10),a
+		ld		(valeur_zoom_sprh11),a
+		ld		(valeur_zoom_sprh12),a
+		ld		(valeur_zoom_sprh14),a
+; on reinitialise les différente etapes
+		ret
+
 
 
 
@@ -760,7 +830,7 @@ test_collisions_avec_les_tirs_ennemisD
 	jp 		NC,goldorak_percute_tirs					; si hl>=de le flag C est à zero
 	RET
 test_collisions_avec_les_Golgoths_G
-	ret
+	; ret
 	ld			a,(GoldorakMort)
 	cp			a,0
 	RET			nz
@@ -799,7 +869,7 @@ test_collisions_avec_les_Golgoths_G
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
 test_collisions_avec_les_Golgoths_D
-	ret			
+	; ret			
 	ld			a,(GoldorakMort)
 	cp			a,0
 	RET			nz
@@ -838,7 +908,7 @@ test_collisions_avec_les_Golgoths_D
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
 goldorak_percute
-	ret		; !!! invincibilité !!!
+	; ret		; !!! invincibilité !!!
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_DEGAT_BORDER_J1
 	ld		(#6420),hl
@@ -876,3 +946,85 @@ goldorak_percute_tirs
 	;call	rom_off
 	jp		goldorak_percute
 
+
+
+
+
+bigboss_colX ds 2,0
+bigboss_colY ds 2,0
+test_collisions_avec_les_Bigboss
+	; ret
+	ld			a,(GoldorakMort)
+	cp			a,0
+	RET			nz
+	
+	ld			a,(flag_retournement)
+	cp			a,0
+	ret			nz
+	
+	
+	
+	LD			hl,(SPRH0_X)					; à partir du coin haut-gauche de link
+	LD			de,30							
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+	LD			de,(bigboss_colX)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET			C								; si hl>=de le flag C est à zero
+	LD			hl,(bigboss_colX)						; à partir du coin haut-gauche du monstre
+	LD			de,30						
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+	LD			de,(SPRH0_X)					; à partir du coin haut-gauche de link
+	SBC			hl,de
+	RET			C
+	LD			hl,(SPRH0_Y)					; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(bigboss_colY)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET 		C								; si hl>=de le flag C est à zero
+	LD			hl,(bigboss_colY)						; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(SPRH0_Y)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
+	ret
+
+sprh_adr_tirX ds 2,0
+sprh_adr_tirY ds 2,0
+test_collisions_tir_bigboss
+	ld			a,(GoldorakMort)
+	cp			a,0
+	RET			nz
+	
+	LD			hl,(sprh_adr_tirX)					; à partir du coin haut-gauche de link
+	LD			de,30							
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+	LD			de,(bigboss_colX)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET			C								; si hl>=de le flag C est à zero
+
+	LD			hl,(bigboss_colX)						; à partir du coin haut-gauche du monstre
+	LD			de,30						
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+	LD			de,(sprh_adr_tirX)					; à partir du coin haut-gauche de link
+	SBC			hl,de
+	RET			C
+
+	LD			hl,(sprh_adr_tirY)					; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+	LD			de,(bigboss_colY)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET 		C								; si hl>=de le flag C est à zero
+
+	LD			hl,(bigboss_colY)						; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+	LD			de,(sprh_adr_tirY)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	JP 			NC,goldorak_touche_golgoth					; si hl>=de le flag C est à zero
+	RET
+	

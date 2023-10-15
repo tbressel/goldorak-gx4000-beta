@@ -31,7 +31,6 @@ bank 5
 bank 6
 		incbin"../CPR_ASSETS/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
 bank 7
-		; incbin"../CPR_ASSETS/gfx/tileset3.imp"; tileset des niveaux 6, 7 et 8
 		incbin"../CPR_ASSETS/gfx/tileset4.imp"; tileset des niveaux 6, 7 et 8
 
 ; ///////////////////////////////////////////////////////////////////////////////
@@ -40,8 +39,6 @@ bank 7
 bank 8
 org	#C000
 	incbin"../CPR_ASSETS/gfx/hudtoto.imp"
-	;incbin"CPR_ASSETS/gfx/hud2ply.imp"
-	incbin"../CPR_ASSETS/gfx/crocohud.imp"
 	incbin"../CPR_ASSETS/gfx/button.imp"
 org	DEPART_PALETTES	
 ; title screen

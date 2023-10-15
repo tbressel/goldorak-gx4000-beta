@@ -4,7 +4,7 @@ org #c000
 ; //////////     ON COPIE DES ROUTINE EN DEBUT DE BANK      ////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-Programme_ROM
+rstCreationPrograms_ROM
 	ld		hl,rom_on			; alias RST #0
 	ld		de,#0
 	ld		bc,24
@@ -417,6 +417,8 @@ reinit_compteur_powerup_niv2
 
 
 
+
+
 include		"05_bis-Init_affichage_ROM.asm"		
 include		"06_bis-Init_de_jeu_ROM.asm"
 include		"07_bis-arrimage_ROM.asm"
@@ -428,3 +430,4 @@ include		"15_bis-gestion_du_hud_ROM.asm"
 include		"18_bis-mouvements_soucoupes_ROM.asm"
 include		"19_bis-golgoths_ROM.asm"
 include		"19_bis-bis-missiles_ROM.asm"
+include		"17_bigboss_fin_ROM.asm"

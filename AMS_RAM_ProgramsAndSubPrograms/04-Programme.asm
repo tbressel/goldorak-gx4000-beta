@@ -5,34 +5,34 @@ di
 ; ////////////////        INIT CONNEXION ROM      //////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-	ld		c,BANK_ROM_0					; sélection de la ROM n°0
-	ld		a,#80
-	add		a,c							; on ajoute #80 au numéros de la ROM
-	ld		c,a							; le reg C contient la valeur de sélection de la ROM
-	ld		b,#DF
-	ld		(rom_sectionnee),bc
-	out		(c),c						; on execute la sélèction de la ROM
-	ld		bc,#7F00+%10001100			; ROM inf déconnectée, ROM sup déconnectée, MODE 0
-	ld		(etat_de_la_rom),bc
-	out		(c),c						; on exécute la connexion de la ROM sélectionnée.
+ld	c,BANK_ROM_0					; sélection de la ROM n°0
+ld	a,#80
+add	a,c							; on ajoute #80 au numéros de la ROM
+ld	c,a							; le reg C contient la valeur de sélection de la ROM
+ld	b,#DF
+ld	(rom_sectionnee),bc
+out	(c),c						; on execute la sélèction de la ROM
+ld	bc,#7F00+%10001100			; ROM inf déconnectée, ROM sup déconnectée, MODE 0
+ld	(etat_de_la_rom),bc
+out	(c),c						; on exécute la connexion de la ROM sélectionnée.
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 ; ////////////////        INIT INTERRUPTIONS      //////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-	ld		a,#C3					; on met un JP
-	ld		(#38),a					; en #38
-	ld		hl,interruption_ligne_190		; puis l'adresse de l'interruption
-	ld		(#39),hl
+ld	a,#C3					; on met un JP
+ld	(#38),a					; en #38
+ld	hl,interruption_ligne_190		; puis l'adresse de l'interruption
+ld	(#39),hl
 	
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////    CONFIGURATION BANK, POINTEURS, VIES, NRJ    ////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-	ld		c,BANK_ROM_2
-	call	rom_on_EI
-	call	Programme_ROM
+ld		c,BANK_ROM_2
+call	rom_on_EI
+call	rstCreationPrograms_ROM
 automodif_bank_tileset
 		ld		hl,BANK_TILESET_1
 		ld		(bank_tileset),hl
@@ -62,30 +62,30 @@ Asic ON
 	ld		(#6420),hl
 Asic OFF
 	call	affiche_hud
-	 call	affiche_hud_2_joueurs
+	;   call	affiche_hud_2_joueurs
 
 	
 
 NOUVEAU_LEVEL
-	;call	scrolling_off
 	ld		hl,#c000
 	ld		(valeur_offset),hl
 	ld		a,SCROLL_SLOW_RETARD_VIDEO
-	;ld		a,SCROLL_NORMAL_RETARD_VIDEO
-	;ld		a,SCROLL_FAST_RETARD_VIDEO
 	ld		(vitesse_scroll),a
 	call	affiche_fond
 	call	Affiche_sprite_hard
 	call	initialisation_du_jeu
 	
 	; on allume et selectionne par défaut le 1er boutton et la 1ere amre
-	ld		a,(id_arme)
-	inc		a
-	ld		(id_arme),a
+
 	ld		hl,HUD_BOUTON_ON_ADR
 	ld		de,HUD_BOUTON1_ADR
 	ld		b,HUD_HAUTEUR_BOUTTON
 	call	bcl_affiche_bouton
+
+
+	ld		a,(id_arme)
+	inc		a
+	ld		(id_arme),a
 	ld		hl,arme_missiles_gamma
 	ld		(adr_type_arme),hl
 	ld		a,FORCE_MISSILES_GAMMA

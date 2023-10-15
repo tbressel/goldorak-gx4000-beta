@@ -169,7 +169,7 @@ Asic ON
 	LDIR
 Asic OFF
 	call	affiche_hud
-	 call	affiche_hud_2_joueurs
+	;  call	affiche_hud_2_joueurs
 	ld		a,_CALL
 	ld		(event_powerup),a
 	ld		hl,powerup

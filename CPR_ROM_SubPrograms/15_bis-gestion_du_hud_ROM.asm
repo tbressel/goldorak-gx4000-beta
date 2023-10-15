@@ -33,7 +33,7 @@ score_items_ROM
 							ld	a,(hl)
 							;ld	a,(nbr_de_points)
 							cp	a,ITEM_AJOUTE_1VIE
-							jp	z,inc_one_life_j1etj2
+							jp	z,inc_one_life
 							cp	a,ITEM_FULL_NRJ
 							jp	z,inc_NRJ_item
 							cp	a,ITEM_10_PTS
