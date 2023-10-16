@@ -81,17 +81,28 @@ display_bigboss1
 
 	bigboss_X				ds  2,0
 	bigboss_Y				ds  2,0
+	
 	framecounter_bigboss 	ds 	1,0
+	
+	bigboss_dep_X	        dw  1
+	bigboss_dep_Y	        dw  1
+
 animation_bigboss
 	ld	a,15
 	ld	(id_soucoupe),a
 	RST	ASIC_CONNEXION
 	ld	hl,(bigboss_X)
-	inc	hl
-	ld	(bigboss_Y),hl
-	ld	de,(bigboss_X)
-	inc de
-	ld	(bigboss_X),de
+	ld	bc,(bigboss_dep_X)
+	add hl,bc
+	ld	(bigboss_X),hl
+	
+	ld	de,(bigboss_Y)
+	ex	hl,de
+	ld	bc,(bigboss_dep_Y)
+	add hl,bc
+	ex de,hl
+	ld	(bigboss_Y),de
+	
 	call updateBigboss_XY
 	ld	a,(framecounter_bigboss)
 	inc	a
@@ -136,8 +147,6 @@ animation_bigboss
 	ret
 
 explosion_bigboss
-
-
 	ld	a,(framecounter_bigboss)
 	inc	a
 	ld	(framecounter_bigboss),a
@@ -145,12 +154,10 @@ explosion_bigboss
 	ret	nz
 	xor a
 	ld	(framecounter_bigboss),a
-
 	call scrolling_off 
-
-	ld		c,BANK16_BOOM_SPRH
-	rst		UPPER_ROM_CONNEXION
-	rst		ASIC_CONNEXION
+	ld	c,BANK16_BOOM_SPRH
+	rst	UPPER_ROM_CONNEXION
+	rst	ASIC_CONNEXION
 
 	ld	a,(Etp_ExploseGolgoth)
 	cp	0
@@ -332,7 +339,7 @@ EtpExplosion8
 			ld	de,SPRH9_ADR
 			ld	bc,#200
 			LDIR
-		xor a
+			xor a
 			ld	(SPRH12_ZOOM),a
 			ld	(valeur_zoom_sprh12),a
 			ld	(SPRH13_ZOOM),a
@@ -371,7 +378,7 @@ EtpExplosion9
 			ld	(SPRH9_ZOOM),a
 			ld	(valeur_zoom_sprh9),a
 
-ret
+			ret
 
 EtpExplosion10
 			inc		a
@@ -415,9 +422,9 @@ EtpExplosion13
 			ret
 
 fin_bigboss1
-							xor	a
-							ld (flag_bigboss),a
-								ld	(event_golgoth),a
+			xor	a
+			ld (flag_bigboss),a
+			ld	(event_golgoth),a
 			ld	(event_golgoth+1),a
 			ld	(event_golgoth+2),a
 			
@@ -437,14 +444,6 @@ fin_bigboss1
 							call	music_off
 							call	scrolling_on
 							ret
-							
-
-
-
-
-
-
-
 
 
 ; utilise hl pour Y

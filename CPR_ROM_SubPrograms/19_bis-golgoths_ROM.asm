@@ -244,8 +244,8 @@ Explose_Golgoth
 							call	music_off
 							call	scrolling_on
 							; ; on précise que cette fin de level fait appel à un level 'big boss'
-							; ld		a,1
-							; ld		(flag_bigboss),a
+							 ld		a,1
+							 ld		(flag_bigboss),a
 							ret
 	
 Tbl_Gologoth1
@@ -906,8 +906,8 @@ Explose_Golgoth4
 							call	music_off
 							call	scrolling_on
 														; on précise que cette fin de level fait appel à un level 'big boss'
-							ld		a,1
-							ld		(flag_bigboss),a
+							; ld		a,1
+							; ld		(flag_bigboss),a
 							ret
 
 
