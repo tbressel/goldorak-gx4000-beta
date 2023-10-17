@@ -373,10 +373,13 @@ soucoupe_6
 															inc		hl
 															ld		d,(hl)
 															ld		(posx_soucoupe),de
-															ld		c,BANK11_ITEMS_SPRH
+															; ld		c,BANK11_ITEMS_SPRH
+															; RST 	UPPER_ROM_CONNEXION
+															; RST		ASIC_CONNEXION
+															
+															ld		c,BANK_ROM_2
 															RST 	UPPER_ROM_CONNEXION
 															RST		ASIC_CONNEXION
-															
 														; à partir d'ici on determine le type d'item à afficher ET aussi la valeur des poinbts de cet items	
 															ld		hl,(pointeur_tbl_point)
 															inc		hl
@@ -391,7 +394,12 @@ soucoupe_6
 																		ld		(nbr_de_points),a
 																		ld		hl,(adr_tbl_points_soucoupe)
 																		ld		(hl),a
-																		
+
+																		push	af
+																		ld		c,BANK11_ITEMS_SPRH
+																		RST 	UPPER_ROM_CONNEXION
+																		RST		ASIC_CONNEXION
+																		pop		af
 																		cp		a,ITEM_AJOUTE_1VIE
 																		jr		z,item_1UP
 																		cp		a,ITEM_FULL_NRJ

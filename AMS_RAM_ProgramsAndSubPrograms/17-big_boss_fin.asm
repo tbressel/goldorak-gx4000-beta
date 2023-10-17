@@ -84,13 +84,39 @@ display_bigboss1
 	
 	framecounter_bigboss 	ds 	1,0
 	
-	bigboss_dep_X	        dw  1
-	bigboss_dep_Y	        dw  1
+	bigboss_dep_X	        dw  2
+	bigboss_dep_Y	        dw  0
+
+
+
+bigboss_dirX
+ld hl,(bigboss_dep_X)	; si on a #0004
+xor a					; a = 0
+sub l					; a-l = -4
+ld l,a					; 
+sbc a,a
+sub h
+ld h,a
+ld	(bigboss_dep_X),hl
+ret
+
+
+
+
 
 animation_bigboss
 	ld	a,15
 	ld	(id_soucoupe),a
 	RST	ASIC_CONNEXION
+; calcule de ses déplacements
+or	a
+ld hl,(SPRH10_X)
+ld bc,#0100
+sbc hl,bc
+call nc,bigboss_dirX
+
+
+; tranfert descalcules vers les variable globals
 	ld	hl,(bigboss_X)
 	ld	bc,(bigboss_dep_X)
 	add hl,bc
@@ -103,6 +129,8 @@ animation_bigboss
 	ex de,hl
 	ld	(bigboss_Y),de
 	
+
+
 	call updateBigboss_XY
 	ld	a,(framecounter_bigboss)
 	inc	a
@@ -113,31 +141,37 @@ animation_bigboss
 	ld	(bigboss_colX),hl
 	ld	hl,(SPRH7_Y)
 	ld	(bigboss_colY),hl
+
 	call test_collisions_avec_les_Bigboss
 	ld	hl,(SPRH10_X)
 	ld	(bigboss_colX),hl
 	ld	hl,(SPRH10_Y)
 	ld	(bigboss_colY),hl
+
 	call test_collisions_avec_les_Bigboss
 	ld	hl,(SPRH13_X)
 	ld	(bigboss_colX),hl
 	ld	hl,(SPRH13_Y)
 	ld	(bigboss_colY),hl
+
 	call test_collisions_avec_les_Bigboss
 	ld	hl,(SPRH9_X)
 	ld	(bigboss_colX),hl
 	ld	hl,(SPRH9_Y)
 	ld	(bigboss_colY),hl
+
 	call test_collisions_avec_les_Bigboss
 	ld	hl,(SPRH11_X)
 	ld	(bigboss_colX),hl
 	ld	hl,(SPRH11_Y)
 	ld	(bigboss_colY),hl
+
 	call test_collisions_avec_les_Bigboss
 	ld	hl,(SPRH4_X)
 	ld	(sprh_adr_tirX),hl
 	ld	hl,(SPRH4_Y)
 	ld	(sprh_adr_tirY),hl
+
 	call	test_collisions_tir_bigboss
 	ld	hl,(SPRH5_X)
 	ld	(sprh_adr_tirX),hl

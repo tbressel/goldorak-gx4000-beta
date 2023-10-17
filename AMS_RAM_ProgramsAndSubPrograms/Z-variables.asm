@@ -778,190 +778,187 @@ TypeSoucoupeViolette
 ; chaque TBL_NBR_SOUCOUPES propose 12 vagues successive d'ennemis avant l'apparition du BOSS
 ; on peut mettre autant de TBL_NBR_SOUCOUPES que l'on souhaite selon la longueur de la map
 TBL_VAGUES_LEVEL_1
-
+			
 	DW		TBL_NBR_SOUCOUPES
-	;DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-	; DW		TBL_NBR_SOUCOUPES4
-	;DW		TBL_NBR_SOUCOUPES5
-	;DW		TBL_NBR_SOUCOUPES6
+	DW		TBL_NBR_SOUCOUPES2
+	DW		TBL_NBR_SOUCOUPES3
 ; ----> signale un boss de fin
 	DW		#FFFE				
 ; ----> signale la fin du level	
 	DW		#FFFF				
 	
 	
-; /////////////////////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////////////////////
-; /////////////////////  NOMBRE D'ENNEMI SIMULTANE ////////////////////////////	
-; /////////////////////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////  NOMBRE D'ENNEMI SIMULTANE ////////////////////////////	
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////////////////////////////////////////////////////////////
 
-; de soucoupe 1 à 6 ce sont les adresse des routines de ces 6 soucoupes qui sont mise en CALL
-; à l'interieur de la boucle puit détruite en fin de vague pour par un tir.
+; ; de soucoupe 1 à 6 ce sont les adresse des routines de ces 6 soucoupes qui sont mise en CALL
+; ; à l'interieur de la boucle puit détruite en fin de vague pour par un tir.
 
-TBL_NBR_SOUCOUPES
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-; -----------------------------------------------------------------------------------------------
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		#FFFF
+; TBL_NBR_SOUCOUPES
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ; -----------------------------------------------------------------------------------------------
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		#FFFF
 	
-TBL_NBR_SOUCOUPES2	
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-; -----------------------------------------------------------------------------------------------
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		#FFFF
-	
-	
-TBL_NBR_SOUCOUPES3	
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague2s,vague2e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague5s,vague5e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-
-	dw		#FFFF
-	
-
-
-TBL_NBR_SOUCOUPES4
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		#FFFF
-	
-TBL_NBR_SOUCOUPES5	
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-; -----------------------------------------------------------------------------------------------
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		#FFFF
+; TBL_NBR_SOUCOUPES2	
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ; -----------------------------------------------------------------------------------------------
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		#FFFF
 	
 	
-TBL_NBR_SOUCOUPES6	
-	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague2s,vague2e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague5s,vague5e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; TBL_NBR_SOUCOUPES3	
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague2s,vague2e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague5s,vague5e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ;---------------------------------------------------------------------------------------------------
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
 
-	dw		#FFFF
-; /////////////////////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////////////////////
-; ////////////////////////////  TYPE DE SOUCOUPE //////////////////////////////	
-; /////////////////////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////////////////////
-
-; à l'interieur de soucoupe 1 à 6 ON CHOISIT LE TYPE DE SOUCOUPE
-TBL_TYPE_DE_SOUCOUPE
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3
-	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3A
-	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3A,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
-; ------------------------------------------------------------------------------------------------------------------------------
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B
-	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C
-	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-; ------------------------------------------------------------------------------------------------------------------------------
-; ------------------------------------------------------------------------------------------------------------------------------
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B
-	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C
-	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-; ------------------------------------------------------------------------------------------------------------------------------
-
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2A,TypeSoucoupeVerte3
-	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6A
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2C,TypeSoucoupeVerte3B,TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2,TypeSoucoupeVerte3C
-	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5A,TypeSoucoupeVerte6
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2B,TypeSoucoupeVerte3A,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
-; ------------------------------------------------------------------------------------------------------------------------------
-; ------------------------------------------------------------------------------------------------------------------------------
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2C,TypeSoucoupeVerte3B
-	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2A,TypeSoucoupeVerte3,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2B,TypeSoucoupeVerte3A
-	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2,TypeSoucoupeVerte3C,TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-; ------------------------------------------------------------------------------------------------------------------------------
-
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3
-	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
-	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-; ------------------------------------------------------------------------------------------------------------------------------
-	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
-	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
-	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
-	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
-	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-; ------------------------------------------------------------------------------------------------------------------------------
+; 	dw		#FFFF
+	
 
 
+; TBL_NBR_SOUCOUPES4
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		#FFFF
+	
+; TBL_NBR_SOUCOUPES5	
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ; -----------------------------------------------------------------------------------------------
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		#FFFF
+	
+	
+; TBL_NBR_SOUCOUPES6	
+; 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague2s,vague2e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague5s,vague5e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
 
-tbl_distribution_points
+; 	dw		#FFFF
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; ////////////////////////////  TYPE DE SOUCOUPE //////////////////////////////	
+; ; /////////////////////////////////////////////////////////////////////////////
+; ; /////////////////////////////////////////////////////////////////////////////
 
-	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_FULL_NRJ,ITEM_10_PTS
-	db		ITEM_POWERUP,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_50_PTS,ITEM_AJOUTE_1VIE,ITEM_20_PTS,ITEM_10_PTS
-	db		ITEM_20_PTS,ITEM_500_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_100_PTS
-	db		ITEM_10_PTS,ITEM_AJOUTE_1VIE,ITEM_50_PTS,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_10_PTS,ITEM_FULL_NRJ
-	db		ITEM_20_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_20_PTS,ITEM_500_PTS,ITEM_100_PTS,ITEM_20_PTS,ITEM_10_PTS
-	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_AJOUTE_1VIE,ITEM_10_PTS,ITEM_20_PTS
-	db		ITEM_500_PTS,ITEM_500_PTS,ITEM_AJOUTE_1VIE,ITEM_100_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_10_PTS
-	db		ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_POWERUP,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS
-	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_100_PTS,ITEM_10_PTS,ITEM_AJOUTE_1VIE,ITEM_10_PTS,ITEM_20_PTS,ITEM_50_PTS
-	db		#FF
+; ; à l'interieur de soucoupe 1 à 6 ON CHOISIT LE TYPE DE SOUCOUPE
+; TBL_TYPE_DE_SOUCOUPE
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3
+; 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3A
+; 	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3A,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B
+; 	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C
+; 	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B
+; 	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C
+; 	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ; ------------------------------------------------------------------------------------------------------------------------------
+
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2A,TypeSoucoupeVerte3
+; 	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6A
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2C,TypeSoucoupeVerte3B,TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2,TypeSoucoupeVerte3C
+; 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5A,TypeSoucoupeVerte6
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2B,TypeSoucoupeVerte3A,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2C,TypeSoucoupeVerte3B
+; 	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5,TypeSoucoupeVerte6C
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2A,TypeSoucoupeVerte3,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2B,TypeSoucoupeVerte3A
+; 	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2,TypeSoucoupeVerte3C,TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ; ------------------------------------------------------------------------------------------------------------------------------
+
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3
+; 	dw		TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+; 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ; ------------------------------------------------------------------------------------------------------------------------------
+; 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+; 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+; 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+; 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+; 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+; 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ; ------------------------------------------------------------------------------------------------------------------------------
+
+
+
+;  tbl_distribution_points2
+;  	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_FULL_NRJ,ITEM_10_PTS
+;  	db		ITEM_POWERUP,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_50_PTS,ITEM_AJOUTE_1VIE,ITEM_20_PTS,ITEM_10_PTS
+;  	db		ITEM_20_PTS,ITEM_500_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_100_PTS
+;  	db		ITEM_10_PTS,ITEM_AJOUTE_1VIE,ITEM_50_PTS,ITEM_10_PTS,ITEM_POWERUP,ITEM_10_PTS,ITEM_10_PTS,ITEM_FULL_NRJ
+;  	db		ITEM_20_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_20_PTS,ITEM_500_PTS,ITEM_100_PTS,ITEM_20_PTS,ITEM_10_PTS
+;  	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_10_PTS,ITEM_20_PTS,ITEM_AJOUTE_1VIE,ITEM_10_PTS,ITEM_20_PTS
+;  	db		ITEM_500_PTS,ITEM_500_PTS,ITEM_AJOUTE_1VIE,ITEM_100_PTS,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS,ITEM_10_PTS
+;  	db		ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_10_PTS,ITEM_FULL_NRJ,ITEM_POWERUP,ITEM_10_PTS,ITEM_50_PTS,ITEM_10_PTS
+;  	db		ITEM_10_PTS,ITEM_10_PTS,ITEM_100_PTS,ITEM_10_PTS,ITEM_AJOUTE_1VIE,ITEM_10_PTS,ITEM_20_PTS,ITEM_50_PTS
+;  	db		#FF
 
 
 Adresse_pallette_screen		ds		#20,0

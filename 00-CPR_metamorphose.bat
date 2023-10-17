@@ -12,6 +12,8 @@ rasm_w32 CPR_ASSETS\maptiles\goldospace.asm -ob CPR_ASSETS\maptiles\goldospace.p
 
 
 rasm_w32 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX
+
+::C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\AceDL\AceDL.exe  /sym:goldogx.sym goldogx.cpr
 C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\WinAPE20B2\WinApe.exe  /sym:goldogx.sym goldogx.cpr
 cmd
 

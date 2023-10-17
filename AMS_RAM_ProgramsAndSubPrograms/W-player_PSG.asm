@@ -60,24 +60,42 @@ PlaySample4Bits3:
 ; C = valeur
 ;
 WriteRegPsg:
-	di
-        LD      B,#F4
-        OUT     (C),A
-        LD      B,#F6
-        IN      A,(C)
-        OR      #C0
-        OUT     (C),A
-        AND     #3F
-        OUT     (C),A
-        LD      B,#F4
-        OUT     (C),C
-        LD      B,#F6
-        LD      C,A
-        OR      #80
-        OUT     (C),A
-        OUT     (C),C
-		ei
-        RET
+	; di
+        ; LD      B,#F4
+        ; OUT     (C),A
+        ; LD      B,#F6
+        ; IN      A,(C)
+        ; OR      #C0
+        ; OUT     (C),A
+        ; AND     #3F
+        ; OUT     (C),A
+        ; LD      B,#F4
+        ; OUT     (C),C
+        ; LD      B,#F6
+        ; LD      C,A
+        ; OR      #80
+        ; OUT     (C),A
+        ; OUT     (C),C
+	; 	ei
+        ; RET
+
+
+di
+ld b,#F4 : out (c),a : ld a,#C0
+ld b,#F6 : out (c),a : out (c),0
+ld b,#F4 : out (c),c : ld a,#80
+ld b,#F6 : out (c),a : out (c),0
+ei
+ret
+; di
+; ld de,#C080
+; ld hl,#F4F6
+; ld b,h : out (c),a
+; ld b,l : out (c),d : out (c),0
+; ld b,h : out (c),c
+; ld b,l : out (c),e : out (c),0
+; ei
+; ret
 
 BufSaveRegPsg:
         DS      14                  ; Buffer sauvegarde regs. du PSG

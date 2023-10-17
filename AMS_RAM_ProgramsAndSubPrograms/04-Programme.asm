@@ -332,8 +332,13 @@ compteur_evenements
 	ld		c,a
 	ld		a,(counter_poid_fort)
 	ld		b,a
-; on recupère les donnée de la vague	
+; on recupère les donnée de la vague
+	push 	bc
+	ld 		c,BANK_ROM_2
+	RST		UPPER_ROM_CONNEXION
 	ld		de,(Pointeur_TblNombreDeSoucoupes)
+	
+	pop	bc
 	ld		a,(de)
 	ld		l,a
 	inc		de
