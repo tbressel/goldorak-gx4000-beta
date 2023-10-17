@@ -1,7 +1,4 @@
 goldo_affiche_ROM	
-	ld		a,(flag_mode_2_joueur)
-	cp		a,0
-	jr		nz,tiny_goldo_affiche
 	ld		hl,(posx_goldorak)
 	ld		(SPRH0_X),hl			; sprite 0 X
 	ld		(#6010),hl			; sprite 2 X
@@ -17,16 +14,7 @@ goldo_affiche_ROM
 	ld		(#6012),hl			; sprite 2 Y
 	ld		(#601A),hl			; sprite 3 Y
 	ret
-tiny_goldo_affiche	
-	ld		hl,(posx_goldorak)
-	ld		(#6000),hl			; sprite 0 X
-	ld		de,32;+16+16
-	add		hl,de
-	ld		(#6008),hl			; sprite 1 X
-	ld		hl,(posy_goldorak)
-	ld		(#6002),hl			; sprite 0 Y
-	ld		(#600A),hl			; sprite 1 Y
-	ret
+
 	
 	
 fondu_de_sortie_ROM	

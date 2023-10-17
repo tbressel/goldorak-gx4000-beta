@@ -435,6 +435,205 @@ include		"19_bis-bis-missiles_ROM.asm"
 include		"17_bigboss_fin_ROM.asm"
 
 
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+; /////////////////                               ///////////////////
+; /////////////////        VAGUE DE TYPE 1        ///////////////////
+; /////////////////                               ///////////////////
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+TypeSoucoupeVerte1
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasDroite
+	dw	32,-40
+	dw	0
+TypeSoucoupeVerte2
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasDroite
+	dw	56,-40
+	dw  0
+TypeSoucoupeVerte3
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasDroite
+	dw	80,-40
+	dw  0
+TypeSoucoupeVerte4
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasGauche
+	dw	423,-40
+	dw	0
+TypeSoucoupeVerte5
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasGauche
+	dw	400,-40
+	dw  0
+TypeSoucoupeVerte6
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_BasGauche
+	dw	375,-40
+	dw  0
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+; /////////////////                               ///////////////////
+; /////////////////        VAGUE DE TYPE 2        ///////////////////
+; /////////////////                               ///////////////////
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+TypeSoucoupeVerte1A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasDroite
+	dw	-60,60
+	dw	TBL_DEPLACEMENT_HorizVertiBasDroite
+TypeSoucoupeVerte2A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasDroite
+	dw	-60,60
+	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
+TypeSoucoupeVerte3A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasDroite
+	dw	-60,60
+	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
+TypeSoucoupeVerte4A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasGauche
+	dw	520,60
+	dw	TBL_DEPLACEMENT_HorizVertiBasGauche
+TypeSoucoupeVerte5A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasGauche
+	dw	520,60
+	dw  TBL_DEPLACEMENT_HorizVertiBasGauche
+TypeSoucoupeVerte6A
+	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VERTE
+	dw	deplace_soucoupe_HorizVertiBasGauche
+	dw	520,60
+	dw  TBL_DEPLACEMENT_HorizVertiBasGauche
+	
+	
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+; /////////////////                               ///////////////////
+; /////////////////    VAGUE MIX DE TYPE 1 & 2    ///////////////////
+; /////////////////                               ///////////////////
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+TypeSoucoupeVerte1B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasDroite
+	dw	-60,10
+	dw	TBL_DEPLACEMENT_DiagoVertiBasDroite
+TypeSoucoupeVerte2B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasDroite
+	dw	-60,10
+	dw  TBL_DEPLACEMENT_DiagoVertiBasDroite
+TypeSoucoupeVerte3B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasDroite
+	dw	-60,10
+	dw  TBL_DEPLACEMENT_DiagoVertiBasDroite
+TypeSoucoupeVerte4B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasGauche
+	dw	520,10
+	dw	TBL_DEPLACEMENT_DiagoVertiBasGauche
+TypeSoucoupeVerte5B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasGauche
+	dw	520,10
+	dw  TBL_DEPLACEMENT_DiagoVertiBasGauche
+TypeSoucoupeVerte6B
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_DiagoVertiBasGauche
+	dw	520,10
+	dw  TBL_DEPLACEMENT_DiagoVertiBasGauche
+	
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+; /////////////////                               ///////////////////
+; /////////////////        VAGUE DE TYPE 3        ///////////////////
+; /////////////////                               ///////////////////
+; ///////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////
+TypeSoucoupeVerte1C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	32,-40
+	dw	TBL_DEPLACEMENT_ZigzagVertiBas
+TypeSoucoupeVerte2C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	56,-40
+	dw  TBL_DEPLACEMENT_ZigzagVertiBas
+TypeSoucoupeVerte3C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	80,-40
+	dw  TBL_DEPLACEMENT_ZigzagVertiBas
+TypeSoucoupeVerte4C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	323,-40
+	dw	TBL_DEPLACEMENT_ZigzagVertiBas
+TypeSoucoupeVerte5C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	300,-40
+	dw  TBL_DEPLACEMENT_ZigzagVertiBas
+TypeSoucoupeVerte6C
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_ZigzagVertiBas
+	dw	275,-40
+	dw  TBL_DEPLACEMENT_ZigzagVertiBas
+	
+	
+TypeSoucoupeOrange
+	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_ORANGE
+	dw	deplace_soucoupe_BasGauche
+	dw	423,-40
+	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
+	
+TypeSoucoupeBleue
+	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_BLEUE
+	dw	deplace_soucoupe_BasGauche
+	dw	400,-40
+	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
+	
+TypeSoucoupeViolette
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR	
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasGauche	
+	dw	375,-40
+	dw  TBL_DEPLACEMENT_HorizVertiBasDroite	
+
+	
 ; /////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////  TYPE DE SOUCOUPE //////////////////////////////	
@@ -513,6 +712,7 @@ TBL_NBR_SOUCOUPES
 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+	dw		#FFFF
 ; -----------------------------------------------------------------------------------------------
 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
@@ -593,3 +793,6 @@ TBL_NBR_SOUCOUPES6
 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
 
 	dw		#FFFF
+
+
+

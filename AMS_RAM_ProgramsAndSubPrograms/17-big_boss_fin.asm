@@ -9,11 +9,7 @@ big_boss_fin_level_4
 	call 	scrolling_on 
 	call	rom_off
 	jp		boucle_principale
-	
 
-
-big_boss_fin_level_8
-jp big_boss_fin_level_8
 
 
 compteur_de_fin_fadein 	ds 		1,0
@@ -42,7 +38,7 @@ display_bigboss1
 		
 		send_sprites_into_asic	
 			inc	a
-			ld	(etape_config_bigboss),a		
+			ld	(etape_config_bigboss),a
 			call	updateBigboss_SPRH
 			ret
 		
@@ -228,11 +224,16 @@ explosion_bigboss
 InitExplosion
 			inc		a
 			ld		(Etp_ExploseGolgoth),a
+
 			ret
 EtpExplosion1
 			inc		a
 			ld		(Etp_ExploseGolgoth),a
+						ld	a,(flag_bigboss)
+			cp a,2
+			jp z,updateBigboss_replace_XY
 			ld	hl,BIG_BOOM_SPRH_ROM_ADR
+
 			ld	de,SPRH6_ADR
 			ld	bc,#200
 			LDIR
@@ -482,7 +483,55 @@ fin_bigboss1
 
 ; utilise hl pour Y
 ; utilise de pour X
+
+updateBigboss_final__XY
+
+
+
+			ld (SPRH6_Y),hl
+			ld (SPRH7_Y),hl
+			ld (SPRH8_Y),hl
+
+			ld	bc,16
+			add	hl,bc
+			ld (SPRH11_Y),hl
+			ld (SPRH9_Y),hl
+			ld (SPRH12_Y),hl
+
+			ld	bc,16
+			add	hl,bc
+			ld (SPRH13_Y),hl
+			ld (SPRH10_Y),hl
+			ld (SPRH14_Y),hl
+			
+			ex hl,de
+			ld (SPRH6_X),hl
+			ld (SPRH11_X),hl
+			ld (SPRH13_X),hl
+
+			ld	bc,64
+			add	hl,bc
+			ld (SPRH7_X),hl
+			ld (SPRH9_X),hl
+			ld (SPRH10_X),hl
+			ld	bc,64
+			add	hl,bc
+			ld (SPRH8_X),hl
+			ld (SPRH12_X),hl
+			ld (SPRH14_X),hl
+			ex hl,de
+			ret
+updateBigboss_replace_XY
+	ld	hl,(bigboss_X)
+	ld	de,(bigboss_Y)
+	jr	updateBigboss_replace_XY2
+
+
 updateBigboss_XY
+ld	a,(flag_bigboss)
+			cp a,2
+			jp z,updateBigboss_final__XY
+updateBigboss_replace_XY2
 			ld (SPRH6_Y),hl
 			ld (SPRH7_Y),hl
 			ld (SPRH8_Y),hl
@@ -518,9 +567,12 @@ updateBigboss_XY
 			ret
 switch_anim_bigboss ds 1,0
 updateBigboss_SPRH
+ld	a,(flag_bigboss)
+			cp a,2
+		jp z,updateBigboss_final__SPRH
 			xor	a
 			ld	(framecounter_bigboss),a
-			ld		a,(switch_anim_bigboss)
+			ld	a,(switch_anim_bigboss)
 			cp	a,0
 			jr	z,bigboss_anim1
 			cp	a,1
@@ -528,12 +580,14 @@ updateBigboss_SPRH
 bigboss_anim1
 			inc	a	
 			ld	(switch_anim_bigboss),a
-			ld	hl,BIGBOSS1_SPRH_ADR_ROM
+			ld	hl,(adrBigbossSpriteROM)
 			jr	bigboss_anim1_copy
 bigboss_anim2
 			dec	a	
 			ld	(switch_anim_bigboss),a
-			ld	hl,BIGBOSS1_SPRH_ADR_ROM+#900
+			ld	hl,(adrBigbossSpriteROM)
+			ld	bc,#900
+			add hl,bc
 bigboss_anim1_copy
 			ld		c,BANK13_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
@@ -543,3 +597,47 @@ bigboss_anim1_copy
 			call	rom_off
 			ret
 
+updateBigboss_final__SPRH
+			ld		c,BANK13_GOLGOTH_SPRH
+			rst		UPPER_ROM_CONNEXION
+			xor	a
+			ld	(framecounter_bigboss),a
+			ld	a,(switch_anim_bigboss)
+			cp	a,0
+			jr	z,bigboss2_anim1
+			cp	a,1
+			jr	z,bigboss2_anim2
+			cp	a,2
+			jr	z,bigboss2_anim3
+bigboss2_anim1
+			inc	a	
+			ld	(switch_anim_bigboss),a
+			ld	hl,BIGBOSS2_SPRH_ADR_ROM
+			ld		de,SPRH6_ADR
+			ld		bc,#500
+			LDIR
+			ld	hl,BIGBOSS2_SPRH_ADR_ROM_ANIM1
+			ld		de,SPRH11_ADR
+			ld		bc,#400
+			LDIR
+			call	rom_off
+			ret
+
+bigboss2_anim2
+			inc	a	
+			ld	(switch_anim_bigboss),a
+			ld	hl,BIGBOSS2_SPRH_ADR_ROM_ANIM2
+			ld		de,SPRH11_ADR
+			ld		bc,#400
+			LDIR
+			call	rom_off
+			ret
+bigboss2_anim3
+			xor a	
+			ld	(switch_anim_bigboss),a
+			ld	hl,BIGBOSS2_SPRH_ADR_ROM_ANIM3
+			ld		de,SPRH11_ADR
+			ld		bc,#400
+			LDIR
+			call	rom_off
+			ret

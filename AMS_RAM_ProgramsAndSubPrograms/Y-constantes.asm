@@ -534,6 +534,13 @@ CADANCE_TIR_4_GOLGOTH3			equ		4
 
 
 BIGBOSS1_SPRH_ADR_ROM					equ		#c000
+BIGBOSS2_SPRH_ADR_ROM					equ		#db00
+BIGBOSS2_SPRH_ADR_ROM_ANIM1  			equ		#e000
+BIGBOSS2_SPRH_ADR_ROM_ANIM2  			equ		#e400
+BIGBOSS2_SPRH_ADR_ROM_ANIM3  			equ		#e800
+
+
+
 
 ; ________________________________________
 ;                SPRITE HARD ASIC

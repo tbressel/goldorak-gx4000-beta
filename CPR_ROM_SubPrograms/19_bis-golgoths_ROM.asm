@@ -243,9 +243,7 @@ Explose_Golgoth
 							ld		(event_fade_out+4),hl
 							call	music_off
 							call	scrolling_on
-							; ; on précise que cette fin de level fait appel à un level 'big boss'
-							;  ld		a,1
-							;  ld		(flag_bigboss),a
+						
 							ret
 	
 Tbl_Gologoth1
@@ -908,6 +906,11 @@ Explose_Golgoth4
 														; on précise que cette fin de level fait appel à un level 'big boss'
 							 ld		a,1
 							 ld		(flag_bigboss),a
+							ld  hl,BIGBOSS1_SPRH_ADR_ROM
+							ld (adrBigbossSpriteROM),hl
+
+
+
 							ret
 
 
@@ -2081,6 +2084,12 @@ Explose_Golgoth8
 							ld		(event_fade_out+4),hl
 							call	music_off
 							call	scrolling_on
+																					; on précise que cette fin de level fait appel à un level 'big boss'
+							; ; on précise que cette fin de level fait appel à un level 'big boss'
+							 ld		a,2
+							 ld		(flag_bigboss),a
+							ld  hl,BIGBOSS2_SPRH_ADR_ROM
+							ld (adrBigbossSpriteROM),hl
 							ret
 
 
