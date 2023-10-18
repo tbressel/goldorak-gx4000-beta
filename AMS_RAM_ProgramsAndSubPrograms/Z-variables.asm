@@ -576,8 +576,8 @@ TblConfigSoucoupe6
 TBL_VAGUES_LEVEL_1
 			
 	DW		TBL_NBR_SOUCOUPES
-	DW		TBL_NBR_SOUCOUPES2
-	DW		TBL_NBR_SOUCOUPES3
+	; DW		TBL_NBR_SOUCOUPES2
+	; DW		TBL_NBR_SOUCOUPES3
 ; ----> signale un boss de fin
 	DW		#FFFE				
 ; ----> signale la fin du level	

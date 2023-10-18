@@ -369,7 +369,7 @@ boss_de_fin_ROM
 			ld		(Pointeur_TblGolgoth_1),hl
 			ld		hl,0
 			ld		(posX_Golgoth),hl
-			ld		hl,16
+			ld		hl,0
 			ld		(posY_Golgoth),hl
 			call	Update_Golgoth_after
 			ld		a,zoom_mode0_1

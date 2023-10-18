@@ -247,23 +247,57 @@ Explose_Golgoth
 							ret
 	
 Tbl_Gologoth1
-; direction X + direction Y + nombre de frame
-	dw	4,0,100
-	dw	-4,0,100
-	dw	4,0,100
-	dw	-4,0,100	
-	dw	4,6,50
-	dw	4,-6,50
-	dw	-4,0,100
-	
-	dw	4,0,50
-	dw	-4,0,50
-	dw	8,0,50
-	dw	-4,0,50	
-	dw	-4,6,50
-	dw	0,-6,50
+; X, Y, nbr_frame
+; direction bas droite
+	dw	4,4,10
+	dw	4,2,10
+	dw	4,1,10
+	dw	4,1,10
+	dw	4,0,10
+	dw	4,0,10
+	dw	4,-1,10
+	dw	4,-1,10
+	dw	4,-2,10
+	dw	4,-4,10
 
-	
+; X, Y, nbr_frame
+; direction haut droite
+	dw	-4,4,10
+	dw	-4,2,10
+	dw	-4,1,10
+	dw	-4,1,10
+	dw	-4,0,10
+	dw	-4,0,10
+	dw	-4,-1,10
+	dw	-4,-1,10
+	dw	-4,-2,10
+	dw	-4,-4,10
+
+; X, Y, nbr_frame
+; direction droite
+	dw	4,0,70	
+
+; X, Y, nbr_frame
+; courbe jusqu'en bas de l'écran
+	dw	4,1,10
+	dw	2,2,10
+	dw	0,2,10
+	dw -2,3,10
+	dw -2,2,10
+	dw -2,1,10
+	dw -8,1,15
+	dw -4,1,10
+	dw -2,1,10
+	dw -2,2,10
+	dw -4,3,10
+	dw -4,0,10
+
+
+; direction haut
+	dw	0,-4,50
+
+
+
 	dw	#FFFF
 
 

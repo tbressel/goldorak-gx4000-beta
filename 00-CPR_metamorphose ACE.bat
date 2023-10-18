@@ -11,18 +11,9 @@ rasm_x64 CPR_ASSETS\maptiles\goldo8.asm -ob CPR_ASSETS\maptiles\goldo8.prg
 rasm_x64 CPR_ASSETS\maptiles\goldospace.asm -ob CPR_ASSETS\maptiles\goldospace.prg
 
 
-rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX
 
-
-
-::C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\AceDL\AceDL.exe goldogx.cpr goldogx.rasm
-C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\WinAPE20B2\WinApe.exe  /sym:goldogx.sym goldogx.cpr
-
-
-
-::rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
-::C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\AceDL\AceDL.exe  /sym:goldogx.sym goldogx.cpr
-
+rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
+C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\AceDL\AceDL.exe goldogx.cpr goldogx.rasm
 cmd
 
 

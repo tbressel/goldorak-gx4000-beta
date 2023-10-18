@@ -712,7 +712,6 @@ TBL_NBR_SOUCOUPES
 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		#FFFF
 ; -----------------------------------------------------------------------------------------------
 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
