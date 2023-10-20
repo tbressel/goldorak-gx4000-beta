@@ -908,7 +908,7 @@ test_collisions_avec_les_Golgoths_D
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
 goldorak_percute
-	; ret		; !!! invincibilité !!!
+	 ret		; !!! invincibilité !!!
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_DEGAT_BORDER_J1
 	ld		(#6420),hl
@@ -917,8 +917,10 @@ goldorak_percute
 	ld 		c,0 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
-	ld		a,1
-	ld		(id_joueur),a
+	ld		c,BANK_ROM_2
+	rst		UPPER_ROM_CONNEXION
+
+
 	ld		a,(flag_percute)
 	inc		a
 	ld		(flag_percute),a
