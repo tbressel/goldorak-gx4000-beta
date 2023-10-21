@@ -27,6 +27,7 @@ golgoth_1_ROM
 			jr		z,.Anim_0_Golgoth
 			cp		a,1
 			jr		z,.Anim_1_Golgoth
+			ret
 				.Anim_0_Golgoth
 					inc		a
 					ld		(Etp_Anim_Golgoth),a
@@ -247,6 +248,9 @@ Explose_Golgoth
 							ret
 	
 Tbl_Gologoth1
+
+
+
 ; X, Y, nbr_frame
 ; direction bas droite
 	dw	4,4,10
@@ -701,48 +705,41 @@ Update_Golgoth3
 
 	
 Tbl_Gologoth3
-; direction X + direction Y + nombre de frame
-	dw 4,2,100
-	dw -4,2,100
-		dw 4,2,100
-	dw -4,2,100
-		dw 4,2,100
+dw 8,1,10
+dw 4,1,10
+dw 4,2,10
+dw 2,2,10
+dw 0,2,10
+dw 4,1,10
+dw 4,0,10
+dw 8,1,10
+dw 4,2,10
+dw 0,2,10
+dw -4,2,10
+dw -4,-2,10
+dw -2,-2,10
+dw -2,-2,10
+dw -2,0,10
 
+dw -2,2,10
+dw -2,2,10
+dw -4,2,10
+dw -4,0,10
+dw -4,-2,10
+dw 0,-2,10
+dw 4,-2,10
+dw 8,-1,10
+dw 4,-1,10
+dw 0,-2,10
+dw 2,-2,10
+dw 4,-2,10
+dw 4,-1,10
+dw 8,-1,10
 
-	dw -4,-2,10
-	dw 
+dw -4,0,100
 
-
-
-	; direction bas droite
-
-	dw	-4,2,10
-	dw	-4,1,10
-	dw	-4,1,10
-	dw	-4,0,10
-	dw	-4,0,10
-	dw	-4,-1,10
-	dw	-4,-1,10
-	dw	-4,-2,10
-	dw	-4,-4,10
-
-	; dw	4,0,100
-	; dw	-4,0,100
-	; dw	4,0,100
-	; dw	-4,0,100	
-	; dw	4,6,50
-	; dw	4,-6,50
-	; dw	-4,0,100
+dw #FFFF
 	
-	; dw	4,0,50
-	; dw	-4,0,50
-	; dw	8,0,50
-	; dw	-4,0,50	
-	; dw	-4,6,50
-	; dw	0,-6,50
-
-	
-	dw	#FFFF		
 
 
 ; ////////////////////////////////////////////////////////////////////////////////////////////
@@ -1072,21 +1069,24 @@ Update_Golgoth4
 
 
 	
-Tbl_Gologoth4
-; direction X + direction Y + nombre de frame
-	dw	0,0,100
-	dw	#FFFF
-Tbl_Gologoth4_bis
-	dw	0,2,40
-	dw	0,-2,40
-	dw	0,0,10
-	dw	8,0,50
-	dw	0,4,25
-	dw	0,-4,25
-	dw	4,1,50
-	dw	-8,-2,25
-	dw	0,0,10
-	dw	#FFFE
+	Tbl_Gologoth4
+	; direction X + direction Y + nombre de frame
+		dw	0,0,100
+		dw	#FFFF
+	Tbl_Gologoth4_bis
+		dw	0,2,40
+		dw	0,-2,40
+		dw	0,0,10
+		dw	8,2,50
+		dw	0,-4,25
+		dw	-8,2,50
+		dw	0,0,5
+		dw	0,-4,25
+		dw	-8,-2,25
+		dw	-4,1,50
+		dw 8,2,25
+		dw 4,-1,50
+		dw	#FFFE
 	
 	
 		
