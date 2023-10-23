@@ -1021,13 +1021,10 @@ Explose_Golgoth4
 							call	music_off
 							call	scrolling_on
 														; on précise que cette fin de level fait appel à un level 'big boss'
-							 ld		a,1
-							 ld		(flag_bigboss),a
+							ld		a,1
+							ld		(flag_bigboss),a
 							ld  hl,BIGBOSS1_SPRH_ADR_ROM
 							ld (adrBigbossSpriteROM),hl
-
-
-
 							ret
 
 
@@ -1149,16 +1146,6 @@ golgoth_5_ROM
 					ld		hl,#100
 					ld		(GolgothLongeur),hl
 					ret
-				;.Anim_2_Golgoth
-				;	inc		a
-				;	ld		(Etp_Anim_Golgoth),a
-				;	ld		hl,GOLGOTH5_SPRH_ADR_ROM_ANIM3
-				;	ld		(GolgothAdrRom),hl
-				;	ld		hl,SPRH6_ADR
-				;	ld		(GolgothSprh),hl
-				;	ld		hl,#600
-				;	ld		(GolgothLongeur),hl
-				;	ret
 				.Anim_Fin
 					xor		a
 					ld		(Etp_Anim_Golgoth),a
@@ -1221,28 +1208,130 @@ golgoth_5_ROM
 									ld		l,c
 									ld		h,b
 									ld		ix,bc
+
 									or		a
-									ld		bc,#FFFF
+									ld		bc,#FBFB
 									sbc		hl,bc
 									ex		hl,de			; pointeur dans HL
 									jr		z,Change_PointeurGolgoth_5
+									
 									or		a
 									push	ix
-									ld		bc,#FFFE
+									pop		hl
+									ld		bc,#FCFC
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Change_PointeurGolgoth_5bis
+									
+									or		a
+									push	ix
+									pop		hl
+									ld		bc,#FAFB
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Change_PointeurGolgoth_5bisbis
+									
+									or		a
+									push	ix
+									pop		hl
+									ld		bc,#FBFA
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Change_PointeurGolgoth_5bisbisbis
+
+									or		a
+									push	ix
+									ld		bc,#FAFA
+									ex		hl,de			; pointeur dans DE
+									pop		hl
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Reinit_PointeurGolgoth_5bis
+
+
+									or		a
+									push	ix
+									ld		bc,#FDFD
+									ex		hl,de			; pointeur dans DE
+									pop		hl
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Reinit_PointeurGolgoth_5bisbis
+
+
+									or		a
+									push	ix
+									ld		bc,#FCFD
+									ex		hl,de			; pointeur dans DE
+									pop		hl
+									sbc		hl,bc
+									ex		hl,de			; pointeur dans HL
+									jr		z,Reinit_PointeurGolgoth_5bisbisbis
+
+									or		a
+									push	ix
+									ld		bc,#FDFC
 									ex		hl,de			; pointeur dans DE
 									pop		hl
 									sbc		hl,bc
 									ex		hl,de			; pointeur dans HL
 									jr		z,Reinit_PointeurGolgoth_5
+
+
+
+
 									ret
 										Change_PointeurGolgoth_5
-											ld		hl,Tbl_Gologoth5_bis
+											ld		hl,Tbl_first_stop_golgoth5
 											ld		(Pointeur_TblGolgoth_1),hl
 											ld		a,ouvert
 											ld		(FlagGolgoth_Ferme),a
 											ret
-												Reinit_PointeurGolgoth_5
+										Change_PointeurGolgoth_5bis
+											ld		hl,Tbl_second_stop_golgoth5
+											ld		(Pointeur_TblGolgoth_1),hl
+											ld		a,ouvert
+											ld		(FlagGolgoth_Ferme),a
+											ret
+										Change_PointeurGolgoth_5bisbis
+											ld		hl,Tbl_third_stop_golgoth5
+											ld		(Pointeur_TblGolgoth_1),hl
+											ld		a,ouvert
+											ld		(FlagGolgoth_Ferme),a
+											ret
+										Change_PointeurGolgoth_5bisbisbis
+											ld		hl,Tbl_fourth_stop_golgoth5
+											ld		(Pointeur_TblGolgoth_1),hl
+											ld		a,ouvert
+											ld		(FlagGolgoth_Ferme),a
+											ret
+
+												Reinit_PointeurGolgoth_5													
 													ld		hl,Tbl_Gologoth5
+													ld		(Pointeur_TblGolgoth_1),hl
+													ld		a,ferme
+													ld		(FlagGolgoth_Ferme),a
+													xor		a
+													ld		(Etp_Anim_Golgoth_Ouvert),a
+													ret
+												Reinit_PointeurGolgoth_5bis													
+													ld		hl,Tbl_Gologoth5_bis
+													ld		(Pointeur_TblGolgoth_1),hl
+													ld		a,ferme
+													ld		(FlagGolgoth_Ferme),a
+													xor		a
+													ld		(Etp_Anim_Golgoth_Ouvert),a
+													ret
+												Reinit_PointeurGolgoth_5bisbis													
+													ld		hl,Tbl_Gologoth5_bisbis
+													ld		(Pointeur_TblGolgoth_1),hl
+													ld		a,ferme
+													ld		(FlagGolgoth_Ferme),a
+													xor		a
+													ld		(Etp_Anim_Golgoth_Ouvert),a
+													ret
+												Reinit_PointeurGolgoth_5bisbisbis													
+													ld		hl,Tbl_Gologoth5_bisbisbis
 													ld		(Pointeur_TblGolgoth_1),hl
 													ld		a,ferme
 													ld		(FlagGolgoth_Ferme),a
@@ -1390,26 +1479,188 @@ Update_Golgoth5
 	
 Tbl_Gologoth5
 ; direction X + direction Y + nombre de frame
-	dw	4,0,100
-	dw	-4,0,100
-	dw	4,0,100
-	dw	-4,0,100	
-	dw	4,6,50
-	dw	4,-6,50
-	dw	-4,0,100
 	
-	dw	4,0,50
-	dw	-4,0,50
-	dw	8,0,50
-	dw	-4,0,50	
-	dw	-4,6,50
-	dw	0,-6,50
-	dw	#FFFF
+	dw	2,2,10
+	dw	4,1,10
+	dw	4,0,10
+	dw  4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,2,10
+
+	dw 8,2,10
+
+	dw	2,2,10
+	dw	4,1,10
+	dw	4,0,10
+	dw  4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,2,10
+
+	dw 8,2,10
+
+	dw	2,2,10
+	dw	4,1,10
+	dw	4,0,10
+	dw  4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,2,10
+	
+	dw 8,2,10
+
+	dw	2,2,10
+	dw	4,1,10
+	dw	4,0,10
+	dw  4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,2,10
+
+	dw	-2,2,10
+	dw	-4,1,10
+	dw	-4,0,10
+	dw  -4,-1,10
+	dw	-2,-2,10
+	dw	2,-2,10
+	dw  4,-1,10
+	dw	4,0,10
+	dw	4,1,10
+	dw	2,2,10
+	dw -8,-4,10
+	
+	dw	-2,2,10
+	dw	-4,1,10
+	dw	-4,0,10
+	dw  -4,-1,10
+	dw	-2,-2,10
+	dw	2,-2,10
+	dw  4,-1,10
+	dw	4,0,10
+	dw	4,1,10
+	dw	2,2,10
+
+	dw -8,4,10
+	
+	dw	2,-2,10
+	dw  -4,-1,10
+	dw	4,0,10
+	dw	4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw	-4,-1,10
+	dw	-4,0,10
+	dw  -4,1,10
+	dw	-2,2,10
+
+	dw	#FBFB
+
 Tbl_Gologoth5_bis
+; direction X + direction Y + nombre de frame
+	
+	dw	2,2,10
+	dw	4,1,10
+	dw	4,0,10
+	dw  4,-1,10
+	dw	2,-2,10
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,2,10
+
+	dw 8,4,10
+
+	dw	2,4,15
+	dw	4,2,15
+	dw	4,0,15
+	dw  4,-1,15
+	dw	2,-2,15
+	dw	-2,-2,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,-2,10
+
+	dw -4,2,10
+	dw #FCFC
+
+Tbl_Gologoth5_bisbis
+; direction X + direction Y + nombre de frame
+	
+	dw	2,4,15
+	dw	4,2,15
+	dw	4,0,15
+	dw  4,-2,15
+	dw	2,-4,15
+	dw	-2,-4,10
+	dw  -4,-1,10
+	dw	-4,0,10
+	dw	-4,1,10
+	dw	-2,4,10
+	dw -8,2,20
+	dw #FAFB
+
+
+
+Tbl_Gologoth5_bisbisbis
+; direction X + direction Y + nombre de frame
+	
+	dw	2,2,20
+	dw	4,1,20
+	dw	4,0,20
+	dw  4,-1,20
+	dw	2,-2,20
+	dw	-2,-2,20
+	dw  -4,-1,20
+	dw	-4,0,20
+	dw	-4,1,20
+	dw	-2,2,20
+
+	dw 8,4,20
+
+	dw	2,2,20
+	dw	4,1,20
+	dw	4,0,20
+	dw  4,-1,20
+	dw	2,-2,20
+	dw	-2,-2,20
+	dw  -8,-1,20
+	dw	-4,0,15
+	dw	-8,-1,15
+	dw	-4,-4,20
+
+	dw -8,-4,10
+	dw  4,2,5
+	
+	dw #FBFA
+
+Tbl_first_stop_golgoth5
 	dw	0,0,100
-
-
-	dw	#FFFE
+	dw	#FAFA
+Tbl_second_stop_golgoth5
+	dw	0,0,100
+	dw	#FDFD
+Tbl_third_stop_golgoth5
+	dw	0,0,100
+	dw	#FCFD
+	
+Tbl_fourth_stop_golgoth5
+	dw	0,0,100
+	dw	#FDFC
 	
 	
 		
