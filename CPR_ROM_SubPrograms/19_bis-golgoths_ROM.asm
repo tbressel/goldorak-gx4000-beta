@@ -1152,6 +1152,10 @@ golgoth_5_ROM
 					ret
 									
 						Deplacement_Golgoth5
+
+							call 	test_collisions_avec_les_Golgoths_G
+							call 	test_collisions_avec_les_Golgoths_D
+
 						; modification de la direction X du Golgoth
 							ld		hl,(Pointeur_TblGolgoth_1)
 							ld		c,(hl)
@@ -1186,12 +1190,11 @@ golgoth_5_ROM
 							jp		(iy)
 						;	la routine pointé par jp(iy) modifie la valeur de retour de la pile de 2 octets 
 								
+
 							ld		a,(FlagGolgoth_Ferme)
 							cp		a,ferme
 							ret		z
 								
-							call 	test_collisions_avec_les_Golgoths_G
-							call 	test_collisions_avec_les_Golgoths_D
 							call	test_collisions_tir_gauche_golgoth
 							call	test_collisions_tir_droite_golgoth
 							ret
@@ -1283,28 +1286,22 @@ golgoth_5_ROM
 									ret
 										Change_PointeurGolgoth_5
 											ld		hl,Tbl_first_stop_golgoth5
-											ld		(Pointeur_TblGolgoth_1),hl
-											ld		a,ouvert
-											ld		(FlagGolgoth_Ferme),a
-											ret
+										jr	change_pointeurG5
 										Change_PointeurGolgoth_5bis
 											ld		hl,Tbl_second_stop_golgoth5
-											ld		(Pointeur_TblGolgoth_1),hl
-											ld		a,ouvert
-											ld		(FlagGolgoth_Ferme),a
-											ret
+											jr	change_pointeurG5
 										Change_PointeurGolgoth_5bisbis
 											ld		hl,Tbl_third_stop_golgoth5
-											ld		(Pointeur_TblGolgoth_1),hl
-											ld		a,ouvert
-											ld		(FlagGolgoth_Ferme),a
-											ret
+											jr	change_pointeurG5
 										Change_PointeurGolgoth_5bisbisbis
 											ld		hl,Tbl_fourth_stop_golgoth5
+											jr	change_pointeurG5
+											change_pointeurG5
 											ld		(Pointeur_TblGolgoth_1),hl
 											ld		a,ouvert
 											ld		(FlagGolgoth_Ferme),a
 											ret
+
 
 												Reinit_PointeurGolgoth_5													
 													ld		hl,Tbl_Gologoth5

@@ -292,7 +292,7 @@ boss_de_fin_ROM
 	ld		(flag_boss),a
 	ld		a,(level_en_cours)
 	cp		a,1
-	jp		z,Golgoth_Level_5
+	jp		z,Golgoth_Level_1
 	cp		a,2
 	jp		z,Golgoth_Level_2
 	cp		a,3
