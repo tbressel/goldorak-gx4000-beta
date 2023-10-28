@@ -191,8 +191,8 @@ include "02e-CPR_preparation_du_jeu.asm"
 include	"02f-CPR_fin.asm"
 include "02g-CPR_metamorphose.asm"
 include "02h-CPR_shop.asm"
+include "03-CPR_bank.asm"
 
-include "03-CPR_Bank.asm"
 
 
 

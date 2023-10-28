@@ -21,25 +21,29 @@ bank 2
 ; ///////////////////////////////////////////////////////////////////////////////	
 
 ; la bank 3 est assemblé à la fin dufichier Programme.asm
-; bank 3
+
+
+
+
+
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////// LES TILESETS ////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 5
-		incbin"../CPR_ASSETS/gfx/tileset1.imp"   ; contient le niveau 1 et 2
+		incbin "../CPR_ASSETS/gfx/tileset1.imp"   ; contient le niveau 1 et 2
 bank 6
-		incbin"../CPR_ASSETS/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
+		incbin "../CPR_ASSETS/gfx/tileset2.imp"	;  tileset des niveaux 3,4,5
 bank 7
-		incbin"../CPR_ASSETS/gfx/tileset4.imp"; tileset des niveaux 6, 7 et 8
+		incbin "../CPR_ASSETS/gfx/tileset4.imp"; tileset des niveaux 6, 7 et 8
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////// LES HUDS & PALETTES /////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 8
 org	#C000
-	incbin"../CPR_ASSETS/gfx/hudtoto.imp"
-	incbin"../CPR_ASSETS/gfx/button.imp"
+	incbin "../CPR_ASSETS/gfx/hudtoto.imp"
+	incbin "../CPR_ASSETS/gfx/button.imp"
 org	DEPART_PALETTES	
 ; title screen
 	org PALETTE_TITLE_SCREEN
@@ -97,30 +101,30 @@ DW #000,#060,#080,#0E0,#0F0,#008,#00E,#00F,#60F,#8F0,#808,#80F,#FF0,#FF8,#F8F,#F
 
 ; FONTE
 	org HUD_DEPART_FONTES
-	incbin"../CPR_ASSETS/gfx/fontesok.bin"
+	incbin "../CPR_ASSETS/gfx/fontesok.bin"
 
-	incbin"../CPR_ASSETS/gfx/fonthud.bin"
+	incbin "../CPR_ASSETS/gfx/fonthud.bin"
 
-	incbin"../CPR_ASSETS/gfx/ferme.imp"
+	incbin "../CPR_ASSETS/gfx/ferme.imp"
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ////////////////////// TOUTES LES SPRITES HARD ////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 9
-	incbin"../CPR_ASSETS/sprites_hard/GOLDORA1.spr"			; sprites Goldorak
+	incbin "../CPR_ASSETS/sprites_hard/goldora1.spr"			; sprites Goldorak
 bank 10
-	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH1.spr"			; golgoth 1,2,3,4,6 + soucoupes
+	incbin "../CPR_ASSETS/sprites_hard/golgoth1.spr"			; golgoth 1,2,3,4,6 + soucoupes
 bank 11
-	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH2.spr"		; golgoth 7 et 8 (à rajouter) + items et explosion simple à virer
+	incbin "../CPR_ASSETS/sprites_hard/golgoth2.spr"		; golgoth 7 et 8 (à rajouter) + items et explosion simple à virer
 bank 12
-	incbin"../CPR_ASSETS/sprites_hard/GOLGOTH3.spr"
+	incbin "../CPR_ASSETS/sprites_hard/golgoth3.spr"
 bank 13
-	incbin"../CPR_ASSETS/sprites_hard/MERE1.spr"
+	incbin "../CPR_ASSETS/sprites_hard/mere1.spr"
 
 bank 15
-	incbin"../CPR_ASSETS/sprites_hard/GOLDORA2.spr"			; sprite retournement 
+	incbin "../CPR_ASSETS/sprites_hard/goldora2.spr"			; sprite retournement 
 bank 16
- 	incbin"../CPR_ASSETS/sprites_hard/EXPLOSE.spr"		; explosions
+ 	incbin "../CPR_ASSETS/sprites_hard/explose.spr"		; explosions
 	
 
 	
@@ -129,18 +133,18 @@ bank 16
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 17
 	org #c000
-		incbin"../CPR_ASSETS/gfx/titlego1.ZX0"
+		incbin "../CPR_ASSETS/gfx/titlego1.zx0"
 	org #d700
-		incbin"../CPR_ASSETS/gfx/titlego2.ZX0"
+		incbin "../CPR_ASSETS/gfx/titlego2.zx0"
 	org #e5c0
-		incbin"../CPR_ASSETS/gfx/scenario_fond.ZX0"
+		incbin "../CPR_ASSETS/gfx/scenario_fond.zx0"
 	org #ee40
-		incbin"../CPR_ASSETS/gfx/scenario_vignettes1.ZX0"
+		incbin "../CPR_ASSETS/gfx/scenario_vignettes1.zx0"
 Bank 18
 	org #c000
-		incbin"../CPR_ASSETS/gfx/gameovergo1.ZX0"
+		incbin "../CPR_ASSETS/gfx/gameovergo1.zx0"
 	org #d480
-		incbin"../CPR_ASSETS/gfx/gameovergo2.ZX0"
+		incbin "../CPR_ASSETS/gfx/gameovergo2.zx0"
 
 		
 		
@@ -148,56 +152,55 @@ Bank 18
 		
 Bank 19
 	org #c000
-		incbin"../CPR_ASSETS/gfx/endgo1.ZX0"
+		incbin "../CPR_ASSETS/gfx/endgo1.zx0"
 	org #E000
-		incbin"../CPR_ASSETS/gfx/endgo2.ZX0"
+		incbin "../CPR_ASSETS/gfx/endgo2.zx0"
 bank 20
 	org #c000
-		incbin"../CPR_ASSETS/gfx/routes.scr"
+		incbin "../CPR_ASSETS/gfx/routes.scr"
 
 		
 Bank 4
 	org #C000
-	incbin"../CPR_ASSETS/gfx/menu.scr.ZX0"
+	incbin "../CPR_ASSETS/gfx/menu.scr.zx0"
 	org #CF58
-	incbin"../CPR_ASSETS/gfx/metamorp.ZX0"
+	incbin "../CPR_ASSETS/gfx/metamorp.zx0"
 	org	#e250
-	incbin"../CPR_ASSETS/gfx/shop.ZX0"
+	incbin "../CPR_ASSETS/gfx/shop.zx0"
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////  MAPTILES DES 7 ROUTES  ///////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////		
 
 ; !!!!!  8000 / 16000 octets d'utilisé seulement !!!!!!
 bank 21
-	incbin"../CPR_ASSETS/maptiles/goldo1.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo1.prg"
 	
 ; !!!!!  9600 / 16000 octets d'utilisé seulement !!!!!!
 bank 22
-	incbin"../CPR_ASSETS/maptiles/goldo2.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo2.prg"
 bank 23
-	incbin"../CPR_ASSETS/maptiles/goldo3.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo3.prg"
 bank 24
-	incbin"../CPR_ASSETS/maptiles/goldo4.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo4.prg"
 bank 25
-	incbin"../CPR_ASSETS/maptiles/goldo5.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo5.prg"
 bank 26
-	incbin"../CPR_ASSETS/maptiles/goldo6.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo6.prg"
 bank 27
-	incbin"../CPR_ASSETS/maptiles/goldo7.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo7.prg"
 bank 14
-	incbin"../CPR_ASSETS/maptiles/goldo8.prg"
+	incbin "../CPR_ASSETS/maptiles/goldo8.prg"
 	
 ; ///////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////  SAMPLES  ///////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 28
-	incbin"../CPR_ASSETS\sound\metamorphose.spl"
+	incbin "../CPR_ASSETS/sound/metamorphose.spl"
 bank 29
-	incbin"../CPR_ASSETS\sound\idargos.spl"
+	incbin "../CPR_ASSETS/sound/idargos.spl"
 bank 30
-	incbin"../CPR_ASSETS\sound\ovetaire.spl"
+	incbin "../CPR_ASSETS/sound/ovetaire.spl"
 bank 31
-	incbin"../CPR_ASSETS\sound\go.spl"
-	incbin"../CPR_ASSETS/maptiles/goldospace.prg"
-
+	incbin "../CPR_ASSETS/sound/go.spl"
+	incbin "../CPR_ASSETS/maptiles/goldospace.prg"
 

@@ -556,7 +556,6 @@ include"Z-variables.asm"
 ; /////////////////////////////////////////////////////////////////////
 bank 3
 	ORG PLAYER_ADR_RAM
-	;org	#c000
 		include"Goldorak_musiques_playerconfig.asm"
 		include"PlayerAkg.asm"						; #0d54 de longueur
  ; La configuration n'est pas obligatoire, mais elle permet
@@ -568,6 +567,3 @@ bank 3
 		SoundEffects
 			include"Goldorak_soundeffects.asm"
 
-
-
-	
