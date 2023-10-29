@@ -248,9 +248,6 @@ Explose_Golgoth
 							ret
 	
 Tbl_Gologoth1
-
-
-
 ; X, Y, nbr_frame
 ; direction bas droite
 	dw	4,4,10
