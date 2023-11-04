@@ -1,2 +1,3 @@
-PackZX0.exe shop.scr
+PackZX0.exe SCREEN.GO1
+PackZX0.exe SCREEN.GO2
 

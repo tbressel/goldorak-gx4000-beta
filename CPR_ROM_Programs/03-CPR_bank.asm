@@ -47,7 +47,8 @@ org	#C000
 org	DEPART_PALETTES	
 ; title screen
 	org PALETTE_TITLE_SCREEN
-		DW		#000,#008,#0F0,#8F0,#FF0,#FFF,#FF8,#888,#080,#555,#44A,#00F,#aaa,#03A,#80F,#888
+		; DW		#000,#008,#0F0,#8F0,#FF0,#FFF,#FF8,#888,#080,#555,#44A,#00F,#aaa,#03A,#80F,#888
+		dw #000,#080,#0F0,#008,#00F,#08F,#0FF,#8F0,#808,#888,#80F,#FF0,#F08,#FF8,#F8F,#FFF
 ; le scenario
 	org PALETTE_SCENARIO
 		DW		#FFF,#000,#666,#006,#40f,#b0d,#f3f,#cb7,#ee7,#060,#0e0,#9f4,#b67,#e57,#48c,#5ff
