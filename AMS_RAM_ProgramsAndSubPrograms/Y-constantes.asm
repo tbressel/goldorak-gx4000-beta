@@ -156,8 +156,8 @@ HAUTEUR_CASE	= 41
 PLY_AKG_MANAGE_SOUND_EFFECTS = 1
 PLAYER_ADR_RAM				EQU	#0090		; adresse à reporter manuellement dans creation_cartouche.asm
 		LONGUEUR_PLAYER		equ	#0c50
-MUSIC_ADR_RAM				EQU #0cf0		; toutes les musiques du jeu
-		LONGUEUR_MUSIC		equ	#15ac    ;#14cc
+MUSIC_ADR_RAM				EQU #0AC0		; toutes les musiques du jeu
+		LONGUEUR_MUSIC		equ	#1A00    ;#14cc
 
 
 ; player dans la cartouche : problème de double label avec un assemblage des  .asm
