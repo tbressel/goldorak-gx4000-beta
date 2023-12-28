@@ -26,6 +26,8 @@ fondu_de_sortie_ROM
 	xor		a
 	ld	(timer_fade_out),a
 	RST		ASIC_CONNEXION
+		ld		hl,#000
+	ld		(#6420),hl
 	
 fondu_de_sortie_des_couleurs
 			ld	hl,PALETTE_DECORS_RAM						; emplacement RAM de la pallette ecran

@@ -110,6 +110,8 @@ dzx0s_elias_backtrack:
 ; //////////////////////////////////////////////////////////////////
 FADE_OUT
 Asic ON
+	ld		hl,#000
+	ld		(#6420),hl
 ld		b,#10
 boucle_fade_out
 	push	bc

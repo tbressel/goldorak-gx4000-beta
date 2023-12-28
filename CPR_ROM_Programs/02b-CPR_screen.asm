@@ -102,6 +102,16 @@ Asic OFF
 	;ei
 	
 
+; on efface la ligne parasite du à IMP Draw
+	ld		a,32
+	ld		b,a
+	xor		a
+		ld		de,#C000
+	loop_erase
+		ld		(de),a
+		inc		de
+		dec		b
+		jr		nz,loop_erase
 
 
 	

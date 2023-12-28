@@ -1,3 +1,2 @@
-PackZX0.exe SCREEN.GO1
-PackZX0.exe SCREEN.GO2
+PackZX0.exe meta.scr
 

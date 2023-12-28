@@ -23,11 +23,11 @@ jp	boucle_attendre
 
 fin_du_decomptem
 Asic OFF
-LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 15
+LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 4
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
 
-	ld		hl,#CF58							; lecture dans la bank ROM
+	ld		hl,#cf58							; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM #4000
 	call	DepkZX0								; on décompresse
 
@@ -38,7 +38,7 @@ LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 15
 
 Asic ON
 ; copie de la palette CPC+ (logé en bank 19) specialement pour le screen
-	LD 		BC,BANK8_PALETTES:OUT (C),C				; on choisit DE LIRE la ROM 14
+	LD 		BC,BANK8_PALETTES:OUT (C),C				; on choisit DE LIRE la ROM 8
 	LD		BC,#7F00+%10000000:OUT (C),C 		; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c					; on choisit D'ECRIRE  dans la RAM centrale
 	ld		hl,PALETTE_METAMORPHOSE						; lecture

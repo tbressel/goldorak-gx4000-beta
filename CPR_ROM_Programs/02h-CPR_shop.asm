@@ -2,6 +2,8 @@ shop
 ; on reinitialise le crtc
 CALL	reinit_crtc_et_retard_video
 
+
+
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////// POSITIONNEMENT de L'ECRAN ///////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,13 +23,14 @@ Asic OFF
 	LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 15
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
-	ld		hl,#E250							; lecture dans la bank ROM
+	ld		hl,#E350							; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM #4000
 	call	DepkZX0								; on décompresse
 	ld		hl,#4000
 	ld		de,#c000
 	ld		bc,#4000							; longueur
 	LDIR
+
 
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////// AFFICHAGE DU STOCK DE LA BOUTIQUE //////////////////////////
@@ -325,8 +328,6 @@ Curseur_Validation
 	or		b
 	ld		(ArmesDisponible),a
 
-
-
 	call	Affiche_ScoreTotal
 	Asic ON
 	xor		a
@@ -554,6 +555,8 @@ exx
 	ld		hl,(HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hud)
 	ld		(pointeur_chiffre_SCR),hl
 	ld		b,5
+	ld		de,SCORE_FONTE_OK+#100
+	ld		(adr_hud_font),de
 	CALL	boucle_affichage_du_score
 	ret
 

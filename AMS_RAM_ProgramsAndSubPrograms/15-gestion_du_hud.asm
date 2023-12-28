@@ -83,6 +83,8 @@ afficher_score_goldorak
 	ld		hl,(HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hud)
 	ld		(pointeur_chiffre_SCR),hl
 	ld		b,5
+	ld		de,HUD_FONTE_OK+#100
+	ld		(adr_hud_font),de
 boucle_affichage_du_score
 	push	bc
 	exx
@@ -95,7 +97,7 @@ automodif_registre
 	add		a,a
 	ld		h,0
 	ld		l,a
-	ld		de,HUD_FONTE_OK+#100				; on obtient l'adresse de la lettre. #100 donne le caractere "0" comme départ de al fonte
+	ld		de,(adr_hud_font)				; on obtient l'adresse de la lettre. #100 donne le caractere "0" comme départ de al fonte
 	add		hl,de
 	ld		de,(pointeur_chiffre_SCR)		; adresse écran du chiffre en cours (de place tout les 2 octets à l'écran
 	ld		b,8
@@ -127,6 +129,7 @@ automodif_registre
 	ld		(automodif_registre),a
 	;call	rom_off
 	ret
+
 
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
@@ -367,10 +370,10 @@ SauvegardeScores
 	ld		hl,HUD_SCOREJ1_DIZAINE_DE_MILLIER_ADR
 	ld		de,MemoireTamponJoueur_1
 	ld		b,8	
-	exx
-	ld		hl,HUD_SCOREJ2_DIZAINE_DE_MILLIER_ADR
-	ld		de,MemoireTamponJoueur_2
-	exx
+	; exx
+	; ld		hl,HUD_SCOREJ2_DIZAINE_DE_MILLIER_ADR
+	; ld		de,MemoireTamponJoueur_2
+	; exx
 .boucle
 	push	bc
 	
@@ -382,15 +385,15 @@ SauvegardeScores
 	add		a,#8
 	ld		h,a
 	
-	exx
-	push	hl
-	ld		bc,10
-	LDIR
-	pop		hl
-	ld		a,h
-	add		a,#8
-	ld		h,a
-	exx
+	; exx
+	; push	hl
+	; ld		bc,10
+	; LDIR
+	; pop		hl
+	; ld		a,h
+	; add		a,#8
+	; ld		h,a
+	; exx
 	
 	pop		bc
 	djnz	.boucle

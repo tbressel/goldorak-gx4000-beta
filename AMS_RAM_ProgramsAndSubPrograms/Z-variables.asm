@@ -28,6 +28,7 @@ retenue_poidfort			ds		1,0
 Adr_CaseEcran				ds		2,0
 Curseur_Choix				ds		1,0
 ChoixNouvelleArme			ds		1,0
+adr_hud_font				ds		2,0
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////  ARMES DU JEU   /////////////////////////
 ; //////////////////////////////////////////////////////////////////
@@ -197,8 +198,8 @@ etp_arrimage				ds		1,0
 nbr_de_vie_j2				ds		1,0
 HUD_VIEJ1_ECRAN_ADR_SCR		ds		2,0
 id_joueur					ds		1,0
-flag_percute_j2				ds		1,0
-points_sante_j2				ds		1,0
+;flag_percute_j2				ds		1,0
+;points_sante_j2				ds		1,0
 pointeur_tbl_NRJ_bar2		ds		2,0
 count_anim_goldorak			ds		1,0
 points_attaque				ds		1,0
@@ -432,15 +433,15 @@ val_HUD_SCORE_CENTAINE_ADR_hudJ1				ds		2,0
 val_HUD_SCORE_MILLIER_ADR_hudJ1					ds		2,0
 val_HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hudJ1		ds		2,0
 
-val_HUD_SCORE_UNITE_ADR_hudJ2					ds		2,0
-val_HUD_SCORE_DIZAINNE_ADR_hudJ2				ds		2,0
-val_HUD_SCORE_CENTAINE_ADR_hudJ2				ds		2,0
-val_HUD_SCORE_MILLIER_ADR_hudJ2					ds		2,0
-val_HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hudJ2		ds		2,0
+;val_HUD_SCORE_UNITE_ADR_hudJ2					ds		2,0
+;val_HUD_SCORE_DIZAINNE_ADR_hudJ2				ds		2,0
+;val_HUD_SCORE_CENTAINE_ADR_hudJ2				ds		2,0
+;val_HUD_SCORE_MILLIER_ADR_hudJ2					ds		2,0
+;val_HUD_SCORE_DIZAINE_DE_MILLIER_ADR_hudJ2		ds		2,0
 
 
 MemoireTamponJoueur_1			ds			8*10,0
-MemoireTamponJoueur_2			ds			8*10,0
+;MemoireTamponJoueur_2			ds			8*10,0
 
 
 

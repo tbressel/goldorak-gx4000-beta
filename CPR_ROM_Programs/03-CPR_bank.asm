@@ -88,10 +88,16 @@ org	DEPART_PALETTES
 	dw #000,#0F0,#00F,#0FF,#8F0,#808,#888,#80F,#FF0,#F08,#FF8,#F8F,#FFF,#FFF,#FFF,#FFF
 ; metamorphose
 	org PALETTE_METAMORPHOSE
-db #00,#00,#bb,#0a,#ff,#0f,#e0,#00
-db #f0,#0a,#f0,#0f,#b0,#0b,#00,#0f
-db #78,#07,#56,#05,#7e,#0e,#0f,#00
-db #0c,#00,#08,#00,#90,#00,#f8,#06
+; db #00,#00,#bb,#0a,#ff,#0f,#e0,#00
+; db #f0,#0a,#f0,#0f,#b0,#0b,#00,#0f
+; db #78,#07,#56,#05,#7e,#0e,#0f,#00
+; db #0c,#00,#08,#00,#90,#00,#f8,#06
+
+dw #000,#080,#0F0,#008,#00F,#08F,#0FF,#8F0,#808,#888,#80F,#FF0,#FF8,#F8F,#FFF,#FFF
+
+
+
+
 ; shop
 org PALETTE_SHOP
 dw #000,#080,#0F0,#008,#00F,#08F,#8F0,#808,#888,#80F,#FF0,#F08,#FF8,#F8F,#FFF,#FFF
@@ -146,11 +152,7 @@ Bank 18
 		incbin "../CPR_ASSETS/gfx/gameovergo1.zx0"
 	org #d480
 		incbin "../CPR_ASSETS/gfx/gameovergo2.zx0"
-
-		
-		
-		
-		
+	
 Bank 19
 	org #c000
 		incbin "../CPR_ASSETS/gfx/endgo1.zx0"
@@ -165,9 +167,10 @@ Bank 4
 	org #C000
 	incbin "../CPR_ASSETS/gfx/menu.scr.zx0"
 	org #CF58
-	incbin "../CPR_ASSETS/gfx/metamorp.zx0"
-	org	#e250
+	incbin "../CPR_ASSETS/gfx/meta.scr.ZX0"
+	org	#E350
 	incbin "../CPR_ASSETS/gfx/shop.zx0"
+	
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////  MAPTILES DES 7 ROUTES  ///////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////		

@@ -50,10 +50,10 @@ ld		(flag_deja_affiche),a
 	ld		(Pointeur_TblNombreDeSoucoupes),hl
 	ld		a,NBR_DE_VIE_DEPART
 	ld		(nbr_de_vie),a
-	ld		(nbr_de_vie_j2),a
+	; ld		(nbr_de_vie_j2),a
 	ld		a,10
 	ld		(points_sante),a
-	ld		(points_sante_J2),a
+	; ld		(points_sante_J2),a
 	ld		a,1
 	ld		(level_en_cours),a
 	ret
@@ -219,7 +219,7 @@ set_PowerUpBar
 		cp		a,0
 		jr		nz,SetPowerUpBar_2
 
-		ld		hl,#4970
+		ld		hl,HUD_DEPART_POWER_UP2
 		ld		(PowerupBar_ECRAN),hl
 		push	hl
 		ld		de,Tbl_couleur_pixel
@@ -269,7 +269,7 @@ set_PowerUpBar
 			ret
 
 			SetPowerUpBar_2
-				ld		hl,#4973
+				ld		hl,HUD_DEPART_POWER_UP1
 				ld		(PowerupBar_ECRAN),hl
 				push	hl
 				ld		de,Tbl_couleur_pixel

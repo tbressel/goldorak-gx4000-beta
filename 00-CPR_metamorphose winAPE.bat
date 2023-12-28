@@ -1,5 +1,5 @@
 C:
-cd C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\v0.1-beta
+cd C:/Users/Zisquier/Documents\Projets\Amstrad\2023_goldorak-gx4000\v0.1-beta
 rasm_x64 CPR_ASSETS\maptiles\goldo1.asm -ob CPR_ASSETS\maptiles\goldo1.prg
 rasm_x64 CPR_ASSETS\maptiles\goldo2.asm -ob CPR_ASSETS\maptiles\goldo2.prg
 rasm_x64 CPR_ASSETS\maptiles\goldo3.asm -ob CPR_ASSETS\maptiles\goldo3.prg
@@ -13,12 +13,12 @@ rasm_x64 CPR_ASSETS\maptiles\goldospace.asm -ob CPR_ASSETS\maptiles\goldospace.p
 
 rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ../WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta
 
-C:\Users\stagiaire\Documents\Projets\Amstrad\2023_goldorak-gx4000\WinAPE20B2_betatest_goldorack\WinApe.exe  /sym:goldogx.sym goldogx.cpr
+C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/WinApe.exe /sym:C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta.sym C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta.cpr
 
-
-
-::rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
 
 cmd
+
+::rasm_x64 ./CPR_ROM_Programs/01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
+
 
 
