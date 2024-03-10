@@ -34,10 +34,10 @@ rstCreationPrograms_ROM
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 	; on allume et selectionne par défaut le 1er boutton et la 1ere amre
-ld		a,1
-ld		(flag_deja_affiche),a
-		ld		a,VITESSE_RETOURNEMENT
-		ld		(Compteur_Retournement),a
+	ld		a,1
+	ld		(flag_deja_affiche),a
+	ld		a,VITESSE_RETOURNEMENT
+	ld		(Compteur_Retournement),a
 
 
 	ld		hl,tbl_distribution_points

@@ -149,7 +149,7 @@ asic off
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 
-;jp      preparation_du_jeu
+; l'initialisation terminé on appelle l'écran de départ
 jp		ecran_de_depart
 
 
@@ -169,9 +169,10 @@ di
 	ld		(#6800),a
 ;call 	#83CE    ;PLY_AKG_PlayROM
 
- pop iy : pop ix : pop bc
-	 pop de : pop hl : pop af	
-	 ei
+; on rétablie les registres
+	pop iy : pop ix : pop bc
+	pop de : pop hl : pop af	
+ei
 ret
 
 
