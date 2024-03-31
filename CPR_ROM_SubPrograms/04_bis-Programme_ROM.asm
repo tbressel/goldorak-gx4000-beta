@@ -56,6 +56,16 @@ rstCreationPrograms_ROM
 	; ld		(points_sante_J2),a
 	ld		a,1
 	ld		(level_en_cours),a
+
+		ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+	ld		hl,TBL_TYPE_DE_SOUCOUPE_1
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
+	
 	ret
 
 
@@ -136,16 +146,15 @@ initialisation_du_jeu_ROM
 	ld		(longueur_sample),hl
 	ld		a,SCROLL_INIT_RETARD_VIDEO
 	ld		(valeur_retard),a
-	ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1
-	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
-	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
-	inc		hl
-	ld		d,(hl)
-	;ld	hl,TBL_NBR_SOUCOUPES
-	ld	(Pointeur_TblNombreDeSoucoupes),de
+	; ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1
+	; ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	; ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	; inc		hl
+	; ld		d,(hl)
+	; ld	(Pointeur_TblNombreDeSoucoupes),de
 
-	ld		hl,TBL_TYPE_DE_SOUCOUPE
-	ld		(Pointeur_TblTypeDeSoucoupe),hl
+	; ld		hl,TBL_TYPE_DE_SOUCOUPE_1
+	; ld		(Pointeur_TblTypeDeSoucoupe),hl
 
 
 	ld		hl,tbl_reg1213_fin
@@ -641,7 +650,7 @@ TypeSoucoupeViolette
 ; /////////////////////////////////////////////////////////////////////////////
 
 ; à l'interieur de soucoupe 1 à 6 ON CHOISIT LE TYPE DE SOUCOUPE
-TBL_TYPE_DE_SOUCOUPE
+TBL_TYPE_DE_SOUCOUPE_1
 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3
 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6
@@ -654,9 +663,11 @@ TBL_TYPE_DE_SOUCOUPE
 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C
 	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
-	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3C,TypeSoucoupeVerte4C,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
 ; ------------------------------------------------------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------------------------------------------------------
+
+TBL_TYPE_DE_SOUCOUPE_2
 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B
 	dw		TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5B,TypeSoucoupeVerte6B
@@ -672,6 +683,7 @@ TBL_TYPE_DE_SOUCOUPE
 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5A,TypeSoucoupeVerte6
 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2B,TypeSoucoupeVerte3A,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6A
 ; ------------------------------------------------------------------------------------------------------------------------------
+TBL_TYPE_DE_SOUCOUPE_3
 ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2C,TypeSoucoupeVerte3B
 	dw		TypeSoucoupeVerte4C,TypeSoucoupeVerte5,TypeSoucoupeVerte6C
@@ -687,6 +699,88 @@ TBL_TYPE_DE_SOUCOUPE
 	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A
 	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+
+TBL_TYPE_DE_SOUCOUPE_4
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+
+TBL_TYPE_DE_SOUCOUPE_5
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+
+TBL_TYPE_DE_SOUCOUPE_6
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+
+TBL_TYPE_DE_SOUCOUPE_7
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
+
+TBL_TYPE_DE_SOUCOUPE_8
+; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte1B,TypeSoucoupeVerte2B,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5B,TypeSoucoupeVerte6C
+	dw		TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
+	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6A,TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,
+	dw		TypeSoucoupeVerte1A,TypeSoucoupeVerte2A,TypeSoucoupeVerte3B,TypeSoucoupeVerte4B,TypeSoucoupeVerte5C,TypeSoucoupeVerte6C
+; ------------------------------------------------------------------------------------------------------------------------------
 ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeVerte1,TypeSoucoupeVerte2,TypeSoucoupeVerte3,TypeSoucoupeVerte4A,TypeSoucoupeVerte5A,TypeSoucoupeVerte6B
 	dw		TypeSoucoupeVerte4,TypeSoucoupeVerte5,TypeSoucoupeVerte6,TypeSoucoupeVerte1C,TypeSoucoupeVerte2C,TypeSoucoupeVerte3A
@@ -708,33 +802,34 @@ TBL_TYPE_DE_SOUCOUPE
 TBL_NBR_SOUCOUPES
 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	 dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	 dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	; dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	; dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-; -----------------------------------------------------------------------------------------------
-	; dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	; dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	; dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	; dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	; dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	; dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	 dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	 dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ; -----------------------------------------------------------------------------------------------
+; 	 dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	 dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	 dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	 dw		vague13s,vague13e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
 	dw		#FFFF
 
 TBL_NBR_SOUCOUPES2
 	dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-; -----------------------------------------------------------------------------------------------
-	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
-	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
-	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague3s,vague3e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague4s,vague4e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague5s,vague5e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague6s,vague6e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; ; -----------------------------------------------------------------------------------------------
+; 	dw		vague7s,vague7e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague8s,vague8e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague9s,vague9e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_3,0
+; 	dw		vague11s,vague11e,soucoupe_4,soucoupe_5,soucoupe_6,0
+; 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
 	dw		#FFFF
 
 

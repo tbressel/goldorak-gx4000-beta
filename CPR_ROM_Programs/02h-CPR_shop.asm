@@ -196,9 +196,9 @@ call	musique_boutique
 				jp		z,Curseur_Gauche
 					bit		3,a
 					jp		z,Curseur_Droite
-						bit		5,a
+						bit		4,a
 						jp		z,Curseur_Validation
-							bit		4,a
+							bit		5,a
 							jp		z,PreparationLevelSuivant
 	jp boucle_shop
 

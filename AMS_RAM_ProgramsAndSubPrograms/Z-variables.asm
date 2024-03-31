@@ -576,16 +576,93 @@ TblConfigSoucoupe6
 ; pour le moment ce tableau indiqué 'level 1' est utilisé pour tous les autres level
 ; chaque TBL_NBR_SOUCOUPES propose 12 vagues successive d'ennemis avant l'apparition du BOSS
 ; on peut mettre autant de TBL_NBR_SOUCOUPES que l'on souhaite selon la longueur de la map
+	
 TBL_VAGUES_LEVEL_1
-			
 	DW		TBL_NBR_SOUCOUPES
-	; DW		TBL_NBR_SOUCOUPES2
-	; DW		TBL_NBR_SOUCOUPES3
+ 	;DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
 ; ----> signale un boss de fin
 	DW		#FFFE				
 ; ----> signale la fin du level	
 	DW		#FFFF				
 	
+TBL_VAGUES_LEVEL_2
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+
+
+
+TBL_VAGUES_LEVEL_3
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+
+TBL_VAGUES_LEVEL_4
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+TBL_VAGUES_LEVEL_5
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+TBL_VAGUES_LEVEL_6
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+TBL_VAGUES_LEVEL_7
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+TBL_VAGUES_LEVEL_8
+	;DW		TBL_NBR_SOUCOUPES
+ 	DW		TBL_NBR_SOUCOUPES2
+	;DW		TBL_NBR_SOUCOUPES3
+; ----> signale un boss de fin
+	DW		#FFFE				
+; ----> signale la fin du level	
+	DW		#FFFF				
+
+
+
+
+
+
+
+
+
+
+
 
 
 

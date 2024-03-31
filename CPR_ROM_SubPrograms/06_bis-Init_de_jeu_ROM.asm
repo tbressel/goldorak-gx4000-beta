@@ -40,6 +40,15 @@ init_nouveau_level_ROM
 		ld		hl,PALETTE_DECORS_LEVEL2
 		ld		(pallette_level),hl
 
+	ld		hl,TBL_VAGUES_LEVEL_2			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_2
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
+
 		jp		suite_init_level
 		init_level_3
 			ex		af,af'
@@ -64,6 +73,14 @@ init_nouveau_level_ROM
 
 		ld		hl,PALETTE_DECORS_LEVEL3
 		ld		(pallette_level),hl
+			ld		hl,TBL_VAGUES_LEVEL_3			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_3
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 			jp		suite_init_level
 			init_level_4
 				ex		af,af'
@@ -88,6 +105,14 @@ init_nouveau_level_ROM
 
 				ld		hl,PALETTE_DECORS_LEVEL4
 				ld		(pallette_level),hl
+					ld		hl,TBL_VAGUES_LEVEL_4			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_4
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 				jp		suite_init_level
 				init_level_5
 					ex		af,af'
@@ -109,6 +134,14 @@ init_nouveau_level_ROM
 					ld		(pointeur_de_tile),hl
 					ld		hl,PALETTE_DECORS_LEVEL5
 					ld		(pallette_level),hl
+						ld		hl,TBL_VAGUES_LEVEL_5			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_5
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 					jp		suite_init_level
 					init_level_6	
 						ex		af,af'
@@ -130,6 +163,14 @@ init_nouveau_level_ROM
 						ld		(pointeur_de_tile),hl
 						ld		hl,PALETTE_DECORS_LEVEL6
 						ld		(pallette_level),hl
+							ld		hl,TBL_VAGUES_LEVEL_6			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_6
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 						jp		suite_init_level
 						init_level_7
 							ex		af,af'
@@ -151,6 +192,14 @@ init_nouveau_level_ROM
 							ld		(pointeur_de_tile),hl
 							ld		hl,PALETTE_DECORS_LEVEL7
 							ld		(pallette_level),hl
+								ld		hl,TBL_VAGUES_LEVEL_7			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_7
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 							jp		suite_init_level
 							init_level_8
 								ex		af,af'
@@ -175,6 +224,14 @@ init_nouveau_level_ROM
 								ld		(pointeur_de_tile),hl
 								ld		hl,PALETTE_DECORS_LEVEL8
 								ld		(pallette_level),hl
+									ld		hl,TBL_VAGUES_LEVEL_8			; on lit l'adresse du tableau des vague de Level 1
+	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+	inc		hl
+	ld		d,(hl)
+	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_TYPE_DE_SOUCOUPE_8
+	ld		(Pointeur_TblTypeDeSoucoupe),hl
 								jp		suite_init_level
 								init_la_fin
 									ld		a,1
