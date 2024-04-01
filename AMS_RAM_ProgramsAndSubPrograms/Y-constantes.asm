@@ -644,4 +644,41 @@ vague13s = vague12e+#16
 vague13e = vague13s+#90
 vague14s = vague13e+#16
 vague14e = vague14s+#90
+vague15s = vague14e+#16
+vague15e = vague15s+#90
+vague16s = vague15e+#16
+vague16e = vague16s+#90
+vague17s = vague16e+#16
+vague17e = vague17s+#90
+vague18s = vague17e+#16
+vague18e = vague18s+#90
+vague19s = vague18e+#16
+vague19e = vague19s+#90
+vague20s = vague19e+#16
+vague20e = vague20s+#90
+vague21s = vague20e+#16
+vague21e = vague21s+#90
+vague22s = vague21e+#16
+vague22e = vague22s+#90
 
+
+NBR_RETOURNEMENT_MAX equ 5
+
+TBL_RETOURNEMENT_COUNT
+dw	RET1a, RET1b
+dw	RET2a, RET2b
+dw	RET3a, RET3b
+dw	RET4a, RET4b
+dw	RET5a, RET5b
+TBL_RETOURNEMENT_COUNT_END
+
+RET1a equ #68DA
+RET1b equ #70DA
+RET2a equ #50DD
+RET2b equ #58DD
+RET3a equ #60A0
+RET3b equ #68A0
+RET4a equ #50E3
+RET4b equ #58E3
+RET5a equ #68E6
+RET5b equ #70E6

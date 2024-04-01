@@ -240,6 +240,16 @@ init_nouveau_level_ROM
 suite_init_level	
 	inc		a						; on increment le level
 	ld		(level_en_cours),a
+
+; ; on lit la table des adresse a lire pour l'affichage du hud pour le retournement
+; ld	hl,TBL_RETOURNEMENT_COUNT+19
+; ld	a,(hl)
+; ld	(pointer_tbl_retournement),a
+; inc hl
+; ld a,(hl)
+; ld (pointer_tbl_retournement+1),a
+
+
 ; on désactive les évenements de la boucle	
 	xor		a						; on va remplir de zero
 	ld		hl,event_fade_out		; les evenements qui sont

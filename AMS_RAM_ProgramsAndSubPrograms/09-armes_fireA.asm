@@ -1028,6 +1028,13 @@ fin_clavicogyres
 ; /////////////////////////////////////////////////////////////
 
 GoldroakRetournement
+	; on vérifie que l'on a encore des retournement disponible
+	ld		a,(nbr_de_retournement)
+cp		a,NBR_RETOURNEMENT_MAX
+jp z,Fin_Retournement
+
+
+
 	ld		hl,Compteur_Retournement
 	dec		(hl)
 	ret		nz
@@ -1086,6 +1093,7 @@ Init_Retournement
 ; on cible les vitesse de retournement	
 	ld		hl,Tbl_Vitesse_Retournement
 	ld		(Pointeur_Vitesse_Retournement),hl
+
 	jp		retour_test_des_tirs
 
 
@@ -1223,7 +1231,7 @@ Fin_Retournement
 		xor		a
 		ld		(flag_retournement),a
 		ld		(flag_deja_affiche),a
-		ld		hl,event_retournement
+	
 		ld		(event_retournement),a
 		ld		(event_retournement+1),a
 		ld		(event_retournement+2),a
@@ -1236,7 +1244,58 @@ Fin_Retournement
 		ld		(event_test_de_goldorak+1),hl
 		ld		a,VITESSE_RETOURNEMENT
 		ld		(Compteur_Retournement),a
+
+		ld a,(nbr_de_retournement)
+		cp a,NBR_RETOURNEMENT_MAX
+		call nz,uncount_retounment
+
+
 		ret
+
+uncount_retounment
+
+	; on ajoute un retournement effectué
+	ld a,(nbr_de_retournement)
+	inc a
+	ld (nbr_de_retournement),a
+
+ld  hl,(display_tbl_retournement_top)
+ld (hl),#76
+
+ld hl,(display_tbl_retournement_bot)
+ld (hl),#76
+ld (display_tbl_retournement_bot),hl
+
+ld hl,(pointer_tbl_retournement)
+dec hl
+
+call	update_pointer_tbl_retournement
+
+ret
+
+
+update_pointer_tbl_retournement
+	ld	a,(hl)
+	ld	(display_tbl_retournement_top+1),a
+	dec hl
+	ld a,(hl)
+	ld (display_tbl_retournement_top),a
+	dec hl 
+	ld	a,(hl)
+	ld	(display_tbl_retournement_bot+1),a
+	dec hl
+	ld a,(hl)
+	ld (display_tbl_retournement_bot),a
+	ld  (pointer_tbl_retournement),hl
+	ret
+
+
+nbr_de_retournement				ds 	1,0
+display_tbl_retournement_top	ds	2,0
+display_tbl_retournement_bot	ds	2,0
+pointer_tbl_retournement 		ds 	2,0
+
+
 
 
 UpdateRetournement
