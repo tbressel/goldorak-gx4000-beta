@@ -1,7 +1,9 @@
 initialisation_du_jeu
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	call	rom_on_EI
 	CALL	initialisation_du_jeu_ROM
+	ld		c,BANK_ROM_2
+	call	rom_on_EI
 	call	nouvelle_ligne
 	
 	
@@ -147,7 +149,7 @@ boucle_route_level
 	
 init_nouveau_level
 	
-	LD 		BC,BANK2_INIT:OUT (C),C				; on choisit DE LIRE la ROM 15
+	LD 		BC,BANK18_INIT:OUT (C),C				; on choisit DE LIRE la ROM 18
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
 	call	init_nouveau_level_ROM

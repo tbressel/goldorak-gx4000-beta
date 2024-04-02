@@ -194,6 +194,8 @@ nouvelle_vague_ROM
 									inc		hl
 									jp		boucle_test_vague
 
+										; on arrive ici a chaque fin de ligne quand on rencontre le "0"
+										; on test egalement voir si on est en fin de vague ave la valeur #FFFF
 										maj_du_pointeur
 											inc		hl
 											ld		(pointeur_vague_fin),hl
@@ -211,26 +213,32 @@ nouvelle_vague_ROM
 													call	fin_de_la_vague_ROM
 													;call	fin_de_la_vague				; la routine inclu une mise à jour du pointeur de vague
 																						; on va devoir en définir une autre
-													
+													; on recupère le pointeur du TBL_VAGUES_LEVEL_X en cours										
 													ld		hl,(pointeur_tbl_level)
+													; on prends l'adrese suivante
 													inc hl : inc hl
 													ld		(pointeur_tbl_level),hl
-													ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+													; on lit l'adresse contenu à l'adresse du pointeur
+													ld		e,(hl)							
 													inc		hl
 													ld		d,(hl)
+													; on test voir si c'est un boss de fin
 													or		a
 													ld		hl,#FFFE
 													sbc		hl,de
 													jp		z,boss_de_fin_ROM
+													; on test voir si goldorak est détruit, alors fin du niveau
 													or		a
 													ld		hl,#FFFF
 													sbc		hl,de
-													jp		z,fin_du_level ; fin du level à partir du moment où goldorak est détruit
+													jp		z,fin_du_level
 													ld		(Pointeur_TblNombreDeSoucoupes),de
+													; on réinitialise le compteur de vague, à zero pour repartir sur une vague 1
 													ld		a,#00
 													ld		(counter_poid_faible),a
 													ld		a,#04
 													ld		(counter_poid_fort),a
+													; si on arrive ici c'est qu'une deuxième vagues arrive
 													ret
 													
 												

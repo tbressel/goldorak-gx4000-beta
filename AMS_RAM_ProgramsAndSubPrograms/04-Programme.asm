@@ -30,9 +30,11 @@ di
 ; //////////    CONFIGURATION BANK, POINTEURS, VIES, NRJ    ////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-ld		c,BANK_ROM_2
+ld		c,BANK_ROM_18
 call	rom_on_EI
 call	rstCreationPrograms_ROM
+ld		c,BANK_ROM_2
+call	rom_on_EI
 automodif_bank_tileset
 		ld		hl,BANK_TILESET_1
 		ld		(bank_tileset),hl

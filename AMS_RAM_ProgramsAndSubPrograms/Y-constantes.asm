@@ -10,7 +10,9 @@ LGN_RUPTURE_HUD					equ		214
 ; //////////////////////////////////////////////////////////////////
 BANK_ROM_0				equ		0
 BANK_ROM_2				equ		2
+BANK_ROM_18				equ		18
 BANK2_INIT				equ		#DF00+#80+2
+BANK18_INIT				equ		#DF00+#80+18
 BANK28_MUSIC			equ		#DF00+#80+28
 BANK3_MUSIC				equ		#DF00+#80+3
 BANK4_MENU				equ		#DF00+#80+4
@@ -48,7 +50,8 @@ BANK15_GOLDORAK_RET_SPRH =  	15
 BANK15_ACTARUS			=       #DF00+#80+15
 BANK17_SCENARIO			=		#DF00+#80+17
 BANK17_TITLESCREEN		=		#DF00+#80+17
-BANK18_GAMEOVER			=		#DF00+#80+18
+BANK21_GAMEOVER			=		#DF00+#80+21
+BANK22_GAMEOVER			=		#DF00+#80+22
 BANK18_CROCOFEST		=		#DF00+#80+18
 BANK19_FIN				=		#DF00+#80+19
 BANK20_ROUTE			=		#DF00+#80+20
@@ -660,6 +663,42 @@ vague21s = vague20e+#16
 vague21e = vague21s+#90
 vague22s = vague21e+#16
 vague22e = vague22s+#90
+vague23s = vague22e+#16
+vague23e = vague23s+#90
+vague24s = vague23e+#16
+vague24e = vague24s+#90
+vague25s = vague24e+#16
+vague25e = vague25s+#90
+vague26s = vague25e+#16
+vague26e = vague26s+#90
+vague27s = vague26e+#16
+vague27e = vague27s+#90
+vague28s = vague27e+#16
+vague28e = vague28s+#90
+vague29s = vague28e+#16
+vague29e = vague29s+#90
+vague30s = vague29e+#16
+vague30e = vague30s+#90
+vague31s = vague30e+#16
+vague31e = vague31s+#90
+vague32s = vague31e+#16
+vague32e = vague32s+#90
+vague33s = vague32e+#16
+vague33e = vague33s+#90
+vague34s = vague33e+#16
+vague34e = vague34s+#90
+vague35s = vague34e+#16
+vague35e = vague35s+#90
+vague36s = vague35e+#16
+vague36e = vague36s+#90
+vague37s = vague36e+#16
+vague37e = vague37s+#90
+vague38s = vague37e+#16
+vague38e = vague38s+#90
+vague39s = vague38e+#16
+vague39e = vague39s+#90
+vague40s = vague39e+#16
+vague40e = vague40s+#90
 
 
 NBR_RETOURNEMENT_MAX equ 5

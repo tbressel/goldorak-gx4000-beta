@@ -148,10 +148,8 @@ bank 17
 	org #ee40
 		incbin "../CPR_ASSETS/gfx/scenario_vignettes1.zx0"
 Bank 18
-	org #c000
-		incbin "../CPR_ASSETS/gfx/gameovergo1.zx0"
-	org #d480
-		incbin "../CPR_ASSETS/gfx/gameovergo2.zx0"
+	include "../CPR_ROM_SubPrograms/04_bis-Programme_ROM_suite.asm"
+
 	
 Bank 19
 	org #c000
@@ -178,10 +176,17 @@ Bank 4
 ; !!!!!  8000 / 16000 octets d'utilisé seulement !!!!!!
 bank 21
 	incbin "../CPR_ASSETS/maptiles/goldo1.prg"
-	
+
+	;  org #df40
+		incbin "../CPR_ASSETS/gfx/gameovergo1.zx0"
+
+
 ; !!!!!  9600 / 16000 octets d'utilisé seulement !!!!!!
 bank 22
 	incbin "../CPR_ASSETS/maptiles/goldo2.prg"
+
+		; org #e580
+		 incbin "../CPR_ASSETS/gfx/gameovergo2.zx0"
 bank 23
 	incbin "../CPR_ASSETS/maptiles/goldo3.prg"
 bank 24

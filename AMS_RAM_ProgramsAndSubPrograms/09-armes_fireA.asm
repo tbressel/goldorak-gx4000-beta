@@ -1030,19 +1030,15 @@ fin_clavicogyres
 GoldroakRetournement
 	; on vérifie que l'on a encore des retournement disponible
 	ld		a,(nbr_de_retournement)
-cp		a,NBR_RETOURNEMENT_MAX
-jp z,Fin_Retournement
-
-
+	cp		a,NBR_RETOURNEMENT_MAX
+	jp z,Fin_Retournement
 
 	ld		hl,Compteur_Retournement
 	dec		(hl)
 	ret		nz
 	
-
 	ld		a,VITESSE_RETOURNEMENT
 	ld		(Compteur_Retournement),a
-
 
 	ld		a,(EtpRetournement)
 	cp		a,0
@@ -1059,9 +1055,9 @@ jp z,Fin_Retournement
 	jp		z,Init_Retournement_3
 	cp		a,6
 	jp		z,Init_Retournement_4
-		cp		a,7
+	cp		a,7
 	jp		z,Init_Retournement_4b
-		cp		a,8
+	cp		a,8
 	jp		z,Init_Retournement_4c
 	cp		a,9
 	jp		z,Init_Retournement_5
@@ -1101,17 +1097,13 @@ Init_Retournement_0
 		inc		a
 		ld		(EtpRetournement),a
 		rst		ASIC_CONNEXION
-	
 		call	UpdateRetournement
-	
 		jp		ASIC_DECONNEXION
 Init_Retournement_0b
 		inc		a
 		ld		(EtpRetournement),a
 		rst		ASIC_CONNEXION
-	
 		call	UpdateRetournement
-	
 		jp		ASIC_DECONNEXION
 
 
@@ -1222,8 +1214,7 @@ Init_Retournement_7
 		ld		hl,GOLDORAK_RET7_SPRH_ROM_ADR
 		ld		de,SPRH0_ADR
 		ld		bc,#400
-		LDIR
-		
+		LDIR		
 		call	UpdateRetournement
 		call	rom_off
 		jp		ASIC_DECONNEXION	
@@ -1248,30 +1239,28 @@ Fin_Retournement
 		ld a,(nbr_de_retournement)
 		cp a,NBR_RETOURNEMENT_MAX
 		call nz,uncount_retounment
-
-
 		ret
 
 uncount_retounment
-
 	; on ajoute un retournement effectué
 	ld a,(nbr_de_retournement)
 	inc a
 	ld (nbr_de_retournement),a
 
-ld  hl,(display_tbl_retournement_top)
-ld (hl),#76
+	; on ajoute un pixel en haut
+	ld  hl,(display_tbl_retournement_top)
+	ld (hl),#76
 
-ld hl,(display_tbl_retournement_bot)
-ld (hl),#76
-ld (display_tbl_retournement_bot),hl
+	; on ajoute un pixel en bas
+	ld hl,(display_tbl_retournement_bot)
+	ld (hl),#76
+	ld (display_tbl_retournement_bot),hl
 
-ld hl,(pointer_tbl_retournement)
-dec hl
+	ld hl,(pointer_tbl_retournement)
+	dec hl
 
-call	update_pointer_tbl_retournement
-
-ret
+	call	update_pointer_tbl_retournement
+	ret
 
 
 update_pointer_tbl_retournement
@@ -1288,6 +1277,7 @@ update_pointer_tbl_retournement
 	ld (display_tbl_retournement_bot),a
 	ld  (pointer_tbl_retournement),hl
 	ret
+
 
 
 nbr_de_retournement				ds 	1,0

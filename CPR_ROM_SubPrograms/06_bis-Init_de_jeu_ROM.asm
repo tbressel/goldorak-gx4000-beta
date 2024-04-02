@@ -40,16 +40,17 @@ init_nouveau_level_ROM
 		ld		hl,PALETTE_DECORS_LEVEL2
 		ld		(pallette_level),hl
 
-	ld		hl,TBL_VAGUES_LEVEL_2			; on lit l'adresse du tableau des vague de Level 1
-	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
-	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
-	inc		hl
-	ld		d,(hl)
-	ld	(Pointeur_TblNombreDeSoucoupes),de
+		ld		hl,TBL_VAGUES_LEVEL_2			; on lit l'adresse du tableau des vague de Level 1
+		ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+		ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+		inc		hl
+		ld		d,(hl)
+		ld		(Pointeur_TblNombreDeSoucoupes),de
 		ld		hl,TBL_TYPE_DE_SOUCOUPE_2
-	ld		(Pointeur_TblTypeDeSoucoupe),hl
+		ld		(Pointeur_TblTypeDeSoucoupe),hl
 
 		jp		suite_init_level
+
 		init_level_3
 			ex		af,af'
 			ld		a,3
@@ -71,17 +72,20 @@ init_nouveau_level_ROM
 			ld		hl,SCREEN_DEPART_LEVEL_3+(-16*13)		; je pointe sur la première tile de la ligne à afficher
 			ld		(pointeur_de_tile),hl
 
-		ld		hl,PALETTE_DECORS_LEVEL3
-		ld		(pallette_level),hl
+			ld		hl,PALETTE_DECORS_LEVEL3
+			ld		(pallette_level),hl
+
 			ld		hl,TBL_VAGUES_LEVEL_3			; on lit l'adresse du tableau des vague de Level 1
-	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
-	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
-	inc		hl
-	ld		d,(hl)
-	ld	(Pointeur_TblNombreDeSoucoupes),de
-		ld		hl,TBL_TYPE_DE_SOUCOUPE_3
-	ld		(Pointeur_TblTypeDeSoucoupe),hl
+			ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+
+			ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+			inc		hl
+			ld		d,(hl)
+			ld		(Pointeur_TblNombreDeSoucoupes),de
+			ld		hl,TBL_TYPE_DE_SOUCOUPE_3
+			ld		(Pointeur_TblTypeDeSoucoupe),hl
 			jp		suite_init_level
+			
 			init_level_4
 				ex		af,af'
 				ld		a,4
@@ -105,15 +109,16 @@ init_nouveau_level_ROM
 
 				ld		hl,PALETTE_DECORS_LEVEL4
 				ld		(pallette_level),hl
-					ld		hl,TBL_VAGUES_LEVEL_4			; on lit l'adresse du tableau des vague de Level 1
-	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
-	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
-	inc		hl
-	ld		d,(hl)
-	ld	(Pointeur_TblNombreDeSoucoupes),de
-		ld		hl,TBL_TYPE_DE_SOUCOUPE_4
-	ld		(Pointeur_TblTypeDeSoucoupe),hl
+				ld		hl,TBL_VAGUES_LEVEL_4			; on lit l'adresse du tableau des vague de Level 1
+				ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+				ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+				inc		hl
+				ld		d,(hl)
+				ld		(Pointeur_TblNombreDeSoucoupes),de
+				ld		hl,TBL_TYPE_DE_SOUCOUPE_4
+				ld		(Pointeur_TblTypeDeSoucoupe),hl
 				jp		suite_init_level
+				
 				init_level_5
 					ex		af,af'
 					ld		a,5
@@ -241,14 +246,23 @@ suite_init_level
 	inc		a						; on increment le level
 	ld		(level_en_cours),a
 
-; ; on lit la table des adresse a lire pour l'affichage du hud pour le retournement
-; ld	hl,TBL_RETOURNEMENT_COUNT+19
-; ld	a,(hl)
-; ld	(pointer_tbl_retournement),a
-; inc hl
-; ld a,(hl)
-; ld (pointer_tbl_retournement+1),a
-
+xor a
+ld (nbr_de_retournement),a
+; on lit la table des adresse a lire pour l'affichage du hud pour le retournement
+ld	hl,TBL_RETOURNEMENT_COUNT+19
+ld  (pointer_tbl_retournement),hl
+	ld	a,(hl)
+	ld	(display_tbl_retournement_top+1),a
+	dec hl
+	ld a,(hl)
+	ld (display_tbl_retournement_top),a
+	dec hl 
+	ld	a,(hl)
+	ld	(display_tbl_retournement_bot+1),a
+	dec hl
+	ld a,(hl)
+	ld (display_tbl_retournement_bot),a
+	ld  (pointer_tbl_retournement),hl
 
 ; on désactive les évenements de la boucle	
 	xor		a						; on va remplir de zero

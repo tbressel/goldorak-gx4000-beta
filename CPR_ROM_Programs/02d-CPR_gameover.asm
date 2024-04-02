@@ -16,11 +16,14 @@ CALL	reinit_crtc_et_retard_video
 	LD 		BC,#BD00+#22:OUT (C),C
 
 ; copie des fichiers GO1 et GO2 en  pour l'overscan
-	LD 		BC,BANK18_GAMEOVER:OUT (C),C				; on choisit DE LIRE la ROM 15
+	LD 		BC,BANK21_GAMEOVER:OUT (C),C				; on choisit DE LIRE la ROM 18
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
+	; LD 		BC,BANK18_GAMEOVER:OUT (C),C				; on choisit DE LIRE la ROM 18
+	; LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
+	; LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
 
-	ld		hl,#c000							; lecture dans la bank ROM
+	ld		hl,#DF40							; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM #4000
 	call	DepkZX0								; on décompresse
 	
@@ -29,7 +32,11 @@ CALL	reinit_crtc_et_retard_video
 	ld		bc,#4000							; longueur
 	LDIR
 
-	ld		hl,#d480							; lecture dans la bank ROM
+	LD 		BC,BANK22_GAMEOVER:OUT (C),C				; on choisit DE LIRE la ROM 18
+	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
+	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
+
+	ld		hl,#E580							; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM (oui c'est chelou elles ont la même adresse)
 	call	DepkZX0
 	

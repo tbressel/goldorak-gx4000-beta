@@ -282,6 +282,10 @@ boucle_nrj_bar
 	jr		nz,boucle_nrj_bar
 	ld		hl,Tbl_NRJ_bar+19
 	ld		(pointeur_tbl_NRJ_bar),hl
+	; rajout pour fixer un bug de collision avec golgoth
+	ld		c,2
+	RST 	UPPER_ROM_CONNEXION
+	; -----------
 	ret
 
 

@@ -384,8 +384,8 @@ soucoupe_6
 															ld		hl,(pointeur_tbl_point)
 															inc		hl
 															ld		a,(hl)
-															cp		a,#FF
-															jr		nz,on_zap_reinit_pointeur_points
+															cp		a,#FF		; arrive t-on à la fin du tableau ?
+															jr		nz,on_zap_reinit_pointeur_points	; non : on zap le réinit
 																	reinit_pointeur_tbl_points
 																		ld		hl,tbl_distribution_points
 																	on_zap_reinit_pointeur_points

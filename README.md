@@ -23,9 +23,12 @@ C'est également le répertoire à fournir aux béta testeurs car il contient à
 __Gestion des vagues ennemis__ 
 
 A chaque début de level j'ai défini plusieurs pointeurs configuré dans leur initialisation (06-bis-init_de_jeu_ROM.asm).
-* Il s'agit de *'pointeur_tbl_level'* et *'pointeur_tbl_level'* qui ciblent le tableau d'adresses : TBL_VAGUES_LEVEL_<n°>. Ce tableau est une liste de paquet de vagues (chaque paquet contient environs 12 vagues). On peut cumuler plusieurs paquet de vagues.
+* Il s'agit de *'pointeur_tbl_level'* et *'pointeur_tbl_level'* qui ciblent le tableau d'adresses : TBL_VAGUES_LEVEL_<n°>. 
+Ce tableau est une liste de paquet de vagues (chaque paquet contient environs 12 vagues). On peut cumuler plusieurs paquet de vagues.
 * Il s'agit également de *'Pointeur_TblNombreDeSoucoupe'*  et *'Pointeur_TblTypeDeSoucoupe'* qui cible un premier tableau de nombre de soucoupe pour chacune des 12 vagues, et un autre tableau qui contient quel type de soucoupe sont constituées chacune de ses vagues. On trouve ces tableaux dans le fichier 04_bis-Programme_ROM.asm
 
+
+__Gestion des items laissés par les ennemis une fois mort__ 
 
 
 ## Structure

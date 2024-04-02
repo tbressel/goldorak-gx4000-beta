@@ -585,34 +585,19 @@ TBL_VAGUES_LEVEL_1
 	DW		#FFFF				
 	
 TBL_VAGUES_LEVEL_2
-	;DW		TBL_NBR_SOUCOUPES
  	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
 	DW		#FFFE				
-; ----> signale la fin du level	
 	DW		#FFFF				
 
-
-
-
 TBL_VAGUES_LEVEL_3
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+	DW		TBL_NBR_SOUCOUPES3
 	DW		#FFFE				
-; ----> signale la fin du level	
 	DW		#FFFF				
 
 
 TBL_VAGUES_LEVEL_4
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+ 	DW		TBL_NBR_SOUCOUPES4
 	DW		#FFFE				
-; ----> signale la fin du level	
 	DW		#FFFF				
 
 TBL_VAGUES_LEVEL_5

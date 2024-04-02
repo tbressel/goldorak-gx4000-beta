@@ -940,12 +940,9 @@ goldorak_percute
 goldorak_percute_golgoth
 	nop
 	rst		ASIC_DECONNEXION
-	call	rom_off
-	;pop		ix
+	;call	rom_off
 goldorak_percute_tirs
 	pop		ix
-	;rst		ASIC_DECONNEXION
-	;call	rom_off
 	jp		goldorak_percute
 
 
