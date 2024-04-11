@@ -177,7 +177,7 @@ event_autre				ds		28,0
 	
 event_arme_fireA			ds		3,0	
 ;event_arme_fireA_venisiak	ds		3,0
-
+retour_event_arme_fireA
 
 event_normal_goldorak_boom
 event_goldorak_boom

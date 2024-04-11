@@ -238,7 +238,10 @@ arme_planitron
 			ld		bc,#100
 			LDIR																; on copie de puis la ROM vers l'ASIC	
 			call	rom_off
-			ld		a,_CALL
+			; FIX START      / 11-04-2024 / _JP à la place de _CALL pour revenir dans la boucle sans problème de pile
+			; 				 / replacer les ret par jp retour_event_arme_fireA
+			ld		a,_JP
+			; FIX END
 			ld		(event_arme_fireA),a
 			ld		hl,(adr_type_arme)
 			ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
@@ -260,8 +263,9 @@ arme_planitron
 					ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
 					ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
 					RST		ASIC_DECONNEXION
-					jp		retour_test_des_tirs
-					;ret      <---------   ****  SOURCE DE GROS PLANTAGE ****** --------->
+					jp		retour_event_arme_fireA
+					; jp		retour_test_des_tirs
+					;ret      
 						planitron2
 							ld		a,(resultat_test_de_touche)
 							cp		a,#ef
@@ -299,7 +303,8 @@ arme_planitron
 									cp		a,0
 									jr		z,switch_anim_planitron
 									ld		(etp_anim_planitron),a
-									ret
+									jp	retour_event_arme_fireA
+									;ret
 										switch_anim_planitron
 											ld		a,4
 											ld		(etp_anim_planitron),a
@@ -309,7 +314,8 @@ arme_planitron
 											jr		nz,reinit_adr_anim_planitron
 												retour_reinit_adr_anim_planitron
 													ld		(adr_anim_planitron),hl
-													ret
+													jp	retour_event_arme_fireA
+													;ret
 														reinit_adr_anim_planitron
 															ld	h,#F0	
 															jr	retour_reinit_adr_anim_planitron
@@ -361,7 +367,8 @@ arme_planitron
 																						RST		ASIC_DECONNEXION
 																						ld 		c,1   ;Channel (0-2)
 																						call 	PLY_AKG_StopSoundEffectFromChannel
-																						ret
+																						;ret
+																						jp	retour_event_arme_fireA
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; ///////////////////       PLANITRON  2 ///////////////////////
@@ -452,8 +459,8 @@ arme_planitron2
 							cp		a,0
 							jr		z,switch_anim_planitron2
 							ld		(etp_anim_planitron2),a
-							;ret      <---------   ****  SOURCE DE GROS PLANTAGE ****** --------->
-							jp		retour_test_des_tirs
+							ret
+							;jp		retour_test_des_tirs
 								switch_anim_planitron2
 									ld		a,4
 									ld		(etp_anim_planitron2),a
