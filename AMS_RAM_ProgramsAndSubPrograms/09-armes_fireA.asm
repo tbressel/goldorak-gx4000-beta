@@ -533,6 +533,15 @@ fin_planitron2
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 arme_cornofulgure
+	ld	a,(flag_PowerUP)
+	cp	a,0
+	jp	z,arme_cornofulgure1
+	cp	a,1
+	jp	z,arme_cornofulgure2
+	cp	a,2
+	jp	z,arme_cornofulgure3
+
+arme_cornofulgure1
 	RST		ASIC_CONNEXION
 
 	ld		a,(etp_arme1)
@@ -804,7 +813,6 @@ cornofulgure_finc
 	ret
 aucune_arme
 	RST		ASIC_CONNEXION
-	;RST		#18
 	xor		a
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a

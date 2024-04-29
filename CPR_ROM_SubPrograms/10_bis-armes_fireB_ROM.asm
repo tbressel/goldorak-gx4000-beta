@@ -111,9 +111,9 @@ fin_attente_fireB_ROM
 						ld		de,HUD_BOUTON4_ADR
 						ld		b,HUD_HAUTEUR_BOUTTON
 						call	bcl_affiche_bouton
-						; ld		hl,arme_cornofulgure
+						ld		hl,arme_cornofulgure
 						; ld		hl,arme_cornofulgure2
-  						ld		hl,arme_cornofulgure3
+  						; ld		hl,arme_cornofulgure3
 
 						ld		(adr_type_arme),hl
 						ld		a,FORCE_CORNOFULGURE_1
