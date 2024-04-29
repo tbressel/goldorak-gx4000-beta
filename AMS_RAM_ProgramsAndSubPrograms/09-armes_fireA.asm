@@ -31,7 +31,7 @@ fireA
 	cp		a,4
 	jp		z,aucune_arme
 	cp		a,5
-	jp		z,arme_cornofulgure
+	jp		z,arme_cornofulgure2
 	cp		a,6
 	jp		z,arme_fulguro_poing
 	cp		a,7
@@ -621,6 +621,10 @@ cornofulgure_fin
 	ld 		c,1   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret
+
+
+
+; //////////////       CORNOFULGURE (Puissance 2)       ////////////////////
 arme_cornofulgure2	
 	RST		ASIC_CONNEXION
 	
@@ -640,7 +644,8 @@ arme_cornofulgure2
 	cp		a,10
 	jp		z,cornofulgure_finb
 	inc		a:ld (etp_arme1),a
-	jp 	retour_test_des_tirs
+	; jp 	retour_test_des_tirs
+	ret
 cornofulgure1b
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
@@ -687,7 +692,12 @@ cornofulgure_finb
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
 	RST		ASIC_DECONNEXION
+	ld 		c,1   ;Channel (0-2)
+	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret
+
+
+; //////////////       CORNOFULGURE (Puissance 3)       ////////////////////
 arme_cornofulgure3	
 	RST		#18
 	;RST		#18
@@ -719,7 +729,8 @@ arme_cornofulgure3
 	cp		a,12
 	jp		z,cornofulgure_finc
 	inc		a:ld (etp_arme1),a
-	jp 	retour_test_des_tirs
+	; jp 	retour_test_des_tirs
+	ret
 cornofulgure1c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld (SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
