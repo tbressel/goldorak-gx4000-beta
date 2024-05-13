@@ -1,7 +1,7 @@
 init_nouveau_level_ROM	
 	ld		a,(level_en_cours)
 	cp		a,1
-	jp		z,init_level_2
+	jp		z,init_level_4
 	cp		a,2
 	jp		z,init_level_3
 	cp		a,3
@@ -117,6 +117,9 @@ init_nouveau_level_ROM
 				ld		(Pointeur_TblNombreDeSoucoupes),de
 				ld		hl,TBL_TYPE_DE_SOUCOUPE_4
 				ld		(Pointeur_TblTypeDeSoucoupe),hl
+
+				; initialisation des coordonnées du bigboss 1
+
 				jp		suite_init_level
 				
 				init_level_5

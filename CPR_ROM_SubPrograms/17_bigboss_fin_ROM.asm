@@ -89,7 +89,7 @@ fondu_des_couleurs2_ROM
 	ld		a,(fadein_counter)
 	inc 	a
 	ld		(fadein_counter),a
-	cp		a,#22
+	cp		a,#44
 	call	z,fondu_entree	
 	ret
 fondu_entree	
@@ -162,4 +162,10 @@ fin_arrive_espace
 	ld		(event_golgoth),a
 	ld		hl,display_bigboss1
 	ld		(event_golgoth+1),hl
+
+	ld		a,4					; la soucoupe se déplace en bas à droite
+	ld		(flagDirectionBigboss), a
+
+	call 	scrolling_off
+
 	ret

@@ -51,25 +51,26 @@ rstCreationPrograms_ROM
 	ld		(nbr_de_vie),a
 	ld		a,10
 	ld		(points_sante),a
-	ld		a,1
+test_debug
+	ld		a,4
 	ld		(level_en_cours),a
 
-		ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1
+	ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1
 	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
 	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
 	inc		hl
 	ld		d,(hl)
-	ld	(Pointeur_TblNombreDeSoucoupes),de
+	ld		(Pointeur_TblNombreDeSoucoupes),de
 	ld		hl,TBL_TYPE_DE_SOUCOUPE_1
 	ld		(Pointeur_TblTypeDeSoucoupe),hl
 	
 ; on lit la table des adresse a lire pour l'affichage du hud pour le retournement
-ld	hl,TBL_RETOURNEMENT_COUNT+19
-ld  (pointer_tbl_retournement),hl
+	ld	hl,TBL_RETOURNEMENT_COUNT+19
+	ld  (pointer_tbl_retournement),hl
 	ld	a,(hl)
 	ld	(display_tbl_retournement_top+1),a
-	dec hl
-	ld a,(hl)
+	dec 	hl
+	ld 	a,(hl)
 	ld (display_tbl_retournement_top),a
 	dec hl 
 	ld	a,(hl)
@@ -78,7 +79,7 @@ ld  (pointer_tbl_retournement),hl
 	ld a,(hl)
 	ld (display_tbl_retournement_bot),a
 	ld  (pointer_tbl_retournement),hl
-ret
+	ret
 
 
 

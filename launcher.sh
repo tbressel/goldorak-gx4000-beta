@@ -1,7 +1,6 @@
 #! /bin/bash
 
-RASM_PATH="/home/thomasbressel/Documents/Projet/Projets/Amstrad/2023_goldorak-gx4000/v4.0-alpha/"
-ACE_PATH="/home/thomasbressel/Documents/Projet/Projets/Amstrad/2023_goldorak-gx4000/AceDL_Linux_BND/"
+RASM_PATH='/home/thomasbressel/Documents/ProjetsAmstrad/2023_goldorak-gx4000/v0.1-beta'
 
 $RASM_PATH/rasm.exe ./CPR_ASSETS/maptiles/goldo1.asm -ob ./CPR_ASSETS/maptiles/goldo1.prg
 $RASM_PATH/rasm.exe ./CPR_ASSETS/maptiles/goldo2.asm -ob ./CPR_ASSETS/maptiles/goldo2.prg
@@ -13,6 +12,8 @@ $RASM_PATH/rasm.exe ./CPR_ASSETS/maptiles/goldo7.asm -ob ./CPR_ASSETS/maptiles/g
 $RASM_PATH/rasm.exe ./CPR_ASSETS/maptiles/goldo8.asm -ob ./CPR_ASSETS/maptiles/goldo8.prg
 $RASM_PATH/rasm.exe ./CPR_ASSETS/maptiles/goldospace.asm -ob ./CPR_ASSETS/maptiles/goldospace.prg
 
-$RASM_PATH/rasm.exe CPR_ROM_Programs/01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
+# $RASM_PATH/rasm.exe CPR_ROM_Programs/01-CPR_initialisation.asm -sw -sq -o ./goldoGX -rasm -ec
 
-$ACE_PATH/AceDL ../goldogx.cpr ../goldogx.rasm
+  $RASM_PATH/rasm.exe CPR_ROM_Programs/01-CPR_initialisation.asm -sw -sq -o ../WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta -rasm -ec
+
+# $ACE_PATH/AceDL ../goldogx.cpr ../goldogx.rasm

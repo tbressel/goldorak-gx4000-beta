@@ -13,7 +13,6 @@ resultat_test_de_touche_cpcplus		ds		1,0
 
 no_de_la_musique		ds			1,0
 
-
 bank_level					ds		2,0
 bank_tileset				ds		2,0
 adr_screen_level			ds		2,0
