@@ -448,8 +448,8 @@ MemoireTamponJoueur_1			ds			8*10,0
 
 
 
-; ArmesDisponible				db			%00000001
-ArmesDisponible				db			%11111111
+ ArmesDisponible				db			%00000001
+;ArmesDisponible				db			%11111111
 
 
 

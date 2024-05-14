@@ -1,7 +1,7 @@
 init_nouveau_level_ROM	
 	ld		a,(level_en_cours)
 	cp		a,1
-	jp		z,init_level_4
+	jp		z,init_level_2
 	cp		a,2
 	jp		z,init_level_3
 	cp		a,3

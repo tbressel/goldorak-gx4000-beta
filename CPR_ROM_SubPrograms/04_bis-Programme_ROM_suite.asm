@@ -51,8 +51,8 @@ rstCreationPrograms_ROM
 	ld		(nbr_de_vie),a
 	ld		a,10
 	ld		(points_sante),a
-test_debug
-	ld		a,4
+
+	ld		a,1
 	ld		(level_en_cours),a
 
 	ld		hl,TBL_VAGUES_LEVEL_1			; on lit l'adresse du tableau des vague de Level 1

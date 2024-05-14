@@ -24,6 +24,8 @@ big_boss_fin_level_4_ROM
 	ld		(pointeur_de_tile),hl
 
 
+	call 	music_on
+
 	ld		a,#30
 	ld		bc,#bc00+12: out (c),c
 	ld		bc,#bd00 : out (c),a
@@ -33,12 +35,11 @@ big_boss_fin_level_4_ROM
 
     ld		hl,#c000
 	ld		(valeur_offset),hl
-	ld		a,SCROLL_SLOW_RETARD_VIDEO
+	; ld		a,SCROLL_SLOW_RETARD_VIDEO
+	ld		a,SCROLL_VERY_FAST_RETARD_VIDEO
 	ld		(vitesse_scroll),a
 	ld 		bc,#bc00+12:out (c),c      			; R12 selectionne
 	ld 		bc,#BD00+#30:out (c),c 				; Ecran en #c000
-
-
     
 	ld		hl,tbl_reg1213_fin
 	ld		(valeur_crtc),hl
@@ -47,7 +48,7 @@ big_boss_fin_level_4_ROM
 	ld		(pointeur_ecran),hl
 
 
-ld		a,TEST_RETARD_VIDEO
+	ld		a,TEST_RETARD_VIDEO
 	ld		(#6804),a
 
 	ld		hl,event_test_de_goldorak
@@ -66,21 +67,20 @@ ld		a,TEST_RETARD_VIDEO
 	ld		hl,boucle_principale
 	ld		(event_fade_out+4),hl
 
+	ld	a,16
+	ld (compteur_de_fin_fadein),a
 
-	  ld	a,16
-	  ld (compteur_de_fin_fadein),a
-
-		ld a,(flag_bigboss)
-		cp	a,1
-		jr	z,pal_univer1
-		jr	pal_univer2
+	ld a,(flag_bigboss)
+	cp	a,1
+	jr	z,pal_univer1
+	jr	pal_univer2
 pal_univer1
-      ld		hl,PALETTE_DECORS_ESPACE
-	  ld		(pallette_level),hl
+    ld		hl,PALETTE_DECORS_ESPACE
+	ld		(pallette_level),hl
     ret
 pal_univer2
-	      ld		hl,PALETTE_DECORS_ESPACE2
-	  ld		(pallette_level),hl
+	ld		hl,PALETTE_DECORS_ESPACE2
+	ld		(pallette_level),hl
     ret
 
 fondu_des_couleurs2_ROM
@@ -89,7 +89,7 @@ fondu_des_couleurs2_ROM
 	ld		a,(fadein_counter)
 	inc 	a
 	ld		(fadein_counter),a
-	cp		a,#44
+	cp		a,32
 	call	z,fondu_entree	
 	ret
 fondu_entree	
