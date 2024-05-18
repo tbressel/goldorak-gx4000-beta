@@ -174,13 +174,41 @@ PLY_AKG_PlayROM				equ		#8300+#02A7+-#0090
 PLY_AKG_InitROM				equ		#8300+#01DD+-#0090
 
 
+GOLDORAK_MAIN_THEME			equ		0			
+DOUBLE_BANANE				equ		1			; Level 1
+GAME_IS_OVER				equ		2			; Game Over
+PRINCE_ESPACE				equ		3			; Level 3
+THE_CREDITS					equ		4			; magasin
+IRON_ROBOT					equ		5			; Level 2
+SUCK_YOUR_MOM				equ		6			; Level 3
+ASOCIAL_NETWORK				equ		7			; Level 4
+IRON_DISK					equ		8			; Level 5
+ROBOT_ROCK					equ		9			; Level 6
+LEVEL_7						equ		10			; Level 7	
+LEVEL_8						equ		11			; Level 8
+BOSS						equ		11			; Level d'un boss
+
+
+
 ; id des soundeffects
-SFX_WEAPONS_CHANGE		equ	4
-SFX_BOOM				equ 2
-SFX_ATTACK				equ	1
-SFX_GET_ITEM			equ	4
-SFX_POW					equ	3
-SFX_HIT					EQU	5
+SFX_WEAPONS_CHANGE		equ	7
+
+
+SFX_GAMMA_LVL1			equ	1
+SFX_GAMMA_LVL2			equ	2
+SFX_GAMMA_LVL3			equ	3
+SFX_PLANITRON 			equ 4
+SFX_FULGORO_POINT		equ 5
+SFX_CLAVICOGYRE			equ 6
+SFX_GET_ITEM			equ 7
+SFX_DAMMAGE				equ 8
+SFX_BOOM				equ 9
+SFX_BOOM_GOLGOTH		equ 10
+SFX_CORNOFULGURE		equ 11
+SFX_ATTACK				equ 12
+
+
+
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////       SCROLLING       //////////////////////
 ; //////////////////////////////////////////////////////////////////

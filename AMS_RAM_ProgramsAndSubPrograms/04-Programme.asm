@@ -5,25 +5,25 @@ di
 ; ////////////////        INIT CONNEXION ROM      //////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-	ld	c,BANK_ROM_0					; sélection de la ROM n°0
-	ld	a,#80
-	add	a,c							; on ajoute #80 au numéros de la ROM
-	ld	c,a							; le reg C contient la valeur de sélection de la ROM
-	ld	b,#DF
-	ld	(rom_sectionnee),bc
-	out	(c),c						; on execute la sélèction de la ROM
-	ld	bc,#7F00+%10001100			; ROM inf déconnectée, ROM sup déconnectée, MODE 0
-	ld	(etat_de_la_rom),bc
-	out	(c),c						; on exécute la connexion de la ROM sélectionnée.
+	ld		c,BANK_ROM_0					; sélection de la ROM n°0
+	ld		a,#80
+	add		a,c							; on ajoute #80 au numéros de la ROM
+	ld		c,a							; le reg C contient la valeur de sélection de la ROM
+	ld		b,#DF
+	ld		(rom_sectionnee),bc
+	out		(c),c						; on execute la sélèction de la ROM
+	ld		bc,#7F00+%10001100			; ROM inf déconnectée, ROM sup déconnectée, MODE 0
+	ld		(etat_de_la_rom),bc
+	out		(c),c						; on exécute la connexion de la ROM sélectionnée.
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 ; ////////////////        INIT INTERRUPTIONS      //////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
-	ld	a,#C3					; on met un JP
-	ld	(#38),a					; en #38
-	ld	hl,interruption_ligne_190		; puis l'adresse de l'interruption
-	ld	(#39),hl
+	ld		a,#C3					; on met un JP
+	ld		(#38),a					; en #38
+	ld		hl,interruption_ligne_190		; puis l'adresse de l'interruption
+	ld		(#39),hl
 	
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@ Asic ON
 	ld		de,PALETTE_ASIC+1
 	ld		bc,#20
 	LDIR
+
+	ld 		a,SFX_GAMMA_LVL1	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 
 	ld		hl,#000
 	ld		(#6420),hl
@@ -231,9 +234,6 @@ test_du_CPC_plus
 	jp		z,music_on_off
 	bit		2,a
 	jp		z,change_musique
-;	bit		3,a
-;automodif_retour_1joueur
-;	jp		z,init_2joueurs
 	jp		retour_test_de_CPC_plus
 	
 			; //////////////////  goldorak  /////////////////
@@ -244,10 +244,6 @@ test_du_CPC_plus
 						jp		z,fireA
 						bit		5,a
 						jp		z,fireB
-					;	bit		6,a
-
-					;	jp		z,init_nouveau_level
-					;	jp		z,init_2joueurs
 					retour_test_des_tirs
 
 						test_des_directions
@@ -433,7 +429,7 @@ reinit_music
 		call 	PLY_AKG_InitSoundEffects		
 		ld 		hl,Music         				; Initialisation
 automodif_music
-		ld		a,0
+		ld		a,GOLDORAK_MAIN_THEME
 		call 	PLY_AKG_Init
 		call	music_on
 		ret
@@ -507,7 +503,7 @@ change_musique
 	ld		a,(no_de_la_musique)
 	inc		a
 	ld		(no_de_la_musique),a
-	cp		a,7
+	cp		a,12
 	call	z,reinit_no_musique
 	call 	PLY_AKG_Init
 	call	music_on
@@ -549,32 +545,31 @@ include"Z-variables.asm"
 
 
 Init_Game_Over
-
-LD		BC,#7F00+%10001100
-OUT 	(C),C
-		ld 		hl,Music         				; Initialisation
-		ld		a,2
-		call 	PLY_AKG_Init
+	LD		BC,#7F00+%10001100
+	OUT 	(C),C
+	ld 		hl,Music         				; Initialisation
+	ld		a,GAME_IS_OVER
+	call 	PLY_AKG_Init
 Boucle_Game_Over
- 	ld    b,#f5    			;adresse du port B du PPI
+ 	ld    	b,#f5    			;adresse du port B du PPI
  .vbl
- 	in    a,(c)     		;On récupère l'octet contenu sur le port dans A
+ 	in    	a,(c)     		;On récupère l'octet contenu sur le port dans A
  	rra              		;On fait une rotation afin de récupérer le bit 0 dans le flag carry
- 	jr    nc,.vbl
- 	ld    b,#f5    			;adresse du port B du PPI
-call	PLY_AKG_Play
-or a
-call test_clavier_sans_interruption
-bit		4,a
-jp		z,relancer_le_jeu
-jp Boucle_Game_Over
+ 	jr    	nc,.vbl
+ 	ld    	b,#f5    			;adresse du port B du PPI
+	call	PLY_AKG_Play
+	or 		a
+	call 	test_clavier_sans_interruption
+	bit		4,a
+	jp		z,relancer_le_jeu
+	jp 		Boucle_Game_Over
 
 
 relancer_le_jeu
 	call	PLY_AKG_Stop
 	LD		BC,#7F00+%10000000
 	OUT 	(C),C
-	jp  0
+	jp  	0
 
 test_clavier_sans_interruption
 	ld		bc,#F40E:OUT (C),c
@@ -585,26 +580,26 @@ test_clavier_sans_interruption
 	ld		b,#F4:IN A,(C)
 	ld		bc,#F782:OUT (C),C				; on place le port A en entrée (#82)
 	ld		bc,#F600:OUT (C),C
-ret
+	ret
 
 
 init_musique_boutique
-LD		BC,#7F00+%10001100
-OUT 	(C),C
-		ld 		hl,Music         				; Initialisation
-		ld		a,4
-		call 	PLY_AKG_Init
-LD		BC,#7F00+%10000000
-OUT 	(C),C
-ret
+	LD		BC,#7F00+%10001100
+	OUT 	(C),C
+	ld 		hl,Music         				; Initialisation
+	ld		a,THE_CREDITS
+	call 	PLY_AKG_Init
+	LD		BC,#7F00+%10000000
+	OUT 	(C),C
+	ret
 
 musique_boutique
-LD		BC,#7F00+%10001100
-OUT 	(C),C
-call	PLY_AKG_Play
-LD		BC,#7F00+%10000000
-OUT 	(C),C
-ret
+	LD		BC,#7F00+%10001100
+	OUT 	(C),C
+	call	PLY_AKG_Play
+	LD		BC,#7F00+%10000000
+	OUT 	(C),C
+	ret
 
 ; /////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////
@@ -614,14 +609,17 @@ ret
 ; /////////////////////////////////////////////////////////////////////
 bank 3
 	ORG PLAYER_ADR_RAM
-		include"Goldorak_musiques_playerconfig.asm"
+		include"Goldorak_musiques2024_playerconfig.asm"
+		; include"Goldorak_musiques_playerconfig.asm"
 		include"PlayerAkg.asm"						; #0d54 de longueur
  ; La configuration n'est pas obligatoire, mais elle permet
         ; de réduire la taille du binaire produit (ici 1.6K au lieu de 1.8K)
 	;ORG #cc60
 	ORG MUSIC_ADR_RAM
 		Music
-			include"Goldorak_musiques.asm"
+			; include"Goldorak_musiques.asm"
+			include"Goldorak_musiques2024.asm"
 		SoundEffects
-			include"Goldorak_soundeffects.asm"
+			; include"Goldorak_soundeffects.asm"
+			include "Goldorak_SoundFX.asm"
 

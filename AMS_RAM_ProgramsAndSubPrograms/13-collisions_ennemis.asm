@@ -195,10 +195,12 @@ goldorak_touche
 	ld		(#6420),hl
 	rst		ASIC_DECONNEXION
 	call	fin_armes
+
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-    ld 		c,2 					;channel (0-2)
+    ld 		c,0 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
+
 	ld		a,(id_soucoupe)
 	cp		a,1
 	jp		z,init_mort_soucoupe1
@@ -601,10 +603,13 @@ goldorak_prends_item
 	ld		a,1
 	ld		(id_joueur),a
 	;prends_item_J1ouJ2
+
 	ld		a,SFX_GET_ITEM
-	ld 		c,0 					;channel (0-2)
+	ld 		c,2 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
+
+
 	ld		a,(id_soucoupe)
 	cp		a,1
 	jr		z,prends_item_soucoupe1
@@ -913,8 +918,8 @@ goldorak_percute
 	ld		hl,COULEUR_DEGAT_BORDER_J1
 	ld		(#6420),hl
 	rst		ASIC_DECONNEXION
-	ld		a,SFX_HIT
-	ld 		c,0 					;channel (0-2)
+	ld		a,SFX_DAMMAGE
+	ld 		c,2					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 	ld		c,BANK_ROM_2

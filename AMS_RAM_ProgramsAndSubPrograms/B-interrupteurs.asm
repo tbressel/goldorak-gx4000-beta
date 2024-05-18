@@ -56,6 +56,8 @@ music_on
 	ld		(event_play_music),a
 	ld		hl,PLY_AKG_Play
 	ld		(event_play_music+1),hl
+	ld		a,1
+	ld		(isMusicOn),a
 	ret
 
 music_off
@@ -64,14 +66,18 @@ music_off
 	ld		(event_play_music),a
 	ld		(event_play_music+1),a
 	ld		(event_play_music+2),a
+	xor		a
+	ld		(isMusicOn),a
 	ret	
 
 	
+
 music_on_off
 	ld 		hl,Music
-	ld  	a,6
+	ld  	a,LEVEL_7
 	call 	PLY_AKG_Init
 	jp		retour_test_de_CPC_plus
+
 
 
 

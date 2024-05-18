@@ -204,8 +204,8 @@ Explose_Golgoth
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -619,8 +619,8 @@ Explose_Golgoth3
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -977,8 +977,8 @@ Explose_Golgoth4
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -1396,8 +1396,8 @@ Explose_Golgoth5
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -1840,8 +1840,8 @@ Explose_Golgoth6
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -2192,8 +2192,8 @@ Explose_Golgoth7
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
@@ -2472,8 +2472,8 @@ Explose_Golgoth8
 					inc		c
 					inc		c
 					exx
-					ld 		a,SFX_BOOM	;Sound effect number (>=1)
-					ld 		c,2 					;channel (0-2)
+					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
+					ld 		c,0 					;channel (0-2)
 					ld 		b,0 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION

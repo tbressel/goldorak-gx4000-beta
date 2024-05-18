@@ -11,13 +11,13 @@ missiles_gamma1_ROM
 	add 	hl,de
 	ld 		(SPRH5_X),hl						; on calcule le 2eme sprite par rapport au 1er
 	ld		hl,(SPRH0_Y)
-		ld	de,6	
-		add hl,de
+	ld	de,6	
+	add hl,de
 	ld		(SPRH4_Y),hl	
 	ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_1
-		ld (SPRH4_ZOOM),a
-		ld	(SPRH5_ZOOM),a
+	ld (SPRH4_ZOOM),a
+	ld	(SPRH5_ZOOM),a
 	ld		(valeur_zoom_sprh4),a 
 	ld (valeur_zoom_sprh5),a 
 	
@@ -65,7 +65,7 @@ fin_missiles_gamma
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
 	
-	ld 		c,1   ;Channel (0-2)
+	ld 		c,0   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret
 	

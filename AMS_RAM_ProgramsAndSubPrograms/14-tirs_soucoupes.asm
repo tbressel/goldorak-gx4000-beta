@@ -1,4 +1,7 @@
 tir_ennemis_4
+
+
+
 rst		ASIC_CONNEXION
 	ld		a,(EtpTirEnnemis_4)
 	cp		a,0
@@ -70,6 +73,7 @@ rst		ASIC_CONNEXION
 ; ////////////////////////////////////////////////////////////////////////////////////////////////									
 									
 tir_ennemis_1
+
 rst		ASIC_CONNEXION
 	ld		a,(EtpTirEnnemis_1)
 	cp		a,0

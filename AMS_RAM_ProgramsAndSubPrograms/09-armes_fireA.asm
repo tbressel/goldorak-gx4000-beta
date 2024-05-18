@@ -14,7 +14,7 @@ fireA
 	bit		5,a
 	jp		z,Init_Retournement
 	
-	ld 		a,SFX_ATTACK	 ;Sound effect number (>=1)
+	ld		a,(sfx_arme)
     ld 		c,1 ;channel (0-2)
     ld 		b,0 ;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
@@ -54,6 +54,10 @@ arme_missiles_gamma_test
 	cp	a,2
 	jp	z,arme_missiles_gamma_pow3
 arme_missiles_gamma
+
+	ld 		a,SFX_GAMMA_LVL1	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme2)
 	cp		a,0
@@ -84,6 +88,9 @@ init_missiles_gamma
 	RST		ASIC_DECONNEXION
 	xor  	a
 	ld		(anim_arme_a_charger),a
+
+
+	
 	jp 		retour_test_des_tirs
 missiles_gamma1
 	ld		c,BANK_ROM_2
@@ -107,6 +114,9 @@ missiles_gamma2
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
 arme_missiles_gamma_pow2
+
+	ld 		a,SFX_GAMMA_LVL2	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme2)
 	cp		a,0
@@ -159,6 +169,8 @@ missiles_gamma_pow22
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
 arme_missiles_gamma_pow3
+	ld 		a,SFX_GAMMA_LVL3	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme2)
 	cp		a,0
@@ -215,6 +227,9 @@ missiles_gamma_pow32
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
 arme_planitron
+	ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme3)
 	cp		a,0
@@ -374,6 +389,9 @@ fin_planitron
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
 arme_planitron2
+
+	ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
 
 	ld		a,(etp_arme4)
@@ -542,6 +560,11 @@ arme_cornofulgure
 	jp	z,arme_cornofulgure3
 
 arme_cornofulgure1
+
+	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
+
 	RST		ASIC_CONNEXION
 
 	ld		a,(etp_arme1)
@@ -635,6 +658,9 @@ cornofulgure_fin
 
 ; //////////////       CORNOFULGURE (Puissance 2)       ////////////////////
 arme_cornofulgure2	
+
+	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
 	
 	ld		a,(etp_arme1)
@@ -708,6 +734,9 @@ cornofulgure_finb
 
 ; //////////////       CORNOFULGURE (Puissance 3)       ////////////////////
 arme_cornofulgure3	
+
+	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
 	RST		#18
 	;RST		#18
 	ld		a,(etp_arme1)
@@ -836,6 +865,10 @@ aucune_arme
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 arme_fulguro_poing
+
+	ld 		a,SFX_FULGORO_POINT	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
 	RST		ASIC_CONNEXION
 	;RST		#18
 	ld		a,(etp_arme6)
@@ -923,6 +956,11 @@ fulguro_poing_fin
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
 arme_clavicogyres
+
+	ld 		a,SFX_CLAVICOGYRE	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
+
 	RST		ASIC_CONNEXION
 	;RST		#18
 	ld		a,(etp_arme7)

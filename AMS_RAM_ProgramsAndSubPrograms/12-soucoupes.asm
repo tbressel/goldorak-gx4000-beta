@@ -28,6 +28,8 @@ soucoupe_1
 			ld		(event_tir_ennemis_1),a
 			ld		hl,tir_ennemis_1
 			ld		(event_tir_ennemis_1+1),hl
+
+
 				saute_soucoupe1	
 					RST		ASIC_CONNEXION
 				; on recupère l'identité du joueur qui et lié à cette soucoupe
@@ -148,6 +150,7 @@ soucoupe_4
 			ld		(event_tir_ennemis_4),a
 			ld		hl,tir_ennemis_4
 			ld		(event_tir_ennemis_4+1),hl
+
 			
 				saute_soucoupe4
 					RST		ASIC_CONNEXION

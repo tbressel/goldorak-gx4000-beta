@@ -568,7 +568,7 @@ tiny_goldorak_boom
 	ld		hl,goldorak_boom
 	ld		(event_goldorak_boom+1),hl
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-    ld 		c,2 					;channel (0-2)
+    ld 		c,0 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 	ret
@@ -671,7 +671,7 @@ normal_goldorak_boom_init
 	
 	
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-    ld 		c,2 					;channel (0-2)
+    ld 		c,0					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 	ret

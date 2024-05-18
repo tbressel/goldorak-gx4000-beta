@@ -12,6 +12,8 @@ resultat_test_de_touche		ds		1,0
 resultat_test_de_touche_cpcplus		ds		1,0
 
 no_de_la_musique		ds			1,0
+isMusicOn			ds			1,0	
+
 
 bank_level					ds		2,0
 bank_tileset				ds		2,0
@@ -446,10 +448,10 @@ MemoireTamponJoueur_1			ds			8*10,0
 
 
 
+sfx_arme						ds		1,0
 
-
- ArmesDisponible				db			%00000001
-;ArmesDisponible				db			%11111111
+; ArmesDisponible				db			%00000001
+ArmesDisponible				db			%11111111
 
 
 
