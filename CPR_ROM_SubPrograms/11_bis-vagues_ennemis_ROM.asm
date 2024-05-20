@@ -390,7 +390,7 @@ boss_de_fin_ROM
 			ld		(valeur_zoom_sprh8),a
 			ld		(valeur_zoom_sprh9),a
 			ld		hl,Music
-			ld		a,2
+			ld		a,MUSIC_BOSS
 			call	PLY_AKG_Init
 			
 			ld		hl,GOLGOTH1_SPRH_ADR_ROM+#400
@@ -473,7 +473,7 @@ boss_de_fin_ROM
 					ld		(valeur_zoom_sprh8),a
 					ld		(valeur_zoom_sprh9),a
 					ld		hl,Music
-					ld		a,2
+					ld		a,MUSIC_BOSS
 					call	PLY_AKG_Init			
 					ld		hl,GOLGOTH2_SPRH_ADR_ROM+#400
 					ld		(Tbl_Golgoth_anim),hl
@@ -554,7 +554,7 @@ boss_de_fin_ROM
 							ld		(valeur_zoom_sprh11),a
 							ld		(valeur_zoom_sprh12),a
 							ld		hl,Music
-							ld		a,2
+							ld		a,MUSIC_BOSS
 							call	PLY_AKG_Init
 							ld		hl,Update_Golgoth3
 							ld		(PointeurUpdateGolgoth),hl	
@@ -621,7 +621,7 @@ boss_de_fin_ROM
 									ld		(valeur_zoom_sprh12),a
 									ld		(valeur_zoom_sprh13),a
 									ld		hl,Music
-									ld		a,2
+									ld		a,MUSIC_BOSS
 									call	PLY_AKG_Init
 					ld		hl,GOLGOTH4_SPRH_ADR_ROM_MARCHE			; +#200
 					ld		(GolgothAdrRom_MarcheG),hl
@@ -716,7 +716,7 @@ boss_de_fin_ROM
 											ld		(valeur_zoom_sprh11),a
 										
 											ld		hl,Music
-											ld		a,2
+											ld		a,MUSIC_BOSS
 											call	PLY_AKG_Init
 											
 											
@@ -799,7 +799,7 @@ boss_de_fin_ROM
 														ld		(valeur_zoom_sprh9),a
 														ld		(valeur_zoom_sprh10),a
 														ld		hl,Music
-														ld		a,2
+														ld		a,MUSIC_BOSS
 														call	PLY_AKG_Init
 														
 													
@@ -872,7 +872,7 @@ boss_de_fin_ROM
 																ld		(valeur_zoom_sprh10),a
 																ld		(valeur_zoom_sprh11),a
 																ld		hl,Music
-																ld		a,2
+																ld		a,MUSIC_BOSS
 																call	PLY_AKG_Init
 																ld		hl,Update_Golgoth7
 																ld		(PointeurUpdateGolgoth),hl
@@ -964,7 +964,7 @@ boss_de_fin_ROM
 																ld		(valeur_zoom_sprh12),a
 																ld		(valeur_zoom_sprh13),a
 																ld		hl,Music
-																ld		a,2
+																ld		a,MUSIC_BOSS
 																call	PLY_AKG_Init
 		
 																ld		hl,GOLGOTH8_SPRH_ADR_ROM_ANIM1_CORP

@@ -74,7 +74,7 @@ music_off
 
 music_on_off
 	ld 		hl,Music
-	ld  	a,LEVEL_7
+	ld  	a,MUCIS_NO_MUSIC
 	call 	PLY_AKG_Init
 	jp		retour_test_de_CPC_plus
 

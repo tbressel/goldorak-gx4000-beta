@@ -18,7 +18,7 @@ init_nouveau_level_ROM
 	jp		z,init_la_fin
 	init_level_2
 		ex		af,af'
-		ld		a,1
+		ld		a,MUSIC_LVL_2
 		ld		(automodif_music+1),a
 		ex		af,af'
 
@@ -53,7 +53,7 @@ init_nouveau_level_ROM
 
 		init_level_3
 			ex		af,af'
-			ld		a,3
+			ld		a,MUSIC_LVL_3
 			ld		(automodif_music+1),a
 			ex		af,af'
 
@@ -88,7 +88,7 @@ init_nouveau_level_ROM
 			
 			init_level_4
 				ex		af,af'
-				ld		a,4
+				ld		a,MUSIC_LVL_4
 				ld		(automodif_music+1),a
 				ex		af,af'		
 
@@ -124,7 +124,7 @@ init_nouveau_level_ROM
 				
 				init_level_5
 					ex		af,af'
-					ld		a,5
+					ld		a,MUSIC_LVL_5
 					ld		(automodif_music+1),a
 					ex		af,af'	
 					ld		hl,largeur_chiffre5
@@ -142,18 +142,18 @@ init_nouveau_level_ROM
 					ld		(pointeur_de_tile),hl
 					ld		hl,PALETTE_DECORS_LEVEL5
 					ld		(pallette_level),hl
-						ld		hl,TBL_VAGUES_LEVEL_5			; on lit l'adresse du tableau des vague de Level 1
-	ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
-	ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
-	inc		hl
-	ld		d,(hl)
-	ld	(Pointeur_TblNombreDeSoucoupes),de
-		ld		hl,TBL_TYPE_DE_SOUCOUPE_5
-	ld		(Pointeur_TblTypeDeSoucoupe),hl
+					ld		hl,TBL_VAGUES_LEVEL_5			; on lit l'adresse du tableau des vague de Level 1
+					ld		(pointeur_tbl_level),hl			; on stock l'adresse du pointeur
+					ld		e,(hl)							; on lit l'adresse contenu à l'adresse du pointeur
+					inc		hl
+					ld		d,(hl)
+					ld	(Pointeur_TblNombreDeSoucoupes),de
+					ld		hl,TBL_TYPE_DE_SOUCOUPE_5
+					ld		(Pointeur_TblTypeDeSoucoupe),hl
 					jp		suite_init_level
 					init_level_6	
 						ex		af,af'
-						ld		a,6
+						ld		a,MUSIC_LVL_6
 						ld		(automodif_music+1),a
 						ex		af,af'
 						ld		hl,largeur_chiffre6
@@ -182,7 +182,7 @@ init_nouveau_level_ROM
 						jp		suite_init_level
 						init_level_7
 							ex		af,af'
-							ld		a,0
+							ld		a,MUSIC_LVL_7
 							ld		(automodif_music+1),a
 							ex		af,af'	
 							ld		hl,largeur_chiffre7
@@ -211,7 +211,7 @@ init_nouveau_level_ROM
 							jp		suite_init_level
 							init_level_8
 								ex		af,af'
-								ld		a,1
+								ld		a,MUSIC_LVL_8
 								ld		(automodif_music+1),a
 								ex		af,af'	
 ; -----------------------------------------------------------------------------------------------

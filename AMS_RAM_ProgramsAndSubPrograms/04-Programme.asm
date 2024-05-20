@@ -429,7 +429,7 @@ reinit_music
 		call 	PLY_AKG_InitSoundEffects		
 		ld 		hl,Music         				; Initialisation
 automodif_music
-		ld		a,GOLDORAK_MAIN_THEME
+		ld		a,MUSIC_LVL_1	
 		call 	PLY_AKG_Init
 		call	music_on
 		ret
@@ -503,7 +503,7 @@ change_musique
 	ld		a,(no_de_la_musique)
 	inc		a
 	ld		(no_de_la_musique),a
-	cp		a,12
+	cp		a,MUCIS_NO_MUSIC
 	call	z,reinit_no_musique
 	call 	PLY_AKG_Init
 	call	music_on
@@ -548,7 +548,7 @@ Init_Game_Over
 	LD		BC,#7F00+%10001100
 	OUT 	(C),C
 	ld 		hl,Music         				; Initialisation
-	ld		a,GAME_IS_OVER
+	ld		a,MUSIC_GAME_OVER
 	call 	PLY_AKG_Init
 Boucle_Game_Over
  	ld    	b,#f5    			;adresse du port B du PPI
@@ -587,7 +587,7 @@ init_musique_boutique
 	LD		BC,#7F00+%10001100
 	OUT 	(C),C
 	ld 		hl,Music         				; Initialisation
-	ld		a,THE_CREDITS
+	ld		a,MUSIC_CREDITS
 	call 	PLY_AKG_Init
 	LD		BC,#7F00+%10000000
 	OUT 	(C),C

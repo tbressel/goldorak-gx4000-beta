@@ -381,6 +381,45 @@ TypeSoucoupeBleue6b
 	dw	deplace_soucoupe_BasGauche
 	dw	375,-40
 	dw  0
+
+
+
+TypeSoucoupeViolet1b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasDroite
+	dw	32,-40
+	dw	0
+TypeSoucoupeViolet2b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasDroite
+	dw	56,-40
+	dw  0
+TypeSoucoupeViolet3b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasDroite
+	dw	80,-40
+	dw  0
+TypeSoucoupeViolet4b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasGauche
+	dw	423,-40
+	dw	0
+TypeSoucoupeViolet5b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasGauche
+	dw	400,-40
+	dw  0
+TypeSoucoupeViolet6b
+	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_BasGauche
+	dw	375,-40
+	dw  0
 ; ///////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////
 ; /////////////////                               ///////////////////

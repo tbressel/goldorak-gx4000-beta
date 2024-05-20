@@ -25,4 +25,6 @@
 	PLY_CFG_SoftToHard_SoftwareArpeggio = 1
 	PLY_CFG_SoftToHard_SoftwarePitch = 1
 	PLY_CFG_UseEffect_PitchGlide = 1
+	PLY_CFG_UseEffect_PitchUp = 1
 	PLY_CFG_UseEffect_PitchDown = 1
+	PLY_CFG_UseEffect_SetVolume = 1
