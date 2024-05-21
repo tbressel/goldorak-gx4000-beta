@@ -277,7 +277,7 @@ soucoupe_6
 							ld		hl,(etp_soucoupe)
 							ld		(hl),a
 						; on reocpie le sprite de la ROM vers l'ASIC
-							ld		c,BANK10_SOUCOUPES_SPRH
+							ld		c,BANK11_SOUCOUPES_SPRH
 							RST 	UPPER_ROM_CONNEXION
 							ld		hl,(adr_soucoupe)
 							ld		de,(SPRH_ADR)

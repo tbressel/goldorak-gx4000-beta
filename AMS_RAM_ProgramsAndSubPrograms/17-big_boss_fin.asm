@@ -1,6 +1,6 @@
 big_boss_fin_level_4
 	call 	scrolling_off 
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
 	call	big_boss_fin_level_4_ROM
@@ -16,7 +16,7 @@ compteur_de_fin_fadein 	ds 		1,0
 fadein_counter			ds		1,0
 
 fondu_des_couleurs2
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
 	call	fondu_des_couleurs2_ROM
 	ret

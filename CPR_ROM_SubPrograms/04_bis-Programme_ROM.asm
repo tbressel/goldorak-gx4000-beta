@@ -1,5 +1,11 @@
  org #c000
 
+
+include		"09_bis-armes_fireA_ROM.asm"
+include		"11_bis-vagues_ennemis_ROM.asm"
+include		"19_bis-golgoths_ROM.asm"
+include		"19_bis-bis-missiles_ROM.asm"
+
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////     GESTION POWERUP  //////////////////
@@ -143,7 +149,6 @@ db	HUD_POWERUP_PIXEL_JAUNE,HUD_POWERUP_PIXEL_ORANGE
 
 
 dec_PowerUpbar
-
 ; compteur de frame pour la vitesse à laquelle descends le power up
 	ld		a,(CompteurFramePowerUp)
 	inc		a
@@ -255,14 +260,8 @@ fin_missiles_gamma2
 
 
 
-include		"09_bis-armes_fireA_ROM.asm"
 
-include		"11_bis-vagues_ennemis_ROM.asm"
 
-include		"18_bis-mouvements_soucoupes_ROM.asm"
-include		"19_bis-golgoths_ROM.asm"
-include		"19_bis-bis-missiles_ROM.asm"
-include		"17_bigboss_fin_ROM.asm"
 
 
 ; ///////////////////////////////////////////////////////////////////
@@ -272,6 +271,13 @@ include		"17_bigboss_fin_ROM.asm"
 ; /////////////////                               ///////////////////
 ; ///////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////
+TypeSoucoupeVerte1t
+	dw	SOUCOUPE_QUI_TOURNE_HAUT_SPRH_ROM_ADR
+	db	PV_SOUCOUPE_VIOLETTE
+	dw	deplace_soucoupe_TourneDroite
+	dw	32,220
+	dw	0
+
 TypeSoucoupeVerte1b
 	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR
 	db	PV_SOUCOUPE_VERTE
@@ -888,72 +894,6 @@ TypeSoucoupeViolette6zv
 
 
 
-; ///////////////////////////////////////////////////////////////////
-; ///////////////////////////////////////////////////////////////////
-; /////////////////                               ///////////////////
-; /////////////////        VAGUE DE TYPE 3        ///////////////////
-; /////////////////                               ///////////////////
-; ///////////////////////////////////////////////////////////////////
-; ///////////////////////////////////////////////////////////////////
-; TypeSoucoupeVerte1C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	32,-40
-; 	dw	TBL_DEPLACEMENT_ZigzagVertiBas
-; TypeSoucoupeVerte2C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	56,-40
-; 	dw  TBL_DEPLACEMENT_ZigzagVertiBas
-; TypeSoucoupeVerte3C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	80,-40
-; 	dw  TBL_DEPLACEMENT_ZigzagVertiBas
-; TypeSoucoupeVerte4C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	323,-40
-; 	dw	TBL_DEPLACEMENT_ZigzagVertiBas
-; TypeSoucoupeVerte5C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	300,-40
-; 	dw  TBL_DEPLACEMENT_ZigzagVertiBas
-; TypeSoucoupeVerte6C
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_ZigzagVertiBas
-; 	dw	275,-40
-; 	dw  TBL_DEPLACEMENT_ZigzagVertiBas
-
-
-; TypeSoucoupeOrange
-; 	dw	SOUCOUPE_ORANGE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_ORANGE
-; 	dw	deplace_soucoupe_BasGauche
-; 	dw	423,-40
-; 	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
-
-; TypeSoucoupeBleue
-; 	dw	SOUCOUPE_BLEUE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_BLEUE
-; 	dw	deplace_soucoupe_BasGauche
-; 	dw	400,-40
-; 	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
-
-; TypeSoucoupeViolette
-; 	dw	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR
-; 	db	PV_SOUCOUPE_VIOLETTE
-; 	dw	deplace_soucoupe_BasGauche
-; 	dw	375,-40
-; 	dw  TBL_DEPLACEMENT_HorizVertiBasDroite
-
 
 ; /////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////
@@ -963,7 +903,8 @@ TypeSoucoupeViolette6zv
 
 ; à l'interieur de soucoupe 1 à 6 ON CHOISIT LE TYPE DE SOUCOUPE
 TBL_TYPE_DE_SOUCOUPE_1
-	dw		TypeSoucoupeVerte2b
+	dw		TypeSoucoupeVerte1t
+	; dw		TypeSoucoupeVerte2b
 	dw		TypeSoucoupeVerte5hvb
 	
 	dw		TypeSoucoupeVerte1b,TypeSoucoupeVerte4dvb
@@ -989,8 +930,6 @@ TBL_TYPE_DE_SOUCOUPE_1
 
 	dw		TypeSoucoupeVerte3b,TypeSoucoupeVerte5zv,TypeSoucoupeVerte6b
 	dw		TypeSoucoupeVerte1hvb,TypeSoucoupeVerte2dvb,TypeSoucoupeVerte4hvb
-; ------------------------------------------------------------------------------------------------------------------------------
-; ------------------------------------------------------------------------------------------------------------------------------
 
 TBL_TYPE_DE_SOUCOUPE_2
 	dw		TypeSoucoupeVerte2zv,TypeSoucoupeVerte3b
@@ -1020,9 +959,7 @@ TBL_TYPE_DE_SOUCOUPE_2
 	dw		TypeSoucoupeVerte2b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv
 	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3b,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	
-; ------------------------------------------------------------------------------------------------------------------------------
 TBL_TYPE_DE_SOUCOUPE_3
-; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeOrange2b
 	dw		TypeSoucoupeOrange5hvb
 	
@@ -1058,10 +995,7 @@ TBL_TYPE_DE_SOUCOUPE_3
 	dw		TypeSoucoupeOrange3b,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6b
 	dw		TypeSoucoupeOrange1hvb,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange4hvb
 
-
-
  TBL_TYPE_DE_SOUCOUPE_4
-; ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeBleue1zv,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange3hvb
 	dw		TypeSoucoupeOrange4dvb,TypeSoucoupeBleue5b,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5zv
@@ -1103,10 +1037,8 @@ TBL_TYPE_DE_SOUCOUPE_3
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange2b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
-; 	; ------------------------------------------------------------------------------------------------------------------------------
 
  TBL_TYPE_DE_SOUCOUPE_5
-; ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeBleue1zv,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange3hvb
 	dw		TypeSoucoupeOrange4dvb,TypeSoucoupeBleue5b,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5zv
@@ -1148,10 +1080,8 @@ TBL_TYPE_DE_SOUCOUPE_3
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange2b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
-; 	; ------------------------------------------------------------------------------------------------------------------------------
 
  TBL_TYPE_DE_SOUCOUPE_6
-; ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeBleue1zv,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange3hvb
 	dw		TypeSoucoupeOrange4dvb,TypeSoucoupeBleue5b,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5zv
@@ -1193,10 +1123,8 @@ TBL_TYPE_DE_SOUCOUPE_3
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange2b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
-; 	; ------------------------------------------------------------------------------------------------------------------------------
 
  TBL_TYPE_DE_SOUCOUPE_7
-; ; ------------------------------------------------------------------------------------------------------------------------------
 	dw		TypeSoucoupeBleue1zv,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange3hvb
 	dw		TypeSoucoupeOrange4dvb,TypeSoucoupeBleue5b,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5zv
@@ -1238,20 +1166,49 @@ TBL_TYPE_DE_SOUCOUPE_3
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 	dw		TypeSoucoupeOrange2b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
-; 	; ------------------------------------------------------------------------------------------------------------------------------
 
  TBL_TYPE_DE_SOUCOUPE_8
-; ; ------------------------------------------------------------------------------------------------------------------------------
-; 	dw		TypeSoucoupeVerte2b
-; 	dw		TypeSoucoupeVerte5b
-; 	dw		TypeSoucoupeVerte1hvb,TypeSoucoupeVerte4hvb
-; 	dw		TypeSoucoupeVerte3dvb,TypeSoucoupeVerte6dvb
-; 	dw		TypeSoucoupeVerte2b
-; 	dw		TypeSoucoupeVerte5b
-; 	dw		TypeSoucoupeVerte1hvb,TypeSoucoupeVerte4hvb
-; 	dw		TypeSoucoupeVerte3dvb,TypeSoucoupeVerte6dvb
-; 	dw		TypeSoucoupeVerte3dvb,TypeSoucoupeVerte6dvb
-; 	; ------------------------------------------------------------------------------------------------------------------------------
+	dw		TypeSoucoupeBleue1zv,TypeSoucoupeOrange2dvb,TypeSoucoupeOrange3hvb
+	dw		TypeSoucoupeOrange4dvb,TypeSoucoupeBleue5b,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5zv
+	dw		TypeSoucoupeOrange2b,TypeSoucoupeBleue4dvb,TypeSoucoupeOrange6hvb
+	dw		TypeSoucoupeBleue3hvb,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5hvb
+
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeBleue3dvb,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6hvb
+	dw		TypeSoucoupeVerte2dvb,TypeSoucoupeOrange4b,TypeSoucoupeBleue5hvb,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeVerte2hvb,TypeSoucoupeOrange3b,TypeSoucoupeBleue4dvb
+	dw		TypeSoucoupeOrange2hvb,TypeSoucoupeOrange3zv,TypeSoucoupeBleue4dvb,TypeSoucoupeOrange5b
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeBleue2hvb,TypeSoucoupeOrange4b,TypeSoucoupeVerte6dvb
+	dw		TypeSoucoupeBleue3zv,TypeSoucoupeOrange4b,TypeSoucoupeOrange5hvb,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeBleue2zv,TypeSoucoupeOrange5dvb,TypeSoucoupeOrange6hvb
+
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3hvb,TypeSoucoupeBleue5hvb
+	dw		TypeSoucoupeOrange3zv,TypeSoucoupeBleue4zv,TypeSoucoupeOrange5zv
+	dw		TypeSoucoupeBleue2b,TypeSoucoupeOrange4dvb,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1hvb,TypeSoucoupeBleue2hvb,TypeSoucoupeOrange5dvb
+
+	dw		TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeBleue6zv
+	dw		TypeSoucoupeBleue1b,TypeSoucoupeBleue2dvb,TypeSoucoupeOrange3dvb
+	dw		TypeSoucoupeBleue2b,TypeSoucoupeBleue3hvb,TypeSoucoupeBleue4hvb
+
+	dw		TypeSoucoupeOrange2zv,TypeSoucoupeOrange3b,TypeSoucoupeOrange4dvb,TypeSoucoupeVerte6b
+	dw		TypeSoucoupeOrange1dvb,TypeSoucoupeOrange2hvb,TypeSoucoupeOrange5dvb,TypeSoucoupeOrange6hvb
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange2dvb,TypeSoucoupeBleue3b,TypeSoucoupeOrange5dvb
+	dw		TypeSoucoupeOrange2hvb,TypeSoucoupeVerte4dvb,TypeSoucoupeOrange5hvb,TypeSoucoupeOrange6dvb
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange3b,TypeSoucoupeVerte4dvb,TypeSoucoupeOrange5hvb
+
+	dw		TypeSoucoupeOrange5dvb,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeVerte2dvb
+	
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3dvb,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6hvb
+	dw		TypeSoucoupeVerte2dvb,TypeSoucoupeOrange4b,TypeSoucoupeOrange5hvb,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeVerte2hvb,TypeSoucoupeOrange3b,TypeSoucoupeOrange4dvb
+	dw		TypeSoucoupeBleue2hvb,TypeSoucoupeOrange3zv,TypeSoucoupeVerte4zv,TypeSoucoupeOrange5b
+	dw		TypeSoucoupeOrange1zv,TypeSoucoupeOrange2zv,TypeSoucoupeOrange4b,TypeSoucoupeVerte6zv
+	dw		TypeSoucoupeOrange3zv,TypeSoucoupeOrange4b,TypeSoucoupeBleue5zv,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange3zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange1b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
+	dw		TypeSoucoupeOrange2b,TypeSoucoupeOrange4zv,TypeSoucoupeOrange5zv,TypeSoucoupeOrange6zv
 
 ; /////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////
@@ -1508,4 +1465,97 @@ dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
 
 
 
+ TBL_NBR_SOUCOUPES7
+dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+ 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague3s,vague3e,soucoupe_1,soucoupe_3,soucoupe_5,0
+ 	dw		vague4s,vague4e,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague5s,vague5e,soucoupe_3,soucoupe_4,soucoupe_5,0
+
+ 	dw		vague6s,vague6e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague7s,vague7e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,0
+ 	dw		vague9s,vague9e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague11s,vague11e,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_5,soucoupe_6,0
+
+	dw		vague13s,vague13e,soucoupe_1,soucoupe_3,soucoupe_5,0
+ 	dw		vague14s,vague14e,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague15s,vague15e,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague16s,vague16e,soucoupe_1,soucoupe_2,soucoupe_5,0
+
+	dw		vague17s,vague17e,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague18s,vague18e,soucoupe_1,soucoupe_2,soucoupe_3,0
+ 	dw		vague19s,vague19e,soucoupe_2,soucoupe_3,soucoupe_4,0
+
+ 	dw		vague20s,vague20e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_6,0
+ 	dw		vague21s,vague21e,soucoupe_1,soucoupe_2,soucoupe_5,soucoupe_6,0
+ 	dw		vague22s,vague22e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_5,0
+ 	dw		vague23s,vague23e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague24s,vague24e,soucoupe_1,soucoupe_3,soucoupe_4,soucoupe_5,0
+
+	dw		vague25s,vague25e,soucoupe_5,soucoupe_6,0
+ 	dw		vague26s,vague26e,soucoupe_1,soucoupe_2,0
+	
+ 	dw		vague27s,vague27e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague28s,vague28e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague29s,vague29e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,0
+ 	dw		vague30s,vague30e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague31s,vague31e,soucoupe_1,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague32s,vague32e,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague33s,vague33e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague34s,vague34e,soucoupe_1,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague35s,vague35e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague36s,vague36e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	
+	dw		#FFFF
+
+
+
+ TBL_NBR_SOUCOUPES8
+dw		vague1s,vague1e,soucoupe_1,soucoupe_2,soucoupe_3,0
+ 	dw		vague2s,vague2e,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague3s,vague3e,soucoupe_1,soucoupe_3,soucoupe_5,0
+ 	dw		vague4s,vague4e,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague5s,vague5e,soucoupe_3,soucoupe_4,soucoupe_5,0
+
+ 	dw		vague6s,vague6e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague7s,vague7e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague8s,vague8e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,0
+ 	dw		vague9s,vague9e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague10s,vague10e,soucoupe_1,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague11s,vague11e,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague12s,vague12e,soucoupe_1,soucoupe_2,soucoupe_5,soucoupe_6,0
+
+	dw		vague13s,vague13e,soucoupe_1,soucoupe_3,soucoupe_5,0
+ 	dw		vague14s,vague14e,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague15s,vague15e,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague16s,vague16e,soucoupe_1,soucoupe_2,soucoupe_5,0
+
+	dw		vague17s,vague17e,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague18s,vague18e,soucoupe_1,soucoupe_2,soucoupe_3,0
+ 	dw		vague19s,vague19e,soucoupe_2,soucoupe_3,soucoupe_4,0
+
+ 	dw		vague20s,vague20e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_6,0
+ 	dw		vague21s,vague21e,soucoupe_1,soucoupe_2,soucoupe_5,soucoupe_6,0
+ 	dw		vague22s,vague22e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_5,0
+ 	dw		vague23s,vague23e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague24s,vague24e,soucoupe_1,soucoupe_3,soucoupe_4,soucoupe_5,0
+
+	dw		vague25s,vague25e,soucoupe_5,soucoupe_6,0
+ 	dw		vague26s,vague26e,soucoupe_1,soucoupe_2,0
+	
+ 	dw		vague27s,vague27e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague28s,vague28e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague29s,vague29e,soucoupe_1,soucoupe_2,soucoupe_3,soucoupe_4,0
+ 	dw		vague30s,vague30e,soucoupe_2,soucoupe_3,soucoupe_4,soucoupe_5,0
+ 	dw		vague31s,vague31e,soucoupe_1,soucoupe_2,soucoupe_4,soucoupe_6,0
+ 	dw		vague32s,vague32e,soucoupe_3,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague33s,vague33e,soucoupe_1,soucoupe_3,soucoupe_5,soucoupe_6,0
+ 	dw		vague34s,vague34e,soucoupe_1,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague35s,vague35e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	dw		vague36s,vague36e,soucoupe_2,soucoupe_4,soucoupe_5,soucoupe_6,0
+ 	
+	dw		#FFFF
 

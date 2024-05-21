@@ -36,6 +36,7 @@ BANK8_PALETTES			= 		#DF00+#80+8
 BANK_GOLDORAK_SPRH		equ		#DF00+#80+9
 BANK9_GOLDORAK_SPRH		=		9
 BANK10_SOUCOUPES_SPRH	=		10
+BANK11_SOUCOUPES_SPRH	=		11
 BANK10_GOLGOTH_SPRH		=		10
 
 BANK10_GOLGOTH_TIRE_SPRH		=		10
@@ -394,7 +395,8 @@ FORCE_CLAVICOGYRES		= 6
 ; collision de goldorak avec les bords de l'écran
 collision_goldo_droite		equ	#0184
 collision_goldo_gauche		equ	#ff
-collision_goldo_bas			equ	#c5
+collision_goldo_bas			equ	#C3  ;#c5
+collision_goldo_bas2		equ	#C5
 collision_goldo_haut		equ	#1B
 
 ; identification des directions
@@ -448,25 +450,31 @@ SOUCOUPES_NBR_VARIABLE_TBL = 34
 
 
 
-	SOUCOUPE_VERTE_SPRH_ROM_ADR			equ		#E400
+	SOUCOUPE_VERTE_SPRH_ROM_ADR			equ		#D800
 	PV_SOUCOUPE_VERTE					equ		0		; simple soucoupe
 	TIR_SOUCOUPE_VERTE					equ		0
 
-	SOUCOUPE_ORANGE_SPRH_ROM_ADR		equ		#E500
+	SOUCOUPE_ORANGE_SPRH_ROM_ADR		equ		#D900
 	PV_SOUCOUPE_ORANGE					equ		2		; simple soucoupe
 	TIR_SOUCOUPE_ORANGE					equ		0
 	
-	SOUCOUPE_BLEUE_SPRH_ROM_ADR			equ		#E600
+	SOUCOUPE_BLEUE_SPRH_ROM_ADR			equ		#DA00
 	PV_SOUCOUPE_BLEUE					equ		3		; soucoupe qui tire
 	TIR_SOUCOUPE_BLEUE					equ		1
 
-	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR		equ		#E700
+	SOUCOUPE_VIOLETTE_SPRH_ROM_ADR		equ		#DB00
 	PV_SOUCOUPE_VIOLETTE				equ		4		; simple soucoupe
 	TIR_SOUCOUPE_VIOLETTE				equ		0
 	
-	SOUCOUPE_BLEUE_RAYEE_SPRH_ROM_ADR	equ		#E800
+	SOUCOUPE_BLEUE_RAYEE_SPRH_ROM_ADR	equ		#DC00
 	PV_SOUCOUPE_BLEUE_RAYEE				equ		5		; simple soucoupe
 	TIR_SOUCOUPE_BLEUE_RAYEE			equ		0
+
+	SOUCOUPE_QUI_TOURNE_HAUT_SPRH_ROM_ADR	equ		#D400
+	SOUCOUPE_QUI_TOURNE_BAS_SPRH_ROM_ADR	equ		#D000
+	PV_SOUCOUPE_QUI_TOURNE					equ		6		; simple soucoupe
+	TIR_SOUCOUPE_QUI_TOURNE					equ		0
+
 
 	TIR_SPRH_SOUCOUPES						equ		#FD00
 

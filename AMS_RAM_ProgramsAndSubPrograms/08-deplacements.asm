@@ -61,15 +61,20 @@ retour_charge_sprh_bas
 goldo_bas
 	ld		hl,(posy_goldorak)
 	inc 	hl:inc hl
+	inc 	hl:inc hl
 	ld		a,l
 	cp		a,collision_goldo_bas
+	call	z,stop_bas
+	cp		a,collision_goldo_bas2
 	call	z,stop_bas
 	ld 		(posy_goldorak),hl
 	call	goldo_affiche
 	ret
 stop_bas
 	dec		hl
-	dec hl
+	dec 	hl
+	dec		hl
+	dec 	hl
 	ret
 charge_sprh_bas
 	ld	a,1

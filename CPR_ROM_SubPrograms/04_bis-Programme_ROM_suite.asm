@@ -186,6 +186,8 @@ initialisation_du_jeu_ROM
 	include 	"10_bis-armes_fireB_ROM.asm"
 	include		"12_bis-soucoupes_ROM.asm"
 	include		"15_bis-gestion_du_hud_ROM.asm"
+	include		"17_bigboss_fin_ROM.asm"
+	include		"18_bis-mouvements_soucoupes_ROM.asm"
 
     
 

@@ -678,3 +678,67 @@ pop		bc
 	
 	ret
 	
+
+
+
+
+
+
+
+
+
+deplace_soucoupe_TourneGauche_ROM	
+deplace_soucoupe_TourneDroite_ROM
+; timer définit dans le tableau	
+	ld		hl,adr_timer_depart_soucoupe		; varable stockant l'adresse d'une autre variable
+	ld		e,(hl)								; on lit l'adresse contenu et la met dans DE
+	inc		hl
+	ld		d,(hl)
+	ld		a,(de)								; on recupère ce qu'elle contient
+	dec		a
+	ld		(de),a	
+	RET		NZ
+	inc		a
+	ld		(de),a
+; est ce que l'on est arrivé enbas de l'écran ?
+	ld		hl,(SPRH_Y)
+	inc		hl
+	ld		a,(hl)				; je recupere 240 dans A
+	cp		a,#FF
+	jr		z,premier_deplacement_TourneDroite
+	dec		hl
+	ld		a,(hl)
+	ld		h,0
+	ld		l,a
+	ld		de,240				 
+	or		a
+	sbc		hl,de
+	jp		nc,pas_decollision_soucoupe
+premier_deplacement_TourneDroite
+	dec		hl
+	ld		a,(hl)
+	bit		7,a
+	call	z,reinit_poid_fort
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de					; on incremente de 2 octets
+	inc		de					; on repointe vers l'adresse ASIC de X
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+	
