@@ -93,6 +93,7 @@ init_missiles_gamma
 	
 	jp 		retour_test_des_tirs
 missiles_gamma1
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	rst		ASIC_CONNEXION
@@ -101,6 +102,7 @@ missiles_gamma1
 	RST		ASIC_DECONNEXION
 	ret
 missiles_gamma2
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
@@ -148,6 +150,7 @@ init_missiles_gamma_pow2
 	ld		(anim_arme_a_charger),a
 	jp 		retour_test_des_tirs
 missiles_gamma_pow21
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
@@ -156,6 +159,7 @@ missiles_gamma_pow21
 	RST		ASIC_DECONNEXION
 	ret
 missiles_gamma_pow22
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
@@ -202,6 +206,7 @@ init_missiles_gamma_pow3
 	ld		(anim_arme_a_charger),a
 	jp 		retour_test_des_tirs
 missiles_gamma_pow31
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	call	missiles_gamma_pow31_ROM
@@ -209,6 +214,7 @@ missiles_gamma_pow31
 	RST		ASIC_DECONNEXION
 	ret
 missiles_gamma_pow32
+	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	call	missiles_gamma_pow32_ROM

@@ -13,7 +13,7 @@
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
 score_items
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	score_items_ROM
 	call	rom_off	
@@ -27,7 +27,7 @@ score_items
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
 score_BOOM
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	score_BOOM_ROM
 	call	rom_off
@@ -290,9 +290,7 @@ boucle_nrj_bar
 
 
 inc_arme_power
-	; ld		a,(flag_mode_2_joueur)
-	; cp		a,1
-	; ret		z
+
 
 	xor		a
 	ld	(compteur_powerup_niv1),a
@@ -348,25 +346,6 @@ DiminuePowerUpBarre
 	RST		ASIC_CONNEXION
 	ret
 
-; /////////// TENTATIVE DE MISE EN PLACE DES BOMBES /////////////////
-boom_toutes_les_soucoupes
-;	ld	a,2
-;	ld	(etp_soucoupe1),a
-;	ld	(etp_soucoupe2),a
-;	ld	(etp_soucoupe3),a
-;	ld	(etp_soucoupe4),a
-;	ld	(etp_soucoupe5),a
-;	ld	(etp_soucoupe6),a
-;	ld	hl,BOOM_SPRH_ROM_ADR
-;	ld		(BoomSprhRomAdr),hl
-;	ld	a,1
-;	ld	(flag_bomb),a
-;	ld 		a,SFX_BOOM	
-;    ld 		c,2 					
-;    ld 		b,0 					
-;    call 	PLY_AKG_PlaySoundEffect
-	ret
-; /////////////////////////////////////////////////////////////////////	
 
 
 SauvegardeScores
@@ -374,10 +353,7 @@ SauvegardeScores
 	ld		hl,HUD_SCOREJ1_DIZAINE_DE_MILLIER_ADR
 	ld		de,MemoireTamponJoueur_1
 	ld		b,8	
-	; exx
-	; ld		hl,HUD_SCOREJ2_DIZAINE_DE_MILLIER_ADR
-	; ld		de,MemoireTamponJoueur_2
-	; exx
+
 .boucle
 	push	bc
 	
@@ -388,31 +364,14 @@ SauvegardeScores
 	ld		a,h
 	add		a,#8
 	ld		h,a
-	
-	; exx
-	; push	hl
-	; ld		bc,10
-	; LDIR
-	; pop		hl
-	; ld		a,h
-	; add		a,#8
-	; ld		h,a
-	; exx
-	
+
 	pop		bc
 	djnz	.boucle
 	ret
-
-
-
-	
 	
 AffichageScores
 	ld		hl,MemoireTamponJoueur_1
 	ld		de,SCORE_J1_SCR
-
-	
-	
 	ld		b,8
 .boucle
 	push	bc

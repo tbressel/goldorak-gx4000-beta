@@ -65,7 +65,7 @@ fin_missiles_gamma
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
 	
-	ld 		c,0   ;Channel (0-2)
+	ld 		c,2   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret
 	
@@ -138,7 +138,7 @@ fin_missiles_gamma_pow2
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
 
-	ld 		c,1   ;Channel (0-2)
+	ld 		c,2   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret	
 	
@@ -206,7 +206,7 @@ fin_missiles_gamma_pow3
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
 	
-	ld 		c,1   ;Channel (0-2)
+	ld 		c,2   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret	
 

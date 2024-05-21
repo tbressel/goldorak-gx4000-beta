@@ -283,7 +283,8 @@ soucoupe_6
 							ld		de,(SPRH_ADR)
 							ld		bc,#100
 							LDIR
-							ld		c,BANK_ROM_2
+							ld		c,BANK_ROM_18
+							; ld		c,BANK_ROM_2
 							RST 	UPPER_ROM_CONNEXION
 							call	init_soucoupe_ROM
 							call	rom_off
@@ -380,7 +381,8 @@ soucoupe_6
 															; RST 	UPPER_ROM_CONNEXION
 															; RST		ASIC_CONNEXION
 															
-															ld		c,BANK_ROM_2
+															ld		c,BANK_ROM_18
+															; ld		c,BANK_ROM_2
 															RST 	UPPER_ROM_CONNEXION
 															RST		ASIC_CONNEXION
 														; à partir d'ici on determine le type d'item à afficher ET aussi la valeur des poinbts de cet items	
@@ -475,7 +477,8 @@ soucoupe_attends_item
 	;call	test_collisions_venusiak_item2
 	ret
 		soucoupe_disparait
-			ld		c,BANK_ROM_2
+			ld		c,BANK_ROM_18
+			; ld		c,BANK_ROM_2
 			rst		UPPER_ROM_CONNEXION
 			call	soucoupe_disparait_ROM
 			call	rom_off

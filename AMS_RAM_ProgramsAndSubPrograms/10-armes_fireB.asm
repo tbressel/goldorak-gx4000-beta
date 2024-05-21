@@ -12,7 +12,7 @@ fireB
 			jp		z,fin_attente_fireB
 			jp		retour_test_des_tirs
 				fin_attente_fireB
-					ld		c,BANK_ROM_2
+					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	fin_attente_fireB_ROM
 					call	rom_off
@@ -48,7 +48,7 @@ pre_init_fulguro_poing
 		pre_anim_fulguro_poing
 			inc		a
 			ld		(etp_pre_poing),a
-			ld		c,BANK_ROM_2
+			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	pre_anim_fulguro_poing_ROM
 			call	rom_off
@@ -56,7 +56,7 @@ pre_init_fulguro_poing
 				pre_anim_fulguro_poing_2
 					inc		a
 					ld		(etp_pre_poing),a
-					ld		c,BANK_ROM_2
+					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	pre_anim_fulguro_poing_2_ROM
 					ld		c,BANK9_GOLDORAK_SPRH
@@ -78,7 +78,7 @@ pre_init_fulguro_poing
 							ret
 							
 pre_init_fulguro_poing_retour
-		ld		c,BANK_ROM_2
+		ld		c,BANK_ROM_18
 		rst		UPPER_ROM_CONNEXION
 		call	pre_init_fulguro_poing_retour_ROM
 		call	rom_off

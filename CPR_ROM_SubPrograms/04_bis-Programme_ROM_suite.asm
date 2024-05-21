@@ -179,7 +179,15 @@ initialisation_du_jeu_ROM
 
 	RET
 
-
+	include		"05_bis-Init_affichage_ROM.asm"
     include		"06_bis-Init_de_jeu_ROM.asm"
+	include		"07_bis-arrimage_ROM.asm"
+	
+	include 	"10_bis-armes_fireB_ROM.asm"
+	include		"12_bis-soucoupes_ROM.asm"
+	include		"15_bis-gestion_du_hud_ROM.asm"
 
     
+
+
+	

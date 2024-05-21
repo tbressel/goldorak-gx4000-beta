@@ -278,7 +278,7 @@ Asic OFF
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
 goldo_affiche
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
 	call	goldo_affiche_ROM
@@ -522,7 +522,7 @@ fondu_de_sortie
 	rst		ASIC_DECONNEXION
 	call	 SauvegardeScores
 
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
 	call	fondu_de_sortie_ROM
 	call	rom_off
