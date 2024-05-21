@@ -58,7 +58,7 @@ set_PowerUpBar
 
 			ld		b,3
 boucle_couleurs
-		; couleur 1
+		; couleur 1,2,3
 			ld		(hl),a
 			ld		a,8
 			add		a,h
@@ -67,20 +67,6 @@ boucle_couleurs
 			ld		a,(de)
 			dec 	b
 			jr		nz,boucle_couleurs
-		; ; couleur 2
-		; 	ld		(hl),a
-		; 	ld		a,8
-		; 	add		a,h
-		; 	ld		h,a
-		; 	inc		de
-		; 	ld		a,(de)
-		; ; couleur 3
-		; 	ld		(hl),a
-		; 	ld		a,8
-		; 	add		a,h
-		; 	ld		h,a
-		; 	inc		de
-		; 	ld		a,(de)
 		; couleur 4
 			ld		(hl),a
 
@@ -98,8 +84,8 @@ boucle_couleurs
 			ld		(etp_powerup),a
 
 
-			call	fin_missiles_gamma
-			call	rom_off
+			call	fin_missiles_gamma2
+			; call	rom_off
 			ld		a,FORCE_MISSILES_GAMMA2
 			ld		(points_attaque),a
 			ret
@@ -115,7 +101,7 @@ boucle_couleurs
 					push	de
 					ld		b,3
 				boucle_couleurs_2
-				; couleur 1
+				; couleur 1,2,3
 					ld		(hl),a
 					ld		a,8
 					add		a,h
@@ -124,20 +110,6 @@ boucle_couleurs
 					ld		a,(de)
 					dec 	b
 					jr		nz,boucle_couleurs_2
-				; ; couleur 2
-				; 	ld		(hl),a
-				; 	ld		a,8
-				; 	add		a,h
-				; 	ld		h,a
-				; 	inc		de
-				; 	ld		a,(de)
-				; ; couleur 3
-				; 	ld		(hl),a
-				; 	ld		a,8
-				; 	add		a,h
-				; 	ld		h,a
-				; 	inc		de
-				; 	ld		a,(de)
 				; couleur 4
 					ld		(hl),a
 
@@ -153,7 +125,7 @@ boucle_couleurs
 					ld		(PowerupBar_ECRAN),hl
 					ld		a,2
 					ld		(etp_powerup),a
-					call	fin_missiles_gamma
+					call	fin_missiles_gamma2
 					ld		a,FORCE_MISSILES_GAMMA3
 					ld		(points_attaque),a
 					ret
@@ -212,7 +184,7 @@ reinit_compteur_powerup_niv1
 	ld		(flag_PowerUP),a
 	inc		a
 	ld		(etp_powerup),a
-	call	fin_missiles_gamma
+	call	fin_missiles_gamma2
 	ld		a,FORCE_MISSILES_GAMMA
 	ld		(points_attaque),a
 	ret
@@ -248,7 +220,7 @@ reinit_compteur_powerup_niv2
 	ld		hl,#4970
 	ld		(PowerupBar_ECRAN),hl
 
-	call	fin_missiles_gamma
+	call	fin_missiles_gamma2
 	ld		a,1
 	ld		(flag_PowerUP),a
 
@@ -257,7 +229,28 @@ reinit_compteur_powerup_niv2
 	ret
 
 
-
+fin_missiles_gamma2
+	call 	ASIC_CONNEXION
+	xor		a
+	ld		(SPRH4_ZOOM),a
+	ld		(SPRH5_ZOOM),a
+	ld		(valeur_zoom_sprh4),a
+	ld 		(valeur_zoom_sprh5),a 
+	ld		(flag_fireA),a
+	ld		(etp_arme2),a
+	ld		(event_arme_fireA),a
+	ld		(event_arme_fireA+1),a
+	ld		(event_arme_fireA+2),a
+	ld		hl,SPRH_ARMES_GOLDORAK_CACHER
+	ld		(SPRH4_X),hl
+	ld		(SPRH4_Y),hl
+	ld		(SPRH5_X),hl
+	ld		(SPRH5_Y),hl
+	CALL	ASIC_DECONNEXION
+	ld 		c,2   ;Channel (0-2)
+	call 	PLY_AKG_StopSoundEffectFromChannel
+	ret
+	
 
 
 

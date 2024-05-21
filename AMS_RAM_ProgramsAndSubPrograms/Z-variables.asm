@@ -179,7 +179,7 @@ BoomSprhRomAdr				ds		 	2,0
 timer_BOOM					ds		1,0
 pts_BOOM					ds		2,0
 points_a_ajouter			ds		2,0
-flag_mode_2_joueur			ds		1,0
+; flag_mode_2_joueur			ds		1,0
 pointeur_tbl_regHUD			ds		2,0
 
 pointeur_chiffre_SCR		ds		2,0

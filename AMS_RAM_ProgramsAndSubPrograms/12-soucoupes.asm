@@ -419,8 +419,6 @@ soucoupe_6
 																		jr		z,item_20pts
 																		cp		a,ITEM_500_PTS
 																		jr		z,item_500pts
-																	;	cp		a,ITEM_BOMB
-																	;	jr		z,item_boum
 																		cp		a,ITEM_POWERUP
 																		jr		z,item_power
 																		ret
@@ -470,11 +468,9 @@ soucoupe_attends_item
 	ld		(posx_soucoupe),de
 	call	test_collisions_goldorak_item
 	call	test_collisions_goldorak_item2
-	ld		a,(flag_mode_2_joueur)
-	cp		a,1
-	ret		nz
-	;call	test_collisions_venusiak_item
-	;call	test_collisions_venusiak_item2
+	; ld		a,(flag_mode_2_joueur)
+	; cp		a,1
+	; ret		nz
 	ret
 		soucoupe_disparait
 			ld		c,BANK_ROM_18

@@ -558,7 +558,7 @@ test_collisions_goldorak_item
 												; on est sur le coin haut-droite
 	LD			de,(SPRH0_Y)					; à partir du coin haut-gauche du monstre
 	SBC			hl,de
-	Jr 			NC,goldorak_prends_item					; si hl>=de le flag C est à zero
+	jr 			NC,goldorak_prends_item					; si hl>=de le flag C est à zero
 		
 	RET	
 test_collisions_goldorak_item2
@@ -594,7 +594,7 @@ test_collisions_goldorak_item2
 											; on est sur le coin haut-droite
 	LD		de,(SPRH1_Y)					; à partir du coin haut-gauche du monstre
 	SBC		hl,de
-	Jr 		NC,goldorak_prends_item					; si hl>=de le flag C est à zero
+	jr 		NC,goldorak_prends_item					; si hl>=de le flag C est à zero
 		
 	RET	
 

@@ -536,42 +536,42 @@ fondu_de_sortie
 ; ///////////////////////////////////////////////////////////////////////	
 
 goldorak_explose
-	ld	a,(flag_mode_2_joueur)
-	cp	a,1
-	jp	z,tiny_goldorak_boom
-	cp	a,0
-	jp	z,normal_goldorak_boom_init
+	; ld	a,(flag_mode_2_joueur)
+	; cp	a,1
+	; jp	z,tiny_goldorak_boom
+	; cp	a,0
+	jp	normal_goldorak_boom_init
 
-tiny_goldorak_boom
-; test de l'initialisation de la destruction de goildorak
-	ld		a,(BoomGoldorakEtp)
-	cp		a,0
-	jp		nz,animation_goldorak_boom
-	inc		a
-	ld		(BoomGoldorakEtp),a
-	ld		a,1
-	ld		(GoldorakMort),a
-; configuration des variables pour l'envoie vers la routine principale
-	ld		hl,SPRH0_Y
-	ld		(SPRH_Y),hl
-	ld		hl,BOOM_SPRH_ROM_ADR
-	ld		(BoomGoldorakSprhRomAdr),hl
-	xor		a
-	ld		(BoomGoldorakTimerAdr),a
-; suppression du test de touche de goldorak
-	ld		(event_test_de_goldorak),a
-	ld		(event_test_de_goldorak+1),a
-	ld		(event_test_de_goldorak+2),a
-; creation de l'évenement goldorak boom	
-	ld		a,_CALL			; call
-	ld		(event_goldorak_boom),a
-	ld		hl,goldorak_boom
-	ld		(event_goldorak_boom+1),hl
-	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-    ld 		c,0 					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
-    call 	PLY_AKG_PlaySoundEffect
-	ret
+; tiny_goldorak_boom
+; ; test de l'initialisation de la destruction de goildorak
+; 	ld		a,(BoomGoldorakEtp)
+; 	cp		a,0
+; 	jp		nz,animation_goldorak_boom
+; 	inc		a
+; 	ld		(BoomGoldorakEtp),a
+; 	ld		a,1
+; 	ld		(GoldorakMort),a
+; ; configuration des variables pour l'envoie vers la routine principale
+; 	ld		hl,SPRH0_Y
+; 	ld		(SPRH_Y),hl
+; 	ld		hl,BOOM_SPRH_ROM_ADR
+; 	ld		(BoomGoldorakSprhRomAdr),hl
+; 	xor		a
+; 	ld		(BoomGoldorakTimerAdr),a
+; ; suppression du test de touche de goldorak
+; 	ld		(event_test_de_goldorak),a
+; 	ld		(event_test_de_goldorak+1),a
+; 	ld		(event_test_de_goldorak+2),a
+; ; creation de l'évenement goldorak boom	
+; 	ld		a,_CALL			; call
+; 	ld		(event_goldorak_boom),a
+; 	ld		hl,goldorak_boom
+; 	ld		(event_goldorak_boom+1),hl
+; 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
+;     ld 		c,0 					;channel (0-2)
+;     ld 		b,0 					;Inverted volume (0-16)
+;     call 	PLY_AKG_PlaySoundEffect
+; 	ret
 goldorak_boom
 	ld		a,(BoomGoldorakEtp)
 	cp		a,0
