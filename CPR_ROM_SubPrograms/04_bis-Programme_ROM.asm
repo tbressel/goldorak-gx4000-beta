@@ -272,11 +272,15 @@ fin_missiles_gamma2
 ; ///////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////
 TypeSoucoupeVerte1t
+	; dw	SOUCOUPE_QUI_TOURNE_BAS_SPRH_ROM_ADR
 	dw	SOUCOUPE_QUI_TOURNE_HAUT_SPRH_ROM_ADR
 	db	PV_SOUCOUPE_VIOLETTE
-	dw	deplace_soucoupe_TourneDroite
+	; dw	deplace_soucoupe_TourneDroite
+	dw	deplace_soucoupe_TourneGauche
+	; dw	400,220
 	dw	32,220
 	dw	0
+
 
 TypeSoucoupeVerte1b
 	dw	SOUCOUPE_VERTE_SPRH_ROM_ADR

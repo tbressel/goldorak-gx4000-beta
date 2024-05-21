@@ -688,6 +688,446 @@ pop		bc
 
 
 deplace_soucoupe_TourneGauche_ROM	
+; timer définit dans le tableau	
+	ld		hl,adr_timer_depart_soucoupe		; varable stockant l'adresse d'une autre variable
+	ld		e,(hl)								; on lit l'adresse contenu et la met dans DE
+	inc		hl
+	ld		d,(hl)
+	ld		a,(de)								; on recupère ce qu'elle contient
+	dec		a
+	ld		(de),a	
+	RET		NZ
+	inc		a
+	ld		(de),a
+; est ce que l'on est arrivé enbas de l'écran ?
+	ld		hl,(SPRH_Y)
+	inc		hl
+	ld		a,(hl)				; je recupere 240 dans A
+	cp		a,#FF
+	jr		z,premier_deplacement_TourneGauche
+	dec		hl
+	ld		a,(hl)
+	ld		h,0
+	ld		l,a
+	ld		de,240				 
+	or		a
+	sbc		hl,de
+	jp		nc,pas_decollision_soucoupe
+premier_deplacement_TourneGauche
+	dec		hl
+	ld		a,(hl)
+	bit		7,a
+	call	z,reinit_poid_fort
+
+
+	ld		hl,(SPRH_ADR)
+	ld		(adr_sprh_tourne_tg),hl
+
+
+; compteur du cycle de changement d'orientation de la soucoupe
+	ld 		a,(compteur_etape_orientation_soucoupe_tg)	
+	cp		a,0
+	jp		z,tourne_gauche_etape_1
+	cp		a,1
+	jp		z,tourne_gauche_etape_1b
+	cp		a,2
+	jp		z,tourne_gauche_etape_2 ; changement de sprite
+	cp		a,3
+	jp		z,tourne_gauche_etape_2b
+	cp		a,4
+	jp		z,tourne_gauche_etape_3 ; changement de sprite
+	cp		a,5
+	jp		z,tourne_gauche_etape_3b
+	cp		a,6
+	jp		z,tourne_gauche_etape_4 ; ; changement de sprite
+	cp		a,7
+	jp		z,tourne_gauche_etape_4b
+	cp		a,8
+	jp		z,tourne_gauche_etape_5 ; changement de sprite
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici la soucoupe prends la trajectoir vertical à 90°
+tourne_gauche_etape_1
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+	ret
+
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici la soucoupe amorce la prochaine trajectoir qui sera en pure diagonale
+tourne_gauche_etape_1b
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur une trajectoire à 45°
+tourne_gauche_etape_2
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	inc		de	: inc de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+
+
+
+
+
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on termine en tournant un peu moins
+tourne_gauche_etape_2b
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
+
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	inc		de	: inc de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de l'horizontal
+tourne_gauche_etape_3
+; calcule du déplacement en vertical vers le bas
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	inc		de	: inc de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de l'horizontal mais on descends un peut
+tourne_gauche_etape_3b
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	inc		de	: inc de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_gauche_etape_4
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	inc		de	: inc de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_gauche_etape_4b
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	inc		de	: inc de				; on incremente de 2 octets
+	inc		de	: inc de					; on repointe vers l'adresse ASIC de X
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_gauche_etape_5
+	ld		a,(compteur_cycle_orientation_soucoupe_tg)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_tg
+; calcule du déplacement en vertical vers le bas
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+	ret
+
+
+
+
+
+etape_suivante_orientation_soucoupe_tg
+	; on recupère le compteur d'orientation de la soucoupe 
+	; ce compteur correponds au cycle de chaque changement qui à lieu
+	; toutes les 7 fois
+	ld	a,(compteur_etape_orientation_soucoupe_tg)	
+	cp	a,NOMBRE_ETAPE_COUCOUPE_QUI_TOURNE
+	ret	z
+
+	cp	a,1
+	jr	z,soucoupe_tourne_sprh_suivant_tg
+	cp	a,3
+	jr	z,soucoupe_tourne_sprh_suivant_tg
+	cp	a,4
+	jr	z,soucoupe_tourne_sprh_suivant_tg
+	cp	a,5
+	jr	z,soucoupe_tourne_sprh_suivant_tg
+
+	; xor	a
+	; ld	(flag_tourne_sprh_next_tg),a
+
+fin_etape_tg
+	ld	a,(compteur_etape_orientation_soucoupe_tg)	
+	inc	a
+	ld	(compteur_etape_orientation_soucoupe_tg),a
+	
+	xor	a
+	ld	(compteur_cycle_orientation_soucoupe_tg),a
+	ret
+
+
+soucoupe_tourne_sprh_suivant_tg
+	ld	a,1
+	ld	(flag_tourne_sprh_next_tg),a
+
+	ld	hl,(adr_soucoupe_tourne_tg)
+	inc	h
+	ld	(adr_soucoupe_tourne_tg),hl
+
+	jr fin_etape_tg
+
+
+
+	VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE		=	8
+	NOMBRE_ETAPE_COUCOUPE_QUI_TOURNE			=	8
+
+
+
+
+
+
+
+
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+; ///////////////////////////////////////////////////////////////////////
+
+
+
+	
+
 deplace_soucoupe_TourneDroite_ROM
 ; timer définit dans le tableau	
 	ld		hl,adr_timer_depart_soucoupe		; varable stockant l'adresse d'une autre variable
@@ -719,19 +1159,84 @@ premier_deplacement_TourneDroite
 	ld		a,(hl)
 	bit		7,a
 	call	z,reinit_poid_fort
+
+
+	ld		hl,(SPRH_ADR)
+	ld		(adr_sprh_tourne_td),hl
+
+
+; compteur du cycle de changement d'orientation de la soucoupe
+	ld 		a,(compteur_etape_orientation_soucoupe_td)	
+	cp		a,0
+	jp		z,tourne_droite_etape_1
+	cp		a,1
+	jp		z,tourne_droite_etape_1b
+	cp		a,2
+	jp		z,tourne_droite_etape_2 ; changement de sprite
+	cp		a,3
+	jp		z,tourne_droite_etape_2b
+	cp		a,4
+	jp		z,tourne_droite_etape_3 ; changement de sprite
+	cp		a,5
+	jp		z,tourne_droite_etape_3b
+	cp		a,6
+	jp		z,tourne_droite_etape_4 ; ; changement de sprite
+	cp		a,7
+	jp		z,tourne_droite_etape_4b
+	cp		a,8
+	jp		z,tourne_droite_etape_5 ; changement de sprite
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici la soucoupe prends la trajectoir vertical à 90°
+tourne_droite_etape_1
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+; calcule du déplacement en vertical vers le haut
 	ld		hl,(SPRH_Y)
 	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
 	dec		(hl): dec (hl)
 	ld		e,(hl)
 	inc		hl
 	ld		d,(hl)
 	ld		(posy_soucoupe),de
+	ret
+
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici la soucoupe amorce la prochaine trajectoir qui sera en pure diagonale
+tourne_droite_etape_1b
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
 	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
 	ld		e,(hl)				; on prends sont octet on copie dans e
 	inc		hl					; on pointe à l'octet ASICsuivant
 	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
-	inc		de					; on incremente de 2 octets
-	inc		de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
 	ld		(hl),d
 	dec		hl
 	ld		(hl),e
@@ -741,4 +1246,294 @@ premier_deplacement_TourneDroite
 	ld		d,(hl)
 	ld		(posx_soucoupe),de
 	ret
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur une trajectoire à 45°
+tourne_droite_etape_2
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+
+
+
+
+
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on termine en tournant un peu moins
+tourne_droite_etape_2b
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+; calcule du déplacement en vertical vers le haut
+	ld		hl,(SPRH_Y)
+	dec		(hl):dec (hl)
+	dec		(hl): dec (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+; calcule de déplacement en horizontal
+
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de l'horizontal
+tourne_droite_etape_3
+; calcule du déplacement en vertical vers le bas
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de l'horizontal mais on descends un peut
+tourne_droite_etape_3b
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+
+
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_droite_etape_4
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	dec		de	: dec de
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_droite_etape_4b
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+
+; calcule de déplacement en horizontal
+	ld		hl,(SPRH_X)			; on recupère l'adr ASCI de X
+	ld		e,(hl)				; on prends sont octet on copie dans e
+	inc		hl					; on pointe à l'octet ASICsuivant
+	ld		d,(hl)				; que l'on stock dans D: DE contient les coordonnée X
+	dec		de	: dec de				; on decremente de 2 octets
+	dec		de	: dec de					; on repointe vers l'adresse ASIC de X
+	ld		(hl),d
+	dec		hl
+	ld		(hl),e
+	ld		hl,(SPRH_X)	
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posx_soucoupe),de
+	ret
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; //////////////////////////////////////////
+; Ici on est sur de la diagoanle à 45° vers le bas
+tourne_droite_etape_5
+	ld		a,(compteur_cycle_orientation_soucoupe_td)
+	inc		a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
+	cp		a,VITESSE_DEPLACEMENT_SOUCOUPE_QUI_TOURNE
+	call	z,etape_suivante_orientation_soucoupe_td
+; calcule du déplacement en vertical vers le bas
+	ld		hl,(SPRH_Y)
+	inc		(hl):inc (hl)
+	inc		(hl): inc (hl)
+	inc		(hl): inc (hl)
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(posy_soucoupe),de
+	ret
+
+
+
+
+
+etape_suivante_orientation_soucoupe_td
+	; on recupère le compteur d'orientation de la soucoupe 
+	; ce compteur correponds au cycle de chaque changement qui à lieu
+	; toutes les 7 fois
+	ld	a,(compteur_etape_orientation_soucoupe_td)	
+	cp	a,NOMBRE_ETAPE_COUCOUPE_QUI_TOURNE
+	ret	z
+
+	cp	a,1
+	jr	z,soucoupe_tourne_sprh_suivant_td
+	cp	a,3
+	jr	z,soucoupe_tourne_sprh_suivant_td
+	cp	a,4
+	jr	z,soucoupe_tourne_sprh_suivant_td
+	cp	a,5
+	jr	z,soucoupe_tourne_sprh_suivant_td
+
+	; xor	a
+	; ld	(flag_tourne_sprh_next_td),a
+
+fin_etape_td
+	ld	a,(compteur_etape_orientation_soucoupe_td)	
+	inc	a
+	ld	(compteur_etape_orientation_soucoupe_td),a
 	
+	xor	a
+	ld	(compteur_cycle_orientation_soucoupe_td),a
+	ret
+
+
+soucoupe_tourne_sprh_suivant_td
+	ld	a,1
+	ld	(flag_tourne_sprh_next_td),a
+
+	ld	hl,(adr_soucoupe_tourne_td)
+	dec	h
+	ld	(adr_soucoupe_tourne_td),hl
+
+	jr fin_etape_td
+

@@ -261,7 +261,11 @@ fin_de_la_vague_ROM
 	ldir
 	ld		hl,(pointeur_vague_fin)
 	ld		(Pointeur_TblNombreDeSoucoupes),hl
-	xor	a
+	xor		a
+	ld		(compteur_etape_orientation_soucoupe_tg),a
+	ld		(compteur_cycle_orientation_soucoupe_tg),a
+	ld		(compteur_etape_orientation_soucoupe_td),a
+	ld		(compteur_cycle_orientation_soucoupe_td),a
 	ld		(etp_soucoupe1),a
 	ld		(etp_soucoupe2),a
 	ld		(etp_soucoupe3),a

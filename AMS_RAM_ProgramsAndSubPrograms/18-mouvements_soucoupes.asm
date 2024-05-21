@@ -197,6 +197,21 @@ DB		6
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
 deplace_soucoupe_TourneDroite
+	ld		a,(flag_tourne_sprh_next_td)
+	cp		a,0
+	jr 		z,on_zap_update_tourne_td
+
+	CALL	ASIC_CONNEXION
+	ld		c,BANK11_SOUCOUPES_SPRH
+	RST 	UPPER_ROM_CONNEXION
+	ld		hl,(adr_soucoupe_tourne_td)
+	ld		de,(adr_sprh_tourne_td)
+	ld		bc,#100
+	LDIR
+	xor	a
+	ld	(flag_tourne_sprh_next_td),a
+
+on_zap_update_tourne_td
 	ld		c,BANK_ROM_18
 	RST 	UPPER_ROM_CONNEXION
 	call	deplace_soucoupe_TourneDroite_ROM
@@ -209,11 +224,6 @@ deplace_soucoupe_TourneDroite
 	jp		test_collisions_avec_les_ennemisD
 
 
-TBL_DEPLACEMENT_TourneDroite
-	; nombre de frame, distance X, distance Y
-db		30,6,4
-db		60,0,4
-
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
@@ -222,6 +232,21 @@ db		60,0,4
 ; //////////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////////
 deplace_soucoupe_TourneGauche
+	ld		a,(flag_tourne_sprh_next_tg)
+	cp		a,0
+	jr 		z,on_zap_update_tourne_tg
+
+	CALL	ASIC_CONNEXION
+	ld		c,BANK11_SOUCOUPES_SPRH
+	RST 	UPPER_ROM_CONNEXION
+	ld		hl,(adr_soucoupe_tourne_tg)
+	ld		de,(adr_sprh_tourne_tg)
+	ld		bc,#100
+	LDIR
+	xor	a
+	ld	(flag_tourne_sprh_next_tg),a
+
+on_zap_update_tourne_tg
 	ld		c,BANK_ROM_18
 	RST 	UPPER_ROM_CONNEXION
 	call	deplace_soucoupe_TourneGauche_ROM

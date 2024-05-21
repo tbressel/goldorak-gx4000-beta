@@ -144,6 +144,25 @@ Valeur_DeplacementSoucoupe4		ds		1,0
 Valeur_DeplacementSoucoupe5		ds		1,0
 Valeur_DeplacementSoucoupe6		ds		1,0
 	
+
+adr_sprh_tourne_tg					ds		2,0	
+adr_soucoupe_tourne_tg				ds		2,0
+flag_tourne_sprh_next_tg		ds		1,0
+compteur_etape_orientation_soucoupe_tg		ds	1,0
+compteur_cycle_orientation_soucoupe_tg	 	ds 	1,0
+
+
+
+
+adr_sprh_tourne_td					ds		2,0	
+adr_soucoupe_tourne_td				ds		2,0
+flag_tourne_sprh_next_td			ds		1,0
+compteur_etape_orientation_soucoupe_td		ds	1,0
+compteur_cycle_orientation_soucoupe_td	 	ds 	1,0
+
+
+
+
 vitesse_soucoupe		ds		1,0
 count_anim_soucoupe		ds		1,0
 pointeur_tbl_level		ds		2,0

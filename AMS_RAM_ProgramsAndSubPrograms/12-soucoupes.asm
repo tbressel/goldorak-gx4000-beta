@@ -44,6 +44,9 @@ soucoupe_1
 					ld		de,TBL_CONFIG_DES_SOUCOUPES
 					ld		bc,SOUCOUPES_NBR_VARIABLE_TBL
 					LDIR
+
+
+
 					ld		hl,TBL_CONFIG_DES_SOUCOUPES+28
 					ld		e,(hl)
 					inc		hl
@@ -60,6 +63,10 @@ soucoupe_2
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle cague
 	ld		hl,TblConfigSoucoupe2+7
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_tg),de
 	ld		hl,TblConfigSoucoupe2+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -178,6 +185,10 @@ soucoupe_5
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle cague
 	ld		hl,TblConfigSoucoupe5+7
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_td),de
 	ld		hl,TblConfigSoucoupe5+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -290,6 +301,7 @@ soucoupe_6
 							call	rom_off
 							ret
 								deplace_soucoupe
+								
 									jp		(hl)
 										explose_soucoupe
 										; elle se déplace quand même
