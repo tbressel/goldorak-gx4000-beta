@@ -1090,10 +1090,37 @@ soucoupe_tourne_sprh_suivant_tg
 	ld	a,1
 	ld	(flag_tourne_sprh_next_tg),a
 
-	ld	hl,(adr_soucoupe_tourne_tg)
-	inc	h
-	ld	(adr_soucoupe_tourne_tg),hl
 
+	ld	a,(id_soucoupe)
+	cp	a,1
+	jr	z,change_adr_soucoupe_tg1
+	cp	a,2
+	jr	z,change_adr_soucoupe_tg2
+	cp	a,3
+	jr	z,change_adr_soucoupe_tg3
+
+
+change_adr_soucoupe_tg1
+	ld	hl,(adr_soucoupe_tourne_tg1)
+	inc	h
+	ld	(adr_soucoupe_tourne_tg1),hl
+	ld	(adr_soucoupe_tourne_tg),hl
+	jr fin_etape_tg
+
+
+change_adr_soucoupe_tg2
+	ld	hl,(adr_soucoupe_tourne_tg2)
+	inc	h
+	ld	(adr_soucoupe_tourne_tg2),hl
+	ld	(adr_soucoupe_tourne_tg),hl
+	jr fin_etape_tg
+
+
+change_adr_soucoupe_tg3
+	ld	hl,(adr_soucoupe_tourne_tg3)
+	inc	h
+	ld	(adr_soucoupe_tourne_tg3),hl
+	ld	(adr_soucoupe_tourne_tg),hl
 	jr fin_etape_tg
 
 
@@ -1514,9 +1541,6 @@ etape_suivante_orientation_soucoupe_td
 	cp	a,5
 	jr	z,soucoupe_tourne_sprh_suivant_td
 
-	; xor	a
-	; ld	(flag_tourne_sprh_next_td),a
-
 fin_etape_td
 	ld	a,(compteur_etape_orientation_soucoupe_td)	
 	inc	a
@@ -1531,9 +1555,37 @@ soucoupe_tourne_sprh_suivant_td
 	ld	a,1
 	ld	(flag_tourne_sprh_next_td),a
 
-	ld	hl,(adr_soucoupe_tourne_td)
-	dec	h
-	ld	(adr_soucoupe_tourne_td),hl
 
+	ld	a,(id_soucoupe)
+	cp	a,4
+	jr	z,change_adr_soucoupe_td4
+	cp	a,5
+	jr	z,change_adr_soucoupe_td5
+	cp	a,6
+	jr	z,change_adr_soucoupe_td6
+
+
+change_adr_soucoupe_td4
+	ld	hl,(adr_soucoupe_tourne_td4)
+	dec	h
+	ld	(adr_soucoupe_tourne_td4),hl
+	ld	(adr_soucoupe_tourne_td),hl
+	
 	jr fin_etape_td
+
+change_adr_soucoupe_td5
+	ld	hl,(adr_soucoupe_tourne_td5)
+	dec	h
+	ld	(adr_soucoupe_tourne_td5),hl
+	ld	(adr_soucoupe_tourne_td),hl
+	jr fin_etape_td
+
+change_adr_soucoupe_td6
+	ld	hl,(adr_soucoupe_tourne_td6)
+	dec	h
+	ld	(adr_soucoupe_tourne_td6),hl
+	ld	(adr_soucoupe_tourne_td),hl
+	jr fin_etape_td
+
+
 

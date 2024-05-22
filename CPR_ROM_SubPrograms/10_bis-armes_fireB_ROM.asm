@@ -9,18 +9,18 @@ fin_attente_fireB_ROM
 	ld		a,(id_arme)
 	inc		a
 	ld		(id_arme),a
-	cp		a,1
+	cp		a,ID_MISSILES_GAMMA
 	jp		z,affiche_boutton_1			; missile gamma
-	cp		a,2
+	cp		a,ID_PLANITRON_TYPE_1
 	jp		z,affiche_boutton_2			; planitron
-	cp		a,3
+	cp		a,ID_PLANITRON_TYPE_2
 	jp		z,affiche_boutton_3			; planitron
-	cp		a,4
-	jp		z,affiche_boutton_4			; 
-	cp		a,5
-	jp		z,affiche_boutton_5			; cornofulgure
-	cp		a,6
-	jp		z,affiche_boutton_6			; fulguro point
+	cp		a,ID_CORNOFULGURE
+	jp		z,affiche_boutton_4			; cornofulgure
+	cp		a,ID_FULGUROPOING
+	jp		z,affiche_boutton_5			; fulguro point
+	cp		a,ID_CLAVICOGYRES
+	jp		z,affiche_boutton_6			; clavycogire
 	cp		a,7
 	jp		z,affiche_boutton_7			; clavycogire
 	cp		a,8
@@ -31,7 +31,7 @@ fin_attente_fireB_ROM
 		ld		a,(ArmesDisponible)
 		bit		0,a
 		jr		z,affiche_boutton_2
-		ld		a,1
+		ld		a,ID_MISSILES_GAMMA
 		ld		(id_arme),a
 		ld		hl,HUD_BOUTON_ON_ADR
 		ld		de,HUD_BOUTON1_ADR
@@ -46,7 +46,7 @@ fin_attente_fireB_ROM
 			ld		a,(ArmesDisponible)
 			bit		1,a
 			jr		z,affiche_boutton_3
-			ld		a,2
+			ld		a,ID_PLANITRON_TYPE_1
 			ld		(id_arme),a
 			ld		hl,HUD_BOUTON_ON_ADR
 			ld		de,HUD_BOUTON2_ADR
@@ -65,7 +65,7 @@ fin_attente_fireB_ROM
 				ld		a,(ArmesDisponible)
 				bit		2,a
 				jr		z,affiche_boutton_4
-				ld		a,3
+				ld		a,ID_PLANITRON_TYPE_2
 				ld		(id_arme),a
 				ld		hl,HUD_BOUTON_ON_ADR
 				ld		de,HUD_BOUTON3_ADR
@@ -84,7 +84,7 @@ fin_attente_fireB_ROM
 					ld		a,(ArmesDisponible)
 					bit		3,a
 					jr		z,affiche_boutton_5
-					ld		a,4
+					ld		a,ID_CORNOFULGURE
 					ld		(id_arme),a
 					ld		hl,HUD_BOUTON_ON_ADR
 					ld		de,HUD_BOUTON4_ADR
@@ -94,14 +94,18 @@ fin_attente_fireB_ROM
 					ld		de,HUD_BOUTON3_ADR
 					ld		b,HUD_HAUTEUR_BOUTTON
 					call	bcl_affiche_bouton
-					;ld		a,FORCE_PLANITRON_1
-					;ld		(points_attaque),a
+					ld		hl,arme_cornofulgure
+						; ld		hl,arme_cornofulgure2
+  						; ld		hl,arme_cornofulgure3
+					ld		(adr_type_arme),hl
+					ld		a,FORCE_CORNOFULGURE_1
+					ld		(points_attaque),a
 					ret
 					affiche_boutton_5	
 						ld		a,(ArmesDisponible)
 						bit		4,a
 						jr		z,affiche_boutton_6
-						ld		a,5
+						ld		a,ID_FULGUROPOING
 						ld		(id_arme),a
 						ld		hl,HUD_BOUTON_ON_ADR
 						ld		de,HUD_BOUTON5_ADR
@@ -111,19 +115,20 @@ fin_attente_fireB_ROM
 						ld		de,HUD_BOUTON4_ADR
 						ld		b,HUD_HAUTEUR_BOUTTON
 						call	bcl_affiche_bouton
-						ld		hl,arme_cornofulgure
-						; ld		hl,arme_cornofulgure2
-  						; ld		hl,arme_cornofulgure3
-
-						ld		(adr_type_arme),hl
-						ld		a,FORCE_CORNOFULGURE_1
-						ld		(points_attaque),a
-						ret
+						ld		hl,arme_fulguro_poing
+							ld		(adr_type_arme),hl
+							ld		a,_CALL
+							ld		(event_arme_fireB),a
+							ld		hl,pre_init_fulguro_poing
+							ld		(event_arme_fireB+1),hl
+							ld		a,FORCE_FULGURO_POINGS
+							ld		(points_attaque),a
+							ret
 						affiche_boutton_6
 							ld		a,(ArmesDisponible)
 							bit		5,a
 							jr		z,affiche_boutton_7
-							ld		a,6
+							ld		a,ID_CLAVICOGYRES
 							ld		(id_arme),a
 							ld		hl,HUD_BOUTON_ON_ADR
 							ld		de,HUD_BOUTON6_ADR
@@ -133,15 +138,13 @@ fin_attente_fireB_ROM
 							ld		de,HUD_BOUTON5_ADR
 							ld		b,HUD_HAUTEUR_BOUTTON
 							call	bcl_affiche_bouton
-							ld		hl,arme_fulguro_poing
-							ld		(adr_type_arme),hl
-							ld		a,_CALL
-							ld		(event_arme_fireB),a
-							ld		hl,pre_init_fulguro_poing
-							ld		(event_arme_fireB+1),hl
-							ld		a,FORCE_FULGURO_POINGS
-							ld		(points_attaque),a
-							ret
+								ld		a,_CALL
+								ld		(event_arme_fireB),a
+								ld		hl,pre_init_fulguro_poing_retour
+								ld		(event_arme_fireB+1),hl
+								ld		a,FORCE_CLAVICOGYRES
+								ld		(points_attaque),a
+								ret
 							affiche_boutton_7
 								ld		a,(ArmesDisponible)
 								bit		6,a
@@ -156,12 +159,6 @@ fin_attente_fireB_ROM
 								ld		de,HUD_BOUTON6_ADR
 								ld		b,HUD_HAUTEUR_BOUTTON
 								call	bcl_affiche_bouton
-								ld		a,_CALL
-								ld		(event_arme_fireB),a
-								ld		hl,pre_init_fulguro_poing_retour
-								ld		(event_arme_fireB+1),hl
-								ld		a,FORCE_CLAVICOGYRES
-								ld		(points_attaque),a
 								ret
 								affiche_boutton_8
 									ld		a,(ArmesDisponible)

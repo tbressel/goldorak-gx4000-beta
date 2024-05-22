@@ -483,9 +483,9 @@ rip_bigboss
 fin_armes
 	RST		ASIC_CONNEXION
 	ld		a,(id_arme)
-	cp		a,6
+	cp		a,ID_FULGUROPOING
 	jr		z,on_gere_fulguro_point
-	cp		a,7
+	cp		a,ID_CLAVICOGYRES
 	jr		z,on_gere_fulguro_point
 	xor		a
 	ld		(SPRH4_ZOOM),a

@@ -28,7 +28,7 @@ fin_de_la_vague
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 boss_de_fin
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	boss_de_fin_ROM
 	call	rom_off
@@ -40,7 +40,7 @@ boss_de_fin
 ; ////////////////////////////////////////////////////////////////////////////	
 golgoth_1
 	rst		ASIC_CONNEXION
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_1_ROM
 	call	rom_off
@@ -78,7 +78,7 @@ golgoth_1
 ; ////////////////////////////////////////////////////////////////////////////	
 missileG1_1
 	rst		ASIC_CONNEXION
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	missileG1_1_ROM
 	call	rom_off
@@ -86,7 +86,7 @@ missileG1_1
 	ret	
 		missileG1_2
 			rst		ASIC_CONNEXION
-			ld		c,BANK_ROM_2
+			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG1_2_ROM
 			call	rom_off
@@ -94,7 +94,7 @@ missileG1_1
 			ret	
 				missileG1_3
 					rst		ASIC_CONNEXION
-					ld		c,BANK_ROM_2
+					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG1_3_ROM
 					call	rom_off
@@ -102,7 +102,7 @@ missileG1_1
 					ret		
 						missileG1_4
 							rst		ASIC_CONNEXION
-							ld		c,BANK_ROM_2
+							ld		c,BANK_ROM_18
 							rst		UPPER_ROM_CONNEXION
 							call	missileG1_4_ROM
 							call	rom_off
@@ -179,7 +179,7 @@ Update_missileG1_1
 ; ////////////////////////////////////////////////////////////////////////////
 golgoth_2
 	rst		ASIC_CONNEXION
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_2_ROM
 	call	rom_off
@@ -217,7 +217,7 @@ golgoth_2
 ; ////////////////////////////////////////////////////////////////////////////	
 missileG2_1
 	rst		ASIC_CONNEXION
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	missileG2_1_ROM
 	call	rom_off
@@ -225,7 +225,7 @@ missileG2_1
 	ret		
 		missileG2_2
 			rst		ASIC_CONNEXION
-			ld		c,BANK_ROM_2
+			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG2_2_ROM
 			call	rom_off
@@ -233,7 +233,7 @@ missileG2_1
 			ret	
 				missileG2_3
 					rst		ASIC_CONNEXION
-					ld		c,BANK_ROM_2
+					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG2_3_ROM
 					call	rom_off
@@ -297,7 +297,7 @@ golgoth_3
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_3
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_3_ROM
 	call	rom_off
@@ -360,7 +360,7 @@ missileG3_1
 	cp		a,ouvert
 	ret		Z
 	rst		ASIC_CONNEXION
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	missileG3_1_ROM
 	call	rom_off
@@ -371,7 +371,7 @@ missileG3_1
 	cp		a,ouvert
 	ret		Z
 			rst		ASIC_CONNEXION
-			ld		c,BANK_ROM_2
+			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG3_2_ROM
 			call	rom_off
@@ -382,7 +382,7 @@ missileG3_1
 	cp		a,ouvert
 	ret		Z
 					rst		ASIC_CONNEXION
-					ld		c,BANK_ROM_2
+					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG3_3_ROM
 					call	rom_off
@@ -456,7 +456,7 @@ golgoth_4
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_4
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_4_ROM
 	call	rom_off
@@ -534,7 +534,7 @@ golgoth_5
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_5
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_5_ROM
 	call	rom_off
@@ -610,7 +610,7 @@ golgoth_5
 									LDIR	
 									jr		.zap_update
 								.Fin_Update	
-									ld		c,BANK_ROM_2
+									ld		c,BANK_ROM_18
 									rst		UPPER_ROM_CONNEXION		
 									call	Deplacement_Golgoth5							
 									jr		.zap_update
@@ -642,7 +642,7 @@ golgoth_6
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_6
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_6_ROM
 	call	rom_off
@@ -697,7 +697,7 @@ golgoth_7
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_7
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_7_ROM
 	call	rom_off
@@ -752,7 +752,7 @@ golgoth_8
 	ld		a,(EtpGolgoth)
 	cp		a,0
 	call	z,Init_Golgoth_8
-	ld		c,BANK_ROM_2
+	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_8_ROM
 	call	rom_off

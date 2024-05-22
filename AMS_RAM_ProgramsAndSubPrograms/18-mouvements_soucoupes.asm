@@ -259,13 +259,6 @@ on_zap_update_tourne_tg
 	jp		test_collisions_avec_les_ennemisD
 
 
-TBL_DEPLACEMENT_TourneGauche
-	; nombre de frame, distance X, distance Y
-db		30,6,4
-db		60,0,4
-
-
-
 
 
 

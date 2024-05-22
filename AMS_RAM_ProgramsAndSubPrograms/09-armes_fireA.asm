@@ -22,20 +22,20 @@ fireA
 	ld		a,(id_arme)
 	cp		a,0
 	jp		z,aucune_arme
-	cp		a,1
-	jp		z,arme_missiles_gamma_test
-	cp		a,2
+	cp		a,ID_MISSILES_GAMMA
+	jp		z,arme_missiles_gamma1
+	cp		a,ID_PLANITRON_TYPE_1
 	jp		z,arme_planitron
-	cp		a,3
+	cp		a,ID_PLANITRON_TYPE_2
 	jp		z,arme_planitron2
-	cp		a,4
-	jp		z,aucune_arme
-	cp		a,5
-	jp		z,arme_cornofulgure2
-	cp		a,6
+	cp		a,ID_CORNOFULGURE
+	jp		z,arme_cornofulgure
+	cp		a,ID_FULGUROPOING
 	jp		z,arme_fulguro_poing
-	cp		a,7
+	cp		a,ID_CLAVICOGYRES
 	jp		z,arme_clavicogyres
+	cp		a,7
+	jp		z,aucune_arme
 	cp		a,8
 	jp		z,aucune_arme
 
@@ -45,7 +45,7 @@ fireA
 ; //////////////       MISSILES GAMMA      ////////////////////
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////	
-arme_missiles_gamma_test
+arme_missiles_gamma1
 	ld	a,(flag_PowerUP)
 	cp	a,0
 	jp	z,arme_missiles_gamma

@@ -153,6 +153,12 @@ CURSOR_ORIGIN_Y = 70
 HAUTEUR_CASE	= 41
 
 
+
+
+
+
+
+
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////        MUSIQUE        //////////////////////
 ; //////////////////////////////////////////////////////////////////
@@ -358,27 +364,12 @@ sprh_fulguro_poing			equ	#ca00
 sprh_clavicogyres			equ	#fa00
 
 ; flag d'identification des amres
-id_missibles_gamma			equ		1
-id_missibles_gamma2			equ		2
-id_missibles_gamma3			equ		3
-
-id_planitron1				equ		4
-id_planitron2				equ		5
-id_planitron3				equ		6
-
-id_planitron21				equ		7
-id_planitron22				equ		8
-id_planitron23				equ		9
-
-id_bombe					equ		10
-
-id_cornofulgure1			equ		11
-id_cornofulgure2			equ		12
-id_cornofulgure3			equ		13
-
-id_fulguropoint				equ		14
-
-id_clavicogyres				equ		15
+ID_MISSILES_GAMMA			equ		1
+ID_PLANITRON_TYPE_1			equ		2
+ID_PLANITRON_TYPE_2			equ		3
+ID_CORNOFULGURE				equ		4
+ID_FULGUROPOING				equ		5
+ID_CLAVICOGYRES				equ		6
 
 ; degat instaurer par les armes de Goldorak
 ; constantes logé dans 'point_attaque'

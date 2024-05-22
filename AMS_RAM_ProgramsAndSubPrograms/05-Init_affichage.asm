@@ -447,7 +447,7 @@ automodif_srph_goldoD
 sprh_animations_arme
 	RST		ASIC_CONNEXION
 	ld		a,(id_arme)
-	cp		a,6
+	cp		a,ID_FULGUROPOING
 	call	z,les_poings_suivent
 	ld		a,(anim_arme_a_charger)
 	cp		a,0

@@ -6,6 +6,10 @@ soucoupe_1
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle Vague
 	ld		hl,TblConfigSoucoupe1+7
+	ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_tg1),de
 	ld		hl,TblConfigSoucoupe1+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -54,6 +58,11 @@ soucoupe_1
 					ex		hl,de
 					ld		a,(etp_soucoupe1)
 					jp		suite_test_soucoupes
+
+
+
+
+
 					
 soucoupe_2
 	ld		a,(etp_soucoupe2)
@@ -66,7 +75,7 @@ soucoupe_2
 	ld		e,(hl)
 	inc		hl
 	ld		d,(hl)
-	ld		(adr_soucoupe_tourne_tg),de
+	ld		(adr_soucoupe_tourne_tg2),de
 	ld		hl,TblConfigSoucoupe2+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -96,6 +105,11 @@ soucoupe_2
 			ex		hl,de
 			ld		a,(etp_soucoupe2)
 			jp		suite_test_soucoupes
+
+
+
+
+
 soucoupe_3
 ld		a,(etp_soucoupe3)
 	cp		a,0
@@ -104,6 +118,10 @@ ld		a,(etp_soucoupe3)
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle cague
 	ld		hl,TblConfigSoucoupe3+7
+		ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_tg3),de
 	ld		hl,TblConfigSoucoupe3+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -141,6 +159,10 @@ soucoupe_4
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle cague
 	ld		hl,TblConfigSoucoupe4+7
+			ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_td4),de
 	ld		hl,TblConfigSoucoupe4+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -188,7 +210,7 @@ soucoupe_5
 	ld		e,(hl)
 	inc		hl
 	ld		d,(hl)
-	ld		(adr_soucoupe_tourne_td),de
+	ld		(adr_soucoupe_tourne_td5),de
 	ld		hl,TblConfigSoucoupe5+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -226,6 +248,10 @@ soucoupe_6
 ; j'ai pas trouvé d'autre moyen d'indiquer les 2 adresse suivante qui sont normalement utile lors 
 ; de la création du'une nouvelle cague
 	ld		hl,TblConfigSoucoupe6+7
+			ld		e,(hl)
+	inc		hl
+	ld		d,(hl)
+	ld		(adr_soucoupe_tourne_td6),de
 	ld		hl,TblConfigSoucoupe6+27
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

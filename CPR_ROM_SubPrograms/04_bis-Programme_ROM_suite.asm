@@ -184,10 +184,705 @@ initialisation_du_jeu_ROM
 	include		"07_bis-arrimage_ROM.asm"
 	
 	include 	"10_bis-armes_fireB_ROM.asm"
+	; include		"11_bis-vagues_ennemis_ROM.asm"
 	include		"12_bis-soucoupes_ROM.asm"
 	include		"15_bis-gestion_du_hud_ROM.asm"
 	include		"17_bigboss_fin_ROM.asm"
 	include		"18_bis-mouvements_soucoupes_ROM.asm"
+	include		"19_bis-golgoths_ROM.asm"
+	include		"19_bis-bis-missiles_ROM.asm"
+
+	
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////	
+
+boss_de_fin_ROM
+	ld		a,1
+	ld		(flag_boss),a
+	ld		a,(level_en_cours)
+	cp		a,1
+	jp		z,Golgoth_Level_1
+	cp		a,2
+	jp		z,Golgoth_Level_2
+	cp		a,3
+	jp		z,Golgoth_Level_3
+	cp		a,4
+	jp		z,Golgoth_Level_4
+	cp		a,5
+	jp		z,Golgoth_Level_5
+	cp		a,6
+	jp		z,Golgoth_Level_6
+	cp		a,7
+	jp		z,Golgoth_Level_7
+	cp		a,8
+	jp		z,Golgoth_Level_8
+		Golgoth_Level_1
+			ld		a,_JP							; JP pas_de_scroll_hard
+			ld		(event_stop_scroll),a
+			ld		hl,pas_de_scroll_hard
+			ld		(event_stop_scroll+1),hl
+			ld		a,_CALL
+			ld		(event_golgoth),a
+			ld		hl,golgoth_1
+			ld		(event_golgoth+1),hl
+			ld		a,_CALL
+			ld		(event_golgoth+3),a
+			ld		hl,Update_Golgoth_1
+			ld		(event_golgoth+4),hl
+			ld		a,_CALL
+			ld		(event_golgoth+6),a
+			ld		hl,missileG1_1
+			ld		(event_golgoth+7),hl
+			ld		a,_CALL
+			ld		(event_golgoth+9),a
+			ld		hl,Update_missileG1_1
+			ld		(event_golgoth+10),hl
+			ld		a,_CALL
+			ld		(event_golgoth+12),a
+			ld		hl,missileG1_2
+			ld		(event_golgoth+13),hl
+			ld		a,_CALL
+			ld		(event_golgoth+15),a
+			ld		hl,Update_missileG1_2
+			ld		(event_golgoth+16),hl
+			ld		a,_CALL
+			ld		(event_golgoth+18),a
+			ld		hl,missileG1_3
+			ld		(event_golgoth+19),hl
+			ld		a,_CALL
+			ld		(event_golgoth+21),a
+			ld		hl,Update_missileG1_3
+			ld		(event_golgoth+22),hl	
+			ld		a,_CALL
+			ld		(event_golgoth+24),a
+			ld		hl,missileG1_4
+			ld		(event_golgoth+25),hl	
+			ld		a,_CALL
+			ld		(event_golgoth+27),a
+			ld		hl,Update_missileG1_4
+			ld		(event_golgoth+28),hl
+		
+			xor		a
+			ld		(EtpGolgoth),a
+			ld		a,7
+			ld		(id_soucoupe),a
+			ld		a,16
+			ld		(point_vie_golgoth),a
+			ld		hl,GOLGOTH1_SPRH_ADR_ROM
+			ld		(GolgothAdrRom),hl
+			ld		hl,SPRH6_ADR
+			ld		(GolgothSprh),hl
+			ld		hl,#400
+			ld		(GolgothLongeur),hl
+			ld		hl,Tbl_Gologoth1
+			ld		(Pointeur_TblGolgoth_1),hl
+			ld		hl,0
+			ld		(posX_Golgoth),hl
+			ld		hl,0
+			ld		(posY_Golgoth),hl
+			call	Update_Golgoth_after
+			ld		a,zoom_mode0_1
+			ld		(SPRH6_ZOOM),a
+			ld		(SPRH7_ZOOM),a
+			ld		(SPRH8_ZOOM),a
+			ld		(SPRH9_ZOOM),a
+			ld		(valeur_zoom_sprh6),a
+			ld		(valeur_zoom_sprh7),a
+			ld		(valeur_zoom_sprh8),a
+			ld		(valeur_zoom_sprh9),a
+			ld		hl,Music
+			ld		a,MUSIC_BOSS
+			call	PLY_AKG_Init
+			
+			ld		hl,GOLGOTH1_SPRH_ADR_ROM+#400
+			ld		(Tbl_Golgoth_anim),hl
+			ld		hl,GOLGOTH1_SPRH_ADR_ROM
+			ld		(Tbl_Golgoth_anim+2),hl
+			ld		hl,Update_Golgoth
+			ld		(PointeurUpdateGolgoth),hl
+			
+			
+			
+			ret
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////		
+				Golgoth_Level_2	
+					ld		a,_JP							; JP pas_de_scroll_hard
+					ld		(event_stop_scroll),a
+					ld		hl,pas_de_scroll_hard
+					ld		(event_stop_scroll+1),hl
+					ld		a,_CALL
+					ld		(event_golgoth),a
+					ld		hl,golgoth_2
+					ld		(event_golgoth+1),hl
+					ld		a,_CALL
+					ld		(event_golgoth+3),a
+					ld		hl,Update_Golgoth_2
+					ld		(event_golgoth+4),hl
+					ld		a,_CALL
+					ld		(event_golgoth+6),a
+					ld		hl,missileG2_1
+					ld		(event_golgoth+7),hl
+					ld		a,_CALL
+					ld		(event_golgoth+9),a
+					ld		hl,Update_missileG2_1
+					ld		(event_golgoth+10),hl
+					ld		a,_CALL
+					ld		(event_golgoth+12),a
+					ld		hl,missileG2_2
+					ld		(event_golgoth+13),hl
+					ld		a,_CALL
+					ld		(event_golgoth+15),a
+					ld		hl,Update_missileG2_2
+					ld		(event_golgoth+16),hl
+					ld		a,_CALL
+					ld		(event_golgoth+18),a
+					ld		hl,missileG2_3
+					ld		(event_golgoth+19),hl
+					ld		a,_CALL
+					ld		(event_golgoth+21),a
+					ld		hl,Update_missileG2_3
+					ld		(event_golgoth+22),hl
+					
+					
+					ld		a,8
+					ld		(id_soucoupe),a
+					ld		a,16
+					ld		(point_vie_golgoth),a
+					xor		a
+					ld		(EtpGolgoth),a
+					ld		hl,GOLGOTH2_SPRH_ADR_ROM
+					ld		(GolgothAdrRom),hl
+					ld		hl,SPRH6_ADR
+					ld		(GolgothSprh),hl
+					ld		hl,#400
+					ld		(GolgothLongeur),hl
+					ld		hl,Tbl_Gologoth2
+					ld		(Pointeur_TblGolgoth_1),hl
+					ld		hl,0
+					ld		(posX_Golgoth),hl
+					ld		hl,38
+					ld		(posY_Golgoth),hl
+					call	Update_Golgoth2_after
+					ld		a,zoom_mode0_1
+					ld		(SPRH6_ZOOM),a
+					ld		(SPRH7_ZOOM),a
+					ld		(SPRH8_ZOOM),a
+					ld		(SPRH9_ZOOM),a
+					ld		(valeur_zoom_sprh6),a
+					ld		(valeur_zoom_sprh7),a
+					ld		(valeur_zoom_sprh8),a
+					ld		(valeur_zoom_sprh9),a
+					ld		hl,Music
+					ld		a,MUSIC_BOSS
+					call	PLY_AKG_Init			
+					ld		hl,GOLGOTH2_SPRH_ADR_ROM+#400
+					ld		(Tbl_Golgoth_anim),hl
+					ld		hl,GOLGOTH2_SPRH_ADR_ROM
+					ld		(Tbl_Golgoth_anim+2),hl
+					ld		hl,Update_Golgoth2
+					ld		(PointeurUpdateGolgoth),hl	
+					ret
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////	
+						Golgoth_Level_3	
+							ld		a,_JP							; JP pas_de_scroll_hard
+							ld		(event_stop_scroll),a
+							ld		hl,pas_de_scroll_hard
+							ld		(event_stop_scroll+1),hl
+							ld		a,_CALL
+							ld		(event_golgoth),a
+							ld		hl,golgoth_3
+							ld		(event_golgoth+1),hl
+							ld		a,_CALL
+							ld		(event_golgoth+3),a
+							ld		hl,Update_Golgoth_3
+							ld		(event_golgoth+4),hl
+							ld		a,_CALL
+							ld		(event_golgoth+6),a
+							ld		hl,missileG3_1
+							ld		(event_golgoth+7),hl
+							ld		a,_CALL
+							ld		(event_golgoth+9),a
+							ld		hl,Update_missileG3_1
+							ld		(event_golgoth+10),hl
+							ld		a,_CALL
+							ld		(event_golgoth+12),a
+							ld		hl,missileG3_2
+							ld		(event_golgoth+13),hl
+							ld		a,_CALL
+							ld		(event_golgoth+15),a
+							ld		hl,Update_missileG3_2
+							ld		(event_golgoth+16),hl
+							ld		a,_CALL
+							ld		(event_golgoth+18),a
+							ld		hl,missileG3_3
+							ld		(event_golgoth+19),hl
+							ld		a,_CALL
+							ld		(event_golgoth+21),a
+							ld		hl,Update_missileG3_3
+							ld		(event_golgoth+22),hl
+							
+							
+							ld		a,9
+							ld		(id_soucoupe),a
+							ld		a,16
+							ld		(point_vie_golgoth),a
+							xor		a
+							ld		(EtpGolgoth),a
+
+							ld		hl,Tbl_Gologoth3
+							ld		(Pointeur_TblGolgoth_1),hl
+							ld		hl,0
+							ld		(posX_Golgoth),hl
+							ld		hl,16
+							ld		(posY_Golgoth),hl
+							call	Update_Golgoth3_after
+							rst		ASIC_CONNEXION
+							ld		a,zoom_mode0_1
+							ld		(SPRH6_ZOOM),a
+							ld		(SPRH7_ZOOM),a
+							ld		(SPRH8_ZOOM),a
+							ld		(SPRH9_ZOOM),a
+							ld		(SPRH10_ZOOM),a
+							ld		(SPRH11_ZOOM),a
+							ld		(SPRH12_ZOOM),a
+							ld		(valeur_zoom_sprh6),a
+							ld		(valeur_zoom_sprh7),a
+							ld		(valeur_zoom_sprh8),a
+							ld		(valeur_zoom_sprh9),a
+							ld		(valeur_zoom_sprh10),a
+							ld		(valeur_zoom_sprh11),a
+							ld		(valeur_zoom_sprh12),a
+							ld		hl,Music
+							ld		a,MUSIC_BOSS
+							call	PLY_AKG_Init
+							ld		hl,Update_Golgoth3
+							ld		(PointeurUpdateGolgoth),hl	
+							rst		ASIC_DECONNEXION
+							ret
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////	
+								Golgoth_Level_4	
+									ld		a,_JP							; JP pas_de_scroll_hard
+									ld		(event_stop_scroll),a
+									ld		hl,pas_de_scroll_hard
+									ld		(event_stop_scroll+1),hl
+									ld		a,_CALL
+									ld		(event_golgoth),a
+									ld		hl,golgoth_4
+									ld		(event_golgoth+1),hl
+									ld		a,_CALL
+									ld		(event_golgoth+3),a
+									ld		hl,Update_Golgoth_4
+									ld		(event_golgoth+4),hl
+									
+									
+									
+									
+								
+									ld		a,10
+									ld		(id_soucoupe),a
+									ld		a,16
+									ld		(point_vie_golgoth),a
+									xor		a
+									ld		(EtpGolgoth),a
+		
+									ld		hl,GOLGOTH4_SPRH_ADR_ROM
+									ld		(GolgothAdrRom),hl
+									ld		hl,SPRH6_ADR
+									ld		(GolgothSprh),hl
+									ld		hl,#800
+									ld		(GolgothLongeur),hl
+		
+		
+									ld		hl,Tbl_Gologoth4
+									ld		(Pointeur_TblGolgoth_1),hl
+									ld		hl,0
+									ld		(posX_Golgoth),hl
+									ld		hl,16
+									ld		(posY_Golgoth),hl
+									call	Update_Golgoth4_after
+									rst		ASIC_CONNEXION
+									ld		a,zoom_mode0_1
+									ld		(SPRH6_ZOOM),a
+									ld		(SPRH7_ZOOM),a
+									ld		(SPRH8_ZOOM),a
+									ld		(SPRH9_ZOOM),a
+									ld		(SPRH10_ZOOM),a
+									ld		(SPRH11_ZOOM),a
+									ld		(SPRH12_ZOOM),a
+									ld		(SPRH13_ZOOM),a
+									ld		(valeur_zoom_sprh6),a
+									ld		(valeur_zoom_sprh7),a
+									ld		(valeur_zoom_sprh8),a
+									ld		(valeur_zoom_sprh9),a
+									ld		(valeur_zoom_sprh10),a
+									ld		(valeur_zoom_sprh11),a
+									ld		(valeur_zoom_sprh12),a
+									ld		(valeur_zoom_sprh13),a
+									ld		hl,Music
+									ld		a,MUSIC_BOSS
+									call	PLY_AKG_Init
+					ld		hl,GOLGOTH4_SPRH_ADR_ROM_MARCHE			; +#200
+					ld		(GolgothAdrRom_MarcheG),hl
+					ld		hl,GOLGOTH4_SPRH_ADR_ROM_ANIM1+#500		; +#200
+					ld		(GolgothAdrRom_MarcheD),hl
+									
+									ld		hl,Update_Golgoth4
+									ld		(PointeurUpdateGolgoth),hl	
+									rst		ASIC_DECONNEXION
+									ret	
+; ////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////	
+										Golgoth_Level_5	
+											ld		a,_JP							; JP pas_de_scroll_hard
+											ld		(event_stop_scroll),a
+											ld		hl,pas_de_scroll_hard
+											ld		(event_stop_scroll+1),hl
+											ld		a,_CALL
+											ld		(event_golgoth),a
+											ld		hl,golgoth_5
+											ld		(event_golgoth+1),hl
+											ld		a,_CALL
+											ld		(event_golgoth+3),a
+											ld		hl,Update_Golgoth_5
+											ld		(event_golgoth+4),hl
+										
+										
+											ld		a,_CALL
+											ld		(event_golgoth+6),a
+											ld		hl,missileG3_1
+											ld		(event_golgoth+7),hl
+											ld		a,_CALL
+											ld		(event_golgoth+9),a
+											ld		hl,Update_missileG3_1
+											ld		(event_golgoth+10),hl
+											ld		a,_CALL
+											ld		(event_golgoth+12),a
+											ld		hl,missileG3_2
+											ld		(event_golgoth+13),hl
+											ld		a,_CALL
+											ld		(event_golgoth+15),a
+											ld		hl,Update_missileG3_2
+											ld		(event_golgoth+16),hl
+											ld		a,_CALL
+											ld		(event_golgoth+18),a
+											ld		hl,missileG3_3
+											ld		(event_golgoth+19),hl
+											ld		a,_CALL
+											ld		(event_golgoth+21),a
+											ld		hl,Update_missileG3_3
+											ld		(event_golgoth+22),hl
+							
+										
+										
+											ld		a,11
+											ld		(id_soucoupe),a
+											ld		a,16
+											ld		(point_vie_golgoth),a
+											xor		a
+											ld		(EtpGolgoth),a
+				
+											ld		hl,GOLGOTH5_SPRH_ADR_ROM
+											ld		(GolgothAdrRom),hl
+											ld		hl,SPRH6_ADR
+											ld		(GolgothSprh),hl
+											ld		hl,#800
+											ld		(GolgothLongeur),hl
+				
+				
+											ld		hl,Tbl_Gologoth5
+											ld		(Pointeur_TblGolgoth_1),hl
+											ld		hl,0
+											ld		(posX_Golgoth),hl
+											ld		hl,16
+											ld		(posY_Golgoth),hl
+											call	Update_Golgoth5_after
+											rst		ASIC_CONNEXION
+											ld		a,zoom_mode0_1
+											ld		(SPRH6_ZOOM),a
+											ld		(SPRH7_ZOOM),a
+											ld		(SPRH8_ZOOM),a
+											ld		(SPRH9_ZOOM),a
+											ld		(SPRH10_ZOOM),a
+											ld		(SPRH11_ZOOM),a
+											ld		(SPRH12_ZOOM),a
+											ld		(SPRH13_ZOOM),a
+											ld		(valeur_zoom_sprh6),a
+											ld		(valeur_zoom_sprh7),a
+											ld		(valeur_zoom_sprh8),a
+											ld		(valeur_zoom_sprh9),a
+											ld		(valeur_zoom_sprh10),a
+											ld		(valeur_zoom_sprh11),a
+										
+											ld		hl,Music
+											ld		a,MUSIC_BOSS
+											call	PLY_AKG_Init
+											
+											
+											ld		hl,Update_Golgoth5
+											ld		(PointeurUpdateGolgoth),hl	
+											rst		ASIC_DECONNEXION
+											ret														
+											
+											
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////								
+											
+													Golgoth_Level_6
+														ld		a,_JP							; JP pas_de_scroll_hard
+														ld		(event_stop_scroll),a
+														ld		hl,pas_de_scroll_hard
+														ld		(event_stop_scroll+1),hl
+														ld		a,_CALL
+														ld		(event_golgoth),a
+														ld		hl,golgoth_6
+														ld		(event_golgoth+1),hl
+														ld		a,_CALL
+														ld		(event_golgoth+3),a
+														ld		hl,Update_Golgoth_6
+														ld		(event_golgoth+4),hl
+
+														ld		a,_CALL
+														ld		(event_golgoth+12),a
+														ld		hl,missileG1_2
+														ld		(event_golgoth+13),hl
+														ld		a,_CALL
+														ld		(event_golgoth+15),a
+														ld		hl,Update_missileG1_2
+														ld		(event_golgoth+16),hl
+														ld		a,_CALL
+														ld		(event_golgoth+18),a
+														ld		hl,missileG1_3
+														ld		(event_golgoth+19),hl
+														ld		a,_CALL
+														ld		(event_golgoth+21),a
+														ld		hl,Update_missileG1_3
+														ld		(event_golgoth+22),hl	
+														ld		a,_CALL
+														ld		(event_golgoth+24),a
+														ld		hl,missileG1_4
+														ld		(event_golgoth+25),hl	
+														ld		a,_CALL
+														ld		(event_golgoth+27),a
+														ld		hl,Update_missileG1_4
+														ld		(event_golgoth+28),hl
+													
+														xor		a
+														ld		(EtpGolgoth),a
+														ld		a,12
+														ld		(id_soucoupe),a
+														ld		a,16
+														ld		(point_vie_golgoth),a
+														ld		hl,GOLGOTH6_SPRH_ADR_ROM
+														ld		(GolgothAdrRom),hl
+														ld		hl,SPRH6_ADR
+														ld		(GolgothSprh),hl
+														ld		hl,#500
+														ld		(GolgothLongeur),hl
+														ld		hl,Tbl_Gologoth6
+														ld		(Pointeur_TblGolgoth_1),hl
+														ld		hl,0
+														ld		(posX_Golgoth),hl
+														ld		hl,0
+														ld		(posY_Golgoth),hl
+														call	Update_Golgoth6_after
+														ld		a,zoom_mode0_1
+														ld		(SPRH6_ZOOM),a
+														ld		(SPRH7_ZOOM),a
+														ld		(SPRH8_ZOOM),a
+														ld		(SPRH9_ZOOM),a
+														ld		(SPRH10_ZOOM),a
+														ld		(valeur_zoom_sprh6),a
+														ld		(valeur_zoom_sprh7),a
+														ld		(valeur_zoom_sprh8),a
+														ld		(valeur_zoom_sprh9),a
+														ld		(valeur_zoom_sprh10),a
+														ld		hl,Music
+														ld		a,MUSIC_BOSS
+														call	PLY_AKG_Init
+														
+													
+														ld		hl,Update_Golgoth6
+														ld		(PointeurUpdateGolgoth),hl
+														ret
+														
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////								
+															Golgoth_Level_7
+																ld		a,_JP							; JP pas_de_scroll_hard
+																ld		(event_stop_scroll),a
+																ld		hl,pas_de_scroll_hard
+																ld		(event_stop_scroll+1),hl
+																ld		a,_CALL
+																ld		(event_golgoth),a
+																ld		hl,golgoth_7
+																ld		(event_golgoth+1),hl
+																ld		a,_CALL
+																ld		(event_golgoth+3),a
+																ld		hl,Update_Golgoth_7
+																ld		(event_golgoth+4),hl
+																ld		a,_CALL
+																ld		(event_golgoth+18),a
+																ld		hl,missileG1_3
+																ld		(event_golgoth+19),hl
+																ld		a,_CALL
+																ld		(event_golgoth+21),a
+																ld		hl,Update_missileG1_3
+																ld		(event_golgoth+22),hl	
+																ld		a,_CALL
+																ld		(event_golgoth+24),a
+																ld		hl,missileG1_4
+																ld		(event_golgoth+25),hl	
+																ld		a,_CALL
+																ld		(event_golgoth+27),a
+																ld		hl,Update_missileG1_4
+																ld		(event_golgoth+28),hl
+															
+																xor		a
+																ld		(EtpGolgoth),a
+																ld		a,13
+																ld		(id_soucoupe),a
+																ld		a,16
+																ld		(point_vie_golgoth),a
+																ld		hl,GOLGOTH7_SPRH_ADR_ROM
+																ld		(GolgothAdrRom),hl
+																ld		hl,SPRH6_ADR
+																ld		(GolgothSprh),hl
+																ld		hl,#600
+																ld		(GolgothLongeur),hl
+																ld		hl,Tbl_Gologoth7
+																ld		(Pointeur_TblGolgoth_1),hl
+																ld		hl,0
+																ld		(posX_Golgoth),hl
+																ld		hl,0
+																ld		(posY_Golgoth),hl
+																call	Update_Golgoth7_after
+																ld		a,zoom_mode0_1
+																ld		(SPRH6_ZOOM),a
+																ld		(SPRH7_ZOOM),a
+																ld		(SPRH8_ZOOM),a
+																ld		(SPRH9_ZOOM),a
+																ld		(SPRH10_ZOOM),a
+																ld		(SPRH11_ZOOM),a
+																ld		(valeur_zoom_sprh6),a
+																ld		(valeur_zoom_sprh7),a
+																ld		(valeur_zoom_sprh8),a
+																ld		(valeur_zoom_sprh9),a
+																ld		(valeur_zoom_sprh10),a
+																ld		(valeur_zoom_sprh11),a
+																ld		hl,Music
+																ld		a,MUSIC_BOSS
+																call	PLY_AKG_Init
+																ld		hl,Update_Golgoth7
+																ld		(PointeurUpdateGolgoth),hl
+																ret
+																
+																																										
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////
+; ////////////////////////////////////////////////////////////////////////////////////////////////////////								
+															Golgoth_Level_8
+																ld		a,_JP							; JP pas_de_scroll_hard
+																ld		(event_stop_scroll),a
+																ld		hl,pas_de_scroll_hard
+																ld		(event_stop_scroll+1),hl
+																ld		a,_CALL
+																ld		(event_golgoth),a
+																ld		hl,golgoth_8
+																ld		(event_golgoth+1),hl
+																ld		a,_CALL
+																ld		(event_golgoth+3),a
+																ld		hl,Update_Golgoth_8
+																ld		(event_golgoth+4),hl
+																; ld		a,_CALL
+																; ld		(event_golgoth+6),a
+																; ld		hl,missileG1_1
+																; ld		(event_golgoth+7),hl
+																; ld		a,_CALL
+																; ld		(event_golgoth+9),a
+																; ld		hl,Update_missileG1_1
+																; ld		(event_golgoth+10),hl
+																; ld		a,_CALL
+																; ld		(event_golgoth+12),a
+																; ld		hl,missileG1_2
+																; ld		(event_golgoth+13),hl
+																; ld		a,_CALL
+																; ld		(event_golgoth+15),a
+																; ld		hl,Update_missileG1_2
+																; ld		(event_golgoth+16),hl
+																ld		a,_CALL
+																ld		(event_golgoth+18),a
+																ld		hl,missileG3_2
+																ld		(event_golgoth+19),hl
+																ld		a,_CALL
+																ld		(event_golgoth+21),a
+																ld		hl,Update_missileG3_2
+																ld		(event_golgoth+22),hl	
+																ld		a,_CALL
+																ld		(event_golgoth+24),a
+																ld		hl,missileG3_3
+																ld		(event_golgoth+25),hl	
+																ld		a,_CALL
+																ld		(event_golgoth+27),a
+																ld		hl,Update_missileG3_3
+																ld		(event_golgoth+28),hl
+															
+																xor		a
+																ld		(EtpGolgoth),a
+																ld		a,14
+																ld		(id_soucoupe),a
+																ld		a,16
+																ld		(point_vie_golgoth),a
+																ld		hl,GOLGOTH8_SPRH_ADR_ROM
+																ld		(GolgothAdrRom),hl
+																ld		hl,SPRH6_ADR
+																ld		(GolgothSprh),hl
+																ld		hl,#800
+																ld		(GolgothLongeur),hl
+																ld		hl,Tbl_Gologoth8
+																ld		(Pointeur_TblGolgoth_1),hl
+																ld		hl,0
+																ld		(posX_Golgoth),hl
+																ld		hl,0
+																ld		(posY_Golgoth),hl
+																call	Update_Golgoth8_after
+																ld		a,zoom_mode0_1
+																ld		(SPRH6_ZOOM),a
+																ld		(SPRH7_ZOOM),a
+																ld		(SPRH8_ZOOM),a
+																ld		(SPRH9_ZOOM),a
+																ld		(SPRH10_ZOOM),a
+																ld		(SPRH11_ZOOM),a
+																ld		(SPRH12_ZOOM),a
+																ld		(SPRH13_ZOOM),a
+																ld		(valeur_zoom_sprh6),a
+																ld		(valeur_zoom_sprh7),a
+																ld		(valeur_zoom_sprh8),a
+																ld		(valeur_zoom_sprh9),a
+																ld		(valeur_zoom_sprh10),a
+																ld		(valeur_zoom_sprh11),a
+																ld		(valeur_zoom_sprh12),a
+																ld		(valeur_zoom_sprh13),a
+																ld		hl,Music
+																ld		a,MUSIC_BOSS
+																call	PLY_AKG_Init
+		
+																ld		hl,GOLGOTH8_SPRH_ADR_ROM_ANIM1_CORP
+																ld		(Golgoth_Corp_AdrRom),hl
+																ld		hl,GOLGOTH8_SPRH_ADR_ROM_ANIM1_TETES
+																ld		(Golgoth_Tete_AdrRom),hl
+					
+					
+
+																ld		hl,Update_Golgoth8
+																ld		(PointeurUpdateGolgoth),hl
+																ret
+																
+																												
 
     
 
