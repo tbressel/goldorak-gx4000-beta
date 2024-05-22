@@ -934,6 +934,7 @@ goldorak_percute
 	xor		a
 	ld		(flag_percute),a
 	call	fin_armes
+
 	ld		a,(points_sante)
 	dec		a
 	ld		(points_sante),a
@@ -943,6 +944,8 @@ goldorak_percute
 
 
 goldorak_percute_golgoth
+	jp		goldorak_explose
+
 	nop
 	rst		ASIC_DECONNEXION
 	;call	rom_off
