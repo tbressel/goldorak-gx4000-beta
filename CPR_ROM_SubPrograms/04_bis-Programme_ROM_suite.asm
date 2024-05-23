@@ -269,7 +269,7 @@ boss_de_fin_ROM
 			ld		(EtpGolgoth),a
 			ld		a,7
 			ld		(id_soucoupe),a
-			ld		a,16
+			ld		a,PV_GOLGOTH_1
 			ld		(point_vie_golgoth),a
 			ld		hl,GOLGOTH1_SPRH_ADR_ROM
 			ld		(GolgothAdrRom),hl
@@ -350,7 +350,7 @@ boss_de_fin_ROM
 					
 					ld		a,8
 					ld		(id_soucoupe),a
-					ld		a,16
+					ld		a,PV_GOLGOTH_2
 					ld		(point_vie_golgoth),a
 					xor		a
 					ld		(EtpGolgoth),a
@@ -429,7 +429,7 @@ boss_de_fin_ROM
 							
 							ld		a,9
 							ld		(id_soucoupe),a
-							ld		a,16
+							ld		a,PV_GOLGOTH_3
 							ld		(point_vie_golgoth),a
 							xor		a
 							ld		(EtpGolgoth),a
@@ -486,7 +486,7 @@ boss_de_fin_ROM
 								
 									ld		a,10
 									ld		(id_soucoupe),a
-									ld		a,16
+									ld		a,PV_GOLGOTH_4
 									ld		(point_vie_golgoth),a
 									xor		a
 									ld		(EtpGolgoth),a
@@ -582,7 +582,7 @@ boss_de_fin_ROM
 										
 											ld		a,11
 											ld		(id_soucoupe),a
-											ld		a,16
+											ld		a,PV_GOLGOTH_5
 											ld		(point_vie_golgoth),a
 											xor		a
 											ld		(EtpGolgoth),a
@@ -676,7 +676,7 @@ boss_de_fin_ROM
 														ld		(EtpGolgoth),a
 														ld		a,12
 														ld		(id_soucoupe),a
-														ld		a,16
+														ld		a,PV_GOLGOTH_6
 														ld		(point_vie_golgoth),a
 														ld		hl,GOLGOTH6_SPRH_ADR_ROM
 														ld		(GolgothAdrRom),hl
@@ -747,7 +747,7 @@ boss_de_fin_ROM
 																ld		(EtpGolgoth),a
 																ld		a,13
 																ld		(id_soucoupe),a
-																ld		a,16
+																ld		a,PV_GOLGOTH_7
 																ld		(point_vie_golgoth),a
 																ld		hl,GOLGOTH7_SPRH_ADR_ROM
 																ld		(GolgothAdrRom),hl
@@ -835,7 +835,7 @@ boss_de_fin_ROM
 																ld		(EtpGolgoth),a
 																ld		a,14
 																ld		(id_soucoupe),a
-																ld		a,16
+																ld		a,PV_GOLGOTH_8
 																ld		(point_vie_golgoth),a
 																ld		hl,GOLGOTH8_SPRH_ADR_ROM
 																ld		(GolgothAdrRom),hl

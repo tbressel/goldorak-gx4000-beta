@@ -81,7 +81,6 @@ music_on_off
 
 
 
-
 scrolling_off
 	ld		a,_JP							; JP pas_de_scroll_hard
 	ld		(event_stop_scroll),a

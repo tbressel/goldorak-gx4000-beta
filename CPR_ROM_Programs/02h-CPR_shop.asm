@@ -3,6 +3,8 @@ shop
 CALL	reinit_crtc_et_retard_video
 
 
+ld		a,7
+ld		(level_en_cours),a
 
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////// POSITIONNEMENT de L'ECRAN ///////////////////////////////////
@@ -573,13 +575,13 @@ Cout_Cornofulgure
 Cout_Pulvonium	
 	db	0,5,0,0,0		; Pulvonium
 Cout_Clavicogyre
-	db	0,6,5,0,0		; Clavicogyre
+	db	0,4,5,0,0		; Clavicogyre
 Cout_Planitron1
 	db	0,2,0,0,0		; Planitron 1
 Cout_Planitron2
 	db	0,2,0,0,0		; Planitron 2
 Cout_Fulguropoint
-	db	0,6,5,0,0		; Fulguropoint
+	db	0,4,0,0,0		; Fulguropoint
 
 PreparationLevelSuivant
 	call	FADE_OUT

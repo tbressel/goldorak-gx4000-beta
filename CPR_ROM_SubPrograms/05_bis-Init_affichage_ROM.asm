@@ -81,10 +81,10 @@ ld		hl,PALETTE_ASIC
 		cp		a,1
 ; OUI -> on JUMP vers la gestion d'un level BIG BOSS
 		jp		z,big_boss_fin_level_4
-cp		a,2
-jp	z,big_boss_fin_level_4
-; NON  -> on continue
-jp		affiche_ecrans_de_fin
+		cp		a,2
+		jp		z,big_boss_fin_level_8
+		; NON  -> on continue
+		jp		affiche_ecrans_de_fin
 		
 
 				

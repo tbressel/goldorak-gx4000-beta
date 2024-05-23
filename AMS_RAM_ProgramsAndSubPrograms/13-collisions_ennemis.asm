@@ -197,7 +197,7 @@ goldorak_touche
 	call	fin_armes
 
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
-    ld 		c,0 					;channel (0-2)
+    ld 		c,2 					;channel (0-2)
     ld 		b,0 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 
@@ -944,7 +944,7 @@ goldorak_percute
 
 
 goldorak_percute_golgoth
-	jp		goldorak_explose
+	; jp		goldorak_explose
 
 	nop
 	rst		ASIC_DECONNEXION

@@ -105,10 +105,7 @@ dw #000,#080,#0F0,#008,#00F,#08F,#8F0,#808,#888,#80F,#FF0,#F08,#FF8,#F8F,#FFF,#F
 ; crocofest
 
 org	PALETTE_ACTARUS_ALCOR
-db #44,#08,#f0,#00,#00,#00,#0b,#00
-db #f0,#0f,#3f,#0f,#2f,#07,#ff,#0f
-db #0d,#0b,#80,#02,#f4,#09,#d8,#0f
-db #31,#03,#77,#07,#d8,#0b,#7f,#00
+dw #00f0,#0000,#000b,#0ff0,#0f3f,#072f,#0fff,#0b0d,#0280,#09f4,#0fd8,#0331,#0777,#0bd8,#007f
 
 ; FONTE
 	org HUD_DEPART_FONTES

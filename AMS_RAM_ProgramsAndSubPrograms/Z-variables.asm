@@ -477,8 +477,8 @@ MemoireTamponJoueur_1			ds			8*10,0
 
 sfx_arme						ds		1,0
 
-; ArmesDisponible				db			%00000001
-ArmesDisponible				db			%11111111
+ArmesDisponible				db			%00000001
+; ArmesDisponible				db			%11111111
 
 
 
@@ -630,41 +630,24 @@ TBL_VAGUES_LEVEL_4
 	DW		#FFFF				
 
 TBL_VAGUES_LEVEL_5
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+ 	DW		TBL_NBR_SOUCOUPES5
 	DW		#FFFE				
-; ----> signale la fin du level	
-	DW		#FFFF				
+	DW		#FFFF
 
 TBL_VAGUES_LEVEL_6
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+ 	DW		TBL_NBR_SOUCOUPES6
 	DW		#FFFE				
-; ----> signale la fin du level	
-	DW		#FFFF				
+	DW		#FFFF	
 
 TBL_VAGUES_LEVEL_7
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+ 	DW		TBL_NBR_SOUCOUPES7
 	DW		#FFFE				
-; ----> signale la fin du level	
-	DW		#FFFF				
+	DW		#FFFF	
 
 TBL_VAGUES_LEVEL_8
-	;DW		TBL_NBR_SOUCOUPES
- 	DW		TBL_NBR_SOUCOUPES2
-	;DW		TBL_NBR_SOUCOUPES3
-; ----> signale un boss de fin
+ 	DW		TBL_NBR_SOUCOUPES8
 	DW		#FFFE				
-; ----> signale la fin du level	
 	DW		#FFFF				
-
 
 
 

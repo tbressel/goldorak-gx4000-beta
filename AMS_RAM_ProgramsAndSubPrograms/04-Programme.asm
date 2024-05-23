@@ -141,12 +141,14 @@ event_bloquer_la_boucle		ds		3,0
 
 	
 	call	compteur_evenements
-event_playsample	
+event_playsample		ds		6,0
 	;call		Sample
+	;jp			boucle_principale
+event_alcorak			ds		6,0
+	;call		alcorak
 	;jp			boucle_principale
 event_fade_out			ds	    6,0
 	;call		fade_out
-	;jp			boucle_principale
 event_arrimage			ds		6,0
 	;call		Arrimage
 	;jp			boucle_principale
@@ -179,12 +181,10 @@ event_golgoth			ds		3,0
 event_autre				ds		28,0
 	
 event_arme_fireA			ds		3,0	
-;event_arme_fireA_venisiak	ds		3,0
 retour_event_arme_fireA
 
 event_normal_goldorak_boom
 event_goldorak_boom
-
 
 
 jp	test_du_CPC_plus
@@ -194,12 +194,6 @@ retour_test_de_CPC_plus
 event_test_de_goldorak		
 jp		test_de_goldorak
 retour_test_de_goldorak
-
-;event_venusiak_boom
-;event_test_de_venusiak		ds		3,0
-							;jp		test_de_venusiak
-;retour_test_de_venusiak
-
 
 
 event_arme_fireB			ds		3,0
@@ -234,6 +228,7 @@ test_du_CPC_plus
 	jp		z,music_on_off
 	bit		2,a
 	jp		z,change_musique
+	
 	jp		retour_test_de_CPC_plus
 	
 			; //////////////////  goldorak  /////////////////
@@ -397,6 +392,11 @@ game_over
 					ld		hl,boucle_principale
 					ld		(event_fade_out+4),hl
 					call	music_off
+					xor		a
+					ld 		(flag_bigboss),a
+					ld		(event_golgoth),a
+					ld		(event_golgoth+1),a
+					ld		(event_golgoth+2),a
 					jp		boucle_principale
 Sample
       	call 	PlaySampleSet
@@ -459,6 +459,9 @@ affiche_ecrans_de_fin
 	ld		(#604C),a
 	ld		(#6054),a
 	ld		(#605C),a
+	ld		(#6064),a
+	ld		(#606C),a
+	
 	Asic OFF
 		; mise à zéros de la bank #C000-#FFFF
 			xor		a
@@ -492,8 +495,14 @@ affiche_ecrans_de_fin
 			ld		a,(GoldorakMort)
 			cp		a,1		
 			jp		z,game_over
+
+
+			
+
 			jp		shop
 			
+
+
 
 change_musique
 	di
@@ -537,6 +546,7 @@ include"14-tirs_soucoupes.asm"
 include"15-gestion_du_hud.asm"
 include"17-big_boss_fin.asm"
 include"18-mouvements_soucoupes.asm"
+include"19-scene_de_fin.asm"
 include"A-interruptions.asm"
 include"B-interrupteurs.asm"
 include"W-player_PSG.asm"

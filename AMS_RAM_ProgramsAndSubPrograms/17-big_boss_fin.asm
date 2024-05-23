@@ -1,4 +1,14 @@
 big_boss_fin_level_4
+big_boss_fin_level_8
+	xor 	a
+	ld 		(etape_config_bigboss),a
+	ld		(flagDirectionBigboss),a	
+	ld		(framecounter_bigboss),a
+	ld		(Etp_ExploseGolgoth),a
+	ld 		hl,0
+	ld		(bigboss_X),hl
+	ld		(bigboss_Y),hl	
+
 	call 	scrolling_off 
 	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
@@ -8,19 +18,23 @@ big_boss_fin_level_4
 	call	nouvelle_ligne		; 5 nops
 	call 	scrolling_on 
 	call	rom_off
+
 	jp		boucle_principale
 
 
 
 compteur_de_fin_fadein 	ds 		1,0
 fadein_counter			ds		1,0
+etape_config_bigboss		ds			1,0
+
+
+
 
 fondu_des_couleurs2
 	ld		c,BANK_ROM_18
 	RST		UPPER_ROM_CONNEXION
 	call	fondu_des_couleurs2_ROM
 	ret
-etape_config_bigboss		ds			1,0
 display_bigboss1
 			ld a,(etape_config_bigboss)
 			cp 	0
@@ -34,7 +48,7 @@ display_bigboss1
 			cp	4
 			jp	z,explosion_bigboss
 			cp	5
-			jp  z,fin_bigboss1
+			jp  z,fin_bigboss
 		
 		send_sprites_into_asic	
 			inc	a
@@ -642,9 +656,8 @@ EtpExplosion13
 			ld	(valeur_zoom_sprh14),a		
 			ret
 
-fin_bigboss1
-	xor	a
-	ld (flag_bigboss),a
+fin_bigboss
+	
 	ld	(event_golgoth),a
 	ld	(event_golgoth+1),a
 	ld	(event_golgoth+2),a
@@ -654,6 +667,16 @@ fin_bigboss1
 	ld		(event_test_de_goldorak+1),a
 	ld		(event_test_de_goldorak+2),a
 	
+
+
+	ld		a,(flag_bigboss)
+	cp		a,1
+	jr		z,fin_bigboss_1
+	cp		a,2
+	jr		z,fin_bigboss_2
+fin_bigboss_1
+	xor		a
+	ld		(flag_bigboss),a
 	ld		a,_CALL						; call
 	ld		(event_fade_out),a
 	ld		hl,fondu_de_sortie
@@ -663,9 +686,26 @@ fin_bigboss1
 	ld		hl,boucle_principale
 	ld		(event_fade_out+4),hl
 	call	music_off
-	call	scrolling_on
+	call	scrolling_on	
+	ret
+fin_bigboss_2
+	
+
+	ld		a,_CALL						; call
+	ld		(event_alcorak),a
+	ld		hl,alcorak
+	ld		(event_alcorak+1),hl
+
+	ld		a,_JP						; JP
+	ld		(event_fade_out+3),a
+	ld		hl,boucle_principale
+	ld		(event_fade_out+4),hl
+	call	music_off
+	call	scrolling_on	
+	
 	
 	ret
+	
 
 
 ; utilise hl pour Y

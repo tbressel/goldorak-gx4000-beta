@@ -31,6 +31,8 @@ BANK_HUD				equ		#DF00+#80+8
 BANK8_HUD				=		8
 BANK_FONTES				=		#DF00+#80+8
 BANK8_FONTES			=		8
+
+
 BANK8_PALETTES			= 		#DF00+#80+8
 
 BANK_GOLDORAK_SPRH		equ		#DF00+#80+9
@@ -48,6 +50,7 @@ BANK12_GOLGOTH_SPRH		=		12
 BANK13_SPRH				=		13
 BANK13_GOLGOTH_SPRH		=		13
 BANK15_GOLDORAK_RET_SPRH =  	15
+BANK15_PORTRAITS		=       15
 BANK15_ACTARUS			=       #DF00+#80+15
 BANK17_SCENARIO			=		#DF00+#80+17
 BANK17_TITLESCREEN		=		#DF00+#80+17
@@ -373,15 +376,23 @@ ID_CLAVICOGYRES				equ		6
 
 ; degat instaurer par les armes de Goldorak
 ; constantes logé dans 'point_attaque'
-FORCE_MISSILES_GAMMA	= 1
-FORCE_MISSILES_GAMMA2	= 2
-FORCE_MISSILES_GAMMA3	= 3
+FORCE_MISSILES_GAMMA	= 20
+FORCE_MISSILES_GAMMA2	= 20
+FORCE_MISSILES_GAMMA3	= 20
+FORCE_PLANITRON_1		= 20	
+FORCE_PLANITRON_2		= 20	
+FORCE_CORNOFULGURE_1	= 20
+FORCE_FULGURO_POINGS	= 20
+FORCE_CLAVICOGYRES		= 20 
+; FORCE_MISSILES_GAMMA	= 1
+; FORCE_MISSILES_GAMMA2	= 2
+; FORCE_MISSILES_GAMMA3	= 3
 
-FORCE_PLANITRON_1		= 2	
-FORCE_PLANITRON_2		= 3	
-FORCE_CORNOFULGURE_1	= 4
-FORCE_FULGURO_POINGS	= 5
-FORCE_CLAVICOGYRES		= 6 
+; FORCE_PLANITRON_1		= 2	
+; FORCE_PLANITRON_2		= 3	
+; FORCE_CORNOFULGURE_1	= 4
+; FORCE_FULGURO_POINGS	= 5
+; FORCE_CLAVICOGYRES		= 6 
 
 ; collision de goldorak avec les bords de l'écran
 collision_goldo_droite		equ	#0184
@@ -407,14 +418,10 @@ DISTANCE_RETOURNEMENT_RECULER_moins	= 	8
 BOOM_SPRH_ROM_ADR		equ	#c000
 BOOM2_SPRH_ROM_ADR		equ	#c500
 BIG_BOOM_SPRH_ROM_ADR	equ	#d000
-Tiny_goldorak			equ	#E400
-TIny_venusiak			equ	#E600
-Tir_tiny_goldo			equ	#ef00
-Tir_tiny_venus			equ	#f500
+
 
 
 nrj_damage_goldorak		equ	3
-nrj_damage_venusiak		equ	3
 
 
 
@@ -559,7 +566,14 @@ CADANCE_TIR_3_GOLGOTH3			equ		8
 CADANCE_TIR_4_GOLGOTH3			equ		4
 
 
-
+PV_GOLGOTH_1		equ		16
+PV_GOLGOTH_2		equ		16
+PV_GOLGOTH_3		equ		16
+PV_GOLGOTH_4		equ		16
+PV_GOLGOTH_5		equ		16
+PV_GOLGOTH_6		equ		16
+PV_GOLGOTH_7		equ		16
+PV_GOLGOTH_8		equ		16
 
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////////  LES VAISSEAUX MERE  ////////////////////////
@@ -568,12 +582,15 @@ CADANCE_TIR_4_GOLGOTH3			equ		4
 
 
 BIGBOSS1_SPRH_ADR_ROM					equ		#c000
+
+
 BIGBOSS2_SPRH_ADR_ROM					equ		#db00
 BIGBOSS2_SPRH_ADR_ROM_ANIM1  			equ		#e000
 BIGBOSS2_SPRH_ADR_ROM_ANIM2  			equ		#e400
 BIGBOSS2_SPRH_ADR_ROM_ANIM3  			equ		#e800
 
 BIGBOSS1_VITESSE_ANIMATION			equ		4
+BIGBOSS2_VITESSE_ANIMATION			equ		8
 
 
 
@@ -649,86 +666,94 @@ _CALL		equ		#cd
 _JP			equ		#c3
 
 
+
+VAGUE_TIME_START_SLOW			equ		#b0
+VAGUE_TIME_START_NORMAL			equ		#90
+VAGUE_TIME_START_QUICK			equ		#80
+VAGUE_TIME_START_VERY_QUICK		equ		#70
+VAGUE_TIME_END					equ		#16
+
+
 vague1s = #0490
-vague1e = vague1s+#b0
-vague2s = vague1e+#16
-vague2e = vague2s+#b0
-vague3s = vague2e+#16
-vague3e = vague3s+#b0
-vague4s = vague3e+#16
-vague4e = vague4s+#90
-vague5s = vague4e+#16
-vague5e = vague5s+#90
-vague6s = vague5e+#16
-vague6e = vague6s+#90
-vague7s = vague6e+#16
-vague7e = vague7s+#90
-vague8s = vague7e+#16
-vague8e = vague8s+#90
-vague9s = vague8e+#16
-vague9e = vague9s+#90
-vague10s = vague9e+#16
-vague10e = vague10s+#90
-vague11s = vague10e+#16
-vague11e = vague11s+#90
-vague12s = vague11e+#16
-vague12e = vague12s+#90
-vague13s = vague12e+#16
-vague13e = vague13s+#90
-vague14s = vague13e+#16
-vague14e = vague14s+#90
-vague15s = vague14e+#16
-vague15e = vague15s+#90
-vague16s = vague15e+#16
-vague16e = vague16s+#90
-vague17s = vague16e+#16
-vague17e = vague17s+#90
-vague18s = vague17e+#16
-vague18e = vague18s+#90
-vague19s = vague18e+#16
-vague19e = vague19s+#90
-vague20s = vague19e+#16
-vague20e = vague20s+#90
-vague21s = vague20e+#16
-vague21e = vague21s+#90
-vague22s = vague21e+#16
-vague22e = vague22s+#90
-vague23s = vague22e+#16
-vague23e = vague23s+#90
-vague24s = vague23e+#16
-vague24e = vague24s+#90
-vague25s = vague24e+#16
-vague25e = vague25s+#90
-vague26s = vague25e+#16
-vague26e = vague26s+#90
-vague27s = vague26e+#16
-vague27e = vague27s+#90
-vague28s = vague27e+#16
-vague28e = vague28s+#90
-vague29s = vague28e+#16
-vague29e = vague29s+#90
-vague30s = vague29e+#16
-vague30e = vague30s+#90
-vague31s = vague30e+#16
-vague31e = vague31s+#90
-vague32s = vague31e+#16
-vague32e = vague32s+#90
-vague33s = vague32e+#16
-vague33e = vague33s+#90
-vague34s = vague33e+#16
-vague34e = vague34s+#90
-vague35s = vague34e+#16
-vague35e = vague35s+#90
-vague36s = vague35e+#16
-vague36e = vague36s+#90
-vague37s = vague36e+#16
-vague37e = vague37s+#90
-vague38s = vague37e+#16
-vague38e = vague38s+#90
-vague39s = vague38e+#16
-vague39e = vague39s+#90
-vague40s = vague39e+#16
-vague40e = vague40s+#90
+vague1e = vague1s+VAGUE_TIME_START_SLOW
+vague2s = vague1e+VAGUE_TIME_END
+vague2e = vague2s+VAGUE_TIME_START_SLOW
+vague3s = vague2e+VAGUE_TIME_END
+vague3e = vague3s+VAGUE_TIME_START_SLOW
+vague4s = vague3e+VAGUE_TIME_END
+vague4e = vague4s+VAGUE_TIME_START_SLOW
+vague5s = vague4e+VAGUE_TIME_END
+vague5e = vague5s+VAGUE_TIME_START_SLOW
+vague6s = vague5e+VAGUE_TIME_END
+vague6e = vague6s+VAGUE_TIME_START_SLOW
+vague7s = vague6e+VAGUE_TIME_END
+vague7e = vague7s+VAGUE_TIME_START_SLOW
+vague8s = vague7e+VAGUE_TIME_END
+vague8e = vague8s+VAGUE_TIME_START_SLOW
+vague9s = vague8e+VAGUE_TIME_END
+vague9e = vague9s+VAGUE_TIME_START_SLOW
+vague10s = vague9e+VAGUE_TIME_END
+vague10e = vague10s+VAGUE_TIME_START_NORMAL
+vague11s = vague10e+VAGUE_TIME_END
+vague11e = vague11s+VAGUE_TIME_START_NORMAL
+vague12s = vague11e+VAGUE_TIME_END
+vague12e = vague12s+VAGUE_TIME_START_NORMAL
+vague13s = vague12e+VAGUE_TIME_END
+vague13e = vague13s+VAGUE_TIME_START_NORMAL
+vague14s = vague13e+VAGUE_TIME_END
+vague14e = vague14s+VAGUE_TIME_START_NORMAL
+vague15s = vague14e+VAGUE_TIME_END
+vague15e = vague15s+VAGUE_TIME_START_NORMAL
+vague16s = vague15e+VAGUE_TIME_END
+vague16e = vague16s+VAGUE_TIME_START_NORMAL
+vague17s = vague16e+VAGUE_TIME_END
+vague17e = vague17s+VAGUE_TIME_START_NORMAL
+vague18s = vague17e+VAGUE_TIME_END
+vague18e = vague18s+VAGUE_TIME_START_NORMAL
+vague19s = vague18e+VAGUE_TIME_END
+vague19e = vague19s+VAGUE_TIME_START_NORMAL
+vague20s = vague19e+VAGUE_TIME_END
+vague20e = vague20s+VAGUE_TIME_START_NORMAL
+vague21s = vague20e+VAGUE_TIME_END
+vague21e = vague21s+VAGUE_TIME_START_QUICK
+vague22s = vague21e+VAGUE_TIME_END
+vague22e = vague22s+VAGUE_TIME_START_QUICK
+vague23s = vague22e+VAGUE_TIME_END
+vague23e = vague23s+VAGUE_TIME_START_QUICK
+vague24s = vague23e+VAGUE_TIME_END
+vague24e = vague24s+VAGUE_TIME_START_QUICK
+vague25s = vague24e+VAGUE_TIME_END
+vague25e = vague25s+VAGUE_TIME_START_QUICK
+vague26s = vague25e+VAGUE_TIME_END
+vague26e = vague26s+VAGUE_TIME_START_QUICK
+vague27s = vague26e+VAGUE_TIME_END
+vague27e = vague27s+VAGUE_TIME_START_QUICK
+vague28s = vague27e+VAGUE_TIME_END
+vague28e = vague28s+VAGUE_TIME_START_QUICK
+vague29s = vague28e+VAGUE_TIME_END
+vague29e = vague29s+VAGUE_TIME_START_QUICK
+vague30s = vague29e+VAGUE_TIME_END
+vague30e = vague30s+VAGUE_TIME_START_QUICK
+vague31s = vague30e+VAGUE_TIME_END
+vague31e = vague31s+VAGUE_TIME_START_VERY_QUICK
+vague32s = vague31e+VAGUE_TIME_END
+vague32e = vague32s+VAGUE_TIME_START_VERY_QUICK
+vague33s = vague32e+VAGUE_TIME_END
+vague33e = vague33s+VAGUE_TIME_START_VERY_QUICK
+vague34s = vague33e+VAGUE_TIME_END
+vague34e = vague34s+VAGUE_TIME_START_VERY_QUICK
+vague35s = vague34e+VAGUE_TIME_END
+vague35e = vague35s+VAGUE_TIME_START_VERY_QUICK
+vague36s = vague35e+VAGUE_TIME_END
+vague36e = vague36s+VAGUE_TIME_START_VERY_QUICK
+vague37s = vague36e+VAGUE_TIME_END
+vague37e = vague37s+VAGUE_TIME_START_VERY_QUICK
+vague38s = vague37e+VAGUE_TIME_END
+vague38e = vague38s+VAGUE_TIME_START_VERY_QUICK
+vague39s = vague38e+VAGUE_TIME_END
+vague39e = vague39s+VAGUE_TIME_START_VERY_QUICK
+vague40s = vague39e+VAGUE_TIME_END
+vague40e = vague40s+VAGUE_TIME_START_VERY_QUICK
 
 
 NBR_RETOURNEMENT_MAX equ 5
@@ -751,3 +776,25 @@ RET4a equ #50E3
 RET4b equ #58E3
 RET5a equ #68E6
 RET5b equ #70E6
+
+
+
+; ///////////////// SCENE DE FIN //////////////
+
+PORTRAIT_ACTARUS_HAUT		EQU		#F000
+PORTRAIT_ACTARUS_BAS		EQU		#F400
+
+PORTRAIT_ALCOR_HAUT			EQU		#F200
+PORTRAIT_ALCOR_BAS			EQU		#F600
+
+
+; ///////////////////////////////////////////////////////////////////
+; ////////////////////LES ADRESSES DE L'ALCORAK  ////////////////////
+; ///////////////////////////////////////////////////////////////////
+
+ALCORAK_HAUTBAS_SPRH_ROM_ADR			equ	#DC00		; de #c000 à #C4000
+ALCORAK_GAUCHE_SPRH_ROM_ADR				equ #E000
+ALCORAK_DROITE_SPRH_ROM_ADR				equ	#E400
+
+
+
