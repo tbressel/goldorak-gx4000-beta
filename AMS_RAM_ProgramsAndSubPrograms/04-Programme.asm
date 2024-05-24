@@ -495,10 +495,6 @@ affiche_ecrans_de_fin
 			ld		a,(GoldorakMort)
 			cp		a,1		
 			jp		z,game_over
-
-
-			
-
 			jp		shop
 			
 
@@ -553,6 +549,14 @@ include"W-player_PSG.asm"
 include"Y-constantes.asm"
 include"Z-variables.asm"
 
+
+Init_fin
+	LD		BC,#7F00+%10001100
+	OUT 	(C),C
+	ld 		hl,Music         				; Initialisation
+	ld		a,MUSIC_LVL_WIN
+	call 	PLY_AKG_Init
+	jp 		Boucle_Game_Over
 
 Init_Game_Over
 	LD		BC,#7F00+%10001100

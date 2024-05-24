@@ -344,8 +344,7 @@ call z,theEndOfThisGame
     ; cp a,1
     ; jp z,theEndOfThisGame
 
-    ld a,1
-    ld (fini),a
+
 
 ; on fait partir l'alcorak vers le haut
     ld hl,(alocorak_posX)
@@ -372,56 +371,19 @@ call z,theEndOfThisGame
     dec hl : dec hl
     ld (posy_goldorak),hl  
     call goldorakMovesUpdate
-
-
-; ld hl,(alocorak_posY)
-; ld bc,32
-; ld de,0
-; add hl,bc
-
-; ex hl,de
-; sbc hl,de
-; ex hl,de
-; jr nc,alcorakIsGone
-
-; ld hl,(posy_goldorak)
-; ld bc,32
-; ld de,0
-; add hl,bc
-; ex hl,de
-; sbc hl,de
-; ex hl,de
-; jr nc,goldorakIsGone
-
-
-
     ret
-
-; goldorakIsGone
-;     ld a,1
-;     ld (isShipsAreGone),a
-;     ret
-
-; alcorakIsGone
-;     ld a,1
-;     ld (isShipsAreGone),a
-;     ret
-
 
 theEndOfThisGame
     inc a
     ld (switchtheend),a
+    ld a,1
+    ld (fini),a
     xor a
     ld (flag_bigboss),a
-	; ld 		(event_alcorak),a
-	; ld		(event_alcorak+1),a	
-	; ld		(event_alcorak+2),a
-
-
-                    ld		a,_CALL						; call
-					ld		(event_fade_out),a
-					ld		hl,fondu_de_sortie
-					ld		(event_fade_out+1),hl
+    ld a,_CALL						
+	ld (event_fade_out),a
+	ld hl,fondu_de_sortie
+	ld (event_fade_out+1),hl
     ret
 
 

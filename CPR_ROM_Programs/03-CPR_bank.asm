@@ -206,6 +206,8 @@ bank 14
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 28
 	incbin "../CPR_ASSETS/sound/metamorphose.spl"
+	;  org #e3cb
+	incbin "../CPR_ASSETS/sound/alcor.spl"
 bank 29
 	incbin "../CPR_ASSETS/sound/idargos.spl"
 bank 30

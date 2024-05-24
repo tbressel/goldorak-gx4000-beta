@@ -218,7 +218,8 @@ sample_metamorphose
 	
 	LD 		BC,#DF00+28+#80:OUT (C),C	
 	LD		BC,#7F00+%10000000:OUT (C),C 
-	ld		hl,#c000
+	ld		hl,#e3cb
+	; ld		hl,#c000
 	ld		de,#23d0
 	CALL	play_sample
 	

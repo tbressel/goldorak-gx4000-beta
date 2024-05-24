@@ -55,5 +55,5 @@ Asic ON
 	LDIR
 Asic OFF
 
-JP	$
+JP	Init_fin
 
