@@ -325,8 +325,12 @@ ret
 actarusSpeaking
     inc a
     ld (endingSceneSpritesStep),a
-    call sample_on
-    ld a,0
+    call	RAM_COPY_SAMPLES_FIN
+	ld		a,_CALL
+	ld		(event_playsample),a
+	ld		hl,Sample
+	ld		(event_playsample+1),hl
+    xor a
     ld (switchtheend),a
     ret
 
@@ -338,12 +342,6 @@ goAheadBoth
 ld a,(switchtheend)
 cp a,0
 call z,theEndOfThisGame
-
-
-    ; ld a,(isShipsAreGone)
-    ; cp a,1
-    ; jp z,theEndOfThisGame
-
 
 
 ; on fait partir l'alcorak vers le haut

@@ -415,6 +415,15 @@ RAM_SAMPLES
 	ldir
 	call	rom_off
 	ret
+RAM_COPY_SAMPLES_FIN
+	ld		c,28
+	RST 	UPPER_ROM_CONNEXION
+	ld		hl,#e3cb
+	ld		de,#0100			
+	ld		bc,#1c30						 
+	ldir
+	call	rom_off
+	ret
 COPIE_RAM_ZIK
 	ld		c,3
 	RST 	UPPER_ROM_CONNEXION
