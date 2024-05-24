@@ -4,6 +4,7 @@ include "golgoths.asm"
 include "mainships.asm"
 include "littleships.asm"
 include "goldorak.asm"
+include "alcorak.asm"
 
 
 

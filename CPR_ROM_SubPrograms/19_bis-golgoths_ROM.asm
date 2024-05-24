@@ -205,45 +205,13 @@ Explose_Golgoth
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call Un_Golgoth_Est_Mort
 						
 							ret
 	
@@ -620,47 +588,13 @@ Explose_Golgoth3
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort3
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							ld		(valeur_zoom_sprh14),a
-							ld		(valeur_zoom_sprh15),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call Un_Golgoth_Est_Mort
 							ret
 
 
@@ -978,45 +912,13 @@ Explose_Golgoth4
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort4
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call Un_Golgoth_Est_Mort
 														; on précise que cette fin de level fait appel à un level 'big boss'
 							ld		a,1
 							ld		(flag_bigboss),a
@@ -1397,45 +1299,13 @@ Explose_Golgoth5
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort5
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call Un_Golgoth_Est_Mort
 							ret
 
 
@@ -1841,47 +1711,13 @@ Explose_Golgoth6
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort6
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							ld		(valeur_zoom_sprh14),a
-							ld		(valeur_zoom_sprh15),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call 	Un_Golgoth_Est_Mort
 							ret
 
 
@@ -2193,47 +2029,13 @@ Explose_Golgoth7
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort7
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							ld		(valeur_zoom_sprh14),a
-							ld		(valeur_zoom_sprh15),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
-							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
+							call	Un_Golgoth_Est_Mort
 							ret
 
 
@@ -2473,53 +2275,19 @@ Explose_Golgoth8
 					inc		c
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
-					ld 		c,0 					;channel (0-2)
+					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
 						GolgothMort8
-							xor		a
-							ld		(flag_boss),a
-							ld		(valeur_zoom_sprh6),a
-							ld		(valeur_zoom_sprh7),a
-							ld		(valeur_zoom_sprh8),a
-							ld		(valeur_zoom_sprh9),a
-							ld		(valeur_zoom_sprh10),a
-							ld		(valeur_zoom_sprh11),a
-							ld		(valeur_zoom_sprh12),a
-							ld		(valeur_zoom_sprh13),a
-							ld		(valeur_zoom_sprh14),a
-							ld		(valeur_zoom_sprh15),a
-							exx
-							ld		(event_golgoth),a
-							ld		(event_golgoth+1),a
-							ld		(event_golgoth+2),a
-							ld		(event_golgoth+3),a
-							ld		(event_golgoth+4),a
-							ld		(event_golgoth+5),a
-						
-							; suppression du test de touche de goldorak
-							ld		(event_test_de_goldorak),a
-							ld		(event_test_de_goldorak+1),a
-							ld		(event_test_de_goldorak+2),a
+							call	Un_Golgoth_Est_Mort
 							
-							ld		a,_CALL						; call
-							ld		(event_fade_out),a
-							ld		hl,fondu_de_sortie
-							ld		(event_fade_out+1),hl
-							ld		a,_JP						; JP
-							ld		(event_fade_out+3),a
-							ld		hl,boucle_principale
-							ld		(event_fade_out+4),hl
-							call	music_off
-							call	scrolling_on
-																					; on précise que cette fin de level fait appel à un level 'big boss'
-							; ; on précise que cette fin de level fait appel à un level 'big boss'
-							 ld		a,2
-							 ld		(flag_bigboss),a
-							ld  hl,BIGBOSS2_SPRH_ADR_ROM
-							ld (adrBigbossSpriteROM),hl
+							; on précise que cette fin de level fait appel à un level 'big boss'
+							ld		a,2
+							ld		(flag_bigboss),a
+							ld 		 hl,BIGBOSS2_SPRH_ADR_ROM
+							ld 		(adrBigbossSpriteROM),hl
 							ret
 
 
@@ -2579,3 +2347,52 @@ Tbl_Gologoth8
 	
 	dw	#FFFF		
 
+Un_Golgoth_Est_Mort
+	xor		a
+	ld		(flag_boss),a
+	ld		(valeur_zoom_sprh4),a
+	ld		(valeur_zoom_sprh5),a
+	ld		(valeur_zoom_sprh6),a
+	ld		(valeur_zoom_sprh7),a
+	ld		(valeur_zoom_sprh8),a
+	ld		(valeur_zoom_sprh9),a
+	ld		(valeur_zoom_sprh10),a
+	ld		(valeur_zoom_sprh11),a
+	ld		(valeur_zoom_sprh12),a
+	ld		(valeur_zoom_sprh13),a
+	ld		(valeur_zoom_sprh14),a
+	ld		(valeur_zoom_sprh15),a
+	exx
+	ld		(event_golgoth),a
+	ld		(event_golgoth+1),a
+	ld		(event_golgoth+2),a
+	ld		(event_golgoth+3),a
+	ld		(event_golgoth+4),a
+	ld		(event_golgoth+5),a
+						
+	; suppression du test de touche de goldorak
+	ld		(event_test_de_goldorak),a
+	ld		(event_test_de_goldorak+1),a
+	ld		(event_test_de_goldorak+2),a
+							
+	ld		a,_CALL						; call
+	ld		(event_fade_out),a
+	ld		hl,fondu_de_sortie
+	ld		(event_fade_out+1),hl
+
+	ld		a,_JP						; JP
+	ld		(event_fade_out+3),a
+	ld		hl,boucle_principale
+	ld		(event_fade_out+4),hl
+
+	ld		a,_CALL						; call
+	ld		(event_alcorak),a
+	ld		hl,alcorak_puzzle
+	ld		(event_alcorak+1),hl
+
+	; call	music_off
+		ld		a,MUCIS_NO_MUSIC	
+		call 	PLY_AKG_Init
+		call	music_on
+	call	scrolling_on
+	ret

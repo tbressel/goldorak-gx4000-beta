@@ -21,6 +21,7 @@ retour_charge_sprh_haut
 goldo_haut
 	ld		hl,(posy_goldorak)
 	dec 	hl:dec hl
+	dec 	hl:dec hl
 	ld		a,l
 	cp		a,collision_goldo_haut
 	call	z,stop_haut
@@ -28,6 +29,7 @@ goldo_haut
 	call	goldo_affiche
 	ret
 stop_haut
+	inc	hl:inc hl
 	inc	hl:inc hl
 	ret
 charge_sprh_haut

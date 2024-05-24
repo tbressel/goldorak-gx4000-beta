@@ -146,6 +146,7 @@ event_playsample		ds		6,0
 	;jp			boucle_principale
 event_alcorak			ds		6,0
 	;call		alcorak
+	;call		alcorak_puzzle
 	;jp			boucle_principale
 event_fade_out			ds	    6,0
 	;call		fade_out
@@ -549,6 +550,7 @@ include"12-soucoupes.asm"
 include"13-collisions_ennemis.asm"
 include"14-tirs_soucoupes.asm"
 include"15-gestion_du_hud.asm"
+include"16-alcorak_puzzle.asm"
 include"17-big_boss_fin.asm"
 include"18-mouvements_soucoupes.asm"
 include"19-scene_de_fin.asm"

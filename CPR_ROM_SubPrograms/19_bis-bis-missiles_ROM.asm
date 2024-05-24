@@ -54,7 +54,7 @@ missileG1_1_ROM
 					ld		(posX_Missile),hl
 					ld		hl,(posY_MissileG1_1)
 					ld		(SPRH10_Y),hl
-					inc		hl
+					; inc		hl
 					inc		hl
 					ld		(posY_MissileG1_1),hl
 					ld		(SPRH10_Y),hl
@@ -124,7 +124,7 @@ missileG1_2_ROM
 					ld		(posX_Missile),hl
 					ld		hl,(posY_MissileG1_2)
 					ld		(SPRH11_Y),hl
-					inc		hl
+					; inc		hl
 					inc		hl
 					inc		hl
 					ld		(posY_MissileG1_2),hl
@@ -194,7 +194,7 @@ missileG1_3_ROM
 					ld		(posX_Missile),hl
 					ld		hl,(posY_MissileG1_3)
 					ld		(SPRH12_Y),hl
-					inc		hl
+					; inc		hl
 					inc		hl
 					inc		hl
 					inc		hl
@@ -266,7 +266,7 @@ missileG1_4_ROM
 					ld		(posX_Missile),hl
 					ld		hl,(posY_MissileG1_4)
 					ld		(SPRH13_Y),hl
-					inc		hl
+					; inc		hl
 					inc		hl
 					inc		hl
 					inc		hl
@@ -342,7 +342,7 @@ missileG2_1_ROM
 					ld		hl,(posY_MissileG2_1)
 					ld		(SPRH10_Y),hl
 					inc		hl
-					inc		hl
+					; inc		hl
 					ld		(posY_MissileG2_1),hl
 					ld		(SPRH10_Y),hl
 					ld		(posY_Missile),hl

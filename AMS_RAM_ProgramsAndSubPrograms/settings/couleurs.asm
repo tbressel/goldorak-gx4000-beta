@@ -6,7 +6,7 @@ PALETTE_DECORS_RAM		equ		#0040
 PALETTE_HUD_RAM			equ		#0060
 
 
-
+; nombre de frame à laquelle les encre sont décrémentées après la mort d'un golgoth
 VITESSE_FONDU_DE_SORTIE	equ		10
 
 

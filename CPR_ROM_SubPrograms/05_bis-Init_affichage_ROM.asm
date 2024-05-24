@@ -76,6 +76,14 @@ ld		hl,PALETTE_ASIC
 		dec		b
 		jr		nz,test_fin_du_fondu
 
+		xor a
+		ld (alcorakPuzzleStep),a
+		ld (event_alcorak),a
+		ld (event_alcorak+1),a
+		ld (event_alcorak+2),a
+
+		call music_off
+
 ; tester si on est sur un level qui propose un BIG BOSS
 		ld		a,(flag_bigboss)
 		cp		a,1
