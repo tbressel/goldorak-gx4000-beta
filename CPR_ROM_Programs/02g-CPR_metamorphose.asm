@@ -218,8 +218,10 @@ sample_metamorphose
 	
 	LD 		BC,#DF00+28+#80:OUT (C),C	
 	LD		BC,#7F00+%10000000:OUT (C),C 
-	ld		hl,#c000
-	ld		de,#2000
+	ld		hl,#c000			; adresse du début du sample en ROM
+	
+	ld		de,#2000			; longueur du sample
+	
 	CALL	play_sample
 	
 		LD 		BC,BANK15_ACTARUS:OUT (C),C				; on choisit DE LIRE la ROM 14

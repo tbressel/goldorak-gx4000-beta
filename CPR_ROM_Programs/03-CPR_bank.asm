@@ -237,7 +237,8 @@ bank 14
 ; ///////////////////////////////////////////////////////////////////////////////	
 bank 28
 	incbin "../CPR_ASSETS/sound/metamorphose.spl"    ; 9163
-	incbin "../CPR_ASSETS/sound/alcor.spl";  ; 6917
+	incbin "../CPR_ASSETS/sound/alcor2.spl";  ; 6917
+	;incbin "../CPR_ASSETS/sound/alcor.spl";  ; 6917
 bank 29
 	incbin "../CPR_ASSETS/sound/idargos.spl"
 bank 30

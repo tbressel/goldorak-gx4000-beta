@@ -418,9 +418,9 @@ RAM_SAMPLES
 RAM_COPY_SAMPLES_FIN
 	ld		c,28
 	RST 	UPPER_ROM_CONNEXION
-	ld		hl,#e3cb
-	ld		de,#0100			
-	ld		bc,#1c30						 
+	ld		hl,#e3cb		; adresse du début du sample en ROM
+	ld		de,#0100		; adresse de copy en RAM
+	ld		bc,#1c30		; longueur du sample à copier (il commence en #FFFF - #e3cb)
 	ldir
 	call	rom_off
 	ret
