@@ -1,0 +1,125 @@
+
+
+; adresses des palettes dans l'ASIC
+PALETTE_ASIC			equ		#6400
+PALETTE_BORDER          equ     #6420
+PALETTE_SPRH			equ		#6422
+
+
+; ////////////////////////////////////////////////   Adresses  //////////////////////////////////////
+SPRH0_ADR		EQU	#4000
+SPRH1_ADR		EQU	#4100
+SPRH2_ADR		EQU	#4200
+SPRH3_ADR		EQU	#4300
+SPRH4_ADR		EQU	#4400
+SPRH5_ADR		EQU	#4500
+SPRH6_ADR		EQU	#4600
+SPRH7_ADR		EQU	#4700
+SPRH8_ADR		EQU	#4800
+SPRH9_ADR		EQU	#4900
+SPRH10_ADR	    EQU	#4A00
+SPRH11_ADR	    EQU	#4B00
+SPRH12_ADR		EQU	#4C00
+SPRH13_ADR	    EQU	#4D00
+SPRH14_ADR	    EQU	#4E00
+SPRH15_ADR		EQU	#4F00
+
+
+
+
+; adresse des zoom
+SPRH0_ZOOM		EQU	#6004
+SPRH1_ZOOM		EQU	#600c
+SPRH2_ZOOM		EQU	#6014
+SPRH3_ZOOM		EQU	#601c
+SPRH4_ZOOM		EQU	#6024
+SPRH5_ZOOM		EQU	#602c
+SPRH6_ZOOM		EQU	#6034
+SPRH7_ZOOM		EQU	#603c
+SPRH8_ZOOM		EQU	#6044
+SPRH9_ZOOM		EQU	#604c
+SPRH10_ZOOM		EQU	#6054
+SPRH11_ZOOM		EQU	#605c
+SPRH12_ZOOM		EQU	#6064
+SPRH13_ZOOM		EQU	#606c
+SPRH14_ZOOM		EQU	#6074
+SPRH15_ZOOM		EQU	#607c
+
+
+; valeures des zoom
+zoom_mode2_1		equ		5
+zoom_mode2_2		equ		6
+zoom_mode2_3		equ		7
+
+zoom_mode1_1		equ		9
+zoom_mode1_2		equ		10
+zoom_mode1_3		equ		11
+
+zoom_mode0_1		equ		13
+zoom_mode0_2		equ		14
+zoom_mode0_3		equ		15
+
+
+
+; ////////////////////////////////////////////   Coordonnées  /////////////////////////////////////////
+SPRH0_X			EQU	#6000
+SPRH0_Y			EQU	#6002
+
+SPRH1_X			EQU	#6008
+SPRH1_Y			EQU	#600A
+
+SPRH2_X			EQU	#6010
+SPRH2_Y			EQU	#6012
+
+SPRH3_X			EQU	#6018
+SPRH3_Y			EQU	#601A
+
+SPRH4_X			EQU	#6020
+SPRH4_Y			EQU	#6022
+
+SPRH5_X			EQU	#6028
+SPRH5_Y			EQU	#602A
+
+SPRH6_X			EQU	#6030
+SPRH6_Y			EQU	#6032
+
+SPRH7_X			EQU	#6038
+SPRH7_Y			EQU	#603A
+
+SPRH8_X			EQU	#6040
+SPRH8_Y			EQU	#6042
+
+SPRH9_X			EQU	#6048
+SPRH9_Y			EQU	#604A
+
+SPRH10_X		EQU	#6050
+SPRH10_Y		EQU	#6052
+
+SPRH11_X		EQU	#6058
+SPRH11_Y		EQU	#605A
+
+SPRH12_X		EQU	#6060
+SPRH12_Y		EQU	#6062
+
+SPRH13_X		EQU	#6068
+SPRH13_Y		EQU	#606A
+
+SPRH14_X		EQU	#6070
+SPRH14_Y		EQU	#6072
+
+SPRH15_X		EQU	#6078
+SPRH15_Y		EQU	#607A
+
+
+
+SPRH0_X_Y_ZOOM	    EQU	    #6000
+SPRH1_X_Y_ZOOM	    EQU	    #6008
+SPRH5_X_Y_ZOOM	    EQU	    #6028
+SPRH6_X_Y_ZOOM	    EQU	    #6030
+SPRH7_X_Y_ZOOM	    EQU	    #6038
+SPRH8_X_Y_ZOOM	    EQU	    #6040
+SPRH9_X_Y_ZOOM	    EQU	    #6048
+SPRH10_X_Y_ZOOM	    EQU	    #6050
+SPRH11_X_Y_ZOOM	    EQU	    #6058
+SPRH12_X_Y_ZOOM	    EQU	    #6060
+

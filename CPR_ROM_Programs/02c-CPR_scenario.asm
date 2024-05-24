@@ -147,7 +147,7 @@ bulle_2
 	LD 		BC,#DF00+29+#80:OUT (C),C	
 	LD		BC,#7F00+%10000000:OUT (C),C 
 	ld		hl,#c000
-	ld		de,#3cce
+	ld		de,#2000
 	CALL	play_sample
 	jp		retour_vignette_bulle
 
@@ -167,7 +167,7 @@ bulle_1
 
 
 tbl_ordre_scenario
-	dw	vignette_1,bulle_1,vignette_2,bulle_2,vignette_3,bulle_3,bulle_3,#FFFF
+	dw	vignette_1,bulle_1,vignette_2,bulle_2,vignette_3,bulle_3,#FFFF
 
 vignette
 	push	bc

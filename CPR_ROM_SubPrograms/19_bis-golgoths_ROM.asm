@@ -206,7 +206,7 @@ Explose_Golgoth
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -621,7 +621,7 @@ Explose_Golgoth3
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -979,7 +979,7 @@ Explose_Golgoth4
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -1398,7 +1398,7 @@ Explose_Golgoth5
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -1842,7 +1842,7 @@ Explose_Golgoth6
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -2194,7 +2194,7 @@ Explose_Golgoth7
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		
@@ -2474,7 +2474,7 @@ Explose_Golgoth8
 					exx
 					ld 		a,SFX_BOOM_GOLGOTH	;Sound effect number (>=1)
 					ld 		c,0 					;channel (0-2)
-					ld 		b,0 					;Inverted volume (0-16)
+					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
 					rst		ASIC_DECONNEXION
 					ret		

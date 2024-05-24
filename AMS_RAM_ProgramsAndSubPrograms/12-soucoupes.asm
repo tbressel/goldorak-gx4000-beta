@@ -377,7 +377,7 @@ soucoupe_6
 													call	rom_off
 														rst		ASIC_CONNEXION
 														ld		hl,COULEUR_BOOM_ENNEMI
-														ld		(#6420),hl
+														ld		(PALETTE_BORDER),hl
 														rst		ASIC_DECONNEXION
 												
 												; /////////// TENTATIVE DE MISE EN PLACE DES BOMBES /////////////////

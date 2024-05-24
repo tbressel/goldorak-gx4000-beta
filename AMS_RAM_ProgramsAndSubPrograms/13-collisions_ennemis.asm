@@ -192,13 +192,13 @@ goldorak_touche
 	
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_BOOM_ENNEMI
-	ld		(#6420),hl
+	ld		(PALETTE_BORDER),hl
 	rst		ASIC_DECONNEXION
 	call	fin_armes
 
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)
     ld 		c,2 					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 
 	ld		a,(id_soucoupe)
@@ -606,7 +606,7 @@ goldorak_prends_item
 
 	ld		a,SFX_GET_ITEM
 	ld 		c,2 					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 
 
@@ -915,12 +915,12 @@ test_collisions_avec_les_Golgoths_D
 goldorak_percute
 	 ;ret		; !!! invincibilité !!!
 	rst		ASIC_CONNEXION
-	ld		hl,COULEUR_DEGAT_BORDER_J1
-	ld		(#6420),hl
+	ld		hl,COULEUR_DEGAT_BORDER
+	ld		(PALETTE_BORDER),hl
 	rst		ASIC_DECONNEXION
 	ld		a,SFX_DAMMAGE
 	ld 		c,2					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION

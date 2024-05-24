@@ -16,7 +16,7 @@ fireA
 	
 	ld		a,(sfx_arme)
     ld 		c,1 ;channel (0-2)
-    ld 		b,0 ;Inverted volume (0-16)
+    ld 		b,SFX_VOLUME ;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 
 	ld		a,(id_arme)

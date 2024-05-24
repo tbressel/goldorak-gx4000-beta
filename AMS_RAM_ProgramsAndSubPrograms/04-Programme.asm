@@ -64,7 +64,7 @@ Asic ON
 	ld		(sfx_arme),a
 
 	ld		hl,#000
-	ld		(#6420),hl
+	ld		(PALETTE_BORDER),hl
 Asic OFF
 	call	affiche_hud
 	;   call	affiche_hud_2_joueurs
@@ -204,7 +204,7 @@ event_boucle_2_joueurs		ds		3,0			; JP boucle_principale
 
 
 	ld		hl,#000
-	ld		(#6420),hl
+	ld		(PALETTE_BORDER),hl
 
 event_sprite_a_charger
 	call	sprh_a_charger_ou_pas
@@ -554,9 +554,9 @@ include"18-mouvements_soucoupes.asm"
 include"19-scene_de_fin.asm"
 include"A-interruptions.asm"
 include"B-interrupteurs.asm"
-include"W-player_PSG.asm"
-include"Y-constantes.asm"
-include"Z-variables.asm"
+include"./music_sfx_samples/player_PSG.asm"
+include"./settings/constantes.asm"
+include"./datas/variables.asm"
 
 
 Init_fin
@@ -632,17 +632,17 @@ musique_boutique
 ; /////////////////////////////////////////////////////////////////////
 bank 3
 	ORG PLAYER_ADR_RAM
-		include"Goldorak_musiques2024_playerconfig.asm"
+		include"./music_sfx_samples/Goldorak_musiques2024_playerconfig.asm"
 		; include"Goldorak_musiques_playerconfig.asm"
-		include"PlayerAkg.asm"						; #0d54 de longueur
+		include"./music_sfx_samples/PlayerAkg.asm"						; #0d54 de longueur
  ; La configuration n'est pas obligatoire, mais elle permet
         ; de réduire la taille du binaire produit (ici 1.6K au lieu de 1.8K)
 	;ORG #cc60
 	ORG MUSIC_ADR_RAM
 		Music
 			; include"Goldorak_musiques.asm"
-			include"Goldorak_musiques2024.asm"
+			include"./music_sfx_samples/Goldorak_musiques2024.asm"
 		SoundEffects
 			; include"Goldorak_soundeffects.asm"
-			include "Goldorak_SoundFX.asm"
+			include "./music_sfx_samples/Goldorak_SoundFX.asm"
 

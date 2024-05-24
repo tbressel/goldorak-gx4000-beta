@@ -164,7 +164,8 @@ bank 17
 	org #e5c0
 		incbin "../CPR_ASSETS/gfx/scenario_fond.zx0"
 	org #ee40
-		incbin "../CPR_ASSETS/gfx/scenario_vignettes1.zx0"
+		; incbin "../CPR_ASSETS/gfx/scenario_vignettes1.zx0" . SCENARFR.SCR.ZX0
+		incbin "../CPR_ASSETS/gfx/SCENARFR.SCR.ZX0"
 Bank 18
 	include "../CPR_ROM_SubPrograms/04_bis-Programme_ROM_suite.asm"
 
@@ -238,9 +239,8 @@ bank 14
 bank 28
 	incbin "../CPR_ASSETS/sound/metamorphose.spl"    ; 9163
 	incbin "../CPR_ASSETS/sound/alcor2.spl";  ; 6917
-	;incbin "../CPR_ASSETS/sound/alcor.spl";  ; 6917
 bank 29
-	incbin "../CPR_ASSETS/sound/idargos.spl"
+	incbin "../CPR_ASSETS/sound/pere.spl"
 bank 30
 	incbin "../CPR_ASSETS/sound/ovetaire.spl"
 bank 31

@@ -1,7 +1,7 @@
 fin_attente_fireB_ROM
 	ld 		a,SFX_WEAPONS_CHANGE	;Sound effect number (>=1)
     ld 		c,1 					;channel (0-2)
-    ld 		b,0 					;Inverted volume (0-16)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
 	
 	xor		a
