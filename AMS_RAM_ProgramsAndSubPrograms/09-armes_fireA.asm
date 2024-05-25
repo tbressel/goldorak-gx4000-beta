@@ -1379,10 +1379,6 @@ update_pointer_tbl_retournement
 
 
 
-nbr_de_retournement				ds 	1,0
-display_tbl_retournement_top	ds	2,0
-display_tbl_retournement_bot	ds	2,0
-pointer_tbl_retournement 		ds 	2,0
 
 
 
@@ -1405,17 +1401,6 @@ UpdateRetournement
 	ld		(SPRH2_Y),hl
 	ld		(SPRH3_Y),hl
 	ret
-
-
-Tbl_Vitesse_Retournement
-
-	db		-16
-	db		-8
-
-	db		DISTANCE_RETOURNEMENT_AVANCER,DISTANCE_RETOURNEMENT_AVANCER_moins,DISTANCE_RETOURNEMENT_RECULER_moins
-	db		DISTANCE_RETOURNEMENT_RECULER,16,8
-	db		DISTANCE_RETOURNEMENT_RECULER_moins,DISTANCE_RETOURNEMENT_RECULER_moins
-	db		DISTANCE_RETOURNEMENT_AVANCER
 
 
 

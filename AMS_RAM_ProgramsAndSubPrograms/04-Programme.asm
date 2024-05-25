@@ -457,20 +457,22 @@ affiche_ecrans_de_fin
 	di	
 	Asic ON		
 	xor		a
-	ld		(#6004),a
-	ld		(#600C),a
-	ld		(#6014),a
-	ld		(#601C),a
-	ld		(#6024),a
-	ld		(#602C),a
-	ld		(#6034),a
-	ld		(#603C),a
-	ld		(#6044),a
-	ld		(#604C),a
-	ld		(#6054),a
-	ld		(#605C),a
-	ld		(#6064),a
-	ld		(#606C),a
+	ld		(#6004),a : ld (valeur_zoom_sprh0),a
+	ld		(#600C),a : ld (valeur_zoom_sprh1),a
+	ld		(#6014),a : ld (valeur_zoom_sprh2),a
+	ld		(#601C),a : ld (valeur_zoom_sprh3),a
+	ld		(#6024),a : ld (valeur_zoom_sprh4),a
+	ld		(#602C),a : ld (valeur_zoom_sprh5),a
+	ld		(#6034),a : ld (valeur_zoom_sprh6),a
+	ld		(#603C),a : ld (valeur_zoom_sprh7),a
+	ld		(#6044),a : ld (valeur_zoom_sprh8),a
+	ld		(#604C),a : ld (valeur_zoom_sprh9),a
+	ld		(#6054),a : ld (valeur_zoom_sprh10),a
+	ld		(#605C),a : ld (valeur_zoom_sprh11),a
+	ld		(#6064),a : ld (valeur_zoom_sprh12),a
+	ld		(#606C),a : ld (valeur_zoom_sprh13),a
+	ld		(#6074),a : ld (valeur_zoom_sprh14),a
+	ld		(#607C),a : ld (valeur_zoom_sprh15),a
 	
 	Asic OFF
 		; mise à zéros de la bank #C000-#FFFF
@@ -617,6 +619,15 @@ init_musique_boutique
 	LD		BC,#7F00+%10000000
 	OUT 	(C),C
 	ret
+
+stop_musique_boutique
+	LD		BC,#7F00+%10001100
+	OUT 	(C),C
+	call	PLY_AKG_Stop
+	LD		BC,#7F00+%10000000
+	OUT 	(C),C
+	ret
+ret
 
 musique_boutique
 	LD		BC,#7F00+%10001100

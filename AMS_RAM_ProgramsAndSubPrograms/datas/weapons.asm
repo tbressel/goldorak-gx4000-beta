@@ -35,3 +35,18 @@ timer_planitron2			ds		1,0
 etp_anim_clavicogyres		ds		1,0
 adr_anim_clavicogyres		ds		2,0
 timer_clavicogyres			ds		1,0
+
+
+; Cout_Cornofulgure
+; 	;	l,h,e,d,c
+; 	db	0,5,5,0,0		; Cornofulgure
+; Cout_Pulvonium	
+; 	db	0,7,0,0,0		; Pulvonium
+; Cout_Clavicogyre
+; 	db	0,6,0,0,0		; Clavicogyre
+; Cout_Planitron1
+; 	db	0,2,0,0,0		; Planitron 1
+; Cout_Planitron2
+; 	db	0,2,0,0,0		; Planitron 2
+; Cout_Fulguropoint
+; 	db	0,4,5,0,0		; Fulguropoint

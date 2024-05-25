@@ -109,7 +109,7 @@ PV_GOLGOTH_4		equ		128
 ; le golgoth doit être touché 96 fois avec une arme de niveau 1 (missile gamma)
 ; ou 48 fois avec une arme de niveau 2 (planitron 1) 2000 pts dans la boutique
 ; ou 32 fois s'il  choisit une arme de niveau 3 (planitron 2) 2200 pts dans la boutique
-; ou 24 fois s'il  choisit une arme de niveau 4 (clavycogyre) 3500 pts dans la boutique
+; ou 24 fois s'il  choisit une arme de niveau 4 (clavycogyre) 5500 pts dans la boutique
 ; ou 19 fois s'il choisit une arme de niveau 5 (fulguropoing) 4000 pts dans la boutique
 PV_GOLGOTH_5		equ		96
 

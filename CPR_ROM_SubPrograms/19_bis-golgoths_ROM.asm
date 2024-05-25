@@ -2390,9 +2390,7 @@ Un_Golgoth_Est_Mort
 	ld		hl,alcorak_puzzle
 	ld		(event_alcorak+1),hl
 
-	; call	music_off
-		ld		a,MUCIS_NO_MUSIC	
-		call 	PLY_AKG_Init
-		call	music_on
+	 call	music_off
+
 	call	scrolling_on
 	ret

@@ -1,5 +1,8 @@
 org #c000
 
+	include "./datas/items.asm"
+
+
 	include		"05_bis-Init_affichage_ROM.asm"
     include		"06_bis-Init_de_jeu_ROM.asm"
 	include		"07_bis-arrimage_ROM.asm"
