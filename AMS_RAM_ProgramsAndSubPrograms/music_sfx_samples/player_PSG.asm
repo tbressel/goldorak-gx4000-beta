@@ -1,16 +1,16 @@
 
    
 PlaySampleSet:
-		ld		hl,(adr_sample)			; adresse de début du sample
-	    LD      de,(longueur_sample)                  ; Récupère longueur échantillon
-		LD      A,2						; registre 2 du PSG
-        LD      C,0						; valeur à lui envoyer
+	ld	hl,(adr_sample) 			; adresse de début du sample
+	LD      de,(longueur_sample)                    ; Récupère longueur échantillon
+	LD      A,2					; registre 2 du PSG
+        LD      C,0					; valeur à lui envoyer
         CALL    WriteRegPsg				; PSG, Go !
-        LD      A,3						; registre 3 du PSG
-        LD      C,0						; valeur à lui envoyer
+        LD      A,3					; registre 3 du PSG
+        LD      C,0					; valeur à lui envoyer
         CALL    WriteRegPsg				; PSG, Go !
-        LD      A,7						; registre 7 du PSG
-        LD      C,#3D                   ; Activer seulement deuxième canal son
+        LD      A,7					; registre 7 du PSG
+        LD      C,#3D                                   ; Activer seulement deuxième canal son
         CALL    WriteRegPsg				; PSG, Go !
 		
 		
@@ -24,7 +24,7 @@ PlaySampleRout:
         LD      C,D
         LD      A,9
         CALL    WriteRegPsg
-		ret
+        ret
         
 
 PlaySample4Bits:
@@ -60,27 +60,25 @@ PlaySample4Bits3:
 ; C = valeur
 ;
 WriteRegPsg:
-	; di
-        ; LD      B,#F4
-        ; OUT     (C),A
-        ; LD      B,#F6
-        ; IN      A,(C)
-        ; OR      #C0
-        ; OUT     (C),A
-        ; AND     #3F
-        ; OUT     (C),A
-        ; LD      B,#F4
-        ; OUT     (C),C
-        ; LD      B,#F6
-        ; LD      C,A
-        ; OR      #80
-        ; OUT     (C),A
-        ; OUT     (C),C
-	; 	ei
-        ; RET
-
-
-di
+	di
+        LD      B,#F4
+        OUT     (C),A
+        LD      B,#F6
+        IN      A,(C)
+        OR      #C0
+        OUT     (C),A
+        AND     #3F
+        OUT     (C),A
+        LD      B,#F4
+        OUT     (C),C
+        LD      B,#F6
+        LD      C,A
+        OR      #80
+        OUT     (C),A
+        OUT     (C),C
+	ei
+        RET
+        di
 ld b,#F4 : out (c),a : ld a,#C0
 ld b,#F6 : out (c),a : out (c),0
 ld b,#F4 : out (c),c : ld a,#80

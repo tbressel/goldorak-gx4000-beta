@@ -143,7 +143,7 @@ fin_missiles_gamma_pow2
 	ret	
 	
 	
-	
+; placement des sprites pour les missiles gamma par rapport à Goldorak
 missiles_gamma_pow31_ROM	
 	ld		a,(etp_arme2)
 	inc		a:ld (etp_arme2),a
@@ -155,7 +155,8 @@ missiles_gamma_pow31_ROM
 	ld		a,zoom_mode1_2:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
 	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
 	ret
-	
+
+; on déplace les missiles gamma
 missiles_gamma_pow32_ROM	
 	ld		hl,(SPRH4_Y)
 	dec		hl
@@ -168,13 +169,13 @@ missiles_gamma_pow32_ROM
 	dec		hl
 	dec		hl
 	dec		hl
-		dec		hl
-	ld		e,l
-	ld		d,h	
-	ld		bc,-8
-	add		hl,bc
-	jr		nc,fin_missiles_gamma_pow3
-	ld		(SPRH4_Y),de
+	dec		hl
+	
+	ld 		a,h	; on vérifie si le missile est sorti de l'écran
+	cp		#FF
+	jr		z,fin_missiles_gamma_pow3
+	
+	ld		(SPRH4_Y),hl
 	ld		hl,(SPRH5_Y)
 	dec		hl
 	dec		hl
@@ -184,9 +185,9 @@ missiles_gamma_pow32_ROM
 	dec		hl
 	dec		hl
 	dec		hl
-		dec		hl
 	dec		hl
-		dec		hl
+	dec		hl
+	dec		hl
 	ld		(SPRH5_Y),hl
 	ret
 fin_missiles_gamma_pow3

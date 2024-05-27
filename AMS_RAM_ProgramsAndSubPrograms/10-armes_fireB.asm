@@ -1,8 +1,5 @@
 ; ////////////////////////////////////////////////////////////////
 fireB
-	; ld	a,(flag_mode_2_joueur)
-	; cp	a,1
-	; jp	z,retour_test_des_tirs
 		attente_fireB
 			RST		ASIC_DECONNEXION
 			ld		a,(counter_fireB)
