@@ -15,19 +15,7 @@ score_items_ROM
 			ld		l,a
 			exx
 			jr		counter_suite_items
-				;counter_venusiak_items
-				;	exx		
-				;	ld		a,(Counter_score2+4)			; on recupère les unitées
-				;	ld		c,a						; on tranfer dans c
-				;	ld		a,(Counter_score2+3)
-				;	ld		d,a
-				;	ld		a,(Counter_score2+2)
-				;	ld		E,a
-				;	ld		a,(Counter_score2+1)
-				;	ld		h,a
-				;	ld		a,(Counter_score2)
-				;	ld		l,a
-				;	exx
+
 						counter_suite_items
 							ld	hl,(adr_tbl_points_soucoupe)
 							ld	a,(hl)
@@ -288,19 +276,7 @@ counter_goldorak
 	ld		l,a
 	exx
 	jr		counter_suite
-;counter_venusiak
-;	exx		
-;	ld		a,(Counter_score2+4)			; on recupère les unitées
-;	ld		c,a						; on tranfer dans c
-;	ld		a,(Counter_score2+3)
-;	ld		d,a
-;	ld		a,(Counter_score2+2)
-;	ld		E,a
-;	ld		a,(Counter_score2+1)
-;	ld		h,a
-;	ld		a,(Counter_score2)
-;	ld		l,a
-;	exx
+
 counter_suite
 	ld		hl,(points_a_ajouter)
 	exx

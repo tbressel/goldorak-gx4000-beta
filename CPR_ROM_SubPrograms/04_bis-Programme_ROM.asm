@@ -154,7 +154,7 @@ dec_PowerUpbar
 	ld		a,(CompteurFramePowerUp)
 	inc		a
 	ld		(CompteurFramePowerUp),a
-	cp		a,128
+	cp		a,VITESSE_PERTE_POWER_UP
 	RET		NZ
 	xor		a
 	ld		(CompteurFramePowerUp),a
@@ -223,7 +223,8 @@ reinit_compteur_powerup_niv2
 	xor		a
 	ld		(compteur_powerup_niv2),a
 	ld		(compteur_powerup_niv1),a
-	ld		hl,#4970
+	ld		hl,HUD_DEPART_POWER_UP2
+	; ld		hl,#4970
 	ld		(PowerupBar_ECRAN),hl
 
 	call	fin_missiles_gamma2
