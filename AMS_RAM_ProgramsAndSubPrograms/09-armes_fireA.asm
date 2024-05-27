@@ -968,7 +968,6 @@ arme_clavicogyres
 
 
 	RST		ASIC_CONNEXION
-	;RST		#18
 	ld		a,(etp_arme7)
 	cp		a,0
 	jp		z,init_clavicogyres

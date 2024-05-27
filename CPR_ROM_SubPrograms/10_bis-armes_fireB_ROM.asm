@@ -41,6 +41,8 @@ fin_attente_fireB_ROM
 		ld		(adr_type_arme),hl
 		ld		a,FORCE_MISSILES_GAMMA
 		ld		(points_attaque),a
+		ld 		a,SFX_GAMMA_LVL1	 ;Sound effect number (>=1))
+		ld		(sfx_arme),a
 		ret
 		affiche_boutton_2
 			ld		a,(ArmesDisponible)
@@ -60,6 +62,8 @@ fin_attente_fireB_ROM
 			ld		(adr_type_arme),hl
 			ld		a,FORCE_PLANITRON_1
 			ld		(points_attaque),a
+			ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
+			ld		(sfx_arme),a
 			ret
 			affiche_boutton_3
 				ld		a,(ArmesDisponible)
@@ -79,6 +83,8 @@ fin_attente_fireB_ROM
 				ld		(adr_type_arme),hl
 				ld		a,FORCE_PLANITRON_2
 				ld		(points_attaque),a
+				ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
+				ld		(sfx_arme),a
 				ret		
 				affiche_boutton_4
 					ld		a,(ArmesDisponible)
@@ -100,6 +106,8 @@ fin_attente_fireB_ROM
 					ld		(adr_type_arme),hl
 					ld		a,FORCE_CORNOFULGURE_1
 					ld		(points_attaque),a
+					ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
+					ld		(sfx_arme),a
 					ret
 					affiche_boutton_5	
 						ld		a,(ArmesDisponible)
@@ -123,6 +131,8 @@ fin_attente_fireB_ROM
 							ld		(event_arme_fireB+1),hl
 							ld		a,FORCE_FULGURO_POINGS
 							ld		(points_attaque),a
+							ld 		a,SFX_FULGORO_POINT	 ;Sound effect number (>=1))
+							ld		(sfx_arme),a
 							ret
 						affiche_boutton_6
 							ld		a,(ArmesDisponible)
@@ -144,6 +154,8 @@ fin_attente_fireB_ROM
 								ld		(event_arme_fireB+1),hl
 								ld		a,FORCE_CLAVICOGYRES
 								ld		(points_attaque),a
+								ld 		a,SFX_CLAVICOGYRE	 ;Sound effect number (>=1))
+								ld		(sfx_arme),a
 								ret
 							affiche_boutton_7
 								ld		a,(ArmesDisponible)
