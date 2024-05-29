@@ -623,6 +623,8 @@ boss_de_fin_ROM
 											ld		(valeur_zoom_sprh9),a
 											ld		(valeur_zoom_sprh10),a
 											ld		(valeur_zoom_sprh11),a
+											ld		(valeur_zoom_sprh12),a
+											ld		(valeur_zoom_sprh13),a
 										
 											ld		hl,Music
 											ld		a,MUSIC_BOSS

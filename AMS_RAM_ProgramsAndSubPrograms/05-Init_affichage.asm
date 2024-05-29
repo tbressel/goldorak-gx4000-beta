@@ -636,11 +636,11 @@ normal_goldorak_boom_init
 	ld		(event_normal_goldorak_boom),a
 	ld		hl,normal_goldorak_boom
 	ld		(event_normal_goldorak_boom+1),hl
-; on bloque la boucle de rachaichissement des sprite de goldorak
-	ld		a,_CALL							; JP pas_de_scroll_hard
-	ld		(event_boucle_2_joueurs),a
-	ld		hl,boucle_principale
-	ld		(event_boucle_2_joueurs+1),hl
+; ; on bloque la boucle de rachaichissement des sprite de goldorak
+; 	ld		a,_CALL							; JP pas_de_scroll_hard
+; 	ld		(event_boucle_2_joueurs),a
+; 	ld		hl,boucle_principale
+; 	ld		(event_boucle_2_joueurs+1),hl
 	
 	
 	ld 		a,SFX_BOOM	;Sound effect number (>=1)

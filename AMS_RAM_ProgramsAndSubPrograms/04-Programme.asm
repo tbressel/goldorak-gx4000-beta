@@ -197,11 +197,13 @@ jp		test_de_goldorak
 retour_test_de_goldorak
 
 
+
+
 event_arme_fireB			ds		3,0
 
 
 
-event_boucle_2_joueurs		ds		3,0			; JP boucle_principale
+; event_boucle_2_joueurs		ds		3,0			; JP boucle_principale
 
 
 	ld		hl,#000

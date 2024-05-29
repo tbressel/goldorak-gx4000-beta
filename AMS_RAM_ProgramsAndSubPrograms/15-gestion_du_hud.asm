@@ -296,6 +296,8 @@ inc_arme_power
 	ld	(compteur_powerup_niv1),a
 	ld	(compteur_powerup_niv2),a
 
+
+
 	ld	a,(flag_PowerUP)
 	cp	0
 	jr	z,inc_arme_power1
@@ -307,12 +309,14 @@ inc_arme_power
 inc_arme_power1
 	ld	a,1
 	ld	(flag_PowerUP),a
+
 	ret
 inc_arme_power2
 	ld	a,2
 	ld	(flag_PowerUP),a
 	ld	a,1
 	ld	(etp_powerup),a
+
 	ret
 
 DiminuePowerUpBarre

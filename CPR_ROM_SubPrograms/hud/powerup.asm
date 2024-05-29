@@ -88,6 +88,9 @@ boucle_couleurs
 			ld		(points_attaque),a
 			ld 		a,SFX_GAMMA_LVL2
 			ld		(sfx_arme),a
+
+			xor 	a
+			ld 		(etp_arme1),a
 			ret
 
 			SetPowerUpBar_2
@@ -130,6 +133,8 @@ boucle_couleurs
 					ld		(points_attaque),a
 					ld 		a,SFX_GAMMA_LVL3
 					ld		(sfx_arme),a
+			xor 	a
+			ld 		(etp_arme1),a
 					ret
 
 
@@ -174,6 +179,7 @@ reinit_compteur_powerup_niv1
 	xor		a
 	ld		(compteur_powerup_niv1),a
 	ld		(flag_PowerUP),a
+	
 	inc		a
 	ld		(etp_powerup),a
 	call	fin_missiles_gamma2
@@ -181,6 +187,8 @@ reinit_compteur_powerup_niv1
 	ld		(points_attaque),a
 	ld 		a,SFX_GAMMA_LVL1
 	ld		(sfx_arme),a
+			xor 	a
+			ld 		(etp_arme1),a
 	ret
 
 
@@ -213,6 +221,8 @@ reinit_compteur_powerup_niv2
 	ld		(compteur_powerup_niv1),a
 	ld		hl,HUD_DEPART_POWER_UP2
 	ld		(PowerupBar_ECRAN),hl
+			xor 	a
+			ld 		(etp_arme1),a
 
 	call	fin_missiles_gamma2
 	ld		a,1

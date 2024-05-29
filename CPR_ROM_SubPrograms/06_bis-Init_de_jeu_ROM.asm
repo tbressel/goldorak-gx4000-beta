@@ -248,7 +248,11 @@ init_nouveau_level_ROM
 suite_init_level	
 	inc		a						; on increment le level
 	ld		(level_en_cours),a
-
+	
+	ld		a,10
+	ld		(points_sante),a
+	ld		hl,Tbl_NRJ_bar+19
+	ld		(pointeur_tbl_NRJ_bar),hl
 xor a
 ld (nbr_de_retournement),a
 ; on lit la table des adresse a lire pour l'affichage du hud pour le retournement

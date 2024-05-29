@@ -610,6 +610,10 @@ golgoth_5
 									LDIR	
 									jr		.zap_update
 								.Fin_Update	
+										ld a,zoom_mode0_1
+										ld (SPRH13_ZOOM),a : ld (valeur_zoom_sprh13), a
+										ld (SPRH14_ZOOM),a : ld (valeur_zoom_sprh14), a
+										ld (SPRH15_ZOOM),a : ld (valeur_zoom_sprh15), a
 									ld		c,BANK_ROM_18
 									rst		UPPER_ROM_CONNEXION		
 									call	Deplacement_Golgoth5							

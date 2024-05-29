@@ -885,7 +885,7 @@ test_collisions_avec_les_Golgoths_D
 	
 	
 	
-	LD			hl,(SPRH0_X)					; à partir du coin haut-gauche de link
+	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de goldorak
 	LD			de,30							
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
 	LD			de,(posX_Golgoth)						; à partir du coin haut-gauche du monstre
@@ -894,10 +894,10 @@ test_collisions_avec_les_Golgoths_D
 	LD			hl,(posX_Golgoth)						; à partir du coin haut-gauche du monstre
 	LD			de,30						
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
-	LD			de,(SPRH0_X)					; à partir du coin haut-gauche de link
+	LD			de,(SPRH1_X)					; à partir du coin haut-gauche de goldorak
 	SBC			hl,de
 	RET			C
-	LD			hl,(SPRH0_Y)					; à partir du coin haut-gauche de link
+	LD			hl,(SPRH1_Y)					; à partir du coin haut-gauche de goldorak
 	LD			de,15
 	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
 											; on est sur le coin haut-droite
@@ -908,7 +908,85 @@ test_collisions_avec_les_Golgoths_D
 	LD			de,15
 	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
 											; on est sur le coin haut-droite
-	LD			de,(SPRH0_Y)					; à partir du coin haut-gauche du monstre
+	LD			de,(SPRH1_Y)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
+	ret
+test_collisions_supplementaire_avec_les_Golgoths_G
+	; ret
+	ld			a,(GoldorakMort)
+	cp			a,0
+	RET			nz
+	
+	ld			a,(flag_retournement)
+	cp			a,0
+	ret			nz
+	
+	
+	
+	LD			hl,(SPRH12_X)					; à partir du coin haut-gauche de link
+	LD			de,30							
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+	LD			de,(posX_Golgoth)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET			C								; si hl>=de le flag C est à zero
+	LD			hl,(posX_Golgoth)						; à partir du coin haut-gauche du monstre
+	LD			de,30						
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+	LD			de,(SPRH12_X)					; à partir du coin haut-gauche de link
+	SBC			hl,de
+	RET			C
+	LD			hl,(SPRH12_Y)					; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(posY_Golgoth)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET 		C								; si hl>=de le flag C est à zero
+	LD			hl,(posY_Golgoth)						; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(SPRH12_Y)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
+	ret
+test_collisions_supplementaire_avec_les_Golgoths_D
+	; ret			
+	ld			a,(GoldorakMort)
+	cp			a,0
+	RET			nz
+	
+	ld			a,(flag_retournement)
+	cp			a,0
+	ret			nz
+	
+	
+	
+	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de link
+	LD			de,30							
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+	LD			de,(SPRH13_X)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET			C								; si hl>=de le flag C est à zero
+	LD			hl,(SPRH13_X)						; à partir du coin haut-gauche du monstre
+	LD			de,30						
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+	LD			de,(SPRH1_X)					; à partir du coin haut-gauche de link
+	SBC			hl,de
+	RET			C
+	LD			hl,(SPRH1_Y)					; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(SPRH13_Y)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET 		C								; si hl>=de le flag C est à zero
+	LD			hl,(SPRH13_Y)						; à partir du coin haut-gauche de link
+	LD			de,15
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+											; on est sur le coin haut-droite
+	LD			de,(SPRH1_Y)					; à partir du coin haut-gauche du monstre
 	SBC			hl,de
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
@@ -922,7 +1000,8 @@ goldorak_percute
 	ld 		c,2					;channel (0-2)
     ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
-	ld		c,BANK_ROM_2
+
+	ld		c,BANK_ROM_18			; auparavant ROM 2 générait un crash lors de la collision avec le golgoth 2
 	rst		UPPER_ROM_CONNEXION
 
 

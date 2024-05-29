@@ -805,6 +805,10 @@ golgoth_4_ROM
 								
 							call 	test_collisions_avec_les_Golgoths_G
 							call 	test_collisions_avec_les_Golgoths_D
+							call 	test_collisions_supplementaire_avec_les_Golgoths_G
+							call 	test_collisions_supplementaire_avec_les_Golgoths_D
+
+							
 							call	test_collisions_tir_gauche_golgoth
 							call	test_collisions_tir_droite_golgoth
 							ret
@@ -1199,6 +1203,7 @@ golgoth_5_ROM
 											ld		(Pointeur_TblGolgoth_1),hl
 											ld		a,ouvert
 											ld		(FlagGolgoth_Ferme),a
+											
 											ret
 
 
@@ -1209,7 +1214,8 @@ golgoth_5_ROM
 													ld		(FlagGolgoth_Ferme),a
 													xor		a
 													ld		(Etp_Anim_Golgoth_Ouvert),a
-													ret
+													jp		on_reaffiche_les_missiles
+													
 												Reinit_PointeurGolgoth_5bis													
 													ld		hl,Tbl_Gologoth5_bis
 													ld		(Pointeur_TblGolgoth_1),hl
@@ -1217,7 +1223,7 @@ golgoth_5_ROM
 													ld		(FlagGolgoth_Ferme),a
 													xor		a
 													ld		(Etp_Anim_Golgoth_Ouvert),a
-													ret
+													jp		on_reaffiche_les_missiles
 												Reinit_PointeurGolgoth_5bisbis													
 													ld		hl,Tbl_Gologoth5_bisbis
 													ld		(Pointeur_TblGolgoth_1),hl
@@ -1225,7 +1231,7 @@ golgoth_5_ROM
 													ld		(FlagGolgoth_Ferme),a
 													xor		a
 													ld		(Etp_Anim_Golgoth_Ouvert),a
-													ret
+													jp		on_reaffiche_les_missiles
 												Reinit_PointeurGolgoth_5bisbisbis													
 													ld		hl,Tbl_Gologoth5_bisbisbis
 													ld		(Pointeur_TblGolgoth_1),hl
@@ -1233,6 +1239,15 @@ golgoth_5_ROM
 													ld		(FlagGolgoth_Ferme),a
 													xor		a
 													ld		(Etp_Anim_Golgoth_Ouvert),a
+													jp		on_reaffiche_les_missiles
+
+
+													on_reaffiche_les_missiles
+													call ASIC_CONNEXION
+													xor a
+													ld (SPRH13_ZOOM),a : ld (valeur_zoom_sprh13), a
+													ld (SPRH14_ZOOM),a : ld (valeur_zoom_sprh14), a
+													ld (SPRH15_ZOOM),a : ld (valeur_zoom_sprh15), a
 													ret
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////////////////////
