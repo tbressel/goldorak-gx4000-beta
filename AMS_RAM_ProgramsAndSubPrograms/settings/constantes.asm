@@ -7,6 +7,15 @@ include "golgoths.asm"
 include "littleships.asm"
 include "alcorak.asm"
 
+
+
+
+MENU_SCREEN_ADR     equ     #C000
+METAMORPHOSE_SCREEN_ADR     equ     #D220
+SHOP_SCREEN_ADR         equ     #E540
+
+
+
 ; //////////////////////////////////////////////////////////////////
 ; ///////////        INTERRUPTION ET RUPTURE            ////////////
 ; //////////////////////////////////////////////////////////////////
@@ -15,6 +24,24 @@ LGN_INTERRUPTION_HUD			equ		211
 LGN_RUPTURE_HUD					equ		214
 
 
+
+ID_SOUCOUPE_1   equ     1
+ID_SOUCOUPE_2   equ     2
+ID_SOUCOUPE_3   equ     3
+ID_SOUCOUPE_4   equ     4
+ID_SOUCOUPE_5   equ     5
+ID_SOUCOUPE_6   equ     6
+
+ID_GOLGOTH_1    equ     7
+ID_GOLGOTH_2    equ     8
+ID_GOLGOTH_3    equ     9
+ID_GOLGOTH_4    equ     10
+ID_GOLGOTH_5    equ     11
+ID_GOLGOTH_6    equ     12
+ID_GOLGOTH_7    equ     13
+ID_GOLGOTH_8    equ     14
+
+ID_BIGBOSS_1    equ     15
 
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////        SHOP        //////////////////////

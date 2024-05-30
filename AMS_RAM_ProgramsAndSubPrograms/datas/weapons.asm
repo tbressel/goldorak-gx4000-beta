@@ -37,16 +37,22 @@ adr_anim_clavicogyres		ds		2,0
 timer_clavicogyres			ds		1,0
 
 
-; Cout_Cornofulgure
-; 	;	l,h,e,d,c
-; 	db	0,5,5,0,0		; Cornofulgure
-; Cout_Pulvonium	
-; 	db	0,7,0,0,0		; Pulvonium
-; Cout_Clavicogyre
-; 	db	0,6,0,0,0		; Clavicogyre
-; Cout_Planitron1
-; 	db	0,2,0,0,0		; Planitron 1
-; Cout_Planitron2
-; 	db	0,2,0,0,0		; Planitron 2
-; Cout_Fulguropoint
-; 	db	0,4,5,0,0		; Fulguropoint
+
+
+
+
+; dans l'ordre de la droite vers la gauche la valeur des bits à 1 corresponds à une arme actuve dans cet ordre :
+ArmesDisponible				db			%01111111
+
+;BIT 0 -> missile gamme (lvl 1 2 3)
+;BIT 1 -> planitron1
+;BIT 2 -> planitron 2
+;BIT 3 -> fulguropoing
+;BIT 4 -> cornofulgure (lvl 1 2 3 )
+;BIT 5 -> clavicogyre
+;BIT 6 -> pulvonium
+;BIT 7 -> rien,
+
+; ArmesDisponible				db			%00000001
+
+

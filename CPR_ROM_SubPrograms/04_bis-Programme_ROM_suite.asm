@@ -591,12 +591,20 @@ boss_de_fin_ROM
 											ld		(point_vie_golgoth),a
 											xor		a
 											ld		(EtpGolgoth),a
+											ld		(Etp_ExploseGolgoth),a
+											ld 		(EtpMissileG3_1),a
+											ld 		(EtpMissileG3_2),a
+											ld 		(EtpMissileG3_3),a
+
+											ld		(CompteurMissileG3_1),a
+											ld		(CompteurMissileG3_2),a
+											ld		(CompteurMissileG3_3),a
 				
 											ld		hl,GOLGOTH5_SPRH_ADR_ROM
 											ld		(GolgothAdrRom),hl
 											ld		hl,SPRH6_ADR
 											ld		(GolgothSprh),hl
-											ld		hl,#800
+											ld		hl,#600
 											ld		(GolgothLongeur),hl
 				
 				
@@ -615,16 +623,16 @@ boss_de_fin_ROM
 											ld		(SPRH9_ZOOM),a
 											ld		(SPRH10_ZOOM),a
 											ld		(SPRH11_ZOOM),a
-											ld		(SPRH12_ZOOM),a
-											ld		(SPRH13_ZOOM),a
+											; ld		(SPRH12_ZOOM),a
+											; ld		(SPRH13_ZOOM),a
 											ld		(valeur_zoom_sprh6),a
 											ld		(valeur_zoom_sprh7),a
 											ld		(valeur_zoom_sprh8),a
 											ld		(valeur_zoom_sprh9),a
 											ld		(valeur_zoom_sprh10),a
 											ld		(valeur_zoom_sprh11),a
-											ld		(valeur_zoom_sprh12),a
-											ld		(valeur_zoom_sprh13),a
+											; ld		(valeur_zoom_sprh12),a
+											; ld		(valeur_zoom_sprh13),a
 										
 											ld		hl,Music
 											ld		a,MUSIC_BOSS

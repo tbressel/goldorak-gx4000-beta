@@ -202,35 +202,35 @@ goldorak_touche
     call 	PLY_AKG_PlaySoundEffect
 
 	ld		a,(id_soucoupe)
-	cp		a,1
+	cp		a,ID_SOUCOUPE_1
 	jp		z,init_mort_soucoupe1
-	cp		a,2
+	cp		a,ID_SOUCOUPE_2
 	jp		z,init_mort_soucoupe2
-	cp		a,3
+	cp		a,ID_SOUCOUPE_3
 	jp		z,init_mort_soucoupe3
-	cp		a,4
+	cp		a,ID_SOUCOUPE_4
 	jp		z,init_mort_soucoupe4
-	cp		a,5
+	cp		a,ID_SOUCOUPE_5
 	jp		z,init_mort_soucoupe5
-	cp		a,6
+	cp		a,ID_SOUCOUPE_6
 	jp		z,init_mort_soucoupe6
-	cp		a,7
+	cp		a,ID_GOLGOTH_1
 	jp		z,init_mort_golgoth1
-	cp		a,8
+	cp		a,ID_GOLGOTH_2
 	jp		z,init_mort_golgoth1
-	cp		a,9
+	cp		a,ID_GOLGOTH_3
 	jp		z,init_mort_golgoth1
-	cp		a,10
+	cp		a,ID_GOLGOTH_4
 	jp		z,init_mort_golgoth1
-	cp		a,11
+	cp		a,ID_GOLGOTH_5
+	jp		z,init_mort_golgoth5
+	cp		a,ID_GOLGOTH_6
 	jp		z,init_mort_golgoth1
-	cp		a,12
+	cp		a,ID_GOLGOTH_7
 	jp		z,init_mort_golgoth1
-	cp		a,13
+	cp		a,ID_GOLGOTH_8
 	jp		z,init_mort_golgoth1
-	cp		a,14
-	jp		z,init_mort_golgoth1
-	cp		a,15
+	cp		a,ID_BIGBOSS_1
 	jp		z,init_mort_bigboss1
 	cp		a,16
 	jp		z,init_mort_bigboss1
@@ -359,18 +359,26 @@ init_mort_golgoth1
 		ld		a,(point_vie_golgoth)
 		sub		a,b
 		bit		7,a
-		jr		nz,.rip_golgoth
+		jr		nz,rip_golgoth
 		ld		(point_vie_golgoth),a
 		ret
-.rip_golgoth
+init_mort_golgoth5
+		ld		a,(points_attaque)
+		ld		b,a
+		ld		a,(point_vie_golgoth)
+		sub		a,b
+		bit		7,a
+		jr		nz,rip_golgoth
+		ld		(point_vie_golgoth),a
+		ret
+rip_golgoth
 		ld		a,(EtpGolgoth)
 		inc		a
 		ld		(EtpGolgoth),a
-	
+rip_bigboss_etp2
 		; on efface les evenement relatif au tirs en cours dans la boucle
 		rst		ASIC_CONNEXION
 		xor		a
-		
 		ld		(event_golgoth+6),a
 		ld		(event_golgoth+7),a
 		ld		(event_golgoth+8),a
@@ -396,7 +404,12 @@ init_mort_golgoth1
 		ld		(event_golgoth+28),a
 		ld		(event_golgoth+29),a
 ; on desactive les sprites hard des tirs
-		
+
+		ld		a,(id_soucoupe)
+		cp		a,ID_GOLGOTH_5
+		jp		z,rip_golgoth5
+
+		xor 	a
 		ld		(SPRH10_ZOOM),a
 		ld		(SPRH11_ZOOM),a
 		ld		(SPRH12_ZOOM),a
@@ -407,9 +420,24 @@ init_mort_golgoth1
 		ld		(valeur_zoom_sprh13),a
 ; on reinitialise les différente etapes
 		ret
+rip_golgoth5
+	; on desactive les sprites hard des tirs
+		xor 	a
+		ld		(SPRH12_ZOOM),a
+		ld		(SPRH13_ZOOM),a
+		ld		(SPRH14_ZOOM),a
+		ld		(SPRH15_ZOOM),a
+		ld		(valeur_zoom_sprh12),a
+		ld		(valeur_zoom_sprh13),a
+		ld		(valeur_zoom_sprh14),a
+		ld		(valeur_zoom_sprh15),a
+; on reinitialise les différente etapes
+		ret
 
 	
 point_vie_bigboss1 db	8
+
+
 init_mort_bigboss1
 		ld		a,(points_attaque)
 		ld		b,a
@@ -424,59 +452,27 @@ rip_bigboss
 		ld		a,(etape_config_bigboss)
 		inc		a
 		ld		(etape_config_bigboss),a
-	
-		; on efface les evenement relatif au tirs en cours dans la boucle
-		rst		ASIC_CONNEXION
-		xor		a
-		
-		ld		(event_golgoth+6),a
-		ld		(event_golgoth+7),a
-		ld		(event_golgoth+8),a
-		ld		(event_golgoth+9),a
-		ld		(event_golgoth+10),a
-		ld		(event_golgoth+11),a
-		ld		(event_golgoth+12),a
-		ld		(event_golgoth+13),a
-		ld		(event_golgoth+14),a
-		ld		(event_golgoth+15),a
-		ld		(event_golgoth+16),a
-		ld		(event_golgoth+17),a
-		ld		(event_golgoth+18),a
-		ld		(event_golgoth+19),a
-		ld		(event_golgoth+20),a
-		ld		(event_golgoth+21),a
-		ld		(event_golgoth+22),a
-		ld		(event_golgoth+23),a
-		ld		(event_golgoth+24),a
-		ld		(event_golgoth+25),a
-		ld		(event_golgoth+26),a
-		ld		(event_golgoth+27),a
-		ld		(event_golgoth+28),a
-		ld		(event_golgoth+29),a
-; on desactive les sprites hard des tirs
-		ret
-		ld		(SPRH6_ZOOM),a
-		ld		(SPRH7_ZOOM),a
-		ld		(SPRH8_ZOOM),a
-		ld		(SPRH9_ZOOM),a
-		ld		(SPRH10_ZOOM),a
-		ld		(SPRH11_ZOOM),a
-		ld		(SPRH12_ZOOM),a
-		ld		(SPRH13_ZOOM),a
-		ld		(SPRH14_ZOOM),a
-		ld		(valeur_zoom_sprh6),a
-		ld		(valeur_zoom_sprh7),a
-		ld		(valeur_zoom_sprh8),a
-		ld		(valeur_zoom_sprh9),a
-		ld		(valeur_zoom_sprh10),a
-		ld		(valeur_zoom_sprh11),a
-		ld		(valeur_zoom_sprh12),a
-		ld		(valeur_zoom_sprh14),a
-; on reinitialise les différente etapes
-		ret
+		jp		rip_bigboss_etp2
 
-
-
+; 		ld		(SPRH6_ZOOM),a
+; 		ld		(SPRH7_ZOOM),a
+; 		ld		(SPRH8_ZOOM),a
+; 		ld		(SPRH9_ZOOM),a
+; 		ld		(SPRH10_ZOOM),a
+; 		ld		(SPRH11_ZOOM),a
+; 		ld		(SPRH12_ZOOM),a
+; 		ld		(SPRH13_ZOOM),a
+; 		ld		(SPRH14_ZOOM),a
+; 		ld		(valeur_zoom_sprh6),a
+; 		ld		(valeur_zoom_sprh7),a
+; 		ld		(valeur_zoom_sprh8),a
+; 		ld		(valeur_zoom_sprh9),a
+; 		ld		(valeur_zoom_sprh10),a
+; 		ld		(valeur_zoom_sprh11),a
+; 		ld		(valeur_zoom_sprh12),a
+; 		ld		(valeur_zoom_sprh14),a
+; ; on reinitialise les différente etapes
+; 		ret
 
 
 

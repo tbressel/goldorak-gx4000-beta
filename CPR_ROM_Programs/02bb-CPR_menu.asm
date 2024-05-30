@@ -23,7 +23,7 @@ LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 15
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
 
-	ld		hl,#C000							; lecture dans la bank ROM
+	ld		hl,MENU_SCREEN_ADR						; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM #4000
 	call	DepkZX0								; on décompresse
 

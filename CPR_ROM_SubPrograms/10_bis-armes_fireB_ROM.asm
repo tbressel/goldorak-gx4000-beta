@@ -88,7 +88,7 @@ fin_attente_fireB_ROM
 				ret		
 				affiche_boutton_4
 					ld		a,(ArmesDisponible)
-					bit		3,a
+					bit		4,a
 					jr		z,affiche_boutton_5
 					ld		a,ID_CORNOFULGURE
 					ld		(id_arme),a
@@ -111,7 +111,7 @@ fin_attente_fireB_ROM
 					ret
 					affiche_boutton_5	
 						ld		a,(ArmesDisponible)
-						bit		4,a
+						bit		3,a
 						jr		z,affiche_boutton_6
 						ld		a,ID_FULGUROPOING
 						ld		(id_arme),a

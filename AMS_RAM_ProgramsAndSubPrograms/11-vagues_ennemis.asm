@@ -543,11 +543,11 @@ golgoth_5
 		Init_Golgoth_5
 			inc		a
 			ld		(EtpGolgoth),a
-			ld		c,BANK12_GOLGOTH_SPRH
+			ld		c,BANK13_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
 			ld		hl,GOLGOTH5_SPRH_ADR_ROM
 			ld		de,SPRH6_ADR
-			ld		bc,#800
+			ld		bc,#600
 			LDIR
 			ret
 				Update_Golgoth_5

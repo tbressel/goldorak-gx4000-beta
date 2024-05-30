@@ -1243,11 +1243,11 @@ golgoth_5_ROM
 
 
 													on_reaffiche_les_missiles
-													call ASIC_CONNEXION
-													xor a
-													ld (SPRH13_ZOOM),a : ld (valeur_zoom_sprh13), a
-													ld (SPRH14_ZOOM),a : ld (valeur_zoom_sprh14), a
-													ld (SPRH15_ZOOM),a : ld (valeur_zoom_sprh15), a
+													; call ASIC_CONNEXION
+													; xor a
+													; ld (SPRH13_ZOOM),a : ld (valeur_zoom_sprh13), a
+													; ld (SPRH14_ZOOM),a : ld (valeur_zoom_sprh14), a
+													; ld (SPRH15_ZOOM),a : ld (valeur_zoom_sprh15), a
 													ret
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////////////////////

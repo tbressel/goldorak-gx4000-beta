@@ -56,7 +56,6 @@ org	DEPART_PALETTES
 	org PALETTE_SCENARIO
 		dw		#FFF,#000,#666,#006,#40f,#b0d,#f3f,#cb7,#ee7,#060,#0e0,#9f4,#b67,#e57,#48c,#5ff
 
-
 ; game over
 	org PALETTE_GAME_OVER
 		; palette game over du Grand Stratéguerre    gover1.scr
@@ -105,10 +104,7 @@ org	DEPART_PALETTES
 		db #d2,#07,#d4,#0d,#8c,#04,#ff,#05
 ; menu
 	org	PALETTE_MENU
-	db #00,#00,#06,#00,#0f,#00,#60,#00
-	db #68,#06,#f0,#00,#88,#08,#06,#06
-	db #0f,#06,#6f,#06,#f0,#06,#06,#0f
-	db #6f,#0f,#f0,#0f,#f6,#0f,#ff,#0f
+		dw #000,#0F0,#008,#080,#00F,#80F,#FF8,#8F0,#08F,#FF0,#FFF,#808,#F08,#F8F,#888,#0FF
 
 ; credit
 	org PALETTE_CREDIT
@@ -183,11 +179,11 @@ bank 20
 
 		
 Bank 4
-	org #C000
-	incbin "../CPR_ASSETS/gfx/menu.scr.zx0"
-	org #CF58
+	org MENU_SCREEN_ADR
+	incbin "../CPR_ASSETS/gfx/MENU.SCR.ZX0"
+	org METAMORPHOSE_SCREEN_ADR
 	incbin "../CPR_ASSETS/gfx/meta.scr.ZX0"
-	org	#E350
+	org SHOP_SCREEN_ADR
 	incbin "../CPR_ASSETS/gfx/shop.zx0"
 	
 ; ///////////////////////////////////////////////////////////////////////////////

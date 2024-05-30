@@ -84,10 +84,10 @@ Texte_Credits
 	DEFM "                                        "
 	DEFM "                                        "
 	DEFM "         SCENARIO / GRAPHISMES :        "		; ligne 4
-	DEFM "         ERIC 'TITAN' CUBIZOLLE         "
+	DEFM "        ERIC 'LEGLAND' CUBIZOLLE        "
 	DEFM "                                        "		
 	DEFM "               MUSIQUES :               "		; ligne 7
-	DEFM "           DR.JOHAN FATALIS             "
+	DEFM "       JOHAN ALIAS PUCEAUPHONIC         "
 	DEFM "                                        "
 	DEFM "             PROGRAMMATION :            "		; LIGNE 10
 	DEFM "        THOMAS 'ZISQUIER' BRESSEL       "		
@@ -97,13 +97,13 @@ Texte_Credits
 	DEFM "   NOUS REMERCIONS CHALEUREUSEMENT :    "
 	DEFM "                                        "
 	DEFM " - DR. TERROR (MULTIPAINT), LZAMU,      "		; ligne 17
-	DEFM " - AST (IMP DRAW), ROUD (RASM),         "		; ligne 18
+	DEFM " - AST (IMP DRAW), ROUD (RASM : ACE DL),"		; ligne 18
 	DEFM " - TARGHAN (ARKOS TRACKER), DEAD SYSTEM,"
 	DEFM " - RICHARD WILSON (WINAPE)              "
 	DEFM " - BDCIRON (ZILOG.FR)                   "
 	DEFM " - TOTO (XMASS / XMEM)                  "
 	DEFM "                                        "
-	DEFM " ... ET TOUTE LA COMMUNAUTEE AMSTRAD !  "
+	DEFM " ... ET TOUTE LA COMMUNAUTEE ATARI ST ! "
 	DEFM "                                        "
 
 

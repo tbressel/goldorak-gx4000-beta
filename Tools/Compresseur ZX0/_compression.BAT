@@ -1,2 +1,2 @@
-PackZX0.exe SCENARFR.SCR
+PackZX0.exe MENU.SCR
 

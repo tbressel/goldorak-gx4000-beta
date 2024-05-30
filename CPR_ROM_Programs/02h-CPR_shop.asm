@@ -25,7 +25,7 @@ Asic OFF
 	LD 		BC,BANK4_MENU:OUT (C),C				; on choisit DE LIRE la ROM 15
 	LD		BC,#7F00+%10000000:OUT (C),C 			; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
 	LD 		BC,#7FC0:OUT (c),c						; on choisit D'ECRIRE  dans la RAM centrale
-	ld		hl,#E350							; lecture dans la bank ROM
+	ld		hl,SHOP_SCREEN_ADR							; lecture dans la bank ROM
 	ld		de,#4000							; ecriture dans le bank RAM #4000
 	call	DepkZX0								; on décompresse
 	ld		hl,#4000
@@ -357,7 +357,7 @@ Case_Cornofulgure
 	call	Decompte_PointsCouts
 	ld		hl,CASE_CORNOFULGURE_ECRAN
 	ld		(Adr_CaseEcran),hl
-	ld		a,%00010000
+	ld		a,%00010000			; bit 4
 	ld		(ChoixNouvelleArme),a
 	jp		boucle_shop
 
@@ -379,7 +379,7 @@ Case_Cornofulgure
 				call	Decompte_PointsCouts
 				ld		hl,CASE_PULVONIUM_ECRAN
 				ld		(Adr_CaseEcran),hl
-				ld		a,%00001000
+				ld		a,%01000000 ; bit 6
 				ld		(ChoixNouvelleArme),a
 				jp		boucle_shop
 					
@@ -401,7 +401,7 @@ Case_Cornofulgure
 							call	Decompte_PointsCouts
 							ld		hl,CASE_CLAVICOGYRE_ECRAN
 							ld		(Adr_CaseEcran),hl
-							ld		a,%01000000
+							ld		a,%00100000 ; bit 5
 							ld		(ChoixNouvelleArme),a
 							jp		boucle_shop
 							
@@ -423,7 +423,7 @@ Case_Cornofulgure
 											call	Decompte_PointsCouts
 											ld		hl,CASE_PLANITRON_ECRAN
 											ld		(Adr_CaseEcran),hl
-											ld		a,%00000010
+											ld		a,%00000010 ; bit 1
 											ld		(ChoixNouvelleArme),a
 											jp		boucle_shop
 
@@ -445,7 +445,7 @@ Case_Cornofulgure
 															call	Decompte_PointsCouts
 															ld		hl,CASE_PLANITRON2_ECRAN
 															ld		(Adr_CaseEcran),hl
-															ld		a,%00000100
+															ld		a,%00000100 ; bit 2
 															ld		(ChoixNouvelleArme),a
 															jp		boucle_shop
 					
@@ -467,7 +467,7 @@ Case_Cornofulgure
 																				call	Decompte_PointsCouts
 																				ld		hl,CASE_FULGUROPOINT_ECRAN
 																				ld		(Adr_CaseEcran),hl
-																				ld		a,%00100000
+																				ld		a,%00001000 ; bit 3
 																				ld		(ChoixNouvelleArme),a
 																				jp		boucle_shop
 
@@ -569,19 +569,34 @@ Tableau_position_curseur
 	dw	#FFFF,Case_Planitron2,Case_Fulguropoint,#FFFF
 	dw	#FFFF,#FFFF,#FFFF,#FFFF
 
+
 Cout_Cornofulgure
 	;	l,h,e,d,c
-	db	0,4,5,0,0		; Cornofulgure
+	db	0,5,0,0,0		; Cornofulgure
 Cout_Pulvonium	
-	db	0,5,0,0,0		; Pulvonium
+	db	0,7,0,0,0		; Pulvonium
 Cout_Clavicogyre
-	db	0,3,5,0,0		; Clavicogyre
+	db	0,6,0,0,0		; Clavicogyre
 Cout_Planitron1
 	db	0,2,0,0,0		; Planitron 1
 Cout_Planitron2
-	db	0,2,0,0,0		; Planitron 2
+	db	0,2,5,0,0		; Planitron 2
 Cout_Fulguropoint
-	db	0,4,0,0,0		; Fulguropoint
+	db	0,3,5,0,0		; Fulguropoint
+
+; Cout_Cornofulgure
+; 	;	l,h,e,d,c
+; 	db	0,4,5,0,0		; Cornofulgure
+; Cout_Pulvonium	
+; 	db	0,5,0,0,0		; Pulvonium
+; Cout_Clavicogyre
+; 	db	0,3,5,0,0		; Clavicogyre
+; Cout_Planitron1
+; 	db	0,2,0,0,0		; Planitron 1
+; Cout_Planitron2
+; 	db	0,2,0,0,0		; Planitron 2
+; Cout_Fulguropoint
+; 	db	0,4,0,0,0		; Fulguropoint
 
 PreparationLevelSuivant
 	call stop_musique_boutique
