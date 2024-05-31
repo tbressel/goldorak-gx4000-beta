@@ -1,2 +1,2 @@
-PackZX0.exe MENU.SCR
+PackZX0.exe SHOP.SCR
 

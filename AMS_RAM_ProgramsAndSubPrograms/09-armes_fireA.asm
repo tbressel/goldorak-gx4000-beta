@@ -1157,6 +1157,7 @@ init_pulvonium
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
+	; ld		hl,arme_pulvonium
 	ld		hl,(adr_type_arme)
 	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
 	RST		ASIC_DECONNEXION

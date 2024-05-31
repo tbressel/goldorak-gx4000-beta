@@ -489,6 +489,10 @@ fin_bigboss_1
 	ld		(event_fade_out+4),hl
 	call	music_off
 	call	scrolling_on	
+		; ld		a,MUCIS_LVL_END	
+		; ld 		hl,Music
+		; call 	PLY_AKG_Init
+		; call	music_on
 	ret
 fin_bigboss_2
 	
@@ -504,6 +508,10 @@ fin_bigboss_2
 	ld		(event_fade_out+4),hl
 	call	music_off
 	call	scrolling_on	
+		; ld		a,MUCIS_LVL_END	
+		; ld 		hl,Music
+		; call 	PLY_AKG_Init
+		; call	music_on
 	
 	
 	ret

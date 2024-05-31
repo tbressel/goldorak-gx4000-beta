@@ -1,5 +1,6 @@
  org #c000
 include "./datas/waves.asm"
+; include "./datas/waves_test.asm"
 include "./datas/moves.asm"
 include "./datas/hud.asm"
 include "./hud/powerup.asm"

@@ -45,6 +45,19 @@ initAlcorakPuzzle
 
 toggleAlcorakDisplay
 
+
+    ld  a,(level_en_cours)
+    cp  a,4
+    jr  z,on_zap_goldorakMove
+    cp  a,8
+    jr  z,on_zap_goldorakMove
+    ld hl,(posy_goldorak)
+    dec hl
+    ld (posy_goldorak),hl  
+    call goldorakMovesUpdate
+
+on_zap_goldorakMove
+
     ld a,(toggleAlcorakStep)
     dec a
     ld (toggleAlcorakStep),a
@@ -62,21 +75,10 @@ toggleAlcorakDisplay
     jr z,turnAlcorakOn 
 
 turnAlcorakOff
-
-	; ld 		c,1   ;Channel (0-2)
-	; call 	PLY_AKG_StopSoundEffectFromChannel
-
-
     xor a
      ld (isAlcorakDsiplay),a
     jr  switchAlcorakPuzzle
 turnAlcorakOn
-
-	; ld		a,SFX_GET_ITEM
-    ; ld 		c,1 ;channel (0-2)
-    ; ld 		b,SFX_VOLUME ;Inverted volume (0-16)
-    ; call 	PLY_AKG_PlaySoundEffect
-
 
     ld a,1
     ld (isAlcorakDsiplay),a

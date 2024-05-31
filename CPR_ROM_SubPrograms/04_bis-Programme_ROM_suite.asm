@@ -1,6 +1,7 @@
 org #c000
 
 	include "./datas/items.asm"
+	; include "./datas/items_test.asm"
 
 
 	include		"05_bis-Init_affichage_ROM.asm"

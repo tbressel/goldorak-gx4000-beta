@@ -116,8 +116,7 @@ org	DEPART_PALETTES
 
 ; shop
 	org PALETTE_SHOP
-	    dw 		#000,#080,#0F0,#008,#00F,#08F,#8F0,#808,#888,#80F,#FF0,#F08,#FF8,#F8F,#FFF,#FFF
-
+	    dw 		#000,#008,#80F,#00F,#08F,#080,#FFF,#0F0,#808,#8F0,#F8F,#F08,#888,#FF8,#FF0,#66F
 
 
 ; FONTE
@@ -184,7 +183,7 @@ Bank 4
 	org METAMORPHOSE_SCREEN_ADR
 	incbin "../CPR_ASSETS/gfx/meta.scr.ZX0"
 	org SHOP_SCREEN_ADR
-	incbin "../CPR_ASSETS/gfx/shop.zx0"
+	incbin "../CPR_ASSETS/gfx/SHOP.SCR.ZX0"
 	
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////  MAPTILES DES 7 ROUTES  ///////////////////////////////

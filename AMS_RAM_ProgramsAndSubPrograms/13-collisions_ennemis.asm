@@ -372,7 +372,8 @@ init_mort_golgoth5
 		ld		(point_vie_golgoth),a
 		ret
 rip_golgoth
-	
+		; ld		a,1
+		; ld		(flag_MortGolgoth),a
 		ld		a,(EtpGolgoth)
 		inc		a
 		ld		(EtpGolgoth),a
@@ -425,6 +426,8 @@ rip_bigboss_etp2
 		ret
 rip_golgoth5
 	; on desactive les sprites hard des tirs
+		ld		a,1
+		ld		(flag_MortGolgoth),a
 		xor 	a
 		ld		(SPRH12_ZOOM),a
 		ld		(SPRH13_ZOOM),a
@@ -438,7 +441,7 @@ rip_golgoth5
 		ret
 
 	
-point_vie_bigboss1 db	8
+point_vie_bigboss1 db	255
 
 
 init_mort_bigboss1
@@ -457,27 +460,6 @@ rip_bigboss
 		ld		(etape_config_bigboss),a
 		jp		rip_bigboss_etp2
 
-; 		ld		(SPRH6_ZOOM),a
-; 		ld		(SPRH7_ZOOM),a
-; 		ld		(SPRH8_ZOOM),a
-; 		ld		(SPRH9_ZOOM),a
-; 		ld		(SPRH10_ZOOM),a
-; 		ld		(SPRH11_ZOOM),a
-; 		ld		(SPRH12_ZOOM),a
-; 		ld		(SPRH13_ZOOM),a
-; 		ld		(SPRH14_ZOOM),a
-; 		ld		(valeur_zoom_sprh6),a
-; 		ld		(valeur_zoom_sprh7),a
-; 		ld		(valeur_zoom_sprh8),a
-; 		ld		(valeur_zoom_sprh9),a
-; 		ld		(valeur_zoom_sprh10),a
-; 		ld		(valeur_zoom_sprh11),a
-; 		ld		(valeur_zoom_sprh12),a
-; 		ld		(valeur_zoom_sprh14),a
-; ; on reinitialise les différente etapes
-; 		ret
-
-
 
 fin_armes
 	RST		ASIC_CONNEXION
@@ -486,6 +468,8 @@ fin_armes
 	jr		z,on_gere_fulguro_point
 	cp		a,ID_CLAVICOGYRES
 	jr		z,on_gere_fulguro_point
+	cp 		a,ID_PULVONIUM
+	jr		z,on_gere_pulvonium
 	xor		a
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
@@ -518,7 +502,11 @@ on_gere_fulguro_point
 	ld 		(valeur_zoom_sprh5),a 
 	RST		#28	
 	ret
+on_gere_pulvonium
 
+
+call ASIC_DECONNEXION
+ret
 
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////

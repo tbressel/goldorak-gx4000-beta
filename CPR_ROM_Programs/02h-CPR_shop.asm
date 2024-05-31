@@ -43,13 +43,13 @@ Asic OFF
 	call	nz,CaseClose_Planitron1
 	bit		2,a
 	call	nz,CaseClose_Planitron2
-	bit		3,a
+	bit		6,a
 	call	nz,CaseClose_Pulvonium
 	bit		4,a
 	call	nz,CaseClose_Cornofulgure
-	bit		5,a
+	bit		3,a
 	call	nz,CaseClose_Fulguropoint
-	bit		6,a
+	bit		5,a
 	call	nz,CaseClose_Clavicogyre
 	jp		Test_SoldeDisponible
 	CaseClose_Planitron1
@@ -565,8 +565,8 @@ exx
 Tableau_position_curseur
 	dw	#FFFF,#FFFF,#FFFF,#FFFF
 	dw 	#FFFF,Case_Cornofulgure,Case_Pulvonium,#FFFF
-	dw	#FFFF,Case_Clavicogyre,Case_Planitron1,#FFFF
-	dw	#FFFF,Case_Planitron2,Case_Fulguropoint,#FFFF
+	dw	#FFFF,Case_Clavicogyre,Case_Planitron2,#FFFF
+	dw	#FFFF,Case_Planitron1,Case_Fulguropoint,#FFFF
 	dw	#FFFF,#FFFF,#FFFF,#FFFF
 
 

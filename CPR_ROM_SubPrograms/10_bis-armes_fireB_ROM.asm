@@ -22,7 +22,7 @@ fin_attente_fireB_ROM
 	cp		a,ID_CLAVICOGYRES
 	jp		z,affiche_boutton_6			; clavycogire
 	cp		a,ID_PULVONIUM
-	jp		z,affiche_boutton_7			; clavycogire
+	jp		z,affiche_boutton_7			; pulvonium
 	cp		a,8
 	jp		z,affiche_boutton_8
 	cp		a,9
@@ -148,10 +148,12 @@ fin_attente_fireB_ROM
 							ld		de,HUD_BOUTON5_ADR
 							ld		b,HUD_HAUTEUR_BOUTTON
 							call	bcl_affiche_bouton
-								ld		a,_CALL
-								ld		(event_arme_fireB),a
-								ld		hl,pre_init_fulguro_poing_retour
-								ld		(event_arme_fireB+1),hl
+								; ld		a,_CALL
+								; ld		(event_arme_fireB),a
+								; ld		hl,pre_init_fulguro_poing_retour
+								; ld		(event_arme_fireB+1),hl
+								ld		hl,arme_clavicogyres
+								ld		(adr_type_arme),hl
 								ld		a,FORCE_CLAVICOGYRES
 								ld		(points_attaque),a
 								ld 		a,SFX_CLAVICOGYRE	 ;Sound effect number (>=1))

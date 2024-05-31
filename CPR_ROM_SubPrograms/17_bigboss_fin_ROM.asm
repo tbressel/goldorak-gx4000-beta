@@ -25,7 +25,10 @@ big_boss_fin_level_4_ROM
 	ld		(pointeur_de_tile),hl
 
 
-	call 	music_on
+		ld		a,MUSIC_BIGBOSS1	
+		ld 		hl,Music
+		call 	PLY_AKG_Init
+		call	music_on
 
 	ld		a,#30
 	ld		bc,#bc00+12: out (c),c
