@@ -63,8 +63,8 @@ toggleAlcorakDisplay
 
 turnAlcorakOff
 
-	ld 		c,1   ;Channel (0-2)
-	call 	PLY_AKG_StopSoundEffectFromChannel
+	; ld 		c,1   ;Channel (0-2)
+	; call 	PLY_AKG_StopSoundEffectFromChannel
 
 
     xor a
@@ -72,10 +72,10 @@ turnAlcorakOff
     jr  switchAlcorakPuzzle
 turnAlcorakOn
 
-	ld		a,SFX_GET_ITEM
-    ld 		c,1 ;channel (0-2)
-    ld 		b,SFX_VOLUME ;Inverted volume (0-16)
-    call 	PLY_AKG_PlaySoundEffect
+	; ld		a,SFX_GET_ITEM
+    ; ld 		c,1 ;channel (0-2)
+    ; ld 		b,SFX_VOLUME ;Inverted volume (0-16)
+    ; call 	PLY_AKG_PlaySoundEffect
 
 
     ld a,1

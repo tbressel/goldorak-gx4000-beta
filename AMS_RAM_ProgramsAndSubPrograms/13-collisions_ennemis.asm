@@ -372,6 +372,7 @@ init_mort_golgoth5
 		ld		(point_vie_golgoth),a
 		ret
 rip_golgoth
+	
 		ld		a,(EtpGolgoth)
 		inc		a
 		ld		(EtpGolgoth),a
@@ -408,6 +409,8 @@ rip_bigboss_etp2
 		ld		a,(id_soucoupe)
 		cp		a,ID_GOLGOTH_5
 		jp		z,rip_golgoth5
+		cp		a,ID_BIGBOSS_1
+		ret		z
 
 		xor 	a
 		ld		(SPRH10_ZOOM),a
@@ -1019,11 +1022,8 @@ goldorak_percute
 
 
 goldorak_percute_golgoth
-	; jp		goldorak_explose
-
 	nop
 	rst		ASIC_DECONNEXION
-	;call	rom_off
 goldorak_percute_tirs
 	pop		ix
 	jp		goldorak_percute

@@ -10,6 +10,8 @@ sprh_planitron				equ	#F000
 sprh_planitron2				equ	#F600
 sprh_fulguro_poing			equ	#ca00
 sprh_clavicogyres			equ	#fa00
+SPRH_PULVONIUM_ANIM1        equ #E800
+SPRH_PULVONIUM_ANIM2        equ #EA00
 
 ; flag d'identification des amres
 ID_MISSILES_GAMMA			equ		1
@@ -18,6 +20,7 @@ ID_PLANITRON_TYPE_2			equ		3
 ID_CORNOFULGURE				equ		4
 ID_FULGUROPOING				equ		5
 ID_CLAVICOGYRES				equ		6
+ID_PULVONIUM                equ     7
 
 ; degat instaurer par les armes de Goldorak
 ; constantes logé dans 'point_attaque'
@@ -31,7 +34,8 @@ FORCE_CORNOFULGURE_1	= 4
 FORCE_CORNOFULGURE_2	= 5
 FORCE_CORNOFULGURE_3	= 8
 FORCE_FULGURO_POINGS	= 5
-FORCE_CLAVICOGYRES		= 6 
+FORCE_CLAVICOGYRES		= 6
+FORCE_PULVONIUM         =  10
 
 
 

@@ -33,6 +33,7 @@ MUSIC_LVL_7				equ		10			; Level 7
 MUSIC_LVL_8				equ		11			; Level 8
 MUSIC_LVL_WIN			equ		12			; Level d'un boss
 MUCIS_NO_MUSIC			equ		13			; pas de musique
+MUCIS_LVL_END			equ		14			; musique de fin de niveau
 
 
 ; id des soundeffects
@@ -51,6 +52,7 @@ SFX_BOOM				equ 9
 SFX_BOOM_GOLGOTH		equ 10
 SFX_CORNOFULGURE		equ 11
 SFX_ATTACK				equ 12
+SFX_PULVONIUM   		equ 11
 
 SFX_VOLUME				equ 5
 SFX_CHANNEL				equ 2

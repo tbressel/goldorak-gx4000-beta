@@ -37,7 +37,7 @@ adr_anim_clavicogyres		ds		2,0
 timer_clavicogyres			ds		1,0
 
 
-
+etp_animation_pulvonium     ds      1,0
 
 
 

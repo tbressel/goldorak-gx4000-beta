@@ -34,8 +34,8 @@ fireA
 	jp		z,arme_fulguro_poing
 	cp		a,ID_CLAVICOGYRES
 	jp		z,arme_clavicogyres
-	cp		a,7
-	jp		z,aucune_arme
+	cp		a,ID_PULVONIUM
+	jp		z,arme_pulvonium
 	cp		a,8
 	jp		z,aucune_arme
 
@@ -743,8 +743,8 @@ arme_cornofulgure3
 
 	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
 	ld		(sfx_arme),a
-	RST		#18
-	;RST		#18
+	RST		ASIC_CONNEXION
+	
 	ld		a,(etp_arme1)
 	cp		a,0
 	jp		z,init_cornofulgure
@@ -1119,6 +1119,123 @@ fin_clavicogyres
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	; ret
 	jp		retour_event_arme_fireA
+
+
+
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////
+; /////////////////       PULVONIUM       /////////////////////
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////	
+arme_pulvonium
+
+	ld 		a,SFX_PULVONIUM	 ;Sound effect number (>=1))
+	ld		(sfx_arme),a
+
+	RST		ASIC_CONNEXION
+
+	ld		a,(etp_arme1)
+	cp		a,0
+	jp		z,init_pulvonium
+	cp		a,1
+	jp		z,pulvonium_display
+	cp		a,2
+	jp		z,pulvonium_animation
+
+
+
+init_pulvonium
+	inc 	a:ld (etp_arme1),a										; on incrémente les étapes de l'arme
+	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
+	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
+	ld		c,BANK9_GOLDORAK_SPRH
+	call	UPPER_ROM_CONNEXION							; on se connection à la rom où se situes les sprites hard de cette arme
+	ld		hl,SPRH_PULVONIUM_ANIM1
+	ld		de,SPRH4_ADR
+	ld		bc,#200
+	LDIR															; on copie de puis la ROM vers l'ASIC	
+	call	rom_off
+	ld		a,_CALL
+	ld		(event_arme_fireA),a
+	ld		hl,(adr_type_arme)
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	RST		ASIC_DECONNEXION
+	xor  a
+	ld		(anim_arme_a_charger),a
+	
+	jp 	retour_test_des_tirs
+pulvonium_display
+	inc		a
+	ld 		(etp_arme1),a
+	call	update_pulvonium
+	ld 		a,1
+	ld		(etp_animation_pulvonium),a
+	ret
+pulvonium_animation
+
+	ld 		a,SFX_PULVONIUM	;Sound effect number (>=1)
+    ld 		c,0					;channel (0-2)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
+    call 	PLY_AKG_PlaySoundEffect
+
+	ld		a,(etp_animation_pulvonium)
+	cp		a,1
+	jr		z,.animation_1
+	cp		a,2
+	jr		z,.animation_2
+.animation_1
+	ld 		a,2
+	ld		(etp_animation_pulvonium),a
+	call	update_pulvonium
+	ld		c,BANK9_GOLDORAK_SPRH
+	call	UPPER_ROM_CONNEXION							; on se connection à la rom où se situes les sprites hard de cette arme
+	ld		hl,SPRH_PULVONIUM_ANIM1
+	ld		de,SPRH4_ADR
+	ld		bc,#200
+	LDIR															; on copie de puis la ROM vers l'ASIC	
+	call	rom_off
+	
+	ret
+
+.animation_2
+	ld 		a,1
+	ld		(etp_animation_pulvonium),a
+	call	update_pulvonium
+	ld		c,BANK9_GOLDORAK_SPRH
+	call	UPPER_ROM_CONNEXION							; on se connection à la rom où se situes les sprites hard de cette arme
+	ld		hl,SPRH_PULVONIUM_ANIM2
+	ld		de,SPRH4_ADR
+	ld		bc,#200
+	LDIR															; on copie de puis la ROM vers l'ASIC	
+	call	rom_off
+
+	ret
+
+
+
+update_pulvonium
+	ld		hl,(SPRH0_X)
+	ld		de,48 ; pour un zoom en mode 1 3
+	;ld		de,27  ; pour un zoom en mode 0 3
+	add 	hl,de
+	ld		(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
+	ld 		(SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
+	ld		hl,(SPRH0_Y)
+	ld		de,-64
+	add 	hl,de
+	ld		(SPRH4_Y),hl
+	ld		de,-64
+	add		hl,de
+	ld		(SPRH5_Y),hl
+	ld		a,zoom_mode1_3
+	; ld		a,zoom_mode0_3☻
+	ld 		(SPRH4_ZOOM),a
+	ld		(SPRH5_ZOOM),a
+	ld		(valeur_zoom_sprh4),a 
+	ld 		(valeur_zoom_sprh5),a 
+	ret
+
+
 
 
 ; /////////////////////////////////////////////////////////////

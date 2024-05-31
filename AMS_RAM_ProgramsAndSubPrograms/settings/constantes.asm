@@ -6,6 +6,7 @@ include "weapons.asm"
 include "golgoths.asm"
 include "littleships.asm"
 include "alcorak.asm"
+include "hud.asm"
 
 
 

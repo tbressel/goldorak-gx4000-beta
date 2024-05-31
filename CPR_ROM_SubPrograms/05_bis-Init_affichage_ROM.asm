@@ -82,7 +82,7 @@ ld		hl,PALETTE_ASIC
 		ld (event_alcorak+1),a
 		ld (event_alcorak+2),a
 
-	
+		call	music_off
 
 ; tester si on est sur un level qui propose un BIG BOSS
 		ld		a,(flag_bigboss)

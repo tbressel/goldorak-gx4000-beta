@@ -2408,4 +2408,9 @@ Un_Golgoth_Est_Mort
 	 call	music_off
 
 	call	scrolling_on
+
+		ld		a,MUCIS_LVL_END	
+		ld 		hl,Music
+		call 	PLY_AKG_Init
+		call	music_on
 	ret

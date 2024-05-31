@@ -1,7 +1,8 @@
 big_boss_fin_level_4_ROM
-; on désactive les évenements de la boucle	
 	xor		a						; on va remplir de zero
 	ld		(etape_config_bigboss),a
+	
+; on désactive les évenements de la boucle	
 	ld		hl,event_fade_out		; les evenements qui sont
 	ld		(hl),a					; encore actif dans la boucle
 	ld		de,event_fade_out+1
