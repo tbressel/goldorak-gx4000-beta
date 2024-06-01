@@ -62,7 +62,7 @@ missileG1_1_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG1_1
 					call test_collisions_avec_les_tirs_ennemisG
-					call test_collisions_avec_les_tirs_ennemisD
+					; call test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG1_1
 							xor		a
@@ -133,7 +133,7 @@ missileG1_2_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG1_2
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call	test_collisions_avec_les_tirs_ennemisD
+					; call	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG1_2
 							xor		a
@@ -205,7 +205,7 @@ missileG1_3_ROM
 					jp		nz,Fin_MissileG1_3
 
 					call test_collisions_avec_les_tirs_ennemisG
-					call test_collisions_avec_les_tirs_ennemisD
+					; call test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG1_3
 							xor		a
@@ -277,7 +277,7 @@ missileG1_4_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG1_4
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG1_4
 							xor		a
@@ -349,7 +349,7 @@ missileG2_1_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG2_1
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG2_1
 							xor		a
@@ -429,7 +429,7 @@ missileG2_2_ROM
 					jp		nz,Fin_MissileG2_2
 
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG2_2
 							xor		a
@@ -501,8 +501,8 @@ missileG2_3_ROM
 					ld		(SPRH12_Y),hl
 					inc		hl
 					inc		hl
-					inc		hl
-					inc		hl
+					; inc		hl
+					; inc		hl
 					ld		(posY_MissileG2_3),hl
 					ld		(SPRH12_Y),hl
 					ld		(posY_Missile),hl
@@ -511,7 +511,7 @@ missileG2_3_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG2_3
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG2_3
 							xor		a
@@ -585,7 +585,7 @@ missileG3_1_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG3_1
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG3_1
 							xor		a
@@ -667,7 +667,7 @@ missileG3_2_ROM
 					jp		nz,Fin_MissileG3_2
 
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG3_2
 							xor		a
@@ -750,7 +750,7 @@ missileG3_3_ROM
 					bit		0,h
 					jp		nz,Fin_MissileG3_3
 					call 	test_collisions_avec_les_tirs_ennemisG
-					call 	test_collisions_avec_les_tirs_ennemisD
+					; call 	test_collisions_avec_les_tirs_ennemisD
 					ret
 						Fin_MissileG3_3
 							xor		a

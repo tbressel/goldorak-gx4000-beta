@@ -9,6 +9,8 @@ big_boss_fin_level_8
 	ld 		hl,0
 	ld		(bigboss_X),hl
 	ld		(bigboss_Y),hl	
+	ld		a,PV_BIGBISS
+	ld		(point_vie_bigboss1),a
 
 	call 	scrolling_off 
 	ld		c,BANK_ROM_18

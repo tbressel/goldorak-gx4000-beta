@@ -876,7 +876,7 @@ arme_fulguro_poing
 	ld		(sfx_arme),a
 
 	RST		ASIC_CONNEXION
-	;RST		#18
+	
 	ld		a,(etp_arme6)
 	cp		a,0
 	jp		z,init_fulguro_poing

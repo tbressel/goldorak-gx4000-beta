@@ -8,6 +8,8 @@ test_collisions_tir_gauche
 	cp			a,0
 	RET			nz
 	
+
+
 	LD			hl,(SPRH4_X)					; à partir du coin haut-gauche de link
 	LD			de,30							
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
@@ -22,11 +24,16 @@ test_collisions_tir_gauche
 	SBC			hl,de
 	RET			C
 
-	LD			hl,(SPRH4_Y)					; à partir du coin haut-gauche de link
+	 ld			a,(id_arme)
+	 cp			a,ID_PULVONIUM
+	 jr			z,.test_collision_cornofulgure
+	 cp			a,ID_CORNOFULGURE
+	 jr			z,.test_collision_cornofulgure
+	LD			hl,(SPRH4_Y)					; on recupère Y en haut a gauche du tir (ex : 200 )
 	LD			de,15
-	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
-	LD			de,(posy_soucoupe)						; à partir du coin haut-gauche du monstre
-	SBC			hl,de
+	add			hl,de							; on rècupère la coordonnées 15 pixel plus bas 
+	LD			de,(posy_soucoupe)				; position Y de la soucooupe (ex 210)
+	SBC			hl,de							; 215 - 210 
 	RET 		C								; si hl>=de le flag C est à zero
 
 	LD			hl,(posy_soucoupe)						; à partir du coin haut-gauche de link
@@ -36,6 +43,21 @@ test_collisions_tir_gauche
 	SBC			hl,de
 	JP 			NC,goldorak_touche					; si hl>=de le flag C est à zero
 	RET
+.test_collision_cornofulgure
+	LD			hl,(SPRH4_Y)					; on recupère Y en haut a gauche du tir (ex : 200 )
+	ld			de,128
+	add			hl,de
+	LD			de,(posy_soucoupe)				; position Y de la soucooupe (ex 210)
+	SBC			hl,de							; 200 - 210 
+	RET 		C								; si hl>=de le flag C est à zero
+
+	LD			hl,(posy_soucoupe)				; à partir du coin haut-gauche de la soucoupe
+	LD			de,16							; on descends 128 pixel plus bas pour couvrir la longueur des cornofulgure
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+	LD			de,(SPRH4_Y)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	JP 			NC,goldorak_touche					; si hl>=de le flag C est à zero
+	ret
 	
 test_collisions_tir_gauche_golgoth
 	ld			a,(GoldorakMort)
@@ -109,6 +131,7 @@ test_collisions_tir_gauche_goldorak
 	jp 			NC,goldorak_touche					; si hl>=de le flag C est à zero
 	RET
 
+
 test_collisions_tir_droite
 	ld			a,(GoldorakMort)
 	cp			a,0
@@ -128,6 +151,12 @@ test_collisions_tir_droite
 	SBC			hl,de
 	RET			C
 
+	 ld			a,(id_arme)
+	 cp			a,ID_PULVONIUM
+	 jr			z,.test_collision_cornofulgure
+	 cp			a,ID_CORNOFULGURE
+	 jr			z,.test_collision_cornofulgure
+
 	LD			hl,(SPRH5_Y)					; à partir du coin haut-gauche de link
 	LD			de,15
 	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
@@ -145,6 +174,21 @@ test_collisions_tir_droite
 	jp 			NC,goldorak_touche					; si hl>=de le flag C est à zero
 		
 	RET
+.test_collision_cornofulgure
+	LD			hl,(SPRH5_Y)					; on recupère Y en haut a gauche du tir (ex : 200 )
+	ld			de,128
+	add			hl,de
+	LD			de,(posy_soucoupe)				; position Y de la soucooupe (ex 210)
+	SBC			hl,de							; 200 - 210 
+	RET 		C								; si hl>=de le flag C est à zero
+
+	LD			hl,(posy_soucoupe)				; à partir du coin haut-gauche de la soucoupe
+	LD			de,16							; on descends 128 pixel plus bas pour couvrir la longueur des cornofulgure
+	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
+	LD			de,(SPRH5_Y)					; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	JP 			NC,goldorak_touche					; si hl>=de le flag C est à zero
+	ret
 
 
 test_collisions_tir_droite_golgoth
@@ -180,7 +224,7 @@ test_collisions_tir_droite_golgoth
 												; on est sur le coin haut-droite
 	LD			de,(SPRH5_Y)					; à partir du coin haut-gauche du monstre
 	SBC			hl,de
-	Jr 			NC,goldorak_touche_golgoth					; si hl>=de le flag C est à zero
+	jr 			NC,goldorak_touche_golgoth					; si hl>=de le flag C est à zero
 		
 	RET
 
@@ -358,19 +402,18 @@ init_mort_golgoth1
 		ld		b,a
 		ld		a,(point_vie_golgoth)
 		sub		a,b
-		bit		7,a
-		jr		nz,rip_golgoth
 		ld		(point_vie_golgoth),a
-		ret
+		ret		nc
+		jr		rip_golgoth
 init_mort_golgoth5
 		ld		a,(points_attaque)
 		ld		b,a
 		ld		a,(point_vie_golgoth)
 		sub		a,b
-		bit		7,a
-		jr		nz,rip_golgoth
 		ld		(point_vie_golgoth),a
-		ret
+		ret		nc
+		jr		rip_golgoth
+		
 rip_golgoth
 		; ld		a,1
 		; ld		(flag_MortGolgoth),a
@@ -441,18 +484,18 @@ rip_golgoth5
 		ret
 
 	
-point_vie_bigboss1 db	255
-
+point_vie_bigboss1 ds	1,0
+PV_BIGBISS	equ		255
 
 init_mort_bigboss1
-		ld		a,(points_attaque)
-		ld		b,a
-		ld		a,(point_vie_bigboss1)
-		sub		a,b
-		bit		7,a
-		jr		nz,rip_bigboss
+		ld		a,(points_attaque)			; exemple 5
+		ld		b,a							; b = 5
+		ld		a,(point_vie_bigboss1)		; exemple 255
+		sub		a,b							; 255 - 5
 		ld		(point_vie_bigboss1),a
-		ret
+		ret		nc
+		jr		rip_bigboss
+		
 
 rip_bigboss
 		ld		a,(etape_config_bigboss)
@@ -719,13 +762,13 @@ test_collisions_avec_les_ennemisD
 	
 	
 	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
+	LD			de,0							
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
 	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
 	SBC			hl,de
 	RET			C								; si hl>=de le flag C est à zero
 	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
+	LD			de,0						
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
 	LD			de,(SPRH1_X)					; à partir du coin haut-gauche de link
 	SBC			hl,de
@@ -757,18 +800,38 @@ test_collisions_avec_les_tirs_ennemisG
 	
 	
 	
-	LD			hl,(SPRH0_X)					; à partir du coin haut-gauche de link
-	LD			de,30							
+	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de link
+	LD			de,16							
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
 	LD			de,(posX_Missile)						; à partir du coin haut-gauche du monstre
 	SBC			hl,de
-	RET			C								; si hl>=de le flag C est à zero
+	RET			C
+	
+	LD			hl,(SPRH0_X)					; à partir du coin haut-gauche de link
+	LD			de,32							
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
+	LD			de,(posX_Missile)						; à partir du coin haut-gauche du monstre
+	SBC			hl,de
+	RET			C
+	
+	
+									; si hl>=de le flag C est à zero
 	LD			hl,(posX_Missile)						; à partir du coin haut-gauche du monstre
-	LD			de,30						
+	LD			de,0						
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
 	LD			de,(SPRH0_X)					; à partir du coin haut-gauche de link
 	SBC			hl,de
 	RET			C
+	
+									; si hl>=de le flag C est à zero
+	LD			hl,(posX_Missile)						; à partir du coin haut-gauche du monstre
+	LD			de,32						
+	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
+	LD			de,(SPRH0_X)					; à partir du coin haut-gauche de link
+	SBC			hl,de
+	RET			C
+
+
 	LD			hl,(SPRH0_Y)					; à partir du coin haut-gauche de link
 	LD			de,15
 	add			hl,de							; 15 pixels plus loin (sinon Golem va me faire un caca nerveu si j'écrit 16) 
