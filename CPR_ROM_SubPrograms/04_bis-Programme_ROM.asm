@@ -15,6 +15,12 @@ include     "17_bis-bigboss_animations_ROM.asm"
 
 
 updateAlcorakPuzzle_ROM
+xor a
+	ld		(SPRH4_ZOOM),a
+		ld		(SPRH5_ZOOM),a
+		ld		(valeur_zoom_sprh4),a
+		ld		(valeur_zoom_sprh5),a
+
     ld hl,(puzzlePosX)
     
     ld (SPRH8_X),hl

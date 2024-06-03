@@ -260,7 +260,7 @@ test_du_CPC_plus
 	bit		5,a
 	jp		z,music_on_off
 	bit		2,a
-	jp		z,change_musique
+	jp		z,arme_secrete
 	
 	jp		retour_test_de_CPC_plus
 	

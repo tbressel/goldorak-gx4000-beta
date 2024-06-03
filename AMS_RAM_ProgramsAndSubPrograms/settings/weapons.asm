@@ -1,18 +1,20 @@
 
 
 ; sprites hard des armes
-sprh_cornofulgure_bas		equ	#f800
-sprh_cornofulgure_haut		equ	#f900
-SPRH_MISSILES_GAMMA			equ	#f400
-SPRH_MISSILES_ALCORAK       equ #f500
-SPRH_MISSILES_GAMMA2			equ	#EF00
-SPRH_MISSILES_GAMMA3			equ	#EE00
-sprh_planitron				equ	#F000
-sprh_planitron2				equ	#F600
-sprh_fulguro_poing			equ	#ca00
-sprh_clavicogyres			equ	#fa00
-SPRH_PULVONIUM_ANIM1        equ #E800
-SPRH_PULVONIUM_ANIM2        equ #EA00
+sprh_cornofulgure_bas		equ	    #f800
+sprh_cornofulgure_haut		equ	    #f900
+SPRH_MISSILES_GAMMA			equ	    #f400
+SPRH_MISSILES_ALCORAK       equ     #f500
+SPRH_MISSILES_GAMMA2		equ	    #EF00
+SPRH_MISSILES_ALCORAK2      equ     #ee00
+SPRH_MISSILES_GAMMA3		equ	    #EE00
+SPRH_MISSILES_ALCORAK3		equ	    #fa00
+sprh_planitron				equ	    #F000
+sprh_planitron2				equ	    #F600
+sprh_fulguro_poing			equ	    #ca00
+sprh_clavicogyres			equ	    #fa00
+SPRH_PULVONIUM_ANIM1        equ     #E800
+SPRH_PULVONIUM_ANIM2        equ     #EA00
 
 ; flag d'identification des amres
 ID_MISSILES_GAMMA			equ		1

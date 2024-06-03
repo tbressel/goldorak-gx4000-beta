@@ -589,9 +589,9 @@ golgoth_5
 							ld		a,(Etp_Anim_Golgoth_Ouvert)
 							cp		a,0
 							jr		z,..Update_In1
-							cp		a,4
-							jr		z,..Update_In2
 							cp		a,8
+							jr		z,..Update_In2
+							cp		a,16
 							jr		z,.Fin_Update
 								..Update_In1
 									inc		a

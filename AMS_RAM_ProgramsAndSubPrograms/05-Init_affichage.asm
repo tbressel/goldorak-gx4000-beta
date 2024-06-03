@@ -258,7 +258,7 @@ sprh_a_charger_ou_pas_avec_poing
 					ld		de,#4000
 					ld		bc,#200
 					LDIR
-					ld		hl,+#200
+					ld		hl,GOLDORAK_HAUTBAS_SPRH_ROM_ADR+#200
 					ld		de,#4200
 					ld		bc,#200
 					LDIR

@@ -5,6 +5,8 @@ nouvelle_vague_ROM
 	;ld		(Pointeur_TblHorizVertiBasDroite),hl
 	;ld		hl,TBL_DEPLACEMENT_HorizVertiBasGauche
 	;ld		(Pointeur_TblHorizVertiBasGauche),hl
+														ld		a,0
+													ld		(flag_arme_secrete),a
 	ld		hl,(Pointeur_TblNombreDeSoucoupes)		; on recupère le pointeur en debut de ligne
 	inc		hl:inc hl				; on incremente pour tester le poid fort
 	inc		hl:inc hl
@@ -242,6 +244,7 @@ nouvelle_vague_ROM
 													ld		a,#04
 													ld		(counter_poid_fort),a
 													; si on arrive ici c'est qu'une deuxième vagues arrive
+
 													ret
 													
 												

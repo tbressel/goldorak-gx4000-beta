@@ -668,10 +668,30 @@ PreparationLevelSuivant
 				ld		de,PALETTE_DECORS_RAM							; ecriture
 				ld		bc,32							; longueur
 				LDIR
-				ld		hl,PALETTE_HUD							; lecture de la palette du hud
-				ld		de,PALETTE_HUD_RAM							; ecriture
-				ld		bc,32							; longueur
-				LDIR
+
+
+ld bc,#7fc4
+out (c),c
+
+ld a,(#4000)
+
+ld bc,#7fc0
+out (c),c
+
+cp a,1
+jr z,on_copie_palette_alcorak2
+
+	ld		hl,PALETTE_HUD							; lecture de la palette du hud
+	ld		de,PALETTE_HUD_RAM							; ecriture
+	ld		bc,32							; longueur
+	LDIR
+	jr on_continu_la_suite
+on_copie_palette_alcorak2
+	ld		hl,PALETTE_HUD_ALCORAK							; lecture de la palette du hud
+	ld		de,PALETTE_HUD_RAM							; ecriture
+	ld		bc,32							; longueur
+	LDIR
+on_continu_la_suite
 				ld		hl,event_test_de_goldorak
 				ld		a,_JP
 				ld		(event_test_de_goldorak),a

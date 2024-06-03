@@ -173,6 +173,10 @@ jp	z,on_joue_avec_alcorak
 	ld		(bank_goldo_ou_alco),a
 	ld		hl,SPRH_MISSILES_GAMMA
 	ld		(sprh_arme_de_base),hl
+	ld		hl,SPRH_MISSILES_GAMMA2
+	ld		(sprh_arme_de_base2),hl
+	ld		hl,SPRH_MISSILES_GAMMA3
+	ld		(sprh_arme_de_base3),hl
 
 	jp 		initialisation_du_jeu_ROM_suite
 
@@ -209,10 +213,14 @@ jp	z,on_joue_avec_alcorak
 	ld		(sprh_goldorak2),hl
 	ld		a,BANK15_PUZZLE
 	ld		(bank_goldo_ou_alco),a
-		ld		hl,SPRH_MISSILES_ALCORAK
+
+
+	ld		hl,SPRH_MISSILES_ALCORAK
 	ld		(sprh_arme_de_base),hl
-
-
+	ld		hl,SPRH_MISSILES_ALCORAK2
+	ld		(sprh_arme_de_base2),hl
+	ld		hl,SPRH_MISSILES_ALCORAK3
+	ld		(sprh_arme_de_base3),hl
 
 
 initialisation_du_jeu_ROM_suite

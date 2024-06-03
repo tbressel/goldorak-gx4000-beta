@@ -447,6 +447,11 @@ rip_bigboss_etp2
 		ld		(event_golgoth+27),a
 		ld		(event_golgoth+28),a
 		ld		(event_golgoth+29),a
+			
+		ld		(SPRH4_ZOOM),a
+		ld		(SPRH5_ZOOM),a
+		ld		(valeur_zoom_sprh4),a
+		ld		(valeur_zoom_sprh5),a
 ; on desactive les sprites hard des tirs
 
 		ld		a,(id_soucoupe)
@@ -455,15 +460,12 @@ rip_bigboss_etp2
 		cp		a,ID_BIGBOSS_1
 		ret		z
 
-		xor 	a
-		ld		(SPRH4_ZOOM),a
-		ld		(SPRH5_ZOOM),a
+xor a
 		ld		(SPRH10_ZOOM),a
 		ld		(SPRH11_ZOOM),a
 		ld		(SPRH12_ZOOM),a
 		ld		(SPRH13_ZOOM),a
-		ld		(valeur_zoom_sprh4),a
-		ld		(valeur_zoom_sprh5),a
+
 		ld		(valeur_zoom_sprh10),a
 		ld		(valeur_zoom_sprh11),a
 		ld		(valeur_zoom_sprh12),a

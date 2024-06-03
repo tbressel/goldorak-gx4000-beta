@@ -108,8 +108,6 @@ soucoupe_2
 
 
 
-
-
 soucoupe_3
 ld		a,(etp_soucoupe3)
 	cp		a,0
@@ -282,13 +280,7 @@ soucoupe_6
 			ld		a,(etp_soucoupe6)
 			jp		suite_test_soucoupes
 				suite_test_soucoupes
-				; /////////// TENTATIVE DE MISE EN PLACE DES BOMBES /////////////////
-					;ld		b,a
-					;ld		a,(flag_bomb)
-					;cp		a,1
-					;jp		z,soucoupe_disparait
-					;ld		a,b
-				; /////////////////////////////////////////////////////////////////////
+
 					;or		a
 					cp		a,0
 					jp		z,init_soucoupe
@@ -390,16 +382,7 @@ soucoupe_6
 													call	score_BOOM
 													ret
 													
-												
-												; /////////// TENTATIVE DE MISE EN PLACE DES BOMBES /////////////////
-												;on_zap_les_points
-													;ld		hl,(etp_soucoupe)
-													;ld		a,(hl)
-													;inc		a
-													;inc		a
-													;ld		(hl),a
-													;ret
-												; ///////////////////////////////////////////////////////////////////
+
 														soucoupe_init_item
 															inc		a
 														; on incremente le compteur pour la proichaine étape

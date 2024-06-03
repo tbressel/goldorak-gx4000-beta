@@ -148,10 +148,14 @@ fin_attente_fireB_ROM
 							ld		de,HUD_BOUTON5_ADR
 							ld		b,HUD_HAUTEUR_BOUTTON
 							call	bcl_affiche_bouton
-								; ld		a,_CALL
-								; ld		(event_arme_fireB),a
-								; ld		hl,pre_init_fulguro_poing_retour
-								; ld		(event_arme_fireB+1),hl
+
+
+								ld		a,_CALL
+								ld		(event_arme_fireB),a
+								ld		hl,pre_init_fulguro_poing_retour
+								ld		(event_arme_fireB+1),hl
+
+
 								ld		hl,arme_clavicogyres
 								ld		(adr_type_arme),hl
 								ld		a,FORCE_CLAVICOGYRES
@@ -194,6 +198,19 @@ fin_attente_fireB_ROM
 									ld		de,HUD_BOUTON7_ADR
 									ld		b,HUD_HAUTEUR_BOUTTON
 									call	bcl_affiche_bouton
+									xor 	a
+									ld		(event_arme_fireA),a
+									ld		(event_arme_fireA+1),a
+									ld		(event_arme_fireA+2),a
+									ld		(SPRH4_ZOOM),a
+									ld		(SPRH5_ZOOM),a
+
+									ld		(valeur_zoom_sprh4),a
+									ld		(valeur_zoom_sprh5),a
+
+
+									
+
 									ret
 									; affiche_boutton_fin
 
@@ -258,7 +275,7 @@ pre_init_fulguro_poing_retour_ROM
 		ld		a,(counter_pre_poing)
 		inc		a
 		ld		(counter_pre_poing),a
-		cp		a,4
+		cp		a,1
 		ret		nz
 		xor		a
 		ld		(counter_pre_poing),a

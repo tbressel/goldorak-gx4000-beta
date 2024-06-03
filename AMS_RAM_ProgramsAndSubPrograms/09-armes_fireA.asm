@@ -132,11 +132,11 @@ init_missiles_gamma_pow2
 	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
 	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
 	ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,SPRH_MISSILES_GAMMA2
+	ld		hl,(sprh_arme_de_base2)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
 	LDIR		
-	ld		hl,SPRH_MISSILES_GAMMA2
+	ld		hl,(sprh_arme_de_base2)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR																; on copie de puis la ROM vers l'ASIC	
@@ -188,11 +188,11 @@ init_missiles_gamma_pow3
 	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
 	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
 	ld		c,BANK9_GOLDORAK_SPRH: RST 0									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,SPRH_MISSILES_GAMMA3
+	ld		hl,(sprh_arme_de_base3)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
 	LDIR		
-	ld		hl,SPRH_MISSILES_GAMMA3
+	ld		hl,(sprh_arme_de_base3)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR																; on copie de puis la ROM vers l'ASIC	
@@ -1235,6 +1235,55 @@ update_pulvonium
 	ld		(valeur_zoom_sprh4),a 
 	ld 		(valeur_zoom_sprh5),a 
 	ret
+
+
+
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////
+; /////////////////       ARME SECRETE       /////////////////////
+; /////////////////////////////////////////////////////////////
+; /////////////////////////////////////////////////////////////	
+flag_arme_secrete ds 1,0
+arme_secrete
+	ld		a,(flag_on_joue_avec_alcorak)
+	cp		a,0
+	jp		z,retour_test_de_CPC_plus
+
+	ld		a,(flag_arme_secrete)
+	cp		a,0
+	jr		z,on_declanche_l_arme_secrete
+
+	jp		retour_test_des_tirs
+
+
+
+
+
+
+on_declanche_l_arme_secrete
+	ld		a,1
+	ld		(flag_arme_secrete),a
+
+	ld 		a,SFX_BOOM_GOLGOTH	 ;Sound effect number (>=1))
+   ld 		c,0					;channel (0-2)
+    ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
+    call 	PLY_AKG_PlaySoundEffect
+	ld a,2
+	ld 		(etp_soucoupe1),a
+	ld 		(etp_soucoupe2),a
+	ld 		(etp_soucoupe3),a
+	ld 		(etp_soucoupe4),a
+	ld 		(etp_soucoupe5),a
+	ld 		(etp_soucoupe6),a
+
+
+				ld		hl,BOOM_SPRH_ROM_ADR
+			ld		(BoomSprhRomAdr),hl
+	jp retour_test_des_tirs
+	
+
+
+
 
 
 
