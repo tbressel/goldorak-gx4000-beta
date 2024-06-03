@@ -42,6 +42,7 @@ bank 7
 ; ///////////////////////////////////////////////////////////////////////////////
 bank 8
 org	#C000
+; hud d'une taille de 64 octets de large par 40 ligne de haut
 	incbin "../CPR_ASSETS/gfx/hudtoto.imp"
 	incbin "../CPR_ASSETS/gfx/button.imp"
 
@@ -126,6 +127,11 @@ org	DEPART_PALETTES
 	incbin "../CPR_ASSETS/gfx/fonthud.bin"
 
 	incbin "../CPR_ASSETS/gfx/ferme.imp"
+
+; org PALETTE_HUD_ALCORAK
+; ; hud de l'alcorak  : #f41d
+		DW		#abcd
+		dw 		#0FF,#000,#555,#EEE,#64C,#AAA,#B00,#CCC,#461,#888,#DD0,#00B,#90F,#666,#6C1,#0B1
 
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ////////////////////// TOUTES LES SPRITES HARD ////////////////////////////////
@@ -235,7 +241,11 @@ bank 28
 	incbin "../CPR_ASSETS/sound/metamorphose.spl"    ; 9163
 	incbin "../CPR_ASSETS/sound/alcor2.spl";  ; 6917
 bank 29
+	org #c000
 	incbin "../CPR_ASSETS/sound/pere.spl"
+	org #DD00
+	; le hud de l'alcorak 
+	incbin "../CPR_ASSETS/gfx/HUDALCOR.imp"
 bank 30
 	incbin "../CPR_ASSETS/sound/ovetaire.spl"
 bank 31

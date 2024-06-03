@@ -1,5 +1,9 @@
 ; ////////////////////////////////////////////////////////////////
 fireB
+
+ld a,(flag_on_joue_avec_alcorak)
+cp a,1
+jp z,retour_test_des_tirs
 		attente_fireB
 			RST		ASIC_DECONNEXION
 			ld		a,(counter_fireB)

@@ -170,7 +170,12 @@ Asic ON
 	ld		bc,#20
 	LDIR
 Asic OFF
-	call	affiche_hud
+	ld		a,(flag_on_joue_avec_alcorak)
+	cp		a,1
+	call	z,affiche_hud_alcorak
+	ld		a,(flag_on_joue_avec_alcorak)
+	cp		a,0
+	call	z,affiche_hud
 	ld		a,_CALL
 	ld		(event_powerup),a
 	ld		hl,powerup

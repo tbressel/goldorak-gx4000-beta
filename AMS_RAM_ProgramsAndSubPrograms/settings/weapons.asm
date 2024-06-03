@@ -4,6 +4,7 @@
 sprh_cornofulgure_bas		equ	#f800
 sprh_cornofulgure_haut		equ	#f900
 SPRH_MISSILES_GAMMA			equ	#f400
+SPRH_MISSILES_ALCORAK       equ #f500
 SPRH_MISSILES_GAMMA2			equ	#EF00
 SPRH_MISSILES_GAMMA3			equ	#EE00
 sprh_planitron				equ	#F000

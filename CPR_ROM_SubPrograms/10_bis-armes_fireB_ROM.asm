@@ -25,8 +25,8 @@ fin_attente_fireB_ROM
 	jp		z,affiche_boutton_7			; pulvonium
 	cp		a,8
 	jp		z,affiche_boutton_8
-	cp		a,9
-	jp		z,affiche_boutton_fin
+	; cp		a,9
+	; jp		z,affiche_boutton_fin
 	affiche_boutton_1
 		ld		a,(ArmesDisponible)
 		bit		0,a
@@ -183,7 +183,7 @@ fin_attente_fireB_ROM
 								affiche_boutton_8
 									ld		a,(ArmesDisponible)
 									bit		7,a
-									jp		z,affiche_boutton_fin
+									jp		z,affiche_boutton_1
 									ld		a,8
 									ld		(id_arme),a
 									ld		hl,HUD_BOUTON_ON_ADR
@@ -195,17 +195,17 @@ fin_attente_fireB_ROM
 									ld		b,HUD_HAUTEUR_BOUTTON
 									call	bcl_affiche_bouton
 									ret
-									affiche_boutton_fin
+									; affiche_boutton_fin
 
-										;ld		hl,HUD_BOUTON_AFF_ADR
-										;ld		de,HUD_BOUTON8_ADR
-										;ld		b,HUD_HAUTEUR_BOUTTON
-										;call	bcl_affiche_bouton
-										;ld		hl,HUD_BOUTON_ON_ADR
-										;ld		de,HUD_BOUTON1_ADR
-										;ld		b,HUD_HAUTEUR_BOUTTON
-										;call	bcl_affiche_bouton
-										jp		affiche_boutton_1
+									; 	ld		hl,HUD_BOUTON_AFF_ADR
+									; 	ld		de,HUD_BOUTON8_ADR
+									; 	ld		b,HUD_HAUTEUR_BOUTTON
+									; 	call	bcl_affiche_bouton
+									; 	ld		hl,HUD_BOUTON_ON_ADR
+									; 	ld		de,HUD_BOUTON1_ADR
+									; 	ld		b,HUD_HAUTEUR_BOUTTON
+									; 	call	bcl_affiche_bouton
+									; 	jp		affiche_boutton_1
 	
 	
 	

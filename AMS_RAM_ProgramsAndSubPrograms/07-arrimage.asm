@@ -24,7 +24,6 @@ Arrimage
 			inc		a
 			ld		(etp_arrimage),a
 			ld		c,BANK_ROM_18
-			; ld		c,BANK_ROM_2
 			RST		UPPER_ROM_CONNEXION
 			RST		ASIC_CONNEXION
 			call	init_arrimage_ROM
@@ -33,24 +32,29 @@ Arrimage
 			RET
 				avance_soucoupe
 					ld		c,BANK_ROM_18
-					; ld		c,BANK_ROM_2
 					RST		UPPER_ROM_CONNEXION
 					call	avance_soucoupe_ROM
 					call	rom_off
 					ret
 						stop_soucoupe
+							ld		a,(flag_on_joue_avec_alcorak)
+							cp		a,1
+							jr		z,on_zap_le_reste_de_arrimage
 							ld		a,(etp_arrimage)
 							inc		a
 							ld		(etp_arrimage),a
 							call	sample_on
-							;call	music_on
-							;call	scrolling_on
 							ret
+							on_zap_le_reste_de_arrimage
+								ld		a,10
+								ld		(etp_arrimage),a
+								call	COPIE_RAM_ZIK
+								call	reinit_music
+								ret
 								init_goldorak
 									inc		a
 									ld		(etp_arrimage),a
 									ld		c,BANK_ROM_18
-									; ld		c,BANK_ROM_2
 									RST		UPPER_ROM_CONNEXION
 									call	init_goldorak_ROM
 									call	rom_off
@@ -58,7 +62,6 @@ Arrimage
 									ret
 										avance_goldorak	
 											ld		c,BANK_ROM_18
-											; ld		c,BANK_ROM_2
 											RST		UPPER_ROM_CONNEXION
 											call	avance_goldorak_ROM
 											call	rom_off
@@ -75,7 +78,6 @@ Arrimage
 													ld		(SPRH10_ZOOM),a:ld	(valeur_zoom+10),a
 													call	rom_off
 													ld		c,BANK_ROM_18
-													; ld		c,BANK_ROM_2
 													RST 	UPPER_ROM_CONNEXION
 													jp		retour_avance_goldorak
 														arrimage_goldorak
@@ -105,11 +107,12 @@ Arrimage
 																	ld		bc,#200								; longueur de la pellette à copier dans l'ASIC
 																	LDIR
 																	ld		c,BANK_ROM_18
-																	; ld		c,BANK_ROM_2
 																	RST		UPPER_ROM_CONNEXION
 																	call	fin_goldorak_ROM
 																	call	rom_off
-																	
-																;	jp		init_2joueurs
 																	ret
+
+													
+
+
 	

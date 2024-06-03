@@ -11,16 +11,12 @@ init_arrimage_ROM
 	ld		hl,190		
 	ld		(SPRH4_X),hl			; sprite 0 X
 	ld		(SPRH2_X),hl			; sprite 2 X
-	;ld	(SPRH0_X),hl
 	ld		de,32+32
 	add		hl,de
-	;ld	(SPRH1_X),hl
 	ld		(SPRH5_X),hl			; sprite 1 X
 	ld		(SPRH3_X),hl			; sprite 3 X
 	ld		hl,230
 	ld		(SPRH4_Y),hl			; sprite 0 Y
-	;ld	(SPRH0_y),hl
-	;ld	(SPRH1_y),hl
 	ld		(SPRH5_Y),hl			; sprite 1 Y
 	ld		de,16
 	add 	hl,de
@@ -80,8 +76,7 @@ init_goldorak_ROM
 	ld		(SPRH7_X),hl			; sprite 3 X
 	ld		hl,240
 	ld		(SPRH8_Y),hl			; sprite 0 Y
-	;ld	(SPRH0_y),hl
-	;ld	(SPRH1_y),hl
+
 	ld		(SPRH9_Y),hl			; sprite 1 Y
 	ld		de,-16
 	add 	hl,de
@@ -168,16 +163,11 @@ fin_goldorak_ROM
 	ld	hl,(SPRH5_X)
 	ld	(SPRH1_X),hl
 	
-		ld		hl,SPRH_ARMES_GOLDORAK_CACHER
+	ld		hl,SPRH_ARMES_GOLDORAK_CACHER
 	ld		(SPRH4_X),hl
 	ld		(SPRH4_Y),hl
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
-
-;	ld	a,#04
-;	ld	(automodif_zoom+1),a	
-;	ld	a,#0C
-;	ld	(automodif_zoom+4),a	
 	
 	xor	a
 	ld	(event_arrimage),a

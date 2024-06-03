@@ -15,6 +15,9 @@ no_de_la_musique		ds			1,0
 isMusicOn			ds			1,0	
 
 
+bank_du_hud_a_goldo_ou_alco ds      2,0
+flag_on_joue_avec_alcorak   ds      1,0
+bank_goldo_ou_alco          ds      1,0
 bank_level					ds		2,0
 bank_tileset				ds		2,0
 adr_screen_level			ds		2,0

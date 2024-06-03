@@ -78,17 +78,41 @@ VBL_init
 ; ////////////////////    COPIE des palettes       /////////////////
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
+
+
+
 	LD 		BC,BANK8_PALETTES:OUT (C),C				; on choisit DE LIRE la ROM 01 (#01)
 	LD		BC,#7F00+%10000000:OUT (C),C 		; connexion Upper ROM et Lower ROM (et écran en mode 0.)
 	ld		hl,PALETTE_DECORS							; lecture  de la palette du décors
 	ld		de,PALETTE_DECORS_RAM							; ecriture
 	ld		bc,32							; longueur
 	LDIR
+
+
+ld bc,#7fc4
+out (c),c
+
+ld a,(#4000)
+
+ld bc,#7fc0
+out (c),c
+
+cp a,1
+jr z,on_copie_palette_alcorak
+
 	ld		hl,PALETTE_HUD							; lecture de la palette du hud
 	ld		de,PALETTE_HUD_RAM							; ecriture
 	ld		bc,32							; longueur
 	LDIR
+	jr on_copie_le_programme
+on_copie_palette_alcorak
+	ld		hl,PALETTE_HUD_ALCORAK							; lecture de la palette du hud
+	ld		de,PALETTE_HUD_RAM							; ecriture
+	ld		bc,32							; longueur
+	LDIR
 
+
+on_copie_le_programme
 ; Copie du Programme principale
 	LD 		BC,#DF00+1+#80:OUT (C),C				; on choisit DE LIRE la ROM 01 (#01)
 	LD 		BC,#7FC0:OUT (c),c					; on choisit D'ECRIRE  dans la RAM central
@@ -102,7 +126,4 @@ VBL_init
 
 
 	JP		#8000										; Goldorak, GO !
-
-
-
 

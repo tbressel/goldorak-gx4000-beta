@@ -138,6 +138,12 @@ initialisation_du_jeu_ROM
 	ld		(etp_soucoupe6),a
 	ld		(flag_fireA),a
 	ld		(id_arme),a
+
+
+ld a,(flag_on_joue_avec_alcorak)
+cp	a,1
+jp	z,on_joue_avec_alcorak
+
 ; on remplit le tableau des adresse de sprite hard de goldorak
 	ld		hl,Tbl_sprh_direction
 	ld		de,GOLDORAK_HAUTBAS_SPRH_ROM_ADR
@@ -153,7 +159,7 @@ initialisation_du_jeu_ROM
 	ld		de,GOLDORAK_HAUTBAS_SPRH_ROM_ADR+#200
 	ld		(hl),e : inc hl
 	ld		(hl),d : inc hl
-	ld		de,GOLDORAK_GAUCHE_SPRH_ROM_ADR+#200
+ 	ld		de,GOLDORAK_GAUCHE_SPRH_ROM_ADR+#200
 	ld		(hl),e : inc hl
 	ld		(hl),d : inc hl
 	ld		de,GOLDORAK_DROITE_SPRH_ROM_ADR+#200
@@ -163,6 +169,54 @@ initialisation_du_jeu_ROM
 	ld		(sprh_goldorak),hl
 	ld		hl,(Tbl_sprh_direction2)
 	ld		(sprh_goldorak2),hl
+	ld		a,BANK9_GOLDORAK_SPRH
+	ld		(bank_goldo_ou_alco),a
+	ld		hl,SPRH_MISSILES_GAMMA
+	ld		(sprh_arme_de_base),hl
+
+	jp 		initialisation_du_jeu_ROM_suite
+
+
+
+	on_joue_avec_alcorak
+
+
+
+; on remplit le tableau des adresse de sprite hard de goldorak
+	ld		hl,Tbl_sprh_direction
+	ld		de,ALCORAK_HAUTBAS_SPRH_ROM_ADR
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		de,ALCORAK_GAUCHE_SPRH_ROM_ADR
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		de,ALCORAK_DROITE_SPRH_ROM_ADR
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		hl,Tbl_sprh_direction2
+	ld		de,ALCORAK_HAUTBAS_SPRH_ROM_ADR+#200
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		de,ALCORAK_GAUCHE_SPRH_ROM_ADR+#200
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		de,ALCORAK_DROITE_SPRH_ROM_ADR+#200
+	ld		(hl),e : inc hl
+	ld		(hl),d : inc hl
+	ld		hl,(Tbl_sprh_direction)
+	ld		(sprh_goldorak),hl
+	ld		hl,(Tbl_sprh_direction2)
+	ld		(sprh_goldorak2),hl
+	ld		a,BANK15_PUZZLE
+	ld		(bank_goldo_ou_alco),a
+		ld		hl,SPRH_MISSILES_ALCORAK
+	ld		(sprh_arme_de_base),hl
+
+
+
+
+initialisation_du_jeu_ROM_suite
+
 ; on remplit le tableau des timer des soucoupes simple
 	ld		de,Tbl_timer_depart_soucoupes
 	ld		hl,Tbl_VALEUR_TIMER_soucoupes

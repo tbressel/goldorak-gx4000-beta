@@ -1,14 +1,18 @@
 
-
-
+affiche_hud_alcorak
+	LD 		BC,BANK_HUD_ALCORAK
+	ld		hl,HUD_ALCORAK_ADR_ROM
+	ld		de,HUD_ALCORAK_ADR_ECRAN
+jr	affiche_hud_suite
 
 affiche_hud
 	LD 		BC,BANK_HUD
+	ld		hl,HUD_J1_ADR_ROM
+	ld		de,HUD_GOLDORAK_ADR_ECRAN
+affiche_hud_suite
 	OUT 	(C),C
 	LD		BC,#7F00+%10000100
 	OUT 	(C),C
-	ld		hl,HUD_J1_ADR_ROM
-	ld		de,HUD_J1_ADR_ECRAN
 	ld		bc,HUD_LONGEUR
 	ld		a,HUD_J1_HAUTEUR
 	ld		b,a
@@ -148,6 +152,14 @@ ligne_inf_4000
 ; ///////////////////////////////////////////////////////////////////////
 Affiche_sprite_hard
 	Asic ON
+	ld		a,(flag_on_joue_avec_alcorak)
+	cp		a,1
+	jp		z,init_alcorak_sprh
+	cp		a,0
+	jp		z,init_goldorak_sprh
+
+
+init_goldorak_sprh
 ; Goldorak sprite hard
 	LD 		BC,BANK_GOLDORAK_SPRH
 	OUT 	(C),C						; on execute la sélèction de la ROM
@@ -161,6 +173,23 @@ Affiche_sprite_hard
 	ld		de,#5000
 	ld		bc,#400
 	LDIR
+	jp		suite_init_sprh
+init_alcorak_sprh
+; Goldorak sprite hard
+	LD 		BC,BANK_ALCORAK_SPRH
+	OUT 	(C),C						; on execute la sélèction de la ROM
+	LD		BC,#7F00+%10000100
+	OUT 	(C),C
+	ld		hl,ALCORAK_HAUTBAS_SPRH_ROM_ADR										; emplacement départ des données de la palette
+	ld		de,SPRH0_ADR										; emplacement de la palette dans l'ASIC
+	ld		bc,#400								; longueur de la pellette à copier dans l'ASIC
+	LDIR
+	ld		hl,ALCORAK_HAUTBAS_SPRH_ROM_ADR										; emplacement départ des données de la palette
+	ld		de,SPRH4_ADR										; emplacement de la palette dans l'ASIC
+	ld		bc,#200								; longueur de la pellette à copier dans l'ASIC
+	LDIR
+
+suite_init_sprh
 ; on place goldorak
 	ld		hl,GOLDORAK_INIT_POSX
 	ld		(#6000),hl			; sprite 0 X
@@ -306,7 +335,8 @@ on_init_charge_sprh_haut_bas
 on_charge_sprh_haut_bas
 		XOR		a
 	ld		(flag_deja_affiche),a
-	ld		c,BANK9_GOLDORAK_SPRH
+	ld		a,(bank_goldo_ou_alco)
+	ld		c,a
 	RST 	UPPER_ROM_CONNEXION
 automodif_srph_goldoHB
 	ld		hl,(sprh_goldorak)
@@ -324,7 +354,8 @@ automodif_srph_goldoHB
 on_charge_sprh_gauche
 	XOR		a
 	ld		(flag_deja_affiche),a
-	ld		c,BANK9_GOLDORAK_SPRH
+	ld		a,(bank_goldo_ou_alco)
+	ld		c,a
 	RST 	UPPER_ROM_CONNEXION
 automodif_srph_goldoG
 	ld		hl,(sprh_goldorak)
@@ -340,7 +371,8 @@ automodif_srph_goldoG
 on_charge_sprh_droite
 	XOR		a
 	ld		(flag_deja_affiche),a
-	ld		c,BANK9_GOLDORAK_SPRH
+	ld		a,(bank_goldo_ou_alco)
+	ld		c,a
 	RST 	UPPER_ROM_CONNEXION
 automodif_srph_goldoD
 	ld		hl,(sprh_goldorak)

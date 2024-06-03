@@ -5,6 +5,24 @@ ecran_de_depart
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 ; jp	preparation_du_jeu
+
+; on test si on lit ou non l'octet #01 dans la page 1
+; dans ce cas on passe le screen, le menu et le scenario
+
+ld bc,#7fc4
+out (c),c
+ld a,1
+ld (#4000),a
+
+ld a,(#4000)
+
+ld bc,#7fc0
+out (c),c
+cp 	a,1
+jp	z,preparation_du_jeu
+
+
+
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////////    ECRAN TITRE     /////////////////////
 ; //////////////////////////////////////////////////////////////////
@@ -64,36 +82,6 @@ Asic ON
 Asic OFF
 
 
-	; LD 		BC,BANK28_MUSIC:OUT (C),C				; on choisit DE LIRE la ROM 14
-	; LD		BC,#7F00+%10000000:OUT (C),C 		; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
-	; LD 		BC,#7FC0:OUT (c),c					; on choisit D'ECRIRE  dans la RAM centrale
-	; ld		hl,#c000							; lecture
-	; ld		de,#8300							; ecriture
-	; ld		bc,#2500								; longueur
-	; LDIR
-	
-	; LD 		BC,BANK3_MUSIC:OUT (C),C				; on choisit DE LIRE la ROM 14
-	; LD		BC,#7F00+%10000000:OUT (C),C 		; connexion de la ROM supérieure et de la ROM inférieure et écran en mode 0.
-	; LD 		BC,#7FC0:OUT (c),c					; on choisit D'ECRIRE  dans la RAM centrale
-	; ld		hl,#CC60							; lecture
-	; ld		de,#A000							; ecriture
-	; ld		bc,#1900								; longueur
-	; LDIR
-	
-	; ld 		hl,#A000         ; Initialisation
-    ; xor 	a               ; Subsong #0.
-    ; call 	#8300
-
-
-
-
-
-
-
-
-
-
-
 ; //////////////////////////////////////////////////////////////////
 ; /////////////////////////    BOUCLE PRINCIPALE      //////////////
 ; /////////////////////////           de              //////////////
@@ -126,9 +114,6 @@ VBL_title
 	call	lecture_clavier
 	bit		4,a
 	jp		z,le_menu
-	;bit		5,a
-	;jp		z,scenario_du_jeu
-
 
 	jp boucle_screen
 

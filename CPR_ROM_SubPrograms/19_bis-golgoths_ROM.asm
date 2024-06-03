@@ -2400,11 +2400,14 @@ Un_Golgoth_Est_Mort
 	ld		hl,boucle_principale
 	ld		(event_fade_out+4),hl
 
+ld	a,(flag_on_joue_avec_alcorak)
+	cp a, 1
+	jr  z,on_zap_puzzle
 	ld		a,_CALL						; call
 	ld		(event_alcorak),a
 	ld		hl,alcorak_puzzle
 	ld		(event_alcorak+1),hl
-
+on_zap_puzzle
 	 call	music_off
 
 	call	scrolling_on

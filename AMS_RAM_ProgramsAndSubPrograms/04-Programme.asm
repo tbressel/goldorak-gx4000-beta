@@ -66,8 +66,35 @@ Asic ON
 	ld		hl,#000
 	ld		(PALETTE_BORDER),hl
 Asic OFF
+
+
+; test si le jeu est fini et si on rejoue avec goldorak ou alcorak
+ld bc,#7fc4
+out (c),c
+
+ld a,(#4000)
+
+ld bc,#7fc0
+out (c),c
+
+cp a,0
+jr	z,on_flag_goldorak
+cp a,1
+jr	z,on_flag_alcorak
+
+
+on_flag_alcorak
+
+	ld		a,1
+	ld		(flag_on_joue_avec_alcorak),a
+	call	affiche_hud_alcorak
+	jr		NOUVEAU_LEVEL
+on_flag_goldorak
+	ld		a,0
+	ld		(flag_on_joue_avec_alcorak),a
+
 	call	affiche_hud
-	;   call	affiche_hud_2_joueurs
+	jr		NOUVEAU_LEVEL
 
 	
 
@@ -82,12 +109,15 @@ NOUVEAU_LEVEL
 	
 	; on allume et selectionne par défaut le 1er boutton et la 1ere amre
 
+ld a,(flag_on_joue_avec_alcorak)
+cp 	a,1
+jr z,pas_de_bouton
 	ld		hl,HUD_BOUTON_ON_ADR
 	ld		de,HUD_BOUTON1_ADR
 	ld		b,HUD_HAUTEUR_BOUTTON
 	call	bcl_affiche_bouton
 
-
+pas_de_bouton
 	ld		a,(id_arme)
 	inc		a
 	ld		(id_arme),a

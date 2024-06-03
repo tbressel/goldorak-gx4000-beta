@@ -11,9 +11,9 @@ rasm_x64 CPR_ASSETS\maptiles\goldo8.asm -ob CPR_ASSETS\maptiles\goldo8.prg
 rasm_x64 CPR_ASSETS\maptiles\goldospace.asm -ob CPR_ASSETS\maptiles\goldospace.prg
 
 
-rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ../WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta
+rasm_x64 .\CPR_ROM_Programs\01-CPR_initialisation.asm -sw -sq -o ../WinAPE20B2_betatest_goldorack/GoldorakGX4000_v3.0-beta
 
-C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/WinApe.exe /sym:C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta.sym C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v0.1beta.cpr
+C:\Users\Zisquier\Documents\Emulateurs\WinAPE20B2\WinApe.exe /sym:C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v3.0-beta.sym C:/Users/Zisquier/Documents/Projets/Amstrad/2023_goldorak-gx4000/WinAPE20B2_betatest_goldorack/GoldorakGX4000_v3.0-beta.cpr
 
 
 cmd

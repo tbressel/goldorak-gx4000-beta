@@ -84,7 +84,9 @@ VITESSE_PERTE_POWER_UP			equ		128
 ; ////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////
 
+HUD_ALCORAK_ADR_ROM			equ	#DD00
 HUD_J1_ADR_ROM			equ	#C000
-HUD_J1_ADR_ECRAN		equ	#4040   ;#7800
+HUD_GOLDORAK_ADR_ECRAN		equ	#4040   ;#7800
+HUD_ALCORAK_ADR_ECRAN		equ	#4840   ;#7800
 HUD_J1_HAUTEUR			equ	45
 HUD_LONGEUR				equ	16*4			; 16 lignes de 4 octets

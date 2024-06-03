@@ -124,42 +124,10 @@ zoomValuePuzzleLoop
 
 
 updateAlcorakPuzzle
-    ld hl,(puzzlePosX)
-    
-    ld (SPRH8_X),hl
-    ld (SPRH9_X),hl
-    ld (SPRH10_X),hl
-    ld (SPRH11_X),hl
 
-
-    ld de,-32
-    add hl,de
-    ld (SPRH12_X),hl
-    ld (SPRH13_X),hl
-
-    ld de,64
-    add hl,de
-    ld (SPRH14_X),hl
-    ld (SPRH15_X),hl
-
-    ld hl,(puzzlePosY)
-    ld (SPRH8_Y),hl
-
-    ld de,16    
-    add hl,de
-    ld (SPRH9_Y),hl
-
-    ld de,16    
-    add hl,de
-    ld (SPRH10_Y),hl
-    ld (SPRH12_Y),hl
-    ld (SPRH14_Y),hl
-
-    ld de,16    
-    add hl,de
-    ld (SPRH11_Y),hl
-    ld (SPRH13_Y),hl
-    ld (SPRH15_Y),hl
-    ret
-
+ld      c,BANK_ROM_2
+call    UPPER_ROM_CONNEXION
+call    updateAlcorakPuzzle_ROM
+call    rom_off
+ret
 

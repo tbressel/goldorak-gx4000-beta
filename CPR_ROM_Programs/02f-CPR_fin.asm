@@ -1,5 +1,19 @@
 
 Fin
+
+
+ld bc,#7fc4
+out (c),c
+ld a,1
+ld (#4000),a
+
+ld bc,#7fc0
+out (c),c
+
+
+
+
+
 CALL	reinit_crtc_et_retard_video
 	Asic on
 	ld		a,167:ld (#6801),a					; ligne de 2eme split

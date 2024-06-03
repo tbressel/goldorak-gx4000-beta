@@ -6,6 +6,10 @@ ld	a,(fini)
 cp	a,1
 jp	z,PreparationLevelSuivant
 
+ld	a,(flag_on_joue_avec_alcorak)
+cp	a,1
+jp	z,PreparationLevelSuivant
+
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////// POSITIONNEMENT de L'ECRAN ///////////////////////////////////
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -363,7 +367,7 @@ Case_Cornofulgure
 
 		Case_Pulvonium
 				ld		a,(ArmesDisponible)
-				bit		3,a
+				bit		6,a
 				jp		nz,boucle_shop
 				exx
 				ld		a,(Cout_Pulvonium)
@@ -385,7 +389,7 @@ Case_Cornofulgure
 					
 					Case_Clavicogyre
 							ld		a,(ArmesDisponible)
-							bit		6,a
+							bit		5,a
 							jp		nz,boucle_shop
 							exx
 							ld		a,(Cout_Clavicogyre)
@@ -451,7 +455,7 @@ Case_Cornofulgure
 					
 																		Case_Fulguropoint
 																				ld		a,(ArmesDisponible)
-																				bit		5,a
+																				bit		3,a
 																				jp		nz,boucle_shop
 																				exx
 																				ld		a,(Cout_Fulguropoint)

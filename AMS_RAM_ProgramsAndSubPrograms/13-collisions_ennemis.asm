@@ -415,8 +415,7 @@ init_mort_golgoth5
 		jr		rip_golgoth
 		
 rip_golgoth
-		; ld		a,1
-		; ld		(flag_MortGolgoth),a
+		
 		ld		a,(EtpGolgoth)
 		inc		a
 		ld		(EtpGolgoth),a
@@ -457,10 +456,14 @@ rip_bigboss_etp2
 		ret		z
 
 		xor 	a
+		ld		(SPRH4_ZOOM),a
+		ld		(SPRH5_ZOOM),a
 		ld		(SPRH10_ZOOM),a
 		ld		(SPRH11_ZOOM),a
 		ld		(SPRH12_ZOOM),a
 		ld		(SPRH13_ZOOM),a
+		ld		(valeur_zoom_sprh4),a
+		ld		(valeur_zoom_sprh5),a
 		ld		(valeur_zoom_sprh10),a
 		ld		(valeur_zoom_sprh11),a
 		ld		(valeur_zoom_sprh12),a
@@ -472,10 +475,14 @@ rip_golgoth5
 		ld		a,1
 		ld		(flag_MortGolgoth),a
 		xor 	a
+		ld		(SPRH4_ZOOM),a
+		ld		(SPRH4_ZOOM),a
 		ld		(SPRH12_ZOOM),a
 		ld		(SPRH13_ZOOM),a
 		ld		(SPRH14_ZOOM),a
 		ld		(SPRH15_ZOOM),a
+		ld		(valeur_zoom_sprh4),a
+		ld		(valeur_zoom_sprh5),a
 		ld		(valeur_zoom_sprh12),a
 		ld		(valeur_zoom_sprh13),a
 		ld		(valeur_zoom_sprh14),a

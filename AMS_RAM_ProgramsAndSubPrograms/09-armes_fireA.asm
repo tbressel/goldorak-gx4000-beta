@@ -72,11 +72,11 @@ init_missiles_gamma
 	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
 	ld		c,BANK9_GOLDORAK_SPRH
 	RST 	UPPER_ROM_CONNEXION									; on se connection à la rom où se situes les sprites hard de cette arme
-	ld		hl,SPRH_MISSILES_GAMMA
+	ld		hl,(sprh_arme_de_base)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
 	LDIR		
-	ld		hl,SPRH_MISSILES_GAMMA
+	ld		hl,(sprh_arme_de_base)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR																; on copie de puis la ROM vers l'ASIC	
@@ -1244,6 +1244,10 @@ update_pulvonium
 ; /////////////////////////////////////////////////////////////
 
 GoldroakRetournement
+ld a,(flag_on_joue_avec_alcorak)
+cp 	a,1
+jp z,Fin_Retournement
+
 	; on vérifie que l'on a encore des retournement disponible
 	ld		a,(nbr_de_retournement)
 	cp		a,NBR_RETOURNEMENT_MAX

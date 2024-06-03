@@ -524,35 +524,14 @@ fin_bigboss_2
 ; utilise de pour X
 
 updateBigboss_final__XY
-	ld (SPRH6_Y),hl
-	ld (SPRH7_Y),hl
-	ld (SPRH8_Y),hl
-	ld	bc,16
-	add	hl,bc
-	ld (SPRH11_Y),hl
-	ld (SPRH9_Y),hl
-	ld (SPRH12_Y),hl
-	ld	bc,16
-	add	hl,bc
-	ld (SPRH13_Y),hl
-	ld (SPRH10_Y),hl
-	ld (SPRH14_Y),hl			
-	ex hl,de
-	ld (SPRH6_X),hl
-	ld (SPRH11_X),hl
-	ld (SPRH13_X),hl
-	ld	bc,64
-	add	hl,bc
-	ld (SPRH7_X),hl
-	ld (SPRH9_X),hl
-	ld (SPRH10_X),hl
-	ld	bc,64
-	add	hl,bc
-	ld (SPRH8_X),hl
-	ld (SPRH12_X),hl
-	ld (SPRH14_X),hl
-	ex hl,de
-	ret
+ld      c,BANK_ROM_2
+call    UPPER_ROM_CONNEXION
+call    updateBigboss_final__XY_ROM
+call    rom_off
+ret
+
+
+
 updateBigboss_replace_XY
 	ld	de,(bigboss_X)
 	ld	hl,(bigboss_Y)
@@ -563,37 +542,19 @@ updateBigboss_XY
 	ld		a,(flag_bigboss)
 	cp 		a,2
 	jp 		z,updateBigboss_final__XY
+	
 updateBigboss_replace_XY2
-	ld 		(SPRH6_Y),hl
-	ld 		(SPRH7_Y),hl
-	ld 		(SPRH8_Y),hl
-	ld		bc,16
-	add		hl,bc
-	ld 		(SPRH9_Y),hl
-	ld 		(SPRH10_Y),hl
-	ld 		(SPRH11_Y),hl
-	ld		bc,16
-	add		hl,bc
-	ld 		(SPRH12_Y),hl
-	ld 		(SPRH13_Y),hl
-	ld 		(SPRH14_Y),hl			
-	ex 		hl,de
-	ld 		(SPRH6_X),hl
-	ld 		(SPRH9_X),hl
-	ld 		(SPRH12_X),hl
-	ld		bc,64
-	add		hl,bc
-	ld 		(SPRH7_X),hl
-	ld 		(SPRH10_X),hl
-	ld 		(SPRH13_X),hl
-	ld		bc,64
-	add		hl,bc
-	ld 		(SPRH8_X),hl
-	ld 		(SPRH11_X),hl
-	ld 		(SPRH14_X),hl
-	ex 		hl,de
-	ret
+ld      c,BANK_ROM_2
+call    UPPER_ROM_CONNEXION
+call    updateBigboss_replace_XY2_ROM
+call    rom_off
+ret
+
+
+
 switch_anim_bigboss ds 1,0
+
+
 updateBigboss_SPRH
 	ld		a,(flag_bigboss)
 	cp 		a,2
