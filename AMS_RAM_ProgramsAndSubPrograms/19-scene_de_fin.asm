@@ -62,9 +62,9 @@ initSceneSprites
     ld bc,32
     LDIR
 
-    CALL ASIC_DECONNEXION
     call rom_off
-    ret
+    jp ASIC_DECONNEXION
+    
 
 
 
@@ -82,8 +82,8 @@ displaySceneSprites
     call UPPER_ROM_CONNEXION
     call displaySceneSprites_ROM
     call rom_off
-    CALL ASIC_DECONNEXION
-    ret
+    jp ASIC_DECONNEXION
+    
 
 
 ; //////////////////////////////////////////////////////////////////

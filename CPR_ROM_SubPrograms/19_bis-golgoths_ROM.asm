@@ -208,8 +208,8 @@ Explose_Golgoth
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort
 							call Un_Golgoth_Est_Mort
 						
@@ -591,8 +591,8 @@ Explose_Golgoth3
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort3
 							call Un_Golgoth_Est_Mort
 							ret
@@ -919,8 +919,8 @@ Explose_Golgoth4
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort4
 							call Un_Golgoth_Est_Mort
 														; on précise que cette fin de level fait appel à un level 'big boss'
@@ -1317,8 +1317,8 @@ Explose_Golgoth5
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort5
 							call Un_Golgoth_Est_Mort
 							ret
@@ -1729,8 +1729,8 @@ Explose_Golgoth6
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort6
 							call 	Un_Golgoth_Est_Mort
 							ret
@@ -2047,8 +2047,8 @@ Explose_Golgoth7
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort7
 							call	Un_Golgoth_Est_Mort
 							ret
@@ -2293,8 +2293,8 @@ Explose_Golgoth8
 					ld 		c,SFX_CHANNEL_EXPLODE_GOLGOTH 					;channel (0-2)
 					ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
 					call 	PLY_AKG_PlaySoundEffect
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						GolgothMort8
 							call	Un_Golgoth_Est_Mort
 							

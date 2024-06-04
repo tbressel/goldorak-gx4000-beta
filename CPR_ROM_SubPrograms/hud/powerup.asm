@@ -252,7 +252,7 @@ fin_missiles_gamma2
 	ld		(SPRH4_Y),hl
 	ld		(SPRH5_X),hl
 	ld		(SPRH5_Y),hl
-	CALL	ASIC_DECONNEXION
+	rst		ASIC_DECONNEXION
 	ld 		c,2   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
 	ret

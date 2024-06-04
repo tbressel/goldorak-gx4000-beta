@@ -43,6 +43,15 @@ fin_attente_fireB_ROM
 		ld		(points_attaque),a
 		ld 		a,SFX_GAMMA_LVL1	 ;Sound effect number (>=1))
 		ld		(sfx_arme),a
+											xor 	a
+									ld		(event_arme_fireA),a
+									ld		(event_arme_fireA+1),a
+									ld		(event_arme_fireA+2),a
+									ld		(SPRH4_ZOOM),a
+									ld		(SPRH5_ZOOM),a
+
+									ld		(valeur_zoom_sprh4),a
+									ld		(valeur_zoom_sprh5),a
 		ret
 		affiche_boutton_2
 			ld		a,(ArmesDisponible)
@@ -198,15 +207,15 @@ fin_attente_fireB_ROM
 									ld		de,HUD_BOUTON7_ADR
 									ld		b,HUD_HAUTEUR_BOUTTON
 									call	bcl_affiche_bouton
-									xor 	a
-									ld		(event_arme_fireA),a
-									ld		(event_arme_fireA+1),a
-									ld		(event_arme_fireA+2),a
-									ld		(SPRH4_ZOOM),a
-									ld		(SPRH5_ZOOM),a
+									; xor 	a
+									; ld		(event_arme_fireA),a
+									; ld		(event_arme_fireA+1),a
+									; ld		(event_arme_fireA+2),a
+									; ld		(SPRH4_ZOOM),a
+									; ld		(SPRH5_ZOOM),a
 
-									ld		(valeur_zoom_sprh4),a
-									ld		(valeur_zoom_sprh5),a
+									; ld		(valeur_zoom_sprh4),a
+									; ld		(valeur_zoom_sprh5),a
 
 
 									
@@ -245,8 +254,8 @@ pre_anim_fulguro_poing_ROM
 		
 			xor		a:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
 			ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-			RST		ASIC_DECONNEXION
-			ret
+			jp		ASIC_DECONNEXION
+			
 				pre_anim_fulguro_poing_2_ROM
 					ld		hl,Tbl_sprh_direction
 					ld		de,GOLDORAK_HAUTBAS_ANIMPOINT2_SPRH_ROM_ADR

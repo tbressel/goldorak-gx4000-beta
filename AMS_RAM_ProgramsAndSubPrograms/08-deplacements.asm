@@ -166,7 +166,7 @@ stop_droite
 	pop		hl
 	dec 	hl:dec hl:dec hl
 	dec 	hl:dec hl:dec hl
-	jp		ret_stp_dr
+	jr		ret_stp_dr
 charge_sprh_droite
 	ld	a,3
 	ld	(sprh_a_charger),a

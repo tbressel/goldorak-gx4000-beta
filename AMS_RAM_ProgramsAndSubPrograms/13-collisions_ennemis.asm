@@ -5,7 +5,7 @@
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 test_collisions_tir_gauche
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 
@@ -61,7 +61,7 @@ test_collisions_tir_gauche
 	
 test_collisions_tir_gauche_golgoth
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	LD			hl,(SPRH4_X)					; à partir du coin haut-gauche de link
@@ -96,7 +96,7 @@ test_collisions_tir_gauche_golgoth
 	
 test_collisions_tir_gauche_goldorak
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	ld			a,1
 	ld			(id_joueur),a
@@ -134,7 +134,7 @@ test_collisions_tir_gauche_goldorak
 
 test_collisions_tir_droite
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 
 	LD			hl,(SPRH5_X)					; à partir du coin haut-gauche de link
@@ -193,7 +193,7 @@ test_collisions_tir_droite
 
 test_collisions_tir_droite_golgoth
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 
 	LD			hl,(SPRH5_X)					; à partir du coin haut-gauche de link
@@ -557,8 +557,8 @@ on_gere_fulguro_point
 on_gere_pulvonium
 
 
-call ASIC_DECONNEXION
-ret
+jp ASIC_DECONNEXION
+
 
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////////////////
@@ -567,7 +567,7 @@ ret
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 test_collisions_goldorak_item
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	LD			hl,(SPRH0_X)					; à partir du coin haut-gauche de link
 	LD			de,30							
@@ -602,7 +602,7 @@ test_collisions_goldorak_item
 	RET	
 test_collisions_goldorak_item2
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or 	a
 	RET			nz
 
 	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de link
@@ -724,11 +724,11 @@ prends_item_soucoupe6
 ; ///////////////////////////////////////////////////////////////////////////////////////////
 test_collisions_avec_les_ennemisG
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a	
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -762,11 +762,11 @@ test_collisions_avec_les_ennemisG
 	ret
 test_collisions_avec_les_ennemisD
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -800,11 +800,11 @@ test_collisions_avec_les_ennemisD
 	
 test_collisions_avec_les_tirs_ennemisG
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -858,11 +858,11 @@ test_collisions_avec_les_tirs_ennemisG
 	ret
 test_collisions_avec_les_tirs_ennemisD
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -896,11 +896,11 @@ test_collisions_avec_les_tirs_ennemisD
 test_collisions_avec_les_Golgoths_G
 	; ret
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -935,11 +935,11 @@ test_collisions_avec_les_Golgoths_G
 test_collisions_avec_les_Golgoths_D
 	; ret			
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -974,11 +974,11 @@ test_collisions_avec_les_Golgoths_D
 test_collisions_supplementaire_avec_les_Golgoths_G
 	; ret
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -1013,11 +1013,11 @@ test_collisions_supplementaire_avec_les_Golgoths_G
 test_collisions_supplementaire_avec_les_Golgoths_D
 	; ret			
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -1050,7 +1050,6 @@ test_collisions_supplementaire_avec_les_Golgoths_D
 	jp 			NC,goldorak_percute_golgoth					; si hl>=de le flag C est à zero
 	ret
 goldorak_percute
-	 ;ret		; !!! invincibilité !!!
 	rst		ASIC_CONNEXION
 	ld		hl,COULEUR_DEGAT_BORDER
 	ld		(PALETTE_BORDER),hl
@@ -1097,11 +1096,11 @@ bigboss_colY ds 2,0
 test_collisions_avec_les_Bigboss
 	; ret
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	ld			a,(flag_retournement)
-	cp			a,0
+	or a
 	ret			nz
 	
 	
@@ -1138,7 +1137,7 @@ sprh_adr_tirX ds 2,0
 sprh_adr_tirY ds 2,0
 test_collisions_tir_bigboss
 	ld			a,(GoldorakMort)
-	cp			a,0
+	or a
 	RET			nz
 	
 	LD			hl,(sprh_adr_tirX)					; à partir du coin haut-gauche de link

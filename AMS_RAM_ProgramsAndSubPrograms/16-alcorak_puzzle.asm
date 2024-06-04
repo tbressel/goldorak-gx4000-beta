@@ -3,10 +3,10 @@ alcorak_puzzle
     call ASIC_CONNEXION
 
     ld a,(alcorakPuzzleStep)
-    cp a,0
-    jp z,initAlcorakPuzzle
-    cp a,1
-    jp z,toggleAlcorakDisplay
+    or a
+    jr z,initAlcorakPuzzle
+
+    jr toggleAlcorakDisplay
 
 initAlcorakPuzzle
     inc a
@@ -40,8 +40,8 @@ initAlcorakPuzzle
 
     call    updateAlcorakPuzzle
 
-    call ASIC_DECONNEXION
-    ret
+    jp ASIC_DECONNEXION
+    
 
 toggleAlcorakDisplay
 
@@ -69,10 +69,10 @@ on_zap_goldorakMove
     call ASIC_CONNEXION
 
     ld a,(isAlcorakDsiplay)
-    cp a,1
-    jr z,turnAlcorakOff
-    cp a,0
-    jr z,turnAlcorakOn 
+   or a
+    jr nz,turnAlcorakOff
+
+    jr turnAlcorakOn 
 
 turnAlcorakOff
     xor a
@@ -119,8 +119,8 @@ zoomValuePuzzleLoop
 
 
 
-    call ASIC_DECONNEXION
-    ret
+    jp ASIC_DECONNEXION
+    
 
 
 updateAlcorakPuzzle

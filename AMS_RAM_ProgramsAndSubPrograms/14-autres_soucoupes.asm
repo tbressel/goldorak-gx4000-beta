@@ -96,9 +96,9 @@ soucoupe_6
 	jp		test_soucoupe
 test_soucoupe
 	cp		a,0
-	jp		z,init_soucoupe
+	jr		z,init_soucoupe
 	cp		a,1
-	jp		z,deplace_soucoupe
+	jr		z,deplace_soucoupe
 	cp		a,2
 	jp		z,explose_soucoupe
 	cp		a,3

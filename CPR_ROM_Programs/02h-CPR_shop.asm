@@ -1,7 +1,6 @@
 shop
 ; on reinitialise le crtc
 CALL	reinit_crtc_et_retard_video
-
 ld	a,(fini)
 cp	a,1
 jp	z,PreparationLevelSuivant
@@ -36,7 +35,6 @@ Asic OFF
 	ld		de,#c000
 	ld		bc,#4000							; longueur
 	LDIR
-
 
 ; /////////////////////////////////////////////////////////////////////////////////////////////////
 ; /////////////////////////////////// AFFICHAGE DU STOCK DE LA BOUTIQUE //////////////////////////
@@ -181,7 +179,7 @@ Affichage_Palette
 	ld	(pointeur_TblPosCurseur),hl
 
 
-	call	init_musique_boutique
+	;call	init_musique_boutique
 
 
 
@@ -192,7 +190,7 @@ boucle_shop
 			rra
 			jr 		nc,.VBL_shop
 
-call	musique_boutique
+ ;call	musique_boutique
 	call	lecture_clavier
 		bit		0,a
 		jp		z,Curseur_Haut
@@ -588,22 +586,9 @@ Cout_Planitron2
 Cout_Fulguropoint
 	db	0,3,5,0,0		; Fulguropoint
 
-; Cout_Cornofulgure
-; 	;	l,h,e,d,c
-; 	db	0,4,5,0,0		; Cornofulgure
-; Cout_Pulvonium	
-; 	db	0,5,0,0,0		; Pulvonium
-; Cout_Clavicogyre
-; 	db	0,3,5,0,0		; Clavicogyre
-; Cout_Planitron1
-; 	db	0,2,0,0,0		; Planitron 1
-; Cout_Planitron2
-; 	db	0,2,0,0,0		; Planitron 2
-; Cout_Fulguropoint
-; 	db	0,4,0,0,0		; Fulguropoint
 
 PreparationLevelSuivant
-	call stop_musique_boutique
+	;call stop_musique_boutique
 	call	FADE_OUT
 	Asic 	ON		
 	ld		(#6004),a : ld (valeur_zoom_sprh0),a
@@ -697,10 +682,4 @@ on_continu_la_suite
 				ld		(event_test_de_goldorak),a
 				ld		hl,test_de_goldorak
 				ld		(event_test_de_goldorak+1),hl
-				;call	affiche_hud_interlevel
 				ret
-			; /////////////////////////////////////////////////////////////////////
-			; BON !! C'EST LA MERDASSE	 ! Je me rends compte qu'une fois le Niveau 1 terminé,
-			; et de retour sur magasin d'arme lu dans la ROM basse (qui au passage utilise certaines adresse en banque 8000),
-			; et bah .... de retour dans mon programme principale certaine partie ont été ecrasé .... c'est la merde.
-			

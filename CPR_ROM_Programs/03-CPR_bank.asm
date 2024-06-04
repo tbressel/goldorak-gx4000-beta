@@ -23,10 +23,6 @@ bank 2
 ; la bank 3 est assemblé à la fin dufichier Programme.asm
 
 
-
-
-
-
 ; ///////////////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////// LES TILESETS ////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////////////
@@ -126,10 +122,10 @@ org	DEPART_PALETTES
 
 	incbin "../CPR_ASSETS/gfx/fonthud.bin"
 
-	incbin "../CPR_ASSETS/gfx/ferme.imp"
+	incbin "../CPR_ASSETS/gfx/VOLET.IMP"
 
 ; org PALETTE_HUD_ALCORAK
-; ; hud de l'alcorak  : #f41d
+; ; hud de l'alcorak  : #f411
 		DW		#abcd
 		dw 		#0FF,#000,#555,#EEE,#64C,#AAA,#B00,#CCC,#461,#888,#DD0,#00B,#90F,#666,#6C1,#0B1
 

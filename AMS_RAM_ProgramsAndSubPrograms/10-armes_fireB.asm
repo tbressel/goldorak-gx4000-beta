@@ -2,8 +2,8 @@
 fireB
 
 ld a,(flag_on_joue_avec_alcorak)
-cp a,1
-jp z,retour_test_des_tirs
+or a
+jp nz,retour_test_des_tirs
 		attente_fireB
 			RST		ASIC_DECONNEXION
 			ld		a,(counter_fireB)
@@ -67,8 +67,8 @@ pre_init_fulguro_poing
 					ld		bc,#200
 					LDIR		
 					call	rom_off
-					RST		ASIC_DECONNEXION
-					ret
+					jp		ASIC_DECONNEXION
+					
 						pre_anim_fulguro_poing_fin
 							xor	a
 							ld	(etp_pre_poing),a

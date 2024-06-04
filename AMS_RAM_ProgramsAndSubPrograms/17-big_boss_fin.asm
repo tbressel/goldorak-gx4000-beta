@@ -491,10 +491,7 @@ fin_bigboss_1
 	ld		(event_fade_out+4),hl
 	call	music_off
 	call	scrolling_on	
-		; ld		a,MUCIS_LVL_END	
-		; ld 		hl,Music
-		; call 	PLY_AKG_Init
-		; call	music_on
+
 	ret
 fin_bigboss_2
 	
@@ -510,12 +507,7 @@ fin_bigboss_2
 	ld		(event_fade_out+4),hl
 	call	music_off
 	call	scrolling_on	
-		; ld		a,MUCIS_LVL_END	
-		; ld 		hl,Music
-		; call 	PLY_AKG_Init
-		; call	music_on
-	
-	
+
 	ret
 	
 
@@ -558,14 +550,13 @@ switch_anim_bigboss ds 1,0
 updateBigboss_SPRH
 	ld		a,(flag_bigboss)
 	cp 		a,2
-	jp 		z,updateBigboss_final__SPRH
+	jr 		z,updateBigboss_final__SPRH
 	xor		a
 	ld		(framecounter_bigboss),a
 	ld		a,(switch_anim_bigboss)
-	cp		a,0
+	or a
 	jr		z,bigboss_anim1
-	cp		a,1
-	jr		z,bigboss_anim2
+	jr		bigboss_anim2
 bigboss_anim1
 	inc	a	
 	ld	(switch_anim_bigboss),a

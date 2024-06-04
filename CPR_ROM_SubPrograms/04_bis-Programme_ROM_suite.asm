@@ -530,8 +530,8 @@ boss_de_fin_ROM
 							call	PLY_AKG_Init
 							ld		hl,Update_Golgoth3
 							ld		(PointeurUpdateGolgoth),hl	
-							rst		ASIC_DECONNEXION
-							ret
+							jp		ASIC_DECONNEXION
+							
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////	
 								Golgoth_Level_4	
@@ -602,8 +602,8 @@ boss_de_fin_ROM
 									
 									ld		hl,Update_Golgoth4
 									ld		(PointeurUpdateGolgoth),hl	
-									rst		ASIC_DECONNEXION
-									ret	
+									jp		ASIC_DECONNEXION
+										
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////	
 										Golgoth_Level_5	
@@ -704,8 +704,8 @@ boss_de_fin_ROM
 											
 											ld		hl,Update_Golgoth5
 											ld		(PointeurUpdateGolgoth),hl	
-											rst		ASIC_DECONNEXION
-											ret														
+											jp		ASIC_DECONNEXION
+																									
 											
 											
 ; ////////////////////////////////////////////////////////////////////////////////////////////////////////

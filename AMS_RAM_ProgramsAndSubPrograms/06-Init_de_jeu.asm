@@ -174,7 +174,7 @@ Asic OFF
 	cp		a,1
 	call	z,affiche_hud_alcorak
 	ld		a,(flag_on_joue_avec_alcorak)
-	cp		a,0
+	or		a
 	call	z,affiche_hud
 	ld		a,_CALL
 	ld		(event_powerup),a

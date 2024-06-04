@@ -127,7 +127,6 @@ automodif_registre
 	jp		nz,boucle_affichage_du_score
 	ld		a,#7d			; ld a,l
 	ld		(automodif_registre),a
-	;call	rom_off
 	ret
 
 
@@ -142,8 +141,8 @@ automodif_registre
 
 inc_one_life
 	ld		a,(flag_1up)
-	cp		a,1
-	ret		z
+	or		a
+	ret		nz
 	ld		a,1
 	ld		(flag_1up),a
 	call 	asic_off

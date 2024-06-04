@@ -473,8 +473,8 @@ soucoupe_6
 																														ld		de,(SPRH_ADR)
 																														ld		bc,#100
 																														LDIR
-																														RST		ASIC_DECONNEXION
-																														ret
+																														jp		ASIC_DECONNEXION
+																														
 soucoupe_attends_item
 ; l'item bouge
 	ld		hl,(SPRH_Y)

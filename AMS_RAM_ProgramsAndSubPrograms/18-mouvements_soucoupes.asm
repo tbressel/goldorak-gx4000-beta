@@ -198,7 +198,7 @@ DB		6
 ; //////////////////////////////////////////////////////////////////////
 deplace_soucoupe_TourneDroite
 	ld		a,(flag_tourne_sprh_next_td)
-	cp		a,0
+	or a
 	jr 		z,on_zap_update_tourne_td
 
 	CALL	ASIC_CONNEXION
@@ -233,7 +233,7 @@ on_zap_update_tourne_td
 ; //////////////////////////////////////////////////////////////////////
 deplace_soucoupe_TourneGauche
 	ld		a,(flag_tourne_sprh_next_tg)
-	cp		a,0
+	or a
 	jr 		z,on_zap_update_tourne_tg
 
 	CALL	ASIC_CONNEXION

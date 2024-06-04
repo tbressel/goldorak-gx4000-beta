@@ -44,7 +44,7 @@ etp_animation_pulvonium     ds      1,0
 
 
 ; dans l'ordre de la droite vers la gauche la valeur des bits à 1 corresponds à une arme actuve dans cet ordre :
-ArmesDisponible				db			%11111111
+; ArmesDisponible				db			%01111111
 
 ;BIT 0 -> missile gamme (lvl 1 2 3)
 ;BIT 1 -> planitron1
@@ -55,6 +55,6 @@ ArmesDisponible				db			%11111111
 ;BIT 6 -> pulvonium
 ;BIT 7 -> rien,
 
-;ArmesDisponible				db			%00000001
+ArmesDisponible				db			%00000001
 
 

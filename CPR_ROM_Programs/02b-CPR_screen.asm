@@ -13,8 +13,8 @@ ld bc,#7fc4
 out (c),c
 
 ; décommenter cette ligne pour jouer avec l'alcorak
-ld a,1
-ld (#4000),a
+; ld a,1
+; ld (#4000),a
 
 ld a,(#4000)
 

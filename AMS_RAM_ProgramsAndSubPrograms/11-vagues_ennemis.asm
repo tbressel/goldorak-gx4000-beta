@@ -20,8 +20,8 @@ fin_de_la_vague
 	rst		ASIC_CONNEXION
 	call	fin_de_la_vague_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -44,12 +44,12 @@ golgoth_1
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_1_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Update_Golgoth_1
 			ld		a,(flag_MortGolgoth)
-			cp		a,1
-			jp		z,Update_MortGolgoth1
+			or		a
+			jr		nz,Update_MortGolgoth1
 			ld		c,BANK10_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
 			rst		ASIC_CONNEXION
@@ -57,9 +57,9 @@ golgoth_1
 			ld		de,(GolgothSprh)
 			ld		bc,(GolgothLongeur)
 			LDIR
-			rst		ASIC_DECONNEXION
 			call	rom_off
-			ret
+			jp		ASIC_DECONNEXION
+			
 				Update_MortGolgoth1
 					ld		c,BANK16_BOOM_SPRH
 					rst		UPPER_ROM_CONNEXION
@@ -68,9 +68,9 @@ golgoth_1
 					ld		de,(GolgothSprh)
 					ld		bc,(GolgothLongeur)
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -82,32 +82,32 @@ missileG1_1
 	rst		UPPER_ROM_CONNEXION
 	call	missileG1_1_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret	
+	jp		ASIC_DECONNEXION
+		
 		missileG1_2
 			rst		ASIC_CONNEXION
 			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG1_2_ROM
 			call	rom_off
-			rst		ASIC_DECONNEXION
-			ret	
+			jp		ASIC_DECONNEXION
+				
 				missileG1_3
 					rst		ASIC_CONNEXION
 					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG1_3_ROM
 					call	rom_off
-					rst		ASIC_DECONNEXION
-					ret		
+					jp		ASIC_DECONNEXION
+							
 						missileG1_4
 							rst		ASIC_CONNEXION
 							ld		c,BANK_ROM_18
 							rst		UPPER_ROM_CONNEXION
 							call	missileG1_4_ROM
 							call	rom_off
-							rst		ASIC_DECONNEXION
-							ret	
+							jp		ASIC_DECONNEXION
+								
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ missileG1_1
 ; ////////////////////////////////////////////////////////////////////////////								
 Update_missileG1_1
 	ld		a,(flag_updateMissileG1_1)
-	cp		a,0
+	or 		a
 	RET		Z
 	ld		c,BANK10_GOLGOTH_SPRH
 	rst		UPPER_ROM_CONNEXION
@@ -124,12 +124,12 @@ Update_missileG1_1
 	ld		de,(MissileSprh)
 	ld		bc,(MissileLongeur)
 	LDIR
-	rst		ASIC_DECONNEXION
 	call	rom_off
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Update_missileG1_2
 			ld		a,(flag_updateMissileG1_2)
-			cp		a,0
+			or 		a
 			RET		Z
 			ld		c,BANK10_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
@@ -138,12 +138,12 @@ Update_missileG1_1
 			ld		de,(MissileSprh)
 			ld		bc,(MissileLongeur)
 			LDIR
-			rst		ASIC_DECONNEXION
 			call	rom_off
-			ret
+			jp		ASIC_DECONNEXION
+			
 				Update_missileG1_3
 					ld		a,(flag_updateMissileG1_3)
-					cp		a,0
+					or 		a
 					RET		Z
 				
 					ld		c,BANK10_GOLGOTH_SPRH
@@ -153,12 +153,12 @@ Update_missileG1_1
 					ld		de,(MissileSprh)
 					ld		bc,(MissileLongeur)
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 						Update_missileG1_4
 							ld		a,(flag_updateMissileG1_4)
-							cp		a,0
+							or 		a
 							RET		Z
 						
 							ld		c,BANK10_GOLGOTH_SPRH
@@ -168,9 +168,9 @@ Update_missileG1_1
 							ld		de,(MissileSprh)
 							ld		bc,(MissileLongeur)
 							LDIR
-							rst		ASIC_DECONNEXION
 							call	rom_off
-							ret
+							jp		ASIC_DECONNEXION
+							
 
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -183,12 +183,12 @@ golgoth_2
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_2_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Update_Golgoth_2
 			ld		a,(flag_MortGolgoth)
-			cp		a,1
-			jp		z,Update_MortGolgoth2
+			or		a
+			jr		nz,Update_MortGolgoth2
 			ld		c,BANK10_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
 			rst		ASIC_CONNEXION
@@ -196,9 +196,9 @@ golgoth_2
 			ld		de,(GolgothSprh)
 			ld		bc,(GolgothLongeur)
 			LDIR
-			rst		ASIC_DECONNEXION
 			call	rom_off
-			ret
+			jp		ASIC_DECONNEXION
+			
 				Update_MortGolgoth2
 					ld		c,BANK16_BOOM_SPRH
 					rst		UPPER_ROM_CONNEXION
@@ -207,9 +207,9 @@ golgoth_2
 					ld		de,(GolgothSprh)
 					ld		bc,(GolgothLongeur)
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -221,24 +221,24 @@ missileG2_1
 	rst		UPPER_ROM_CONNEXION
 	call	missileG2_1_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret		
+	jp		ASIC_DECONNEXION
+			
 		missileG2_2
 			rst		ASIC_CONNEXION
 			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG2_2_ROM
 			call	rom_off
-			rst		ASIC_DECONNEXION
-			ret	
+			jp		ASIC_DECONNEXION
+				
 				missileG2_3
 					rst		ASIC_CONNEXION
 					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG2_3_ROM
 					call	rom_off
-					rst		ASIC_DECONNEXION
-					ret	
+					jp		ASIC_DECONNEXION
+						
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -246,7 +246,7 @@ missileG2_1
 ; ////////////////////////////////////////////////////////////////////////////				
 Update_missileG2_1
 	ld		a,(flag_updateMissileG2_1)
-	cp		a,0
+	or 		a
 	RET		Z
 	ld		c,BANK10_GOLGOTH_SPRH
 	rst		UPPER_ROM_CONNEXION
@@ -255,12 +255,12 @@ Update_missileG2_1
 	ld		de,(MissileSprh)
 	ld		bc,(MissileLongeur)
 	LDIR
-	rst		ASIC_DECONNEXION
 	call	rom_off
-	ret	
+	jp		ASIC_DECONNEXION
+		
 		Update_missileG2_2
 			ld		a,(flag_updateMissileG2_2)
-			cp		a,0
+			or 		a
 			RET		Z
 			ld		c,BANK10_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
@@ -269,12 +269,12 @@ Update_missileG2_1
 			ld		de,(MissileSprh)
 			ld		bc,(MissileLongeur)
 			LDIR
-			rst		ASIC_DECONNEXION
 			call	rom_off
-			ret	
+			jp		ASIC_DECONNEXION
+				
 				Update_missileG2_3
 					ld		a,(flag_updateMissileG2_3)
-					cp		a,0
+					or 		a
 					RET		Z
 					ld		c,BANK10_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
@@ -283,9 +283,9 @@ Update_missileG2_1
 					ld		de,(MissileSprh)
 					ld		bc,(MissileLongeur)
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret	
+					jp		ASIC_DECONNEXION
+						
 					
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -295,14 +295,14 @@ Update_missileG2_1
 golgoth_3
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_3
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_3_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_3
 			inc		a
 			ld		(EtpGolgoth),a
@@ -323,8 +323,8 @@ golgoth_3
 			ret
 				Update_Golgoth_3
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth3
+					or		a
+					jr		nz,Update_MortGolgoth3
 					ld		c,BANK10_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -336,9 +336,9 @@ golgoth_3
 					ld		de,(Golgoth_Queue_Sprh)
 					ld		bc,#100
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 						Update_MortGolgoth3
 							ld		c,BANK16_BOOM_SPRH
 							rst		UPPER_ROM_CONNEXION
@@ -347,9 +347,9 @@ golgoth_3
 							ld		de,(GolgothSprh)
 							ld		bc,(GolgothLongeur)
 							LDIR
-							rst		ASIC_DECONNEXION
 							call	rom_off
-							ret
+							jp		ASIC_DECONNEXION
+							
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -364,30 +364,30 @@ missileG3_1
 	rst		UPPER_ROM_CONNEXION
 	call	missileG3_1_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret		
+	jp		ASIC_DECONNEXION
+			
 		missileG3_2
-				ld		a,(FlagGolgoth_Ferme)
-	cp		a,ouvert
-	ret		Z
+			ld		a,(FlagGolgoth_Ferme)
+			cp		a,ouvert
+			ret		Z
 			rst		ASIC_CONNEXION
 			ld		c,BANK_ROM_18
 			rst		UPPER_ROM_CONNEXION
 			call	missileG3_2_ROM
 			call	rom_off
-			rst		ASIC_DECONNEXION
-			ret	
+			jp		ASIC_DECONNEXION
+				
 				missileG3_3
 					ld		a,(FlagGolgoth_Ferme)
-	cp		a,ouvert
-	ret		Z
+					cp		a,ouvert
+					ret		Z
 					rst		ASIC_CONNEXION
 					ld		c,BANK_ROM_18
 					rst		UPPER_ROM_CONNEXION
 					call	missileG3_3_ROM
 					call	rom_off
-					rst		ASIC_DECONNEXION
-					ret	
+					jp		ASIC_DECONNEXION
+						
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -399,7 +399,7 @@ Update_missileG3_1
 	cp		a,ouvert
 	ret		Z
 	ld		a,(flag_updateMissileG3_1)
-	cp		a,0
+	or 		a
 	RET		Z
 	ld		c,BANK10_GOLGOTH_SPRH
 	rst		UPPER_ROM_CONNEXION
@@ -408,15 +408,15 @@ Update_missileG3_1
 	ld		de,(MissileSprh)
 	ld		bc,(MissileLongeur)
 	LDIR
-	rst		ASIC_DECONNEXION
 	call	rom_off
-	ret	
+	jp		ASIC_DECONNEXION
+		
 		Update_missileG3_2
 			ld		a,(FlagGolgoth_Ferme)
-	cp		a,ouvert
-	ret		Z
+			cp		a,ouvert
+			ret		Z
 			ld		a,(flag_updateMissileG3_2)
-			cp		a,0
+			or 		a
 			RET		Z
 			ld		c,BANK10_GOLGOTH_SPRH
 			rst		UPPER_ROM_CONNEXION
@@ -425,15 +425,15 @@ Update_missileG3_1
 			ld		de,(MissileSprh)
 			ld		bc,(MissileLongeur)
 			LDIR
-			rst		ASIC_DECONNEXION
 			call	rom_off
-			ret	
+			jp		ASIC_DECONNEXION
+				
 				Update_missileG3_3
 					ld		a,(FlagGolgoth_Ferme)
-	cp		a,ouvert
-	ret		Z
+					cp		a,ouvert
+					ret		Z
 					ld		a,(flag_updateMissileG3_3)
-					cp		a,0
+					or 		a
 					RET		Z
 					ld		c,BANK10_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
@@ -442,9 +442,9 @@ Update_missileG3_1
 					ld		de,(MissileSprh)
 					ld		bc,(MissileLongeur)
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret	
+					jp		ASIC_DECONNEXION
+						
 					
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -454,14 +454,14 @@ Update_missileG3_1
 golgoth_4
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_4
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_4_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_4
 			inc		a
 			ld		(EtpGolgoth),a
@@ -474,8 +474,8 @@ golgoth_4
 			ret
 				Update_Golgoth_4
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth4
+					or		a
+					jr		nz,Update_MortGolgoth4
 					ld		c,BANK12_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -485,7 +485,7 @@ golgoth_4
 					ld		bc,(GolgothLongeur)
 					LDIR
 					ld		a,(FlagAnimGolgoth4_marche)
-					cp		a,0
+					or 		a
 					jr		z,.zap_update
 					
 					ld		hl,(GolgothAdrRom_MarcheG)
@@ -521,9 +521,9 @@ golgoth_4
 								ld		de,(GolgothSprh)
 								ld		bc,(GolgothLongeur)
 								LDIR
-								rst		ASIC_DECONNEXION
 								call	rom_off
-								ret
+								jp		ASIC_DECONNEXION
+								
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -532,14 +532,14 @@ golgoth_4
 golgoth_5
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_5
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_5_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_5
 			inc		a
 			ld		(EtpGolgoth),a
@@ -552,8 +552,8 @@ golgoth_5
 			ret
 				Update_Golgoth_5
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth5
+					or		a
+					jp		nz,Update_MortGolgoth5
 					ld		c,BANK13_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -621,9 +621,9 @@ golgoth_5
 					
 					
 					.zap_update
-						rst		ASIC_DECONNEXION
 						call	rom_off
-						ret
+						jp		ASIC_DECONNEXION
+						
 							Update_MortGolgoth5
 								ld		c,BANK16_BOOM_SPRH
 								rst		UPPER_ROM_CONNEXION
@@ -632,9 +632,9 @@ golgoth_5
 								ld		de,(GolgothSprh)
 								ld		bc,(GolgothLongeur)
 								LDIR
-								rst		ASIC_DECONNEXION
 								call	rom_off
-								ret
+								jp		ASIC_DECONNEXION
+								
 
 ; ////////////////////////////////////////////////////////////////////////////
 ; ////////////////////////////////////////////////////////////////////////////
@@ -644,14 +644,14 @@ golgoth_5
 golgoth_6
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_6
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_6_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_6
 			inc		a
 			ld		(EtpGolgoth),a
@@ -665,8 +665,8 @@ golgoth_6
 			ret
 				Update_Golgoth_6
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth6
+					or		a
+					jr		nz,Update_MortGolgoth6
 					ld		c,BANK11_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -674,9 +674,9 @@ golgoth_6
 					ld		de,(GolgothSprh)
 					ld		bc,#500
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 						Update_MortGolgoth6
 							ld		c,BANK16_BOOM_SPRH
 							rst		UPPER_ROM_CONNEXION
@@ -685,9 +685,9 @@ golgoth_6
 							ld		de,(GolgothSprh)
 							ld		bc,(GolgothLongeur)
 							LDIR
-							rst		ASIC_DECONNEXION
 							call	rom_off
-							ret
+							jp		ASIC_DECONNEXION
+							
 							
 							
 							
@@ -699,14 +699,14 @@ golgoth_6
 golgoth_7
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_7
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_7_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_7
 			inc		a
 			ld		(EtpGolgoth),a
@@ -721,8 +721,8 @@ golgoth_7
 			ret
 				Update_Golgoth_7
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth7
+					or		a
+					jr		nz,Update_MortGolgoth7
 					ld		c,BANK10_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -730,9 +730,9 @@ golgoth_7
 					ld		de,(GolgothSprh)
 					ld		bc,#600
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 						Update_MortGolgoth7
 							ld		c,BANK16_BOOM_SPRH
 							rst		UPPER_ROM_CONNEXION
@@ -741,9 +741,9 @@ golgoth_7
 							ld		de,(GolgothSprh)
 							ld		bc,(GolgothLongeur)
 							LDIR
-							rst		ASIC_DECONNEXION
 							call	rom_off
-							ret
+							jp		ASIC_DECONNEXION
+							
 							
 
 ; ////////////////////////////////////////////////////////////////////////////
@@ -754,14 +754,14 @@ golgoth_7
 golgoth_8
 	rst		ASIC_CONNEXION
 	ld		a,(EtpGolgoth)
-	cp		a,0
+	or 		a
 	call	z,Init_Golgoth_8
 	ld		c,BANK_ROM_18
 	rst		UPPER_ROM_CONNEXION
 	call	golgoth_8_ROM
 	call	rom_off
-	rst		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 		Init_Golgoth_8
 			inc		a
 			ld		(EtpGolgoth),a
@@ -774,8 +774,8 @@ golgoth_8
 			ret
 				Update_Golgoth_8
 					ld		a,(flag_MortGolgoth)
-					cp		a,1
-					jp		z,Update_MortGolgoth8
+					or		a
+					jr		nz,Update_MortGolgoth8
 					ld		c,BANK12_GOLGOTH_SPRH
 					rst		UPPER_ROM_CONNEXION
 					rst		ASIC_CONNEXION
@@ -787,9 +787,9 @@ golgoth_8
 					ld		de,SPRH10_ADR
 					ld		bc,#400
 					LDIR
-					rst		ASIC_DECONNEXION
 					call	rom_off
-					ret
+					jp		ASIC_DECONNEXION
+					
 						Update_MortGolgoth8
 							ld		c,BANK16_BOOM_SPRH
 							rst		UPPER_ROM_CONNEXION
@@ -798,7 +798,7 @@ golgoth_8
 							ld		de,(GolgothSprh)
 							ld		bc,(GolgothLongeur)
 							LDIR
-							rst		ASIC_DECONNEXION
 							call	rom_off
-							ret
+							jp		ASIC_DECONNEXION
+							
 							

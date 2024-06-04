@@ -38,8 +38,8 @@ Arrimage
 					ret
 						stop_soucoupe
 							ld		a,(flag_on_joue_avec_alcorak)
-							cp		a,1
-							jr		z,on_zap_le_reste_de_arrimage
+							or		a
+							jr		nz,on_zap_le_reste_de_arrimage
 							ld		a,(etp_arrimage)
 							inc		a
 							ld		(etp_arrimage),a

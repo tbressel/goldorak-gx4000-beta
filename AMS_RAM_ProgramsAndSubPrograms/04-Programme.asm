@@ -77,10 +77,10 @@ ld a,(#4000)
 ld bc,#7fc0
 out (c),c
 
-cp a,0
+or	a
 jr	z,on_flag_goldorak
-cp a,1
-jr	z,on_flag_alcorak
+
+jr	on_flag_alcorak
 
 
 on_flag_alcorak
@@ -90,7 +90,7 @@ on_flag_alcorak
 	call	affiche_hud_alcorak
 	jr		NOUVEAU_LEVEL
 on_flag_goldorak
-	ld		a,0
+	xor		a
 	ld		(flag_on_joue_avec_alcorak),a
 
 	call	affiche_hud
@@ -601,7 +601,7 @@ Init_fin
 	ld 		hl,Music         				; Initialisation
 	ld		a,MUSIC_LVL_WIN
 	call 	PLY_AKG_Init
-	jp 		Boucle_Game_Over
+	jr 		Boucle_Game_Over
 
 Init_Game_Over
 	LD		BC,#7F00+%10001100
@@ -620,8 +620,8 @@ Boucle_Game_Over
 	or 		a
 	call 	test_clavier_sans_interruption
 	bit		4,a
-	jp		z,relancer_le_jeu
-	jp 		Boucle_Game_Over
+	jr		z,relancer_le_jeu
+	jr 		Boucle_Game_Over
 
 
 relancer_le_jeu

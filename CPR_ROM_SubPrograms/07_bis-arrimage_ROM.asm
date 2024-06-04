@@ -35,6 +35,7 @@ init_arrimage_ROM
 	ld	(SPRH1_ZOOM),a:ld	(valeur_zoom+1),a
 	ld	(SPRH10_ZOOM),a:ld	(valeur_zoom+10),a
 	ld	(SPRH11_ZOOM),a:ld	(valeur_zoom+11),a
+
 	ret
 	
 avance_soucoupe_ROM	

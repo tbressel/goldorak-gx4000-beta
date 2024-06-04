@@ -6,14 +6,14 @@
 fireA
 
 	ld		a,(flag_fireA)
-	cp		a,1
-	jp		z,retour_test_des_tirs
+	or		a
+	jp		nz,retour_test_des_tirs
 
-	
+
 	call	test_du_clavier
 	bit		5,a
 	jp		z,Init_Retournement
-	
+
 	ld		a,(sfx_arme)
     ld 		c,1 ;channel (0-2)
     ld 		b,SFX_VOLUME ;Inverted volume (0-16)
@@ -23,7 +23,7 @@ fireA
 	cp		a,0
 	jp		z,aucune_arme
 	cp		a,ID_MISSILES_GAMMA
-	jp		z,arme_missiles_gamma1
+	jr		z,arme_missiles_gamma1
 	cp		a,ID_PLANITRON_TYPE_1
 	jp		z,arme_planitron
 	cp		a,ID_PLANITRON_TYPE_2
@@ -39,16 +39,16 @@ fireA
 	cp		a,8
 	jp		z,aucune_arme
 
-	
+
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       MISSILES GAMMA      ////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_missiles_gamma1
 	ld	a,(flag_PowerUP)
 	cp	a,0
-	jp	z,arme_missiles_gamma
+	jr	z,arme_missiles_gamma
 	cp	a,1
 	jp	z,arme_missiles_gamma_pow2
 	cp	a,2
@@ -63,9 +63,9 @@ arme_missiles_gamma
 	cp		a,0
 	jp		z,init_missiles_gamma
 	cp		a,1
-	jp		z,missiles_gamma1
+	jr		z,missiles_gamma1
 	cp		a,2
-	jp		z,missiles_gamma2
+	jr		z,missiles_gamma2
 init_missiles_gamma
 	inc 	a:ld (etp_arme2),a										; on incrémente les étapes de l'arme
 	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
@@ -75,46 +75,41 @@ init_missiles_gamma
 	ld		hl,(sprh_arme_de_base)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,(sprh_arme_de_base)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
 	ld		hl,arme_missiles_gamma
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	xor  	a
 	ld		(anim_arme_a_charger),a
-
-
-	
 	jp 		retour_test_des_tirs
 missiles_gamma1
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	rst		ASIC_CONNEXION
 	call	missiles_gamma1_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 missiles_gamma2
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
 	call	missiles_gamma2_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       MISSILES GAMMA POWER UP 2     //////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_missiles_gamma_pow2
 
 	ld 		a,SFX_GAMMA_LVL2	 ;Sound effect number (>=1))
@@ -135,43 +130,41 @@ init_missiles_gamma_pow2
 	ld		hl,(sprh_arme_de_base2)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,(sprh_arme_de_base2)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
 	ld		hl,arme_missiles_gamma_pow2
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	xor  a
 	ld		(anim_arme_a_charger),a
 	jp 		retour_test_des_tirs
 missiles_gamma_pow21
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
 	call	missiles_gamma_pow21_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 missiles_gamma_pow22
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	RST		ASIC_CONNEXION
 	call	missiles_gamma_pow22_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       MISSILES GAMMA POWER UP 3     //////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_missiles_gamma_pow3
 	ld 		a,SFX_GAMMA_LVL3	 ;Sound effect number (>=1))
 	ld		(sfx_arme),a
@@ -191,47 +184,45 @@ init_missiles_gamma_pow3
 	ld		hl,(sprh_arme_de_base3)
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,(sprh_arme_de_base3)
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
 	ld		hl,arme_missiles_gamma_pow3
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	xor  	a
 	ld		(anim_arme_a_charger),a
 	jp 		retour_test_des_tirs
 missiles_gamma_pow31
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	call	missiles_gamma_pow31_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 missiles_gamma_pow32
-	; ld		c,BANK_ROM_18
 	ld		c,BANK_ROM_2
 	rst		UPPER_ROM_CONNEXION
 	call	missiles_gamma_pow32_ROM
 	call	rom_off
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
 	
 
 
 
 
-	
+
+
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; ///////////////////       PLANITRON   ///////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_planitron
 	ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
 	ld		(sfx_arme),a
@@ -239,11 +230,11 @@ arme_planitron
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme3)
 	cp		a,0
-	jp		z,init_planitron
+	jr		z,init_planitron
 	cp		a,1
-	jp		z,planitron1
+	jr		z,planitron1
 	cp		a,2
-	jp		z,planitron2
+	jr		z,planitron2
 init_planitron
 	inc 	a:ld (etp_arme3),a										; on incrémente les étapes de l'arme
 	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
@@ -253,11 +244,11 @@ init_planitron
 	ld		(adr_anim_planitron),hl
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,sprh_planitron
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	; FIX START      / 11-04-2024 / _JP à la place de _CALL pour revenir dans la boucle sans problème de pile
 	; 				 / replacer les ret par jp retour_event_arme_fireA
@@ -265,7 +256,7 @@ init_planitron
 	; FIX END
 	ld		(event_arme_fireA),a
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	ld		a,4
 	ld		(etp_anim_planitron),a
@@ -282,10 +273,10 @@ planitron1
 	ld		hl,(SPRH0_Y):ld	de,6:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
 	RST		ASIC_DECONNEXION
 	jp		retour_event_arme_fireA
-	;ret      
+	;ret
 planitron2
 	ld		a,(resultat_test_de_touche)
 	cp		a,#ef
@@ -320,24 +311,24 @@ retour_planitron_gauche
 	ld		(SPRH5_Y),hl
 	ld		a,(etp_anim_planitron)
 	dec		a
-	cp		a,0
+	; MODIF cp		a,0
 	jr		z,switch_anim_planitron
 	ld		(etp_anim_planitron),a
 	jp	retour_event_arme_fireA
-	;ret
+
 switch_anim_planitron
 	ld		a,4
 	ld		(etp_anim_planitron),a
-	ld		hl,(adr_anim_planitron)	
+	ld		hl,(adr_anim_planitron)
 	inc		h
 	bit		2,h
 	jr		nz,reinit_adr_anim_planitron
 retour_reinit_adr_anim_planitron
 	ld		(adr_anim_planitron),hl
 	jp	retour_event_arme_fireA
-	;ret
+
 reinit_adr_anim_planitron
-	ld	h,#F0	
+	ld	h,#F0
 	jr	retour_reinit_adr_anim_planitron
 planitron_droite
 	ld		hl,(SPRH4_X)
@@ -372,7 +363,7 @@ fin_planitron
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
 	ld		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a 
+	ld 		(valeur_zoom_sprh5),a
 	ld		(flag_fireA),a
 	ld		(etp_arme3),a
 	ld		(event_arme_fireA),a
@@ -393,7 +384,7 @@ fin_planitron
 ; /////////////////////////////////////////////////////////////
 ; ///////////////////       PLANITRON  2 //////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_planitron2
 
 	ld 		a,SFX_PLANITRON	 ;Sound effect number (>=1))
@@ -416,11 +407,11 @@ init_planitron2
 	ld		(adr_anim_planitron2),hl
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,sprh_planitron2
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	; FIX START      / 29-04-2024 / _JP à la place de _CALL pour revenir dans la boucle sans problème de pile
 	; 				 / replacer les ret par jp retour_event_arme_fireA
@@ -428,7 +419,7 @@ init_planitron2
 	; FIX END
 	ld		(event_arme_fireA),a
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	ld		a,4
 	ld		(etp_anim_planitron2),a
@@ -449,7 +440,7 @@ planitron12
 	ld		hl,(SPRH0_Y):ld	de,6:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
 	RST		ASIC_DECONNEXION
 	jp		retour_event_arme_fireA
 	; ret
@@ -486,7 +477,7 @@ planitron22
 	; FIX END
 	ld		a,(etp_anim_planitron2)
 	dec		a
-	cp		a,0
+	; MODIF cp		a,0
 	jr		z,switch_anim_planitron2
 	ld		(etp_anim_planitron2),a
 	; ret
@@ -494,7 +485,7 @@ planitron22
 switch_anim_planitron2
 	ld		a,4
 	ld		(etp_anim_planitron2),a
-	ld		hl,(adr_anim_planitron2)	
+	ld		hl,(adr_anim_planitron2)
 	inc		h
 	bit		0,h
 	jr		nz,reinit_adr_anim_planitron2
@@ -533,7 +524,7 @@ fin_planitron2
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
 	ld		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a 
+	ld 		(valeur_zoom_sprh5),a
 	ld		(flag_fireA),a
 	ld		(etp_arme4),a
 	ld		(event_arme_fireA),a
@@ -559,7 +550,7 @@ fin_planitron2
 arme_cornofulgure
 	ld	a,(flag_PowerUP)
 	cp	a,0
-	jp	z,arme_cornofulgure1
+	jr	z,arme_cornofulgure1
 	cp	a,1
 	jp	z,arme_cornofulgure2
 	cp	a,2
@@ -575,11 +566,11 @@ arme_cornofulgure1
 
 	ld		a,(etp_arme1)
 	cp		a,0
-	jp		z,init_cornofulgure
+	jr		z,init_cornofulgure
 	cp		a,2
-	jp		z,cornofulgure1
+	jr		z,cornofulgure1
 	cp		a,4
-	jp		z,cornofulgure2
+	jr		z,cornofulgure2
 	cp		a,6
 	jp		z,cornofulgure3
 	cp		a,8
@@ -599,16 +590,16 @@ init_cornofulgure
 	ld		hl,sprh_cornofulgure_bas
 	ld		de,SPRH4_ADR
 	ld		bc,#200
-	LDIR															; on copie de puis la ROM vers l'ASIC	
+	LDIR															; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	xor  a
 	ld		(anim_arme_a_charger),a
-	
+
 	jp 	retour_test_des_tirs
 cornofulgure1
 	inc		a:ld (etp_arme1),a
@@ -617,9 +608,9 @@ cornofulgure1
 	ld		hl,(SPRH0_Y):ld	de,-14:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode2_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure2
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,50:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
@@ -627,9 +618,9 @@ cornofulgure2
 	ld		hl,(SPRH0_Y):ld	de,-14+-16:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode2_2:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure3
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,50:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
@@ -637,14 +628,14 @@ cornofulgure3
 	ld		hl,(SPRH0_Y):ld	de,-14+-16+-32:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode2_3:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure_fin
 	xor		a
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
 	ld		(flag_fireA),a
 	ld		(etp_arme1),a
 	ld		(event_arme_fireA),a
@@ -663,25 +654,25 @@ cornofulgure_fin
 
 
 ; //////////////       CORNOFULGURE (Puissance 2)       ////////////////////
-arme_cornofulgure2	
+arme_cornofulgure2
 
 	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
 	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
-	
+
 	ld		a,(etp_arme1)
 	cp		a,0
 	jp		z,init_cornofulgure
 	cp		a,1
-	jp		z,cornofulgure1b
+	jr		z,cornofulgure1b
 	cp		a,2
-	jp		z,cornofulgure2b
+	jr		z,cornofulgure2b
 	cp		a,4
-	jp		z,cornofulgure3b
+	jr		z,cornofulgure3b
 	cp		a,6
-	jp		z,cornofulgure2b
+	jr		z,cornofulgure2b
 	cp		a,8
-	jp		z,cornofulgure1b
+	jr		z,cornofulgure1b
 	cp		a,10
 	jp		z,cornofulgure_finb
 	inc		a:ld (etp_arme1),a
@@ -694,9 +685,9 @@ cornofulgure1b
 	ld		hl,(SPRH0_Y):ld	de,-14:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode1_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure2b
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
@@ -704,9 +695,9 @@ cornofulgure2b
 	ld		hl,(SPRH0_Y):ld	de,-14+-16:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode1_2:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure3b
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
@@ -714,14 +705,14 @@ cornofulgure3b
 	ld		hl,(SPRH0_Y):ld	de,-14+-16+-32:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode1_3:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure_finb
 	xor		a
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
 	ld		(flag_fireA),a
 	ld		(etp_arme1),a
 	ld		(event_arme_fireA),a
@@ -739,19 +730,19 @@ cornofulgure_finb
 
 
 ; //////////////       CORNOFULGURE (Puissance 3)       ////////////////////
-arme_cornofulgure3	
+arme_cornofulgure3
 
 	ld 		a,SFX_CORNOFULGURE	 ;Sound effect number (>=1))
 	ld		(sfx_arme),a
 	RST		ASIC_CONNEXION
-	
+
 	ld		a,(etp_arme1)
 	cp		a,0
 	jp		z,init_cornofulgure
 	cp		a,1
-	jp		z,cornofulgure1c
+	jr		z,cornofulgure1c
 	cp		a,2
-	jp		z,cornofulgure2c
+	jr		z,cornofulgure2c
 	cp		a,3
 	jp		z,cornofulgure3c
 	cp		a,4
@@ -765,11 +756,11 @@ arme_cornofulgure3
 	cp		a,8
 	jp		z,cornofulgure4c
 	cp		a,9
-	jp		z,cornofulgure3c
+	jr		z,cornofulgure3c
 	cp		a,10
-	jp		z,cornofulgure2c
+	jr		z,cornofulgure2c
 	cp		a,11
-	jp		z,cornofulgure1c
+	jr		z,cornofulgure1c
 	cp		a,12
 	jp		z,cornofulgure_finc
 	inc		a:ld (etp_arme1),a
@@ -780,52 +771,52 @@ cornofulgure1c
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld (SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16:add hl,de:ld	(SPRH4_Y),hl
 	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a
-	ld		(valeur_zoom_sprh4),a 
+	ld		(valeur_zoom_sprh4),a
 	xor		a:ld (SPRH5_ZOOM),a
-	ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure2c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16+-16:add hl,de:ld	(SPRH4_Y),hl
-	ld		a,zoom_mode0_2:ld (SPRH4_ZOOM),a :ld (valeur_zoom_sprh4),a 
+	ld		a,zoom_mode0_2:ld (SPRH4_ZOOM),a :ld (valeur_zoom_sprh4),a
 	xor		a:ld (SPRH5_ZOOM),a
-	ld (valeur_zoom_sprh5),a 
-	RST		ASIC_DECONNEXION
-	ret
+	ld (valeur_zoom_sprh5),a
+	jp		ASIC_DECONNEXION
+	
 cornofulgure3c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16+-16+-32:add hl,de:ld	(SPRH4_Y),hl
 	ld		a,zoom_mode0_3:ld (SPRH4_ZOOM),a : ld (valeur_zoom_sprh4),a
 	xor		a:ld (SPRH5_ZOOM),a : ld (valeur_zoom_sprh5),a
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 cornofulgure4c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl:ld (SPRH5_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16+-16+-32:add hl,de:ld	(SPRH4_Y),hl
 	ld		de,-16:add hl,de:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_1:ld	(SPRH5_ZOOM),a : ld (valeur_zoom_sprh5),a
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 cornofulgure5c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl:ld (SPRH5_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16+-16+-32:add hl,de:ld	(SPRH4_Y),hl
 	ld		de,-16+-16:add hl,de:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_2:ld	(SPRH5_ZOOM),a :ld (valeur_zoom_sprh5),a
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 cornofulgure6c
 	inc		a:ld (etp_arme1),a
 	ld		hl,(SPRH0_X):ld	de,48:add hl,de:ld	(SPRH4_X),hl:ld (SPRH5_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		hl,(SPRH0_Y):ld	de,-16+-16+-32:add hl,de:ld	(SPRH4_Y),hl
 	ld		de,-16+-16+-32:add hl,de:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_3:ld	(SPRH5_ZOOM),a :ld (valeur_zoom_sprh5),a
-	RST		ASIC_DECONNEXION
-	ret
+	jp		ASIC_DECONNEXION
+	
 cornofulgure_finc
 	xor		a
 	ld		(SPRH4_ZOOM),a
@@ -876,14 +867,14 @@ arme_fulguro_poing
 	ld		(sfx_arme),a
 
 	RST		ASIC_CONNEXION
-	
+
 	ld		a,(etp_arme6)
 	cp		a,0
-	jp		z,init_fulguro_poing
+	jr		z,init_fulguro_poing
 	cp		a,2
-	jp		z,init_fulguro_poing2
+	jr		z,init_fulguro_poing2
 	cp		a,3
-	jp		z,fulguro_poing_fin
+	jr		z,fulguro_poing_fin
 	inc		a:ld (etp_arme6),a
 	jp 		retour_test_des_tirs
 
@@ -891,20 +882,20 @@ init_fulguro_poing
 	inc 	a:ld (etp_arme6),a										; on incrémente les étapes de l'arme
 	ld		a,1:ld (flag_fireA),a									; on signale que le bouton fire 1 viens d'être appuyé
 	ld		a,1:ld (flag_armes),a									; une arme est en cours de déclanchement
-	
+
 	; FIX START      / 29-04-2024 / _JP à la place de _CALL pour revenir dans la boucle sans problème de pile
 	ld		a,_JP
 	; FIX END
 
 	ld		(event_arme_fireA),a
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl		
+	ld		(event_arme_fireA+1),hl
 	ld		a,13
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
 	ld 		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a	
-	jp 		retour_test_des_tirs	
+	ld 		(valeur_zoom_sprh5),a
+	jp 		retour_test_des_tirs
 
 init_fulguro_poing2
 	ld		hl,(SPRH4_Y)
@@ -928,12 +919,10 @@ init_fulguro_poing2
 	dec		l
 	dec		l
 	ld		(SPRH5_Y),hl
-	; ret	
 	jp	retour_event_arme_fireA
 
 fulguro_poing_fin
 	RST		ASIC_CONNEXION
-	;RST		#18
 	ld		hl,(SPRH0_X)
 	ld		de,22:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		de,20:add hl,de:ld (SPRH5_X),hl				; on calcule le 2eme sprite par rapport au 1er
@@ -953,14 +942,13 @@ fulguro_poing_fin
 	RST		ASIC_DECONNEXION
 	ld 		c,1   ;Channel (0-2)
 	call 	PLY_AKG_StopSoundEffectFromChannel
-	; ret
 	jp	retour_event_arme_fireA
 
 ; /////////////////////////////////////////////////////////////
 ; /////////////////////////////////////////////////////////////
 ; //////////////       CLAVICOGYVRES       ////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_clavicogyres
 
 	ld 		a,SFX_CLAVICOGYRE	 ;Sound effect number (>=1))
@@ -970,9 +958,9 @@ arme_clavicogyres
 	RST		ASIC_CONNEXION
 	ld		a,(etp_arme7)
 	cp		a,0
-	jp		z,init_clavicogyres
+	jr		z,init_clavicogyres
 	cp		a,1
-	jp		z,clavicogyres12
+	jr		z,clavicogyres12
 	cp		a,2
 	jp		z,clavicogyres22
 init_clavicogyres
@@ -984,18 +972,18 @@ init_clavicogyres
 	ld		(adr_anim_clavicogyres),hl
 	ld		de,SPRH4_ADR
 	ld		bc,#100
-	LDIR		
+	LDIR
 	ld		hl,sprh_clavicogyres
 	ld		de,SPRH5_ADR
 	ld		bc,#100
-	LDIR																; on copie de puis la ROM vers l'ASIC	
+	LDIR																; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	; FIX START      / 29-04-2024 /
 	ld		a,_JP
-	; FIX END	
+	; FIX END
 	ld		(event_arme_fireA),a
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	ld		a,4
 	ld		(etp_anim_clavicogyres),a
@@ -1016,7 +1004,7 @@ clavicogyres12
 	ld		hl,(SPRH0_Y):ld	de,6:add hl,de
 	ld		(SPRH4_Y),hl:ld	(SPRH5_Y),hl
 	ld		a,zoom_mode0_1:ld (SPRH4_ZOOM),a:ld	(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a : ld (valeur_zoom_sprh5),a
 	RST		ASIC_DECONNEXION
 	; ret
 	jp		retour_event_arme_fireA
@@ -1053,7 +1041,7 @@ clavicogyres22
 	; FIX END
 	ld		a,(etp_anim_clavicogyres)
 	dec		a
-	cp		a,0
+	; MODIF cp		a,0
 	jr		z,switch_anim_clavicogyres
 	ld		(etp_anim_clavicogyres),a
 	; ret
@@ -1062,7 +1050,7 @@ clavicogyres22
 switch_anim_clavicogyres
 	ld		a,4
 	ld		(etp_anim_clavicogyres),a
-	ld		hl,(adr_anim_clavicogyres)	
+	ld		hl,(adr_anim_clavicogyres)
 	inc		h
 	bit		7,h
 	jr		z,reinit_adr_anim_clavicogyres
@@ -1101,7 +1089,7 @@ fin_clavicogyres
 	ld		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
 	ld		(valeur_zoom_sprh4),a
-	ld 		(valeur_zoom_sprh5),a 
+	ld 		(valeur_zoom_sprh5),a
 	ld		(flag_fireA),a
 	ld		(etp_arme7),a
 	ld		(event_arme_fireA),a
@@ -1126,7 +1114,7 @@ fin_clavicogyres
 ; /////////////////////////////////////////////////////////////
 ; /////////////////       PULVONIUM       /////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 arme_pulvonium
 
 	ld 		a,SFX_PULVONIUM	 ;Sound effect number (>=1))
@@ -1136,11 +1124,11 @@ arme_pulvonium
 
 	ld		a,(etp_arme1)
 	cp		a,0
-	jp		z,init_pulvonium
+	jr		z,init_pulvonium
 	cp		a,1
-	jp		z,pulvonium_display
+	jr		z,pulvonium_display
 	cp		a,2
-	jp		z,pulvonium_animation
+	jr		z,pulvonium_animation
 
 
 
@@ -1153,17 +1141,17 @@ init_pulvonium
 	ld		hl,SPRH_PULVONIUM_ANIM1
 	ld		de,SPRH4_ADR
 	ld		bc,#200
-	LDIR															; on copie de puis la ROM vers l'ASIC	
+	LDIR															; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 	ld		a,_CALL
 	ld		(event_arme_fireA),a
 	; ld		hl,arme_pulvonium
 	ld		hl,(adr_type_arme)
-	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC	
+	ld		(event_arme_fireA+1),hl													; on copie de puis la ROM vers l'ASIC
 	RST		ASIC_DECONNEXION
 	xor  a
 	ld		(anim_arme_a_charger),a
-	
+
 	jp 	retour_test_des_tirs
 pulvonium_display
 	inc		a
@@ -1193,9 +1181,9 @@ pulvonium_animation
 	ld		hl,SPRH_PULVONIUM_ANIM1
 	ld		de,SPRH4_ADR
 	ld		bc,#200
-	LDIR															; on copie de puis la ROM vers l'ASIC	
+	LDIR															; on copie de puis la ROM vers l'ASIC
 	call	rom_off
-	
+
 	ret
 
 .animation_2
@@ -1207,7 +1195,7 @@ pulvonium_animation
 	ld		hl,SPRH_PULVONIUM_ANIM2
 	ld		de,SPRH4_ADR
 	ld		bc,#200
-	LDIR															; on copie de puis la ROM vers l'ASIC	
+	LDIR															; on copie de puis la ROM vers l'ASIC
 	call	rom_off
 
 	ret
@@ -1232,8 +1220,8 @@ update_pulvonium
 	; ld		a,zoom_mode0_3☻
 	ld 		(SPRH4_ZOOM),a
 	ld		(SPRH5_ZOOM),a
-	ld		(valeur_zoom_sprh4),a 
-	ld 		(valeur_zoom_sprh5),a 
+	ld		(valeur_zoom_sprh4),a
+	ld 		(valeur_zoom_sprh5),a
 	ret
 
 
@@ -1242,15 +1230,15 @@ update_pulvonium
 ; /////////////////////////////////////////////////////////////
 ; /////////////////       ARME SECRETE       /////////////////////
 ; /////////////////////////////////////////////////////////////
-; /////////////////////////////////////////////////////////////	
+; /////////////////////////////////////////////////////////////
 flag_arme_secrete ds 1,0
 arme_secrete
 	ld		a,(flag_on_joue_avec_alcorak)
-	cp		a,0
+	or 		a
 	jp		z,retour_test_de_CPC_plus
 
 	ld		a,(flag_arme_secrete)
-	cp		a,0
+	or 		a
 	jr		z,on_declanche_l_arme_secrete
 
 	jp		retour_test_des_tirs
@@ -1268,19 +1256,17 @@ on_declanche_l_arme_secrete
    ld 		c,0					;channel (0-2)
     ld 		b,SFX_VOLUME 					;Inverted volume (0-16)
     call 	PLY_AKG_PlaySoundEffect
-	ld a,2
+	ld 		a,2
 	ld 		(etp_soucoupe1),a
 	ld 		(etp_soucoupe2),a
 	ld 		(etp_soucoupe3),a
 	ld 		(etp_soucoupe4),a
 	ld 		(etp_soucoupe5),a
 	ld 		(etp_soucoupe6),a
+	ld		hl,BOOM_SPRH_ROM_ADR
+	ld		(BoomSprhRomAdr),hl
+	jp 		retour_test_des_tirs
 
-
-				ld		hl,BOOM_SPRH_ROM_ADR
-			ld		(BoomSprhRomAdr),hl
-	jp retour_test_des_tirs
-	
 
 
 
@@ -1294,18 +1280,18 @@ on_declanche_l_arme_secrete
 
 GoldroakRetournement
 ld a,(flag_on_joue_avec_alcorak)
-cp 	a,1
-jp z,Fin_Retournement
+or a
+jp nz,Fin_Retournement
 
 	; on vérifie que l'on a encore des retournement disponible
 	ld		a,(nbr_de_retournement)
 	cp		a,NBR_RETOURNEMENT_MAX
-	jp z,Fin_Retournement
+	jp 		z,Fin_Retournement
 
 	ld		hl,Compteur_Retournement
 	dec		(hl)
 	ret		nz
-	
+
 	ld		a,VITESSE_RETOURNEMENT
 	ld		(Compteur_Retournement),a
 
@@ -1336,7 +1322,7 @@ jp z,Fin_Retournement
 	jp		z,Init_Retournement_7
 	cp		a,12
 	jp		z,Fin_Retournement
-	
+
 Init_Retournement
 ; passage des étapes de l'animation
 	ld		a,(EtpRetournement)
@@ -1355,7 +1341,7 @@ Init_Retournement
 ; un retournement est en cours
 	ld		a,1
 	ld		(flag_retournement),a
-; on cible les vitesse de retournement	
+; on cible les vitesse de retournement
 	ld		hl,Tbl_Vitesse_Retournement
 	ld		(Pointeur_Vitesse_Retournement),hl
 
@@ -1392,7 +1378,7 @@ Init_Retournement_1
 		call	UpdateRetournement
 		call	rom_off
 		jp		ASIC_DECONNEXION
-	
+
 Init_Retournement_2
 		inc		a
 		ld		(EtpRetournement),a
@@ -1406,7 +1392,7 @@ Init_Retournement_2
 		call	UpdateRetournement
 		call	rom_off
 		jp		ASIC_DECONNEXION
-	
+
 Init_Retournement_3
 		inc		a
 		ld		(EtpRetournement),a
@@ -1420,7 +1406,7 @@ Init_Retournement_3
 		call	UpdateRetournement
 		call	rom_off
 		jp		ASIC_DECONNEXION
-		
+
 Init_Retournement_4
 		inc		a
 		ld		(EtpRetournement),a
@@ -1446,7 +1432,7 @@ Init_Retournement_4c
 		ld		(EtpRetournement),a
 		RST		ASIC_CONNEXION
 		call	UpdateRetournement
-	
+
 		jp		ASIC_DECONNEXION
 Init_Retournement_5
 		inc		a
@@ -1483,20 +1469,20 @@ Init_Retournement_7
 		ld		hl,GOLDORAK_RET7_SPRH_ROM_ADR
 		ld		de,SPRH0_ADR
 		ld		bc,#400
-		LDIR		
+		LDIR
 		call	UpdateRetournement
 		call	rom_off
-		jp		ASIC_DECONNEXION	
+		jp		ASIC_DECONNEXION
 Fin_Retournement
 		xor		a
 		ld		(flag_retournement),a
 		ld		(flag_deja_affiche),a
-	
+
 		ld		(event_retournement),a
 		ld		(event_retournement+1),a
 		ld		(event_retournement+2),a
 		ld		(EtpRetournement),a
-		
+
 		ld		hl,event_test_de_goldorak
 		ld		a,_JP
 		ld		(event_test_de_goldorak),a
@@ -1538,7 +1524,7 @@ update_pointer_tbl_retournement
 	dec hl
 	ld a,(hl)
 	ld (display_tbl_retournement_top),a
-	dec hl 
+	dec hl
 	ld	a,(hl)
 	ld	(display_tbl_retournement_bot+1),a
 	dec hl

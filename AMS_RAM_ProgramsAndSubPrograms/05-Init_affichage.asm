@@ -3,7 +3,7 @@ affiche_hud_alcorak
 	LD 		BC,BANK_HUD_ALCORAK
 	ld		hl,HUD_ALCORAK_ADR_ROM
 	ld		de,HUD_ALCORAK_ADR_ECRAN
-jr	affiche_hud_suite
+	jr		affiche_hud_suite
 
 affiche_hud
 	LD 		BC,BANK_HUD
@@ -70,7 +70,7 @@ affiche_fond
 			DEC  	A                       ;on decremente
 			OR    	A                       ;equivalent d'un CP 0 mais en plus rapide
 											;Un OR A pour modifier Z quand A=0)
-			JP     	NZ,affiche_ecran        ;si c'est pas =0 alors on boucle.
+			jr     	NZ,affiche_ecran        ;si c'est pas =0 alors on boucle.
 			RET
 			calcul_tile
 				LD 		BC,(bank_level)
@@ -153,10 +153,9 @@ ligne_inf_4000
 Affiche_sprite_hard
 	Asic ON
 	ld		a,(flag_on_joue_avec_alcorak)
-	cp		a,1
-	jp		z,init_alcorak_sprh
-	cp		a,0
-	jp		z,init_goldorak_sprh
+	or		a
+	jr		nz,init_alcorak_sprh
+	jr		init_goldorak_sprh
 
 
 init_goldorak_sprh
@@ -236,16 +235,16 @@ sprh_a_charger_ou_pas_avec_poing
 	RST		ASIC_CONNEXION
 	ld		a,(resultat_test_de_touche)
 	cp		a,#FF
-	jp		z,init_on_charge_sprh_haut_bas2
+	jr		z,init_on_charge_sprh_haut_bas2
 	ld		a,(sprh_a_charger)
 	cp		a,0
 	ret		z
 	cp		a,1
-	jp		z,on_charge_sprh_haut_bas2
+	jr		z,on_charge_sprh_haut_bas2
 	cp		a,2
-	jp		z,on_charge_sprh_gauche2
+	jr		z,on_charge_sprh_gauche2
 	cp		a,3
-	jp		z,on_charge_sprh_droite2
+	jr		z,on_charge_sprh_droite2
 		init_on_charge_sprh_haut_bas2
 			ld		hl,GOLDORAK_HAUTBAS_ANIMPOINT1_SPRH_ROM_ADR
 			ld		(sprh_goldorak),hl
@@ -306,8 +305,8 @@ sprh_a_charger_ou_pas
 	jp		z,on_init_charge_sprh_haut_bas
 	
 	ld		a,(flag_retournement)
-	cp		a,1
-	ret		z
+	or		a
+	ret		nz
 	
 	
 	
@@ -315,15 +314,15 @@ sprh_a_charger_ou_pas
 	cp		a,0
 	ret		z
 	cp		a,1
-	jp		z,on_charge_sprh_haut_bas
+	jr		z,on_charge_sprh_haut_bas
 	cp		a,2
-	jp		z,on_charge_sprh_gauche
+	jr		z,on_charge_sprh_gauche
 	cp		a,3
-	jp		z,on_charge_sprh_droite
+	jr		z,on_charge_sprh_droite
 on_init_charge_sprh_haut_bas
 	ld		a,(flag_deja_affiche)
-	cp		a,1
-	ret		z
+	or		a
+	ret		nz
 
 	ld		a,1
 	ld		(flag_deja_affiche),a
@@ -333,7 +332,7 @@ on_init_charge_sprh_haut_bas
 	ld		hl,(Tbl_sprh_direction2)
 	ld		(sprh_goldorak2),hl
 on_charge_sprh_haut_bas
-		XOR		a
+	xor		a
 	ld		(flag_deja_affiche),a
 	ld		a,(bank_goldo_ou_alco)
 	ld		c,a
@@ -417,9 +416,9 @@ charger_anim_planitron
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR
-	RST		ASIC_DECONNEXION
 	call	rom_off
-	RET
+	JP		ASIC_DECONNEXION
+	
 charger_anim_planitron2
 	ld		c,BANK9_GOLDORAK_SPRH
 	RST 	UPPER_ROM_CONNEXION
@@ -431,13 +430,13 @@ charger_anim_planitron2
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR
-	RST		ASIC_DECONNEXION
 	call	rom_off
-	RET	
+	jp		ASIC_DECONNEXION
+	
 les_poings_suivent
 	ld		a,(flag_fireA)
-	cp		a,1
-	ret		z
+	or		a
+	ret		nz
 	ld		hl,(SPRH0_X)
 	ld		de,22:add hl,de:ld	(SPRH4_X),hl 			; on calcule l'emplacement de l'arme en fonctione des coordonnée de Goldorak
 	ld		de,20:add hl,de:ld (SPRH5_X),hl								; on calcule le 2eme sprite par rapport au 1er
@@ -455,9 +454,9 @@ charger_anim_clavicogyres
 	ld		de,SPRH5_ADR
 	ld		bc,#100
 	LDIR
-	RST		ASIC_DECONNEXION
 	call	rom_off
-	RET
+	jp		ASIC_DECONNEXION
+	
 ; ///////////////////////////////////////////////////////////////////////
 ; ///////////////////////////////////////////////////////////////////////
 ; ////////////     FONDUE DE SORTIE A LA FIN DU LEVEL         ///////////
@@ -488,8 +487,8 @@ goldorak_explose
 
 goldorak_boom
 	ld		a,(BoomGoldorakEtp)
-	cp		a,0
-	jp		nz,animation_goldorak_boom
+	or		a
+	jr		nz,animation_goldorak_boom
 	inc		a
 	ld		(BoomGoldorakEtp),a
 	ret
@@ -555,8 +554,8 @@ goldorak_detruit
 normal_goldorak_boom_init
 ; test de l'initialisation de la destruction de goildorak
 	ld		a,(BoomGoldorakEtp)
-	cp		a,0
-	jp		nz,animation_normal_goldorak_boom
+	or		a
+	jr		nz,animation_normal_goldorak_boom
 	inc		a
 	ld		(BoomGoldorakEtp),a
 	ld		a,1
@@ -592,8 +591,8 @@ normal_goldorak_boom_init
 normal_goldorak_boom
 	RST		ASIC_CONNEXION
 	ld		a,(BoomGoldorakEtp)
-	cp		a,0
-	jp		nz,animation_normal_goldorak_boom
+	or		a
+	jr		nz,animation_normal_goldorak_boom
 	inc		a
 	ld		(BoomGoldorakEtp),a
 	ret

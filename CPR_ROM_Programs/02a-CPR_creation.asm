@@ -265,13 +265,13 @@ ecriturePSG:
 ; //////////////////////////////////////////////////////////////////
 reinit_crtc_et_retard_video
 	Asic on
-	ld	a,0
+	xor	a
 	ld	(#6804),a
 	
 	ld		a,#30
 	ld		bc,#bc00+12: out (c),c
 	ld		bc,#bd00 : out (c),a
-	ld		a,0
+	xor	a
 	ld		bc,#bc00+13: out (c),c
 	ld		bc,#bd00 :out (c),a
 	Asic OFF

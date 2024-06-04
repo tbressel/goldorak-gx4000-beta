@@ -4,7 +4,7 @@ PLY_AKG_MANAGE_SOUND_EFFECTS = 1
 
 PLAYER_ADR_RAM		equ	#0090		; adresse à reporter manuellement dans creation_cartouche.asm
 LONGUEUR_PLAYER		equ	#0c50
-MUSIC_ADR_RAM		equ #0AC0		; toutes les musiques du jeu
+MUSIC_ADR_RAM		equ #0BC0		; toutes les musiques du jeu
 LONGUEUR_MUSIC		equ	#3000       ;#14cc
 
 
@@ -34,7 +34,7 @@ MUSIC_LVL_8				equ		11			; Level 8
 MUSIC_LVL_WIN			equ		12			; Level d'un boss
 MUCIS_NO_MUSIC			equ		13			; pas de musique
 MUCIS_LVL_END			equ		14			; musique de fin de niveau
-
+MUSIC_SHIP_SFX          equ     15
 
 ; id des soundeffects
 SFX_WEAPONS_CHANGE		equ	7

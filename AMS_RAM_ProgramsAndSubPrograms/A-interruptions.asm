@@ -318,7 +318,7 @@ boucle_nouvelle_ligne
 	ld		a,d
 	add		a,8
 	ld		d,a
-	cp		a,0
+	or 		a
 	jr		z,debordement_offset2
 	retour_debordement_offset2
 	or		a
