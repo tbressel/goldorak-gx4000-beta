@@ -261,6 +261,8 @@ test_du_CPC_plus
 	jp		z,music_on_off
 	bit		2,a
 	jp		z,arme_secrete
+	bit		3,a
+	jp		z,game_paused	
 	
 	jp		retour_test_de_CPC_plus
 	
@@ -272,6 +274,7 @@ test_du_CPC_plus
 						jp		z,fireA
 						bit		5,a
 						jp		z,fireB
+					
 					retour_test_des_tirs
 
 						test_des_directions
@@ -340,6 +343,28 @@ reinit_poid_faible
 	ret
 	
 
+
+game_paused
+call    music_off
+call	scrolling_off
+game_paused_boucle
+	ld    b,#f5    			;adresse du port B du PPI
+.vbl
+	in    a,(c)     		;On récupère l'octet contenu sur le port dans A
+	rra              		;On fait une rotation afin de récupérer le bit 0 dans le flag carry
+	jr    nc,.vbl
+	ld    b,#f5    			;adresse du port B du PPI
+	call 	test_du_clavier
+						bit		4,a
+						jp		z,on_sort_de_pause
+
+
+jp	game_paused_boucle
+
+on_sort_de_pause
+call	music_on
+call scrolling_on
+jp retour_test_des_tirs
 
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
