@@ -88,7 +88,7 @@ VBL_init
 	ld		bc,32							; longueur
 	LDIR
 
-
+test_64k_3
 ld bc,#7fc4
 out (c),c
 

@@ -67,7 +67,7 @@ Asic ON
 	ld		(PALETTE_BORDER),hl
 Asic OFF
 
-
+test_64k_5
 ; test si le jeu est fini et si on rejoue avec goldorak ou alcorak
 ld bc,#7fc4
 out (c),c
@@ -77,10 +77,11 @@ ld a,(#4000)
 ld bc,#7fc0
 out (c),c
 
-or	a
-jr	z,on_flag_goldorak
 
-jr	on_flag_alcorak
+cp	a,1
+jr	z,on_flag_alcorak
+
+jr	on_flag_goldorak
 
 
 on_flag_alcorak

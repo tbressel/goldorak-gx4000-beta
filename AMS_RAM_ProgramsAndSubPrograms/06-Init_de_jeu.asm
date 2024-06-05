@@ -170,6 +170,8 @@ Asic ON
 	ld		bc,#20
 	LDIR
 Asic OFF
+
+test_64k_6
 	ld		a,(flag_on_joue_avec_alcorak)
 	cp		a,1
 	call	z,affiche_hud_alcorak

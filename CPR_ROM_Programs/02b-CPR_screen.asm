@@ -8,7 +8,7 @@ ecran_de_depart
 
 ; on test si on lit ou non l'octet #01 dans la page 1
 ; dans ce cas on passe le screen, le menu et le scenario
-
+test_64k_2
 ld bc,#7fc4
 out (c),c
 

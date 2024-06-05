@@ -654,7 +654,7 @@ PreparationLevelSuivant
 				ld		bc,32							; longueur
 				LDIR
 
-
+test_64k_4
 ld bc,#7fc4
 out (c),c
 
