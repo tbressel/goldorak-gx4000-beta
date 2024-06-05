@@ -771,13 +771,13 @@ test_collisions_avec_les_ennemisD
 	
 	
 	LD			hl,(SPRH1_X)					; à partir du coin haut-gauche de link
-	LD			de,0							
+	LD			de,30							
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut-droite
 	LD			de,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
 	SBC			hl,de
 	RET			C								; si hl>=de le flag C est à zero
 	LD			hl,(posx_soucoupe)						; à partir du coin haut-gauche du monstre
-	LD			de,0						
+	LD			de,30						
 	add			hl,de							; 31 pixels plus loin on est sur le coin haut_droite
 	LD			de,(SPRH1_X)					; à partir du coin haut-gauche de link
 	SBC			hl,de

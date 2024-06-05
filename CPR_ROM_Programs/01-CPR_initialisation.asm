@@ -149,6 +149,21 @@ asic off
 ; //////////////////////////////////////////////////////////////////
 ; //////////////////////////////////////////////////////////////////
 
+
+ld bc,#7fc4
+out (c),c
+
+; décommenter cette ligne pour jouer avec l'alcorak
+ ld a,0
+ ld (#4000),a
+
+
+
+ld bc,#7fc0
+out (c),c
+
+
+
 ; l'initialisation terminé on appelle l'écran de départ
 jp		ecran_de_depart
 
